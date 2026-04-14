@@ -1,0 +1,99 @@
+{% comment %}
+  Price Range Filter
+  Display values divided by 100 (Shopify stores in cents internally)
+  Submit exact user values
+
+  @param filter - the price_range filter object from collection.filters
+{% endcomment %}
+
+{% comment %} Get range values and convert for display {% endcomment %}
+{% assign range_min_raw = filter.range_min | default: 0 %}
+{% assign range_max_raw = filter.range_max | default: 10000000 %}
+{% assign range_min = range_min_raw | divided_by: 100 %}
+{% assign range_max = range_max_raw | divided_by: 100 %}
+
+{% comment %} Current selected values - divide by 100 to show what user entered {% endcomment %}
+{% if filter.min_value.value %}
+  {% assign current_min = filter.min_value.value | divided_by: 100 %}
+{% else %}
+  {% assign current_min = range_min %}
+{% endif %}
+
+{% if filter.max_value.value %}
+  {% assign current_max = filter.max_value.value | divided_by: 100 %}
+{% else %}
+  {% assign current_max = range_max %}
+{% endif %}
+
+<div class="price-filter"
+     data-price-filter
+     data-range-min="{{ range_min }}"
+     data-range-max="{{ range_max }}"
+     data-current-min="{{ current_min }}"
+     data-current-max="{{ current_max }}"
+     data-min-param="{{ filter.min_value.param_name }}"
+     data-max-param="{{ filter.max_value.param_name }}">
+
+  <div class="price-filter__inputs">
+    <div class="price-filter__input-group">
+      <span class="price-filter__currency">$</span>
+      <input
+        type="number"
+        class="price-filter__input"
+        placeholder="{{ range_min }}"
+        value="{{ current_min }}"
+        min="{{ range_min }}"
+        max="{{ range_max }}"
+        step="1"
+        data-price-min-input
+      >
+    </div>
+    <span class="price-filter__separator">-</span>
+    <div class="price-filter__input-group">
+      <span class="price-filter__currency">$</span>
+      <input
+        type="number"
+        class="price-filter__input"
+        placeholder="{{ range_max }}"
+        value="{{ current_max }}"
+        min="{{ range_min }}"
+        max="{{ range_max }}"
+        step="1"
+        data-price-max-input
+      >
+    </div>
+  </div>
+
+  <div class="price-filter__slider" data-price-slider>
+    <div class="price-filter__track">
+      <div class="price-filter__range" data-price-range></div>
+    </div>
+    <input
+      type="range"
+      class="price-filter__slider-input price-filter__slider-input--min"
+      min="{{ range_min }}"
+      max="{{ range_max }}"
+      step="1"
+      value="{{ current_min }}"
+      data-price-slider-min
+    >
+    <input
+      type="range"
+      class="price-filter__slider-input price-filter__slider-input--max"
+      min="{{ range_min }}"
+      max="{{ range_max }}"
+      step="1"
+      value="{{ current_max }}"
+      data-price-slider-max
+    >
+  </div>
+
+  <div class="price-filter__labels">
+    <span class="price-filter__label">${{ range_min }}</span>
+    <span class="price-filter__label">${{ range_max }}</span>
+  </div>
+
+  <button type="button" class="price-filter__apply" data-price-apply>
+    Apply Price Filter
+  </button>
+</div>

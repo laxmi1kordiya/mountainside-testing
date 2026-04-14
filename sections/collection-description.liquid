@@ -1,0 +1,76 @@
+{% if collection.description != blank %}
+  <div class="collection-description-section">
+    <div class="collection-description-section__inner rte">
+      {% if collection.handle == 'nurses-fashion-products' %}
+        {{ collection.description
+          | replace: '<h1></h1>', ''
+          | replace: '<h1> </h1>', ''
+        }}
+      {% else %}
+        {{ collection.description }}
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Collection Description",
+  "class": "collection-description--section",
+  "limit": 1,
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max width (px)",
+      "min": 600,
+      "max": 1400,
+      "step": 50,
+      "default": 1200,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top (px)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom (px)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Description"
+    }
+  ]
+}
+{% endschema %}
+
+{% style %}
+  .collection-description-section {
+    width: 100%;
+  }
+  .collection-description-section__inner {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+{% endstyle %}

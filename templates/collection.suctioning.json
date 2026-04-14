@@ -1,0 +1,115 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_MWbDrd": {
+          "type": "menu",
+          "settings": {
+            "menu": "suctioning"
+          }
+        },
+        "menu_JMqhjQ": {
+          "type": "menu",
+          "settings": {
+            "menu": "disinfecting"
+          }
+        },
+        "menu_ai8fPq": {
+          "type": "menu",
+          "settings": {
+            "menu": "general-supplies"
+          }
+        }
+      },
+      "block_order": [
+        "menu_MWbDrd",
+        "menu_JMqhjQ",
+        "menu_ai8fPq"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "5",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "dynamic_rich_text_UfBFh8": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_bhwNHQ": {
+          "type": "text",
+          "settings": {
+            "title": "Suction Machines",
+            "text": "<p><strong>What is a Suction Machines used for</strong>:<br/><br/>Suction machines, also known as suction <br/>apparatus or aspirators, are medical devices used to remove obstructions<br/> such as mucus, saliva, blood, or other secretions from a person's <br/>airway. They are especially useful in situations where individuals have <br/>difficulty clearing these fluids on their own, such as during surgery, <br/>in patients with compromised respiratory function, or in emergency <br/>situations. The machine creates a vacuum to gently and efficiently <br/>remove the fluids, helping to keep airways clear and unobstructed.<br/></p><p><strong>What types of Suction Machines are there?</strong></p><p>There are several types of suction machines designed for various medical needs:<br/><br/>1. <strong>Portable Suction Machines</strong>: Lightweight and battery-operated, perfect for home use and travel.<br/><br/>2. <strong>Wall-Mounted Suction Units</strong>: Typically fixed in hospitals or clinics, providing consistent suction power.<br/><br/>3. <strong>Handheld Suction Devices</strong>: Manual and portable, used for emergency or quick interventions.<br/><br/>4. <strong>Stationary Suction Machines</strong>: Larger units with robust suction power, suited for long-term or frequent home care.<br/><br/><strong>5. Aspirators</strong>: Specialized machines for removing mucus, blood, or liquids from airways and surgical sites.</p><p>These machines cater to diverse healthcare requirements, from routine respiratory management to critical medical procedures.</p>",
+            "heading_size": "large",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_bhwNHQ"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "dynamic_rich_text_GhQ4xC": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_QY3Cqb": {
+          "type": "text",
+          "settings": {
+            "title": "Instructions How to use a Suction Machine",
+            "text": "<h4><strong>Steps for Using a Suction Machine</strong> </h4><p><strong>Preparation:</strong></p><ul><li><strong>Gather Supplies</strong>: Ensure you have all necessary equipment: suction machine, suction catheter or tubing, collection canister, connecting tubing, sterile gloves, and saline solution if needed.</li><li><strong>Wash Hands</strong>: Thoroughly wash your hands with soap and water or use hand sanitizer to maintain hygiene.<br/></li></ul><p><strong>Assemble Equipment</strong>:</p><ul><li>Attach the collection canister to the suction machine.</li><li>Connect one end of the suction tubing to the canister and the other end to the suction catheter.<br/></li></ul><p><strong>Check Settings</strong>: Ensure the machine is set to the appropriate suction pressure. Adjust settings according to physician’s recommendations.<br/><br/><strong>Operation</strong></p><ul><li><strong>Position the Patient</strong>: Ensure the patient is positioned comfortably. They should ideally be sitting up or elevated if possible.</li><li><strong>Turn on the Machine</strong>: Power on the machine and check for proper operation.</li></ul><p><br/><strong>Prepare to Suction</strong>:</p><ul><li>Put on sterile gloves.</li><li>If needed, moisten the suction catheter with sterile saline to ease insertion.<br/></li></ul><p><strong>Insert Catheter</strong>:</p><ul><li>Carefully insert the suction catheter into the mouth or tracheostomy tube, as advised. Avoid forcing the catheter</li><li>Do not suction for more than 10-15 seconds at a time to prevent oxygen deprivation.</li></ul><p><br/><strong>Apply Suction</strong>:</p><ul><li>Cover the suction control valve with your thumb to begin suctioning.</li><li>Gently rotate and withdraw the catheter while applying suction to remove secretions.<br/></li></ul><p><strong>Dispose of Secretions</strong>: Ensure secretions are collected in the canister. Check the canister regularly and replace it when full.<br/><br/><strong>Repeat if Necessary</strong>: Allow the patient to rest between attempts and provide supplemental oxygen if required. Repeat suctioning as necessary.<br/></p><p><br/><strong>Post-Procedure Care</strong></p><p><strong>Turn Off the Machine</strong>: Switch off the suction machine after use.</p><p><strong>Clean Equipment</strong>:</p><ul><li>Dispose of used catheters and gloves in biohazard waste.</li><li>Clean the suction machine and reusable components according to the manufacturer’s instructions.<br/></li></ul><p><strong>Monitor the Patient</strong>: Observe the patient for any signs of distress, discomfort, or complications<br/><strong>Document the Procedure</strong>: Record the time, amount, and nature of secretions, and any patient reactions in the medical record.<br/><br/><strong>Safety Tips:</strong></p><ul><li>Use sterile techniques to minimize the risk of infection.</li><li>Monitor the patient’s vital signs throughout the procedure.</li><li>Be aware of signs of hypoxia such as cyanosis or difficulty breathing.<br/></li></ul><p>Always consult healthcare professionals if uncertain about any step. Proper training and adherence to clinical guidelines ensure effective and safe use of a suction machine.</p>",
+            "heading_size": "large",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_QY3Cqb"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "collection_description_vgEEwy": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_vgEEwy",
+    "dynamic_rich_text_UfBFh8",
+    "dynamic_rich_text_GhQ4xC"
+  ]
+}

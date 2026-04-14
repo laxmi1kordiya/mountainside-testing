@@ -1,0 +1,153 @@
+{% comment %}
+  Auto-detects discount from compare-at price.
+  Updates dynamically when variant changes via JS.
+{% endcomment %}
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign has_discount = false %}
+
+{% if current_variant.compare_at_price > current_variant.price %}
+  {% assign has_discount = true %}
+  {% assign save_amount = current_variant.compare_at_price | minus: current_variant.price %}
+  {% assign save_percent = save_amount | times: 100.0 | divided_by: current_variant.compare_at_price | round %}
+{% endif %}
+
+<div class="product-discount-banner{% unless has_discount %} product-discount-banner--hidden{% endunless %}" data-discount-banner {{ block.shopify_attributes }}>
+  {% if block.settings.show_icon %}
+    <div class="product-discount-banner__icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+        <line x1="7" y1="7" x2="7.01" y2="7"></line>
+      </svg>
+    </div>
+  {% endif %}
+  <div class="product-discount-banner__text">
+    <span data-discount-text>
+      {% if has_discount %}
+        {% if block.settings.display_format == 'percentage' %}
+          Save {{ save_percent }}%
+        {% elsif block.settings.display_format == 'amount' %}
+          Save {{ save_amount | money }}
+        {% else %}
+          Save {{ save_percent }}% ({{ save_amount | money }})
+        {% endif %}
+      {% endif %}
+    </span>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var productVariants = {{ product.variants | json }};
+    var displayFormat = '{{ block.settings.display_format }}';
+    var moneyFormat = {{ shop.money_format | json }};
+
+    function updateDiscountBanner(variant) {
+      var banner = document.querySelector('[data-discount-banner]');
+      if (!banner) return;
+      var textEl = banner.querySelector('[data-discount-text]');
+      if (!textEl) return;
+
+      if (variant.compare_at_price && variant.compare_at_price > variant.price) {
+        var saveAmount = variant.compare_at_price - variant.price;
+        var savePercent = Math.round((saveAmount / variant.compare_at_price) * 100);
+        var moneyAmount = typeof Shopify !== 'undefined' && Shopify.formatMoney
+          ? Shopify.formatMoney(saveAmount, moneyFormat)
+          : '$ ' + (saveAmount / 100).toFixed(2);
+
+        var text = '';
+        if (displayFormat === 'percentage') {
+          text = 'Save ' + savePercent + '%';
+        } else if (displayFormat === 'amount') {
+          text = 'Save ' + moneyAmount;
+        } else {
+          text = 'Save ' + savePercent + '% (' + moneyAmount + ')';
+        }
+
+        textEl.innerHTML = text;
+        banner.classList.remove('product-discount-banner--hidden');
+      } else {
+        textEl.innerHTML = '';
+        banner.classList.add('product-discount-banner--hidden');
+      }
+    }
+
+    function findVariantById(id) {
+      for (var i = 0; i < productVariants.length; i++) {
+        if (productVariants[i].id === id) return productVariants[i];
+      }
+      return null;
+    }
+
+    // Method 1: Listen for custom variantChange event
+    document.addEventListener('variantChange', function(e) {
+      if (e.detail && e.detail.variant) {
+        updateDiscountBanner(e.detail.variant);
+      }
+    });
+
+    // Method 2: Watch the hidden variant select for changes
+    document.addEventListener('DOMContentLoaded', function() {
+      var variantSelect = document.querySelector('[data-product-form] [data-variants]');
+      if (variantSelect) {
+        variantSelect.addEventListener('change', function() {
+          var variant = findVariantById(parseInt(this.value, 10));
+          if (variant) updateDiscountBanner(variant);
+        });
+      }
+
+      // Method 3: Watch all option selectors (radio buttons and dropdowns)
+      var optionInputs = document.querySelectorAll('[data-product-option]');
+      for (var i = 0; i < optionInputs.length; i++) {
+        optionInputs[i].addEventListener('change', function() {
+          setTimeout(function() {
+            var variantSel = document.querySelector('[data-product-form] [data-variants]');
+            if (variantSel) {
+              var variant = findVariantById(parseInt(variantSel.value, 10));
+              if (variant) updateDiscountBanner(variant);
+            }
+          }, 100);
+        });
+      }
+    });
+  })();
+</script>
+
+<style>
+  .product-discount-banner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    margin: 5px 0;
+    background: #fff3e0;
+    border-radius: 4px;
+  }
+
+  .product-discount-banner--hidden {
+    display: none;
+  }
+
+  .product-discount-banner__icon {
+    flex-shrink: 0;
+    color: #e65100;
+  }
+
+  .product-discount-banner__text {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #e65100;
+  }
+
+  @media screen and (max-width: 767px) {
+    .product-discount-banner__text {
+      font-size: 13px;
+    }
+
+    .product-discount-banner__icon svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+</style>

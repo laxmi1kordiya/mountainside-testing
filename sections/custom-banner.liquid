@@ -1,0 +1,867 @@
+{% comment %}
+  Custom Banner Section - Fully Responsive & Customizable
+{% endcomment %}
+
+{% assign onboarding = false %}
+{% if section.settings.banner_image == blank %}
+  {% assign onboarding = true %}
+{% endif %}
+
+{% comment %} Calculate spacing values {% endcomment %}
+{% assign margin_top = section.settings.margin_top %}
+{% assign margin_bottom = section.settings.margin_bottom %}
+{% assign padding_top = section.settings.padding_top %}
+{% assign padding_bottom = section.settings.padding_bottom %}
+{% assign padding_left = section.settings.padding_left %}
+{% assign padding_right = section.settings.padding_right %}
+
+{% comment %} Overlay settings {% endcomment %}
+{% if section.settings.overlay_opacity != 0 %}
+  {% assign opacity = section.settings.overlay_opacity | times: 0.01 %}
+  {% assign overlay = section.settings.overlay_color | color_modify: 'alpha', opacity %}
+{% endif %}
+
+<section
+  class="custom-banner custom-banner--{{ section.id }} custom-banner-height-{{ section.settings.banner_height }}"
+  style="
+    margin-top: {{ margin_top }}px;
+    margin-bottom: {{ margin_bottom }}px;
+    {% if section.settings.banner_background_color != 'rgba(0,0,0,0)' %}
+      background-color: {{ section.settings.banner_background_color }};
+    {% endif %}
+  "
+>
+  <div
+    class="custom-banner-wrapper"
+    style="
+      padding-top: {{ padding_top }}px;
+      padding-bottom: {{ padding_bottom }}px;
+      padding-left: {{ padding_left }}px;
+      padding-right: {{ padding_right }}px;
+    "
+  >
+    {% comment %} Banner Link Wrapper {% endcomment %}
+    {% if section.settings.banner_link != blank %}
+      <a
+        href="{{ section.settings.banner_link }}"
+        class="custom-banner-link-wrapper"
+        {% if section.settings.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+      >
+    {% endif %}
+
+      <div class="custom-banner-image-container">
+        {% comment %} Desktop Banner Image {% endcomment %}
+        <div
+          class="custom-banner-image custom-banner-image-desktop custom-banner-height-{{ section.settings.banner_height }}"
+          {% if section.settings.banner_image != blank %}
+            {% capture background_style %}
+              {% if section.settings.banner_height == 'original' %}
+                padding-bottom: {{ 100 | divided_by: section.settings.banner_image.aspect_ratio }}%;
+              {% endif %}
+              background-position: {{ section.settings.image_position }};
+            {% endcapture %}
+          >
+            {%
+              include 'rimg',
+              img: section.settings.banner_image,
+              size: '2400x',
+              crop: section.settings.image_crop,
+              lazy: section.settings.lazy_load,
+              canvas: false,
+              attr: 'loading="eager" fetchpriority="high"'
+            %}
+          {% endif %}
+          {% if onboarding %}
+            <div class="custom-banner-placeholder">
+              {{ 'lifestyle-1' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+
+        {% comment %} Mobile Banner Image {% endcomment %}
+        {% if section.settings.mobile_banner_image != blank %}
+          <div
+            class="custom-banner-image custom-banner-image-mobile custom-banner-height-{{ section.settings.banner_height }}"
+            {% capture mobile_background_style %}
+              {% if section.settings.banner_height == 'original' %}
+                padding-bottom: {{ 100 | divided_by: section.settings.mobile_banner_image.aspect_ratio }}%;
+              {% endif %}
+              background-position: {{ section.settings.image_position }};
+            {% endcapture %}
+          >
+            {%
+              include 'rimg',
+              img: section.settings.mobile_banner_image,
+              size: '1200x',
+              crop: section.settings.image_crop,
+              lazy: false,
+              canvas: false,
+              attr: 'loading="eager" fetchpriority="high"'
+            %}
+          
+          </div>
+        {% endif %}
+
+        {% comment %} Overlay {% endcomment %}
+        {% if section.settings.enable_overlay and section.settings.overlay_opacity != 0 %}
+          <div
+            class="custom-banner-overlay"
+            style="background-color: {{ overlay }};"
+          ></div>
+        {% endif %}
+
+        {% comment %} Optional Text Content {% endcomment %}
+        {% if section.settings.show_text_content %}
+          <div
+            class="
+              custom-banner-content
+              custom-banner-content-position-{{ section.settings.content_position }}
+              custom-banner-content-align-{{ section.settings.text_alignment }}
+            "
+          >
+            <div class="custom-banner-content-inner" style="color: {{ section.settings.text_color }};">
+              {% if section.settings.banner_title != blank %}
+                <h2 class="custom-banner-title" style="font-size: {{ section.settings.title_font_size }}px;">
+                  {{ section.settings.banner_title | escape }}
+                </h2>
+              {% endif %}
+
+              {% if section.settings.banner_subtitle != blank %}
+                <div class="custom-banner-subtitle rte" style="font-size: {{ section.settings.subtitle_font_size }}px;">
+                  {{ section.settings.banner_subtitle }}
+                </div>
+              {% endif %}
+
+              {% if section.settings.button_text != blank %}
+                <span
+                  class="custom-banner-button button-{{ section.settings.button_style }}"
+                  style="
+                    background-color: {{ section.settings.button_background_color }};
+                    color: {{ section.settings.button_text_color }};
+                  "
+                >
+                  {{ section.settings.button_text | escape }}
+                </span>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+    {% if section.settings.banner_link != blank %}
+      </a>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .custom-banner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .custom-banner-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .custom-banner-link-wrapper {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .custom-banner-image-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .custom-banner-image {
+    position: relative;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  {% comment %} Height Options {% endcomment %}
+  .custom-banner-height-small .custom-banner-image {
+    height: 300px;
+  }
+
+  .custom-banner-height-medium .custom-banner-image {
+    height: 500px;
+  }
+
+  .custom-banner-height-large .custom-banner-image {
+    height: 700px;
+  }
+
+  .custom-banner-height-fullscreen .custom-banner-image {
+    height: 100vh;
+  }
+
+  .custom-banner-height-original .custom-banner-image {
+    height: auto;
+    position: relative;
+  }
+
+  {% comment %} Responsive Heights {% endcomment %}
+  @media only screen and (max-width: 768px) {
+    .custom-banner-height-small .custom-banner-image {
+      height: 200px;
+    }
+
+    .custom-banner-height-medium .custom-banner-image {
+      height: 350px;
+    }
+
+    .custom-banner-height-large .custom-banner-image {
+      height: 500px;
+    }
+
+    .custom-banner-height-fullscreen .custom-banner-image {
+      height: 60vh;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    .custom-banner-height-small .custom-banner-image {
+      height: 150px;
+    }
+
+    .custom-banner-height-medium .custom-banner-image {
+      height: 250px;
+    }
+
+    .custom-banner-height-large .custom-banner-image {
+      height: 400px;
+    }
+
+    .custom-banner-height-fullscreen .custom-banner-image {
+      height: 50vh;
+    }
+  }
+
+  .custom-banner-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+  }
+
+  .custom-banner-placeholder svg {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .custom-banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  .custom-banner-content {
+    position: absolute;
+    z-index: 2;
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  {% comment %} Content Positioning {% endcomment %}
+  .custom-banner-content-position-top-left {
+    top: 0;
+    left: 0;
+  }
+
+  .custom-banner-content-position-top-center {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .custom-banner-content-position-top-right {
+    top: 0;
+    right: 0;
+  }
+
+  .custom-banner-content-position-center-left {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  .custom-banner-content-position-center-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .custom-banner-content-position-center-right {
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+  }
+
+  .custom-banner-content-position-bottom-left {
+    bottom: 0;
+    left: 0;
+  }
+
+  .custom-banner-content-position-bottom-center {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .custom-banner-content-position-bottom-right {
+    bottom: 0;
+    right: 0;
+  }
+
+  .custom-banner-content-inner {
+    max-width: 600px;
+  }
+
+  .custom-banner-content-align-left {
+    text-align: left;
+  }
+
+  .custom-banner-content-align-center {
+    text-align: center;
+  }
+
+  .custom-banner-content-align-right {
+    text-align: right;
+  }
+
+  .custom-banner-title {
+    margin: 0 0 15px 0;
+    font-weight: bold;
+    line-height: 1.2;
+  }
+
+  .custom-banner-subtitle {
+    margin: 0 0 20px 0;
+    line-height: 1.5;
+  }
+
+  .custom-banner-button {
+    display: inline-block;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .custom-banner-button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+
+  {% comment %} Responsive Text {% endcomment %}
+  @media only screen and (max-width: 768px) {
+    .custom-banner-content {
+      padding: 15px;
+    }
+
+    .custom-banner-content-inner {
+      max-width: 100%;
+    }
+
+    .custom-banner-title {
+      font-size: calc({{ section.settings.title_font_size }}px * 0.8) !important;
+    }
+
+    .custom-banner-subtitle {
+      font-size: calc({{ section.settings.subtitle_font_size }}px * 0.85) !important;
+    }
+
+    .custom-banner-button {
+      padding: 10px 24px;
+      font-size: 14px;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    .custom-banner-content {
+      padding: 10px;
+    }
+
+    .custom-banner-title {
+      font-size: calc({{ section.settings.title_font_size }}px * 0.65) !important;
+      margin-bottom: 10px;
+    }
+
+    .custom-banner-subtitle {
+      font-size: calc({{ section.settings.subtitle_font_size }}px * 0.75) !important;
+      margin-bottom: 15px;
+    }
+
+    .custom-banner-button {
+      padding: 8px 20px;
+      font-size: 13px;
+    }
+  }
+
+  {% comment %} Image object-fit for better responsive behavior {% endcomment %}
+  .custom-banner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: {{ section.settings.image_fit }};
+    object-position: {{ section.settings.image_position }};
+  }
+
+  {% comment %} Mobile/Desktop Banner Visibility {% endcomment %}
+  .custom-banner-image-mobile {
+    display: none;
+  }
+
+  @media only screen and (max-width: 768px) {
+    {% if section.settings.mobile_banner_image != blank %}
+      .custom-banner-image-desktop {
+        display: none;
+      }
+
+      .custom-banner-image-mobile {
+        display: block;
+      }
+    {% endif %}
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Custom Banner",
+  "class": "custom-banner-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Banner Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Desktop Banner Image",
+      "info": "Recommended: 2400x1200px for best quality"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_banner_image",
+      "label": "Mobile Banner Image",
+      "info": "Optional: Upload a different banner for mobile devices (max-width: 768px). Recommended: 1200x800px"
+    },
+    {
+      "type": "select",
+      "id": "banner_height",
+      "label": "Banner Height",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small (300px)"
+        },
+        {
+          "value": "medium",
+          "label": "Medium (500px)"
+        },
+        {
+          "value": "large",
+          "label": "Large (700px)"
+        },
+        {
+          "value": "fullscreen",
+          "label": "Fullscreen"
+        },
+        {
+          "value": "original",
+          "label": "Original Aspect Ratio"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "info": "Adjust the focal point of the image",
+      "options": [
+        {
+          "label": "Top Left",
+          "value": "top left"
+        },
+        {
+          "label": "Top Center",
+          "value": "top center"
+        },
+        {
+          "label": "Top Right",
+          "value": "top right"
+        },
+        {
+          "label": "Center Left",
+          "value": "center left"
+        },
+        {
+          "label": "Center",
+          "value": "center center"
+        },
+        {
+          "label": "Center Right",
+          "value": "center right"
+        },
+        {
+          "label": "Bottom Left",
+          "value": "bottom left"
+        },
+        {
+          "label": "Bottom Center",
+          "value": "bottom center"
+        },
+        {
+          "label": "Bottom Right",
+          "value": "bottom right"
+        }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image Fit",
+      "info": "How the image should be sized within the banner",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover (fills area, may crop)"
+        },
+        {
+          "value": "contain",
+          "label": "Contain (shows full image)"
+        },
+        {
+          "value": "fill",
+          "label": "Fill (stretches to fit)"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "image_crop",
+      "label": "Image Crop",
+      "options": [
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "checkbox",
+      "id": "lazy_load",
+      "label": "Enable Lazy Loading",
+      "info": "Improves page load performance",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Spacing Settings"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Margin Top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "label": "Padding Left",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "label": "Padding Right",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "banner_background_color",
+      "label": "Section Background Color",
+      "info": "Background color behind the banner",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "header",
+      "content": "Overlay Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_overlay",
+      "label": "Enable Overlay",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Link Settings"
+    },
+    {
+      "type": "url",
+      "id": "banner_link",
+      "label": "Banner Link",
+      "info": "Make the entire banner clickable"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_in_new_tab",
+      "label": "Open Link in New Tab",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Text Content (Optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text_content",
+      "label": "Show Text Content",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "banner_title",
+      "label": "Banner Title",
+      "default": "Your Banner Title"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Title Font Size",
+      "min": 16,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "richtext",
+      "id": "banner_subtitle",
+      "label": "Banner Subtitle",
+      "default": "<p>Add your banner subtitle or description here</p>"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_size",
+      "label": "Subtitle Font Size",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Content Position",
+      "options": [
+        {
+          "value": "top-left",
+          "label": "Top Left"
+        },
+        {
+          "value": "top-center",
+          "label": "Top Center"
+        },
+        {
+          "value": "top-right",
+          "label": "Top Right"
+        },
+        {
+          "value": "center-left",
+          "label": "Center Left"
+        },
+        {
+          "value": "center-center",
+          "label": "Center Center"
+        },
+        {
+          "value": "center-right",
+          "label": "Center Right"
+        },
+        {
+          "value": "bottom-left",
+          "label": "Bottom Left"
+        },
+        {
+          "value": "bottom-center",
+          "label": "Bottom Center"
+        },
+        {
+          "value": "bottom-right",
+          "label": "Bottom Right"
+        }
+      ],
+      "default": "center-center"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "info": "Leave empty to hide button"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button Style",
+      "options": [
+        {
+          "value": "primary",
+          "label": "Primary"
+        },
+        {
+          "value": "secondary",
+          "label": "Secondary"
+        }
+      ],
+      "default": "primary"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Banner",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

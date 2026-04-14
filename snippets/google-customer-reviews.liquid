@@ -1,0 +1,35 @@
+{%- comment -%}
+  Google Customer Reviews Opt-in Integration
+  Displays a survey widget for customers to rate the business
+  Merchant ID: 159722
+{%- endcomment -%}
+
+<script src="https://apis.google.com/js/platform.js?onload=renderOptIn" async defer></script>
+
+<script>
+  window.renderOptIn = function() {
+    window.gapi.load('surveyoptin', function() {
+      {%- assign delivery_date = order.created_at | date: '%s' | plus: 604800 | date: '%Y-%m-%d' -%}
+
+      window.gapi.surveyoptin.render({
+        // REQUIRED FIELDS
+        "merchant_id": 159722,
+        "order_id": "{{ order.name }}",
+        "email": "{{ order.email }}",
+        "delivery_country": "{{ order.shipping_address.country_code }}",
+        "estimated_delivery_date": "{{ delivery_date }}",
+
+        // OPTIONAL FIELDS - Products with GTINs
+        "products": [
+          {%- for line_item in order.line_items -%}
+            {%- if line_item.variant.barcode -%}
+              {
+                "gtin": "{{ line_item.variant.barcode }}"
+              }{{ forloop.last | unless }},{{ endunless }}
+            {%- endif -%}
+          {%- endfor -%}
+        ]
+      });
+    });
+  }
+</script>

@@ -1,0 +1,270 @@
+{% comment %}
+  Collection Bar — Dynamic
+  - Product pages: shows collections the product belongs to
+  - Collection pages: shows related collections (from products in the current collection)
+{% endcomment %}
+
+{% if section.settings.enable_section %}
+
+{% if template.name == 'product' and product.collections.size > 0 %}
+  {% comment %} Product page: show collections this product belongs to {% endcomment %}
+  {% assign bar_collections = product.collections %}
+
+{% elsif template.name == 'collection' and collection.products.size > 0 %}
+  {% comment %} Collection page: gather related collections from products in this collection {% endcomment %}
+  {% assign related_handles = '' %}
+  {% for prod in collection.products limit: 20 %}
+    {% for col in prod.collections %}
+      {% unless col.handle == collection.handle %}
+        {% unless related_handles contains col.handle %}
+          {% if related_handles == '' %}
+            {% assign related_handles = col.handle %}
+          {% else %}
+            {% assign related_handles = related_handles | append: ',' | append: col.handle %}
+          {% endif %}
+        {% endunless %}
+      {% endunless %}
+    {% endfor %}
+  {% endfor %}
+  {% assign related_handle_array = related_handles | split: ',' %}
+{% endif %}
+
+{% comment %} Render the bar {% endcomment %}
+{% assign has_items = false %}
+{% if template.name == 'product' and bar_collections.size > 0 %}
+  {% assign has_items = true %}
+{% elsif template.name == 'collection' and related_handle_array.size > 0 %}
+  {% assign has_items = true %}
+{% endif %}
+
+{% if has_items %}
+<div class="collection-bar" data-collection-bar>
+  <div class="collection-bar__container">
+    {% if section.settings.show_arrows %}
+      <button class="collection-bar__arrow collection-bar__arrow--prev" data-collection-bar-prev aria-label="Scroll left">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+    {% endif %}
+
+    <div class="collection-bar__track" data-collection-bar-track>
+      {% if template.name == 'product' %}
+        {% assign excluded_handles = 'best-selling-products,all,frontpage,best-sellers' %}
+        {% if section.settings.excluded_collections != blank %}
+          {% assign excluded_handles = excluded_handles | append: ',' | append: section.settings.excluded_collections %}
+        {% endif %}
+        {% for col in bar_collections %}
+          {% unless excluded_handles contains col.handle %}
+            {% if col.title != blank %}
+              <a href="{{ col.url }}" class="collection-bar__pill">
+                {{ col.title }}
+              </a>
+            {% endif %}
+          {% endunless %}
+        {% endfor %}
+      {% elsif template.name == 'collection' %}
+        {% for handle in related_handle_array %}
+          {% assign rel_col = collections[handle] %}
+          {% if rel_col.title != blank %}
+            <a href="{{ rel_col.url }}" class="collection-bar__pill">
+              {{ rel_col.title }}
+            </a>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    {% if section.settings.show_arrows %}
+      <button class="collection-bar__arrow collection-bar__arrow--next" data-collection-bar-next aria-label="Scroll right">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+{% endif %}
+
+<style>
+  .collection-bar {
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 3px 0;
+  }
+
+  .collection-bar__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .collection-bar__track {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex: 1;
+  }
+
+  .collection-bar__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .collection-bar__pill {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 3px 10px;
+    border: none;
+    border-radius: 4px;
+    background: #f3f4f6;
+    color: #555;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .collection-bar__pill:hover {
+    background: #e8f5e9;
+    color: #367b36;
+  }
+
+  .collection-bar__pill--active {
+    background: #367b36;
+    color: #fff;
+  }
+
+  .collection-bar__pill--active:hover {
+    background: #2d6a2d;
+    color: #fff;
+  }
+
+  .collection-bar__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 4px;
+    background: #fff;
+    color: #333;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background-color 0.2s, opacity 0.2s;
+  }
+
+  .collection-bar__arrow:hover {
+    background: #f3f4f6;
+  }
+
+  .collection-bar__arrow[disabled] {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  @media screen and (max-width: 767px) {
+    .collection-bar {
+      padding: 2px 0;
+    }
+
+    .collection-bar__container {
+      padding: 0 8px;
+      gap: 4px;
+    }
+
+    .collection-bar__track {
+      gap: 5px;
+    }
+
+    .collection-bar__pill {
+      padding: 2px 8px;
+      font-size: 11px;
+    }
+
+    .collection-bar__arrow {
+      width: 22px;
+      height: 22px;
+    }
+
+    .collection-bar__arrow svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    var bar = document.querySelector('[data-collection-bar]');
+    if (!bar) return;
+
+    var track = bar.querySelector('[data-collection-bar-track]');
+    var prevBtn = bar.querySelector('[data-collection-bar-prev]');
+    var nextBtn = bar.querySelector('[data-collection-bar-next]');
+
+    if (!track) return;
+
+    function updateArrows() {
+      if (!prevBtn || !nextBtn) return;
+      var scrollLeft = Math.round(track.scrollLeft);
+      var maxScroll = track.scrollWidth - track.offsetWidth;
+      prevBtn.disabled = scrollLeft <= 0;
+      nextBtn.disabled = scrollLeft >= maxScroll - 1;
+    }
+
+    if (prevBtn && nextBtn) {
+      var scrollAmount = 200;
+
+      prevBtn.addEventListener('click', function() {
+        track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      });
+
+      nextBtn.addEventListener('click', function() {
+        track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      });
+
+      track.addEventListener('scroll', updateArrows);
+      updateArrows();
+
+      window.addEventListener('resize', updateArrows);
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Collection bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_section",
+      "label": "Enable collection bar",
+      "default": true
+    },
+    {
+      "type": "paragraph",
+      "content": "Dynamically shows product collections on product pages and all collections on other pages."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show navigation arrows",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "excluded_collections",
+      "label": "Excluded collection handles",
+      "info": "Comma-separated handles to hide, e.g. 'new-arrivals,clearance'. Best Selling, All, and Frontpage are excluded by default."
+    }
+  ]
+}
+{% endschema %}

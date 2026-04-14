@@ -1,0 +1,142 @@
+{% comment %}
+  Product Icon Row Block
+  Renders a grid of icons with labels from block settings.
+  Each icon slot: image_picker + text (connectable to dynamic source/metafield)
+  Up to 5 icons supported.
+
+  Receives: block
+{% endcomment %}
+
+{% assign icon_size = block.settings.icon_size | default: 50 %}
+{% assign icon_size_2x = icon_size | times: 2 %}
+{% assign cols_desktop = block.settings.columns_desktop | default: '3' %}
+{% assign cols_mobile = block.settings.columns_mobile | default: '3' %}
+{% assign hide_text_mobile = block.settings.hide_text_mobile %}
+
+{% comment %} Conditional icon swap based on product tag {% endcomment %}
+{% assign swap_slot = block.settings.swap_icon_slot | default: 'none' %}
+{% assign swap_active = false %}
+{% if swap_slot != 'none' and block.settings.swap_product_tag != blank %}
+  {% if product.tags contains block.settings.swap_product_tag %}
+    {% assign swap_active = true %}
+  {% endif %}
+{% endif %}
+
+{% assign has_icons = false %}
+{% for i in (1..5) %}
+  {% assign img_key = 'icon_image_' | append: i %}
+  {% assign txt_key = 'icon_text_' | append: i %}
+  {% if block.settings[img_key] != blank or block.settings[txt_key] != blank %}
+    {% assign has_icons = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if has_icons %}
+  <div class="product-icon-row product-icon-row--desktop-{{ cols_desktop }} product-icon-row--mobile-{{ cols_mobile }}{% if hide_text_mobile %} product-icon-row--hide-text-mobile{% endif %}" {{ block.shopify_attributes }}>
+    <div class="product-icon-row__grid">
+      {% for i in (1..5) %}
+        {% assign img_key = 'icon_image_' | append: i %}
+        {% assign txt_key = 'icon_text_' | append: i %}
+        {% assign icon_img = block.settings[img_key] %}
+        {% assign icon_txt = block.settings[txt_key] %}
+
+        {% comment %} Swap icon if this slot matches and product has the tag {% endcomment %}
+        {% assign i_string = i | append: '' %}
+        {% if swap_active and swap_slot == i_string %}
+          {% if block.settings.swap_icon_image != blank %}
+            {% assign icon_img = block.settings.swap_icon_image %}
+          {% endif %}
+          {% if block.settings.swap_icon_text != blank %}
+            {% assign icon_txt = block.settings.swap_icon_text %}
+          {% endif %}
+        {% endif %}
+
+        {% if icon_img != blank or icon_txt != blank %}
+          <div class="product-icon-row__item">
+            {% if icon_img != blank %}
+              <div class="product-icon-row__icon" style="width: {{ icon_size }}px; height: {{ icon_size }}px;">
+                <img
+                  src="{{ icon_img | image_url: width: icon_size_2x }}"
+                  alt="{{ icon_txt | escape }}"
+                  width="{{ icon_size }}"
+                  height="{{ icon_size }}"
+                  loading="lazy"
+                >
+              </div>
+            {% endif %}
+            {% if icon_txt != blank %}
+              <span class="product-icon-row__label">{{ icon_txt }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+<style>
+  {% comment %} .product-icon-row {
+    padding: 15px 0;
+  } {% endcomment %}
+
+  .product-icon-row__grid {
+    display: grid;
+    gap: 16px;
+  }
+
+  .product-icon-row--desktop-2 .product-icon-row__grid { grid-template-columns: repeat(2, 1fr); }
+  .product-icon-row--desktop-3 .product-icon-row__grid { grid-template-columns: repeat(3, 1fr); }
+  .product-icon-row--desktop-4 .product-icon-row__grid { grid-template-columns: repeat(4, 1fr); }
+
+  .product-icon-row__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .product-icon-row__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .product-icon-row__icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .product-icon-row__label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #111;
+    line-height: 1.3;
+  }
+
+  @media screen and (max-width: 767px) {
+    .product-icon-row {
+      {% comment %} padding: 12px 0; {% endcomment %}
+    }
+
+    .product-icon-row__grid {
+      gap: 12px;
+    }
+
+    .product-icon-row--mobile-1 .product-icon-row__grid { grid-template-columns: 1fr; }
+    .product-icon-row--mobile-2 .product-icon-row__grid { grid-template-columns: repeat(2, 1fr); }
+    .product-icon-row--mobile-3 .product-icon-row__grid { grid-template-columns: repeat(3, 1fr); }
+    .product-icon-row--mobile-4 .product-icon-row__grid { grid-template-columns: repeat(4, 1fr); }
+
+    .product-icon-row__label {
+      font-size: 11px;
+    }
+
+    .product-icon-row--hide-text-mobile .product-icon-row__label {
+      display: none;
+    }
+  }
+</style>

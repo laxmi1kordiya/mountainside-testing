@@ -1,0 +1,2050 @@
+{%- comment -%}
+  Featured Products Carousel (Manual Selection)
+  Admin can manually select 10-15 products
+  Half height of Best Selling Carousel
+{%- endcomment -%}
+
+<section class="featured-carousel featured-carousel--{{ section.id }}" data-featured-carousel>
+  <div class="featured-carousel__container">
+    {%- comment -%} Section Header {%- endcomment -%}
+    <div class="featured-carousel__header">
+      {% if section.settings.show_subtitle and section.settings.subtitle != blank %}
+        <p class="featured-carousel__subtitle">{{ section.settings.subtitle }}</p>
+      {% endif %}
+      {% if section.settings.title_normal != blank or section.settings.title_highlight != blank %}
+        <h2 class="featured-carousel__title">
+          <span class="title-normal">{{ section.settings.title_normal }}</span>
+          <span class="title-highlight">{{ section.settings.title_highlight }}</span>
+        </h2>
+      {% endif %}
+    </div>
+
+    {%- comment -%} Content Block + Carousel Wrapper {%- endcomment -%}
+    <div class="featured-carousel__content-and-carousel">
+      {%- comment -%} Content Block (appears before carousel cards horizontally) {%- endcomment -%}
+      {% if section.settings.show_content_block %}
+        <div class="featured-carousel__content-block">
+          <div class="featured-carousel__content-inner">
+            <div class="content-block__content-wrapper">
+              {% if section.settings.content_icon != blank %}
+                <div class="content-block__icon">{{ section.settings.content_icon }}</div>
+              {% endif %}
+              {% if section.settings.content_heading != blank %}
+                <h3 class="content-block__heading">{{ section.settings.content_heading }}</h3>
+              {% endif %}
+              {% if section.settings.content_text != blank %}
+                <div class="content-block__text">{{ section.settings.content_text }}</div>
+              {% endif %}
+              <a href="/collections/asthma#collection-description-section" class="content-block__read-more">
+                Read More
+              </a>
+            </div>
+            {% if section.settings.content_button_text != blank and section.settings.content_button_link != blank %}
+              <div class="content-block__buttons-wrapper">
+                <a href="{{ section.settings.content_button_link }}" class="content-block__button">
+                  {{ section.settings.content_button_text }}
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      {%- comment -%} Carousel Wrapper {%- endcomment -%}
+      <div class="featured-carousel__wrapper">
+      {% if section.settings.show_arrows %}
+        <button class="featured-carousel__arrow featured-carousel__arrow--prev" aria-label="Previous" data-prev>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      {% endif %}
+
+      <div class="featured-carousel__track-container">
+        <div class="featured-carousel__track" data-track>
+          {% if section.settings.collection != blank %}
+            {% assign collection = collections[section.settings.collection] %}
+            {% for product in collection.products %}
+              {% if product != blank %}
+              <div class="featured-carousel__card" data-card>
+                <div class="featured-carousel__card-inner">
+                  {%- comment -%} Badges {%- endcomment -%}
+                  {%- assign current_variant = product.selected_or_first_available_variant -%}
+                  {%- assign variant_compare_price = current_variant.compare_at_price -%}
+                  {%- assign variant_price = current_variant.price -%}
+                  {%- assign has_discount = false -%}
+                  {%- if variant_compare_price != blank and variant_compare_price > variant_price -%}
+                    {%- assign has_discount = true -%}
+                  {%- endif -%}
+                  <div class="featured-carousel__badges">
+                    {% if product.available == false %}
+                      <span class="badge badge--sold-out">Sold Out</span>
+                    {% elsif has_discount %}
+                      {% assign savings_amount = variant_compare_price | minus: variant_price %}
+                      {% assign savings_percent = savings_amount | times: 100.0 | divided_by: variant_compare_price | round %}
+                      <span class="badge badge--sale">Sale {{ savings_percent }}%</span>
+                    {% endif %}
+                    {% if product.tags contains 'best-seller' or product.tags contains 'bestseller' or product.tags contains 'top-selling' %}
+                      <span class="badge badge--bestseller">Best Seller</span>
+                    {% elsif product.tags contains 'new' or product.tags contains 'new-arrival' %}
+                      <span class="badge badge--new">New Arrival</span>
+                    {% elsif product.tags contains 'trending' %}
+                      <span class="badge badge--trending">Trending</span>
+                    {% elsif product.tags contains 'popular' %}
+                      <span class="badge badge--popular">Popular</span>
+                    {% endif %}
+                  </div>
+
+                  {%- comment -%} Product Image {%- endcomment -%}
+                  <div class="featured-carousel__image-wrapper">
+                    <a href="{{ product.url }}" class="featured-carousel__image-link">
+                      {% if product.featured_image != blank %}
+                        <img
+                          src="{{ product.featured_image | image_url: width: 400 }}"
+                          alt="{{ product.featured_image.alt | escape | default: product.title }}"
+                          loading="lazy"
+                          class="featured-carousel__image featured-carousel__image--primary"
+                        >
+                        {%- assign hover_image = product.images[1] | default: product.featured_image -%}
+                        <img
+                          src="{{ hover_image | image_url: width: 400 }}"
+                          alt="{{ hover_image.alt | escape | default: product.title }}"
+                          loading="lazy"
+                          class="featured-carousel__image featured-carousel__image--secondary"
+                        >
+                      {% else %}
+                        <div class="featured-carousel__placeholder">
+                          {{ 'product-1' | placeholder_svg_tag }}
+                        </div>
+                      {% endif %}
+                    </a>
+
+                    {%- comment -%} Quick Actions Overlay {%- endcomment -%}
+                    <div class="featured-carousel__quick-actions">
+                      <a href="{{ product.url }}" class="quick-action quick-action--view" title="Quick View">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/></svg>
+                      </a>
+                    </div>
+                  </div>
+
+                  {%- comment -%} Product Info {%- endcomment -%}
+                  <div class="featured-carousel__info">
+                    {%- comment -%} Reviews - Using Judge.me preview badge {%- endcomment -%}
+                    <div class="featured-carousel__reviews">
+                      <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}">
+                        {{ product.metafields.judgeme.badge }}
+                      </div>
+                    </div>
+
+                    {%- comment -%} Product Title {%- endcomment -%}
+                    <h3 class="featured-carousel__product-title">
+                      <a href="{{ product.url }}">{{ product.title }}</a>
+                    </h3>
+
+                    {%- comment -%} Price {%- endcomment -%}
+                    <div class="featured-carousel__price">
+                      {% if has_discount %}
+                        <span class="price--compare">{{ variant_compare_price | money }}</span>
+                      {% endif %}
+                      <span class="price--current">{{ variant_price | money }}</span>
+                    </div>
+
+                    {%- comment -%} Check if product requires medical license {%- endcomment -%}
+                    {% assign is_rx_product = false %}
+                    {% assign customer_has_license = false %}
+                    {% if product.tags contains 'rx' or product.tags contains 'prescription' or product.tags contains 'doctor-only' or product.tags contains 'rx-only' or product.tags contains 'medical-license' or product.type == 'Prescription' %}
+                      {% assign is_rx_product = true %}
+                    {% endif %}
+                    {%- comment -%} Check if logged-in customer has medical license {%- endcomment -%}
+                    {% if customer and customer.tags contains 'medical-license' or customer and customer.tags contains 'licensed' or customer and customer.tags contains 'verified-professional' %}
+                      {% assign customer_has_license = true %}
+                    {% endif %}
+
+                    {%- comment -%} Variant Selectors {%- endcomment -%}
+                    {% assign has_variants = false %}
+                    {% unless product.has_only_default_variant %}
+                      {% assign has_variants = true %}
+                    {% endunless %}
+
+                    {% if has_variants and product %}
+                      <div class="featured-carousel__variants" data-product-variants-grid="{{ product.id }}">
+                        {% for option in product.options_with_values %}
+                          <div class="featured-carousel__option-field">
+                            <label class="featured-carousel__option-label" for="fc-option-{{ forloop.index0 }}-{{ product.id }}">
+                              {{ option.name }}
+                            </label>
+                            <select
+                              id="fc-option-{{ forloop.index0 }}-{{ product.id }}"
+                              class="featured-carousel__option-select"
+                              data-product-option="{{ forloop.index0 }}"
+                              data-product-id="{{ product.id }}"
+                            >
+                              {% for value in option.values %}
+                                <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
+                                  {{ value }}
+                                </option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                        {% endfor %}
+                        <script type="application/json" data-product-id="{{ product.id }}" class="productitem--variant-data">
+                          {
+                            "id": {{ product.id | json }},
+                            "options": {{ product.options | json }},
+                            "variants": [
+                              {% for variant in product.variants %}
+                                {
+                                  "id": {{ variant.id | json }},
+                                  "title": {{ variant.title | json }},
+                                  "available": {{ variant.available | json }},
+                                  "optionValues": [
+                                    {% for i in (1..3) %}
+                                      {% assign option_key = 'option' | append: i %}
+                                      {% assign option_value = variant[option_key] %}
+                                      {{ option_value | json }}
+                                      {% unless i == 3 %},{% endunless %}
+                                    {% endfor %}
+                                  ]
+                                }
+                                {% unless forloop.last %},{% endunless %}
+                              {% endfor %}
+                            ]
+                          }
+                        </script>
+                      </div>
+                    {% endif %}
+
+                    {%- comment -%} Buttons - Same structure as best selling with editable quantity {%- endcomment -%}
+                    {% assign variant_inventory = product.selected_or_first_available_variant.inventory_quantity %}
+                    {% assign has_inventory_tracking = false %}
+                    {% if variant_inventory > 0 %}
+                      {% assign has_inventory_tracking = true %}
+                    {% endif %}
+
+                    <div class="featured-carousel__buttons">
+                      {% if product.available == false %}
+                        <button class="btn btn--sold-out" disabled>
+                          <span>Sold Out</span>
+                        </button>
+                      {% elsif is_rx_product and customer_has_license == false %}
+                        <a href="{{ product.url }}" class="btn btn--rx-required">
+                          <span>Medical License Required</span>
+                        </a>
+                      {% else %}
+                        <div class="fc-qty-selector" data-fc-qty-selector>
+                          <button type="button" class="fc-qty-btn" data-fc-qty-decrease>-</button>
+                          <input
+                            type="number"
+                            class="fc-qty-input"
+                            data-fc-qty-value
+                            value="1"
+                            min="1"
+                            data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                          >
+                          <button type="button" class="fc-qty-btn" data-fc-qty-increase>+</button>
+                        </div>
+                        <button
+                          type="button"
+                          class="btn btn--add-to-cart"
+                          data-fc-atc
+                          data-product-id="{{ product.id }}"
+                          data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                          data-grid-variants-enabled="{% if has_variants %}true{% else %}false{% endif %}"
+                          {% if has_inventory_tracking %}data-inventory-quantity="{{ variant_inventory }}"{% endif %}
+                        >
+                          <span>Add to Cart</span>
+                        </button>
+                      {% endif %}
+                    </div>
+                  </div>
+
+                  {%- comment -%} Hover Glow Effect {%- endcomment -%}
+                  <div class="featured-carousel__glow"></div>
+                </div>
+              </div>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <div class="featured-carousel__empty-state">
+              <p>Please select a collection in section settings to display products.</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if section.settings.show_arrows %}
+        <button class="featured-carousel__arrow featured-carousel__arrow--next" aria-label="Next" data-next>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      {% endif %}
+      </div>
+    </div>
+
+    {%- comment -%} View All Button {%- endcomment -%}
+    {% if section.settings.show_view_all and section.settings.view_all_collection != blank %}
+      {% assign view_collection = collections[section.settings.view_all_collection] %}
+      <div class="featured-carousel__footer">
+        <a href="{{ view_collection.url }}" class="btn btn--view-all">
+          <span>{{ section.settings.view_all_text }}</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .featured-carousel--{{ section.id }} {
+    --fc-primary-color: {{ section.settings.primary_color }};
+    --fc-secondary-color: {{ section.settings.secondary_color }};
+    --fc-text-color: {{ section.settings.text_color }};
+    --fc-card-gap: 15px;
+    --fc-card-border-radius: 12px;
+
+    background: linear-gradient(180deg, #f8fdf9 0%, #ffffff 100%);
+    padding: 40px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured-carousel--{{ section.id }}::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      var(--fc-primary-color) 50%,
+      transparent 100%);
+  }
+
+  .featured-carousel__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Header Styles - ENHANCED */
+  .featured-carousel__header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+  }
+
+  .featured-carousel__subtitle {
+    font-size: 12px;
+    color: var(--fc-primary-color);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0 0 8px;
+    font-weight: 700;
+    opacity: 0.9;
+  }
+
+  .featured-carousel__title {
+    font-size: 32px;
+    margin: 0;
+    font-weight: 800;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .featured-carousel__title .title-normal {
+    color: var(--fc-text-color);
+  }
+
+  .featured-carousel__title .title-highlight {
+    color: var(--fc-primary-color);
+  }
+
+  /* Content Block + Carousel Layout */
+  .featured-carousel__content-and-carousel {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  /* Content Block */
+  .featured-carousel__content-block {
+    flex: 0 0 360px; /* Width of ~2 cards */
+    display: flex;
+    align-items: flex-start;
+    background: linear-gradient(135deg, #ffffff 0%, #f9fefb 50%, #f0fcf4 100%);
+    border-radius: 12px;
+    padding: 0;
+    border: 2px solid #f0f0f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    height: 340px;
+    max-height: 340px;
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .featured-carousel__content-block:hover {
+    border-color: var(--fc-primary-color);
+    box-shadow: 0 12px 32px rgba(54, 123, 54, 0.2);
+  }
+
+  /* Custom Scrollbar Styling */
+  .featured-carousel__content-inner::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .featured-carousel__content-inner::-webkit-scrollbar-track {
+    background: rgba(54, 123, 54, 0.05);
+    border-radius: 10px;
+    margin: 8px 0;
+  }
+
+  .featured-carousel__content-inner::-webkit-scrollbar-thumb {
+    background: rgba(54, 123, 54, 0.3);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .featured-carousel__content-inner::-webkit-scrollbar-thumb:hover {
+    background: rgba(54, 123, 54, 0.5);
+  }
+
+  /* Firefox scrollbar */
+  .featured-carousel__content-inner {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(54, 123, 54, 0.3) rgba(54, 123, 54, 0.05);
+  }
+
+  /* Decorative corner accent */
+  .featured-carousel__content-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at top right, rgba(54, 123, 54, 0.08), transparent 70%);
+    border-radius: 0 24px 0 100%;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .featured-carousel__content-inner {
+    width: 100%;
+    padding: 16px;
+    height: 100%;
+    overflow-y: auto; /* Add scrollbar */
+    overflow-x: hidden;
+    display: block;
+    position: relative;
+    z-index: 1;
+    scroll-behavior: smooth;
+  }
+
+  /* Content wrapper */
+  .content-block__content-wrapper {
+    display: block;
+  }
+
+  .content-block__buttons-wrapper {
+    display: block;
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .content-block__icon {
+    font-size: 26px;
+    margin: 0 auto 8px;
+    text-align: center;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(54, 123, 54, 0.1) 0%, rgba(77, 190, 77, 0.08) 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(54, 123, 54, 0.08);
+    transition: all 0.3s ease;
+  }
+
+  .featured-carousel__content-block:hover .content-block__icon {
+    box-shadow: 0 6px 16px rgba(54, 123, 54, 0.12);
+  }
+
+  .content-block__heading {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--fc-text-color);
+    margin: 0 0 8px;
+    line-height: 1.3;
+    position: relative;
+    padding-bottom: 8px;
+  }
+
+  .content-block__heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--fc-primary-color) 0%, var(--fc-secondary-color) 70%, transparent 100%);
+    border-radius: 2px;
+  }
+
+  .content-block__text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #5a5a5a;
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+
+  .content-block__text a {
+    color: var(--fc-primary-color) !important;
+    text-decoration: underline !important;
+    text-decoration-color: var(--fc-primary-color) !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .content-block__text a:hover {
+    color: var(--fc-secondary-color) !important;
+    text-decoration-color: var(--fc-secondary-color) !important;
+  }
+
+  .content-block__text p {
+    margin: 0 0 4px;
+    display: inline;
+  }
+
+  .content-block__text p:last-child {
+    margin-bottom: 0;
+  }
+
+  .content-block__read-more {
+    display: inline-block;
+    padding: 7px 16px;
+    background: transparent;
+    color: var(--fc-primary-color, #367b36) !important;
+    text-decoration: none !important;
+    border: 2px solid var(--fc-primary-color, #367b36);
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0.3px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 8px 0 0 0;
+    position: relative;
+  }
+
+  .content-block__read-more:hover {
+    background: var(--fc-primary-color, #367b36) !important;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(54, 123, 54, 0.25);
+  }
+
+  .content-block__read-more:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(54, 123, 54, 0.2);
+  }
+
+  .content-block__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: var(--fc-primary-color, #367b36) !important;
+    color: white !important;
+    text-decoration: none !important;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0.3px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow:
+      0 4px 12px rgba(54, 123, 54, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    width: 100%;
+    position: relative;
+    margin-top: 8px;
+  }
+
+  .content-block__button:hover {
+    background: var(--fc-secondary-color, #4dbe4d) !important;
+    transform: translateY(-2px);
+    box-shadow:
+      0 6px 20px rgba(54, 123, 54, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .content-block__button:active {
+    transform: translateY(0);
+    box-shadow:
+      0 2px 8px rgba(54, 123, 54, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  /* Carousel Wrapper */
+  .featured-carousel__wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .featured-carousel__track-container {
+    overflow-x: auto;
+    overflow-y: visible;
+    flex: 1;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0;
+  }
+
+  .featured-carousel__track-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .featured-carousel__track {
+    display: flex;
+    gap: var(--fc-card-gap);
+  }
+
+  /* Arrows - ENHANCED */
+  .featured-carousel__arrow {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--fc-primary-color);
+    background: white;
+    color: var(--fc-primary-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(54, 123, 54, 0.15);
+  }
+
+  .featured-carousel__arrow:hover {
+    background: var(--fc-primary-color);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(54, 123, 54, 0.3);
+  }
+
+  .featured-carousel__arrow svg {
+    width: 16px; /* SMALLER than 20px */
+    height: 16px;
+  }
+
+  .featured-carousel__arrow[style*="opacity: 0"] {
+    visibility: hidden;
+  }
+
+  /* Product Cards - SMALLER (Half height) */
+  .featured-carousel__card {
+    flex: 0 0 180px; /* SMALLER than 220px */
+    max-width: 180px;
+    scroll-snap-align: start;
+    transition: all 0.3s ease;
+  }
+
+  .featured-carousel__card:hover {
+    z-index: 1;
+  }
+
+  .featured-carousel__card-inner {
+    position: relative;
+    background: #fff;
+    border-radius: var(--fc-card-border-radius);
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #f0f0f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
+  }
+
+  .featured-carousel__card:hover .featured-carousel__card-inner {
+    box-shadow: 0 12px 32px rgba(54, 123, 54, 0.2);
+    border-color: var(--fc-primary-color);
+    background: #ffffff;
+  }
+
+  /* Glow Effect - Hidden */
+  .featured-carousel__glow {
+    display: none;
+  }
+
+  /* Badges - SMALLER */
+  .featured-carousel__badges {
+    position: absolute;
+    top: 6px; /* SMALLER than 8px */
+    left: 6px;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 3px; /* SMALLER than 4px */
+  }
+
+  .badge {
+    padding: 3px 6px; /* SMALLER than 4px 8px */
+    font-size: 9px; /* SMALLER than 10px */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    border-radius: 3px;
+    color: white !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .badge--sale {
+    background: var(--fc-primary-color, #367b36) !important;
+    color: white !important;
+  }
+
+  .badge--bestseller {
+    background: #f39c12 !important;
+    color: white !important;
+  }
+
+  .badge--new {
+    background: #9b59b6 !important;
+    color: white !important;
+  }
+
+  .badge--trending {
+    background: #e74c3c !important;
+    color: white !important;
+  }
+
+  .badge--popular {
+    background: #3498db !important;
+    color: white !important;
+  }
+
+  .badge--sold-out {
+    background: #666 !important;
+    color: white !important;
+  }
+
+  /* Image - SMALLER */
+  .featured-carousel__image-wrapper {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+
+  .featured-carousel__image-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .featured-carousel__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+  }
+
+  .featured-carousel__image--secondary {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+
+  .featured-carousel__card:hover .featured-carousel__image--primary {
+    opacity: 0;
+  }
+
+  .featured-carousel__card:hover .featured-carousel__image--secondary {
+    opacity: 1;
+  }
+
+  /* Quick Actions - Hidden */
+  .featured-carousel__quick-actions {
+    display: none;
+  }
+
+  /* Product Info - SMALLER PADDING */
+  .featured-carousel__info {
+    padding: 12px; /* SMALLER than 15px */
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5) 0%, transparent 100%);
+    border-top: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+  }
+
+  .featured-carousel__info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(54, 123, 54, 0.2), transparent);
+  }
+
+  /* Reviews - SMALLER */
+  .featured-carousel__reviews {
+    margin-bottom: 6px; /* SMALLER than 8px */
+    min-height: 16px; /* SMALLER than 18px */
+  }
+
+  .featured-carousel__reviews .jdgm-preview-badge {
+    font-size: 10px !important; /* SMALLER than 12px */
+  }
+
+  .featured-carousel__reviews .jdgm-prev-badge__stars {
+    color: #ffc107 !important;
+  }
+
+  /* Product Title - SMALLER */
+  .featured-carousel__product-title {
+    font-size: 12px; /* SMALLER than 14px */
+    font-weight: 600;
+    margin: 0 0 8px; /* SMALLER than 10px */
+    line-height: 1.4;
+    min-height: calc(12px * 1.4 * 2);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .featured-carousel__product-title a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  .featured-carousel__card:hover .featured-carousel__product-title a {
+    color: var(--fc-primary-color);
+  }
+
+  /* Price - SMALLER */
+  .featured-carousel__price {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* SMALLER than 8px */
+    margin-bottom: 8px; /* SMALLER than 12px */
+    padding: 6px 8px;
+    background: rgba(54, 123, 54, 0.05);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+
+  .featured-carousel__card:hover .featured-carousel__price {
+    background: rgba(54, 123, 54, 0.1);
+    transform: scale(1.02);
+  }
+
+  .price--current {
+    font-size: 14px; /* SMALLER than 16px */
+    font-weight: 700;
+    color: var(--fc-primary-color);
+  }
+
+  .price--compare {
+    font-size: 11px; /* SMALLER than 13px */
+    color: #999;
+    text-decoration: line-through;
+  }
+
+  /* Variant Selectors - SMALLER */
+  .featured-carousel__variants {
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .featured-carousel__option-field {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .featured-carousel__option-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  .featured-carousel__option-select {
+    appearance: none;
+    width: 100%;
+    padding: 5px 6px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 11px;
+    background: white url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path fill="%23333" d="M1 1l5 5 5-5"/></svg>') no-repeat;
+    background-position: right 6px center;
+    background-repeat: no-repeat;
+    padding-right: 20px;
+    cursor: pointer;
+  }
+
+  .featured-carousel__option-select:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+    opacity: 0.7;
+    border-color: #ccc;
+  }
+
+  .featured-carousel__option-select option:disabled {
+    color: #999;
+    background: #f5f5f5;
+  }
+
+  /* Buttons - SMALLER */
+  .featured-carousel__buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px; /* SMALLER than 6px */
+    margin-top: auto;
+  }
+
+  .featured-carousel__buttons .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px 6px; /* SMALLER than 10px 8px */
+    border-radius: 6px;
+    font-size: 10px; /* SMALLER than 11px */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    text-decoration: none;
+    white-space: nowrap;
+    width: 100%;
+    height: 32px; /* SMALLER than 38px */
+    box-sizing: border-box;
+  }
+
+  .btn--add-to-cart {
+    background: var(--fc-primary-color, #367b36) !important;
+    color: white !important;
+    width: 100%;
+    display: inline-flex;
+  }
+
+  .btn--add-to-cart span {
+    color: white !important;
+  }
+
+  .btn--add-to-cart:hover {
+    background: var(--fc-secondary-color, #4dbe4d) !important;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(54, 123, 54, 0.3);
+  }
+
+  .btn--add-to-cart:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(54, 123, 54, 0.2);
+  }
+
+  .btn--sold-out {
+    background: #e0e0e0;
+    color: #888;
+    cursor: not-allowed;
+    grid-column: 1 / -1;
+    height: 32px;
+  }
+
+  .btn--rx-required {
+    background: #6c757d !important;
+    color: white !important;
+    grid-column: 1 / -1;
+    width: 100%;
+    height: auto;
+    min-height: 32px;
+    padding: 8px 6px;
+    white-space: normal;
+    line-height: 1.2;
+    font-size: 9px !important;
+  }
+
+  .btn--rx-required span {
+    color: white !important;
+    font-size: 9px !important;
+  }
+
+  .btn--rx-required:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+    background: #5a6268 !important;
+  }
+
+  /* Quantity Selector - SMALLER */
+  .fc-qty-selector {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, #fafafa, #f0f0f0);
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+    overflow: hidden;
+    width: 100%;
+    height: 32px; /* SMALLER than 38px */
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+    min-width: 0;
+  }
+
+  .fc-qty-selector:focus-within {
+    border-color: var(--fc-primary-color);
+    box-shadow: 0 0 0 2px rgba(54, 123, 54, 0.1);
+  }
+
+  .fc-qty-btn {
+    width: 28px; /* SMALLER than 32px */
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #333333;
+    font-size: 14px; /* SMALLER than 16px */
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .fc-qty-btn:hover:not(:disabled) {
+    background: var(--fc-primary-color);
+    color: white;
+  }
+
+  .fc-qty-btn:active:not(:disabled) {
+    background: var(--fc-secondary-color);
+  }
+
+  .fc-qty-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .fc-qty-input {
+    color: #333333;
+    font-size: 11px; /* SMALLER than 12px */
+    font-weight: 700;
+    min-width: 28px; /* SMALLER than 30px */
+    max-width: 45px; /* SMALLER than 50px */
+    text-align: center;
+    border: none;
+    background: transparent;
+    padding: 0 4px;
+    height: 30px; /* SMALLER than 36px */
+    -moz-appearance: textfield;
+  }
+
+  .fc-qty-input::-webkit-outer-spin-button,
+  .fc-qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .fc-qty-input:focus {
+    outline: none;
+    background: #ffffff;
+  }
+
+  /* Footer - SMALLER */
+  .featured-carousel__footer {
+    text-align: center;
+    margin-top: 15px; /* SMALLER than 20px */
+  }
+
+  .btn--view-all {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px; /* SMALLER than 8px */
+    padding: 10px 24px; /* SMALLER than 12px 30px */
+    background: var(--fc-primary-color, #367b36) !important;
+    color: white !important;
+    border-radius: 8px;
+    font-size: 12px; /* SMALLER than 13px */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
+  }
+
+  .btn--view-all span {
+    color: white !important;
+  }
+
+  .btn--view-all:hover {
+    background: var(--fc-secondary-color, #4dbe4d) !important;
+    color: white !important;
+    transform: translateY(-2px);
+  }
+
+  .btn--view-all svg {
+    width: 14px; /* SMALLER than 16px */
+    height: 14px;
+    transition: transform 0.2s ease;
+  }
+
+  .btn--view-all:hover svg {
+    transform: translateX(3px);
+  }
+
+  /* Responsive */
+  @media (max-width: 1200px) {
+    .featured-carousel__card {
+      flex: 0 0 170px;
+      max-width: 170px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .featured-carousel__title {
+      font-size: 20px;
+    }
+
+    .featured-carousel__card {
+      flex: 0 0 160px;
+      max-width: 160px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .featured-carousel--{{ section.id }} {
+      padding: 25px 0;
+    }
+
+    .featured-carousel__container {
+      padding: 0 15px;
+    }
+
+    .featured-carousel__title {
+      font-size: 24px;
+    }
+
+    .featured-carousel__subtitle {
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    .featured-carousel__header {
+      margin-bottom: 20px;
+    }
+
+    /* Stack content block on mobile - BELOW product grid */
+    .featured-carousel__content-and-carousel {
+      flex-direction: column-reverse;
+      gap: 15px;
+      align-items: stretch;
+    }
+
+    .featured-carousel__content-block {
+      flex: 0 0 auto;
+      width: 100%;
+      padding: 12px;
+      height: auto;
+      max-height: none;
+      overflow: visible;
+      border-radius: 12px;
+      margin: 0;
+    }
+
+    .featured-carousel__content-inner {
+      padding: 0;
+      height: auto;
+      overflow: visible;
+      display: block;
+    }
+
+    .content-block__content-wrapper {
+      display: block;
+    }
+
+    .featured-carousel__content-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .content-block__text {
+      font-size: 12px;
+      margin-bottom: 8px;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .content-block__read-more {
+      padding: 6px 14px;
+      font-size: 10.5px;
+      display: inline-block;
+      margin: 0;
+    }
+
+
+    .featured-carousel__content-block::before {
+      display: none;
+    }
+
+    .content-block__icon {
+      font-size: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      margin-bottom: 6px;
+    }
+
+    .content-block__heading {
+      font-size: 14px;
+      margin-bottom: 8px;
+      padding-bottom: 0;
+    }
+
+    .content-block__heading::after {
+      display: none;
+    }
+
+    .content-block__button {
+      display: none;
+    }
+
+    .content-block__buttons-wrapper {
+      display: none;
+    }
+
+    .featured-carousel__card {
+      flex: 0 0 200px;
+      max-width: 200px;
+    }
+
+    .featured-carousel__arrow {
+      width: 28px;
+      height: 28px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .featured-carousel__arrow--prev {
+      left: 5px;
+    }
+
+    .featured-carousel__arrow--next {
+      right: 5px;
+    }
+
+    .featured-carousel__arrow svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .featured-carousel__wrapper {
+      position: relative;
+      gap: 0;
+    }
+
+    .featured-carousel__info {
+      padding: 12px;
+    }
+
+    .badge {
+      padding: 4px 8px;
+      font-size: 9.5px;
+    }
+
+    .featured-carousel__reviews {
+      margin-bottom: 6px;
+      min-height: 18px;
+    }
+
+    .featured-carousel__product-title {
+      font-size: 13.5px;
+      margin-bottom: 8px;
+      min-height: calc(13.5px * 1.4 * 2);
+    }
+
+    .price--current {
+      font-size: 16px;
+    }
+
+    .price--compare {
+      font-size: 13px;
+    }
+
+    .featured-carousel__buttons {
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .featured-carousel__buttons .btn {
+      padding: 8px 6px;
+      font-size: 10px;
+      height: 36px;
+      letter-spacing: 0.3px;
+      font-weight: 600;
+    }
+
+    .btn--rx-required {
+      height: auto;
+      min-height: 36px;
+      font-size: 10px;
+      padding: 8px 6px;
+      line-height: 1.2;
+      white-space: normal;
+      font-weight: 600;
+    }
+
+    .btn--rx-required span {
+      font-size: 8px !important;
+    }
+
+    .btn--add-to-cart span {
+      font-size: 8px !important;
+    }
+
+    .btn--sold-out {
+      height: 36px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .fc-qty-selector {
+      height: 36px;
+    }
+
+    .fc-qty-btn {
+      width: 15px;
+      height: 36px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .fc-qty-input {
+      font-size: 11px;
+      height: 34px;
+      min-width: 30px;
+      max-width: 50px;
+      padding: 0 4px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .featured-carousel__title {
+      font-size: 20px;
+    }
+
+    .featured-carousel__subtitle {
+      font-size: 9px;
+    }
+
+    .featured-carousel__content-block {
+      height: auto;
+      max-height: none;
+      overflow: visible;
+      border-radius: 12px;
+      margin: 0;
+      padding: 12px;
+    }
+
+    .featured-carousel__content-inner {
+      padding: 0;
+      height: auto;
+      overflow: visible;
+      display: block;
+    }
+
+    .content-block__content-wrapper {
+      display: block;
+    }
+
+    .featured-carousel__content-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .content-block__text {
+      font-size: 11.5px;
+      margin-bottom: 8px;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .content-block__read-more {
+      padding: 6px 12px;
+      font-size: 10px;
+      display: inline-block;
+      margin: 0;
+    }
+
+
+    .featured-carousel__content-block::before {
+      display: none;
+    }
+
+    .content-block__icon {
+      font-size: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      margin-bottom: 6px;
+    }
+
+    .content-block__heading {
+      font-size: 13px;
+      margin-bottom: 8px;
+      padding-bottom: 0;
+    }
+
+    .content-block__heading::after {
+      display: none;
+    }
+
+    .content-block__button {
+      display: none;
+    }
+
+    .content-block__buttons-wrapper {
+      display: none;
+    }
+
+    .featured-carousel__card {
+      flex: 0 0 170px;
+      max-width: 170px;
+    }
+
+    .featured-carousel__arrow {
+      width: 24px;
+      height: 24px;
+    }
+
+    .featured-carousel__arrow--prev {
+      left: 2px;
+    }
+
+    .featured-carousel__arrow--next {
+      right: 2px;
+    }
+
+    .featured-carousel__arrow svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .btn--view-all {
+      padding: 8px 20px;
+      font-size: 11px;
+    }
+
+    .featured-carousel__buttons {
+      gap: 4px;
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .featured-carousel__buttons .btn {
+      padding: 8px 4px;
+      font-size: 9px;
+      height: 34px;
+      letter-spacing: 0.3px;
+      line-height: 1.2;
+      font-weight: 600;
+      min-width: 0;
+      width: 100%;
+    }
+
+    .btn--rx-required {
+      height: auto;
+      min-height: 34px;
+      font-size: 9px;
+      padding: 8px 4px;
+      line-height: 1.2;
+      white-space: normal;
+      font-weight: 600;
+    }
+
+    .btn--rx-required span {
+      font-size: 8px !important;
+    }
+
+    .btn--add-to-cart span {
+      font-size: 8px !important;
+    }
+
+    .btn--sold-out {
+      height: 34px;
+      font-size: 9px;
+      font-weight: 600;
+    }
+
+    .fc-qty-selector {
+      height: 34px;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .fc-qty-btn {
+      width: 15px;
+      height: 34px;
+      font-size: 14px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .fc-qty-input {
+      font-size: 10px;
+      height: 32px;
+      min-width: 30px;
+      width: auto;
+      flex: 1;
+      padding: 0 4px;
+      text-align: center;
+      color: #333333 !important;
+      font-weight: 700;
+      background: #ffffff;
+    }
+
+    .featured-carousel__product-title {
+      font-size: 12px;
+      min-height: calc(12px * 1.4 * 2);
+      margin-bottom: 6px;
+    }
+
+    .price--current {
+      font-size: 14px;
+    }
+
+    .price--compare {
+      font-size: 12px;
+    }
+
+    .featured-carousel__info {
+      padding: 12px;
+    }
+
+    .featured-carousel__info {
+      padding: 12px 14px;
+    }
+
+    .badge {
+      padding: 3px 6px;
+      font-size: 9px;
+    }
+
+    .featured-carousel__reviews {
+      margin-bottom: 5px;
+      min-height: 16px;
+    }
+  }
+
+  /* Prevent flash on initial load */
+  .featured-carousel__track {
+    opacity: 1;
+  }
+
+  .featured-carousel--loading .featured-carousel__track {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Empty State */
+  .featured-carousel__empty-state {
+    padding: 40px 20px;
+    text-align: center;
+    color: #999;
+    font-size: 16px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #fafafa 100%);
+    border-radius: 12px;
+    border: 2px dashed #ddd;
+    margin: 20px 0;
+  }
+
+  .featured-carousel__empty-state p {
+    margin: 0;
+    color: #666;
+  }
+</style>
+
+<script>
+(function() {
+  const section = document.querySelector('.featured-carousel--{{ section.id }}');
+  if (!section) return;
+
+  const track = section.querySelector('[data-track]');
+  const trackContainer = section.querySelector('.featured-carousel__track-container');
+  const prevBtn = section.querySelector('[data-prev]');
+  const nextBtn = section.querySelector('[data-next]');
+  const cards = section.querySelectorAll('[data-card]');
+
+  if (!track || !trackContainer || cards.length === 0) return;
+
+  // Prevent flash/glitch on load
+  function initCarousel() {
+    section.classList.remove('featured-carousel--loading');
+  }
+
+  // Handle back-forward cache
+  window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+      initCarousel();
+    }
+  });
+
+  let cardWidth = cards[0].offsetWidth + {{ section.settings.card_gap }};
+
+  function recalculateDimensions() {
+    cardWidth = cards[0].offsetWidth + {{ section.settings.card_gap }};
+    updateArrowVisibility();
+  }
+
+  // Update arrow visibility based on scroll position
+  function updateArrowVisibility() {
+    const scrollLeft = trackContainer.scrollLeft;
+    const maxScroll = trackContainer.scrollWidth - trackContainer.offsetWidth;
+
+    // Hide left arrow at start
+    if (prevBtn) {
+      if (scrollLeft <= 5) {
+        prevBtn.style.opacity = '0';
+        prevBtn.style.pointerEvents = 'none';
+      } else {
+        prevBtn.style.opacity = '1';
+        prevBtn.style.pointerEvents = 'auto';
+      }
+    }
+
+    // Hide right arrow at end
+    if (nextBtn) {
+      if (scrollLeft >= maxScroll - 5) {
+        nextBtn.style.opacity = '0';
+        nextBtn.style.pointerEvents = 'none';
+      } else {
+        nextBtn.style.opacity = '1';
+        nextBtn.style.pointerEvents = 'auto';
+      }
+    }
+  }
+
+  let autoplayInterval;
+  let isHovering = false;
+  let scrollTimeout;
+  const autoplaySpeed = {{ section.settings.autoplay_speed }} * 1000;
+  const enableAutoplay = {{ section.settings.enable_autoplay | json }};
+
+  function scrollNext() {
+    trackContainer.scrollBy({ left: cardWidth, behavior: 'smooth' });
+  }
+
+  function scrollPrev() {
+    trackContainer.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+  }
+
+  function startAutoplay() {
+    if (enableAutoplay && autoplaySpeed > 0 && !isHovering) {
+      stopAutoplay();
+      autoplayInterval = setInterval(() => {
+        if (trackContainer.scrollLeft + trackContainer.offsetWidth >= trackContainer.scrollWidth - 10) {
+          trackContainer.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          scrollNext();
+        }
+      }, autoplaySpeed);
+    }
+  }
+
+  function stopAutoplay() {
+    if (autoplayInterval) {
+      clearInterval(autoplayInterval);
+      autoplayInterval = null;
+    }
+  }
+
+  // Pause on hover
+  function handleMouseEnter() {
+    isHovering = true;
+    stopAutoplay();
+  }
+
+  function handleMouseLeave() {
+    isHovering = false;
+    startAutoplay();
+  }
+
+  // Add hover listeners to entire section and all interactive elements
+  section.addEventListener('mouseenter', handleMouseEnter);
+  section.addEventListener('mouseleave', handleMouseLeave);
+  trackContainer.addEventListener('mouseenter', handleMouseEnter);
+  trackContainer.addEventListener('mouseleave', handleMouseLeave);
+  track.addEventListener('mouseenter', handleMouseEnter);
+  track.addEventListener('mouseleave', handleMouseLeave);
+
+  // Add hover listeners to all product cards
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', handleMouseEnter);
+    card.addEventListener('mouseleave', handleMouseLeave);
+  });
+
+  // Add hover listener to content block if it exists
+  const contentBlock = section.querySelector('.featured-carousel__content-block');
+  if (contentBlock) {
+    contentBlock.addEventListener('mouseenter', handleMouseEnter);
+    contentBlock.addEventListener('mouseleave', handleMouseLeave);
+  }
+
+  // Pause on touch for mobile - enhanced
+  section.addEventListener('touchstart', () => {
+    isHovering = true;
+    stopAutoplay();
+  }, { passive: true });
+
+  trackContainer.addEventListener('touchstart', () => {
+    isHovering = true;
+    stopAutoplay();
+  }, { passive: true });
+
+  track.addEventListener('touchstart', () => {
+    isHovering = true;
+    stopAutoplay();
+  }, { passive: true });
+
+  // Restart autoplay after touch ends (with longer delay)
+  section.addEventListener('touchend', () => {
+    setTimeout(() => {
+      isHovering = false;
+      if (!isHovering) {
+        startAutoplay();
+      }
+    }, 5000);
+  }, { passive: true });
+
+  trackContainer.addEventListener('touchend', () => {
+    setTimeout(() => {
+      isHovering = false;
+      if (!isHovering) {
+        startAutoplay();
+      }
+    }, 5000);
+  }, { passive: true });
+
+  // Arrow button clicks - also pause autoplay on click
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      stopAutoplay();
+      scrollPrev();
+      // Restart after delay
+      setTimeout(() => {
+        if (!isHovering) {
+          startAutoplay();
+        }
+      }, 3000);
+    });
+    prevBtn.addEventListener('mouseenter', handleMouseEnter);
+    prevBtn.addEventListener('mouseleave', handleMouseLeave);
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      stopAutoplay();
+      scrollNext();
+      // Restart after delay
+      setTimeout(() => {
+        if (!isHovering) {
+          startAutoplay();
+        }
+      }, 3000);
+    });
+    nextBtn.addEventListener('mouseenter', handleMouseEnter);
+    nextBtn.addEventListener('mouseleave', handleMouseLeave);
+  }
+
+  // Update arrow visibility on scroll
+  trackContainer.addEventListener('scroll', () => {
+    updateArrowVisibility();
+  }, { passive: true });
+
+  // Stop autoplay during scroll
+  trackContainer.addEventListener('scroll', () => {
+    stopAutoplay();
+    clearTimeout(scrollTimeout);
+  }, { passive: true });
+
+  // Restart autoplay when user stops scrolling (only if not hovering)
+  trackContainer.addEventListener('scroll', () => {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      if (!isHovering) {
+        startAutoplay();
+      }
+    }, 3000);
+  }, { passive: true });
+
+  // Initial arrow visibility check
+  updateArrowVisibility();
+
+  // Initialize autoplay
+  startAutoplay();
+
+  // Recalculate on resize
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(recalculateDimensions, 250);
+  });
+
+  // Initialize carousel immediately
+  initCarousel();
+
+  // Align content block height with product cards (DESKTOP ONLY)
+  function alignContentBlockHeight() {
+    // Only align on desktop (above 768px)
+    if (window.innerWidth <= 768) return;
+
+    const contentBlock = section.querySelector('.featured-carousel__content-block');
+    const firstCard = section.querySelector('.featured-carousel__card');
+
+    if (contentBlock && firstCard) {
+      const cardHeight = firstCard.offsetHeight;
+      // Set content block to match card height
+      contentBlock.style.height = cardHeight + 'px';
+      contentBlock.style.maxHeight = cardHeight + 'px';
+    }
+  }
+
+  // Align on load
+  setTimeout(alignContentBlockHeight, 100);
+
+  // Realign on window resize
+  let alignTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(alignTimeout);
+    alignTimeout = setTimeout(alignContentBlockHeight, 250);
+  });
+
+  // Note: Quantity selector and Add to Cart functionality is handled by product-card-buttons.js
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "tag": "section",
+  "class": "featured-products-carousel-section",
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product (Legacy)",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Product Source"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select Collection",
+      "info": "Products from this collection will be automatically displayed in the carousel"
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title_normal",
+      "label": "Title (normal text)",
+      "default": "Featured"
+    },
+    {
+      "type": "text",
+      "id": "title_highlight",
+      "label": "Title (highlighted text)",
+      "default": "Cold & Flu Products"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subtitle",
+      "label": "Show subtitle",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "RECOMMENDED"
+    },
+    {
+      "type": "header",
+      "content": "Content Block"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_content_block",
+      "label": "Show content block before carousel",
+      "default": true,
+      "info": "Displays a content area horizontally before the carousel cards (about 3 cards width)"
+    },
+    {
+      "type": "text",
+      "id": "content_icon",
+      "label": "Icon (emoji)",
+      "default": "🤧",
+      "info": "Add an emoji icon (e.g., 🤧 ❄️ 🌡️ 💊)"
+    },
+    {
+      "type": "text",
+      "id": "content_heading",
+      "label": "Heading",
+      "default": "Cold & Flu Season"
+    },
+    {
+      "type": "richtext",
+      "id": "content_text",
+      "label": "Description",
+      "default": "<p>Essential products to help you stay healthy during cold and flu season. Fast relief for symptoms like congestion, cough, and sore throat.</p>"
+    },
+    {
+      "type": "text",
+      "id": "content_button_text",
+      "label": "Button text",
+      "default": "Shop All"
+    },
+    {
+      "type": "url",
+      "id": "content_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Carousel Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show navigation arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_autoplay",
+      "label": "Enable autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay speed",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "sec",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Gap between cards",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "primary_color",
+      "label": "Primary color",
+      "default": "#367b36"
+    },
+    {
+      "type": "color",
+      "id": "secondary_color",
+      "label": "Secondary color",
+      "default": "#4dbe4d"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "View All Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show view all button",
+      "default": true
+    },
+    {
+      "type": "collection",
+      "id": "view_all_collection",
+      "label": "View All Collection",
+      "info": "Link to collection when clicking View All button"
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "Button text",
+      "default": "View All Products"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Products"
+    }
+  ]
+}
+{% endschema %}

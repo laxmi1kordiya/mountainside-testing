@@ -1,0 +1,370 @@
+{% comment %}
+  Sticky Product Bar
+  Shows at the bottom of the screen when user scrolls down on product pages
+{% endcomment %}
+
+{% comment %}
+  =============================================================================
+  License Detection (matches product-form.liquid logic)
+  =============================================================================
+{% endcomment %}
+{% assign requires_license = false %}
+{% assign customer_has_license = false %}
+{% assign is_product_available = product.available %}
+
+{% comment %} Check if product requires a medical license (reuses existing 'doctor-only' tag) {% endcomment %}
+{% if product.tags contains 'doctor-only' %}
+  {% assign requires_license = true %}
+{% endif %}
+
+{% comment %} Check if customer has a valid medical license (reuses existing 'doctor-only' customer tag) {% endcomment %}
+{% if customer.tags contains 'doctor-only' %}
+  {% assign customer_has_license = true %}
+{% endif %}
+
+{% comment %} Determine if purchase is restricted for this customer {% endcomment %}
+{% assign purchase_restricted = false %}
+{% if requires_license and customer_has_license == false %}
+  {% assign purchase_restricted = true %}
+{% endif %}
+
+{% assign selected_variant = product.selected_or_first_available_variant %}
+{% assign compare_at_price = selected_variant.compare_at_price %}
+{% assign price = selected_variant.price %}
+{% assign on_sale = false %}
+{% if compare_at_price > price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+<div class="sticky-product-bar" id="sticky-product-bar" data-sticky-product-bar>
+  <div class="sticky-product-bar__inner">
+    <!-- Product Image -->
+    <div class="sticky-product-bar__image">
+      {% if product.featured_image %}
+        <img
+          src="{{ product.featured_image | img_url: '80x80', crop: 'center' }}"
+          alt="{{ product.title | escape }}"
+          width="50"
+          height="50"
+          loading="lazy"
+        >
+      {% endif %}
+    </div>
+
+    <!-- Product Info -->
+    <div class="sticky-product-bar__info">
+      <div class="sticky-product-bar__title">{{ product.title }}</div>
+
+      <!-- Judge.me Reviews Badge -->
+      <div class="sticky-product-bar__reviews">
+        <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'>
+          {{ product.metafields.judgeme.badge }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="sticky-product-bar__pricing">
+      <span class="sticky-product-bar__compare-price" {% unless on_sale %}style="display: none;"{% endunless %}>
+        <span class="money" data-sticky-bar-compare-price>{% if on_sale %}{{ compare_at_price | money }}{% endif %}</span>
+      </span>
+      <span class="sticky-product-bar__price {% if on_sale %}sticky-product-bar__price--sale{% endif %}">
+        <span class="money" data-sticky-bar-price>{{ price | money }}</span>
+      </span>
+    </div>
+
+    <!-- Add to Cart Button, Buy Now Button, Notify Me, or License Required Message -->
+    <div class="sticky-product-bar__action">
+      {% comment %} CASE 1: Product is out of stock - Show Sold Out + Notify Me buttons {% endcomment %}
+      {% if is_product_available == false %}
+        <div class="sticky-product-bar__buttons sticky-product-bar__buttons--out-of-stock">
+          <button
+            type="button"
+            class="sticky-product-bar__sold-out-btn"
+            disabled
+          >
+            {{ 'product.buttons.sold_out' | t }}
+          </button>
+          {% comment %}
+          <button
+            type="button"
+            class="sticky-product-bar__notify-btn"
+            data-notify-me-trigger
+            data-product-id="{{ product.id }}"
+            data-variant-id="{{ selected_variant.id }}"
+            data-product-title="{{ product.title | escape }}"
+            data-variant-title="{{ selected_variant.title | escape }}"
+            data-customer-email="{% if customer.email %}{{ customer.email }}{% endif %}"
+          >
+            Notify Me
+          </button>
+          {% endcomment %}
+        </div>
+
+      {% comment %} CASE 2: Product is in stock but customer lacks required license {% endcomment %}
+      {% elsif purchase_restricted %}
+        <div class="sticky-product-bar__license-msg">
+          <span class="sticky-product-bar__license-icon">🔒</span>
+          <span class="sticky-product-bar__license-text">Medical License Required</span>
+        </div>
+
+      {% comment %} CASE 3: Product is available and customer can purchase {% endcomment %}
+      {% else %}
+        {% assign variant_inventory = selected_variant.inventory_quantity %}
+        {% assign has_inventory_tracking = false %}
+        {% if variant_inventory > 0 %}
+          {% assign has_inventory_tracking = true %}
+        {% endif %}
+        <div class="sticky-product-bar__buttons">
+          {% unless product.has_only_default_variant %}
+            <div class="sticky-product-bar__variant-selectors" data-sticky-bar-variants>
+              {% for option in product.options_with_values %}
+                <div class="sticky-product-bar__variant-field">
+                  <select
+                    class="sticky-product-bar__variant-select"
+                    data-sticky-bar-option="{{ forloop.index0 }}"
+                    aria-label="{{ option.name }}"
+                  >
+                    {% for value in option.values %}
+                      <option
+                        value="{{ value | escape }}"
+                        {% if option.selected_value == value %}selected="selected"{% endif %}
+                      >
+                        {{ option.name }}: {{ value }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              {% endfor %}
+            </div>
+          {% endunless %}
+          <div class="sticky-product-bar__atc-wrapper" data-sticky-bar-atc-wrapper>
+            <div class="sticky-product-bar__qty-selector" data-sticky-bar-qty-selector>
+              <button type="button" class="sticky-product-bar__qty-btn" data-sticky-bar-qty-decrease>-</button>
+              <input
+                type="number"
+                class="sticky-product-bar__qty-input"
+                data-sticky-bar-qty-value
+                value="1"
+                min="1"
+              >
+              <button type="button" class="sticky-product-bar__qty-btn" data-sticky-bar-qty-increase>+</button>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="sticky-product-bar__atc-btn"
+            data-sticky-bar-atc
+            data-variant-id="{{ selected_variant.id }}"
+            {% if has_inventory_tracking %}data-inventory-quantity="{{ variant_inventory }}"{% endif %}
+          >
+            {{ 'product.buttons.add_to_cart' | t }}
+          </button>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var stickyBar = document.getElementById('sticky-product-bar');
+  var productWrapper = document.querySelector('[data-product-wrapper]');
+  var lastScrollY = window.scrollY;
+  var ticking = false;
+  var showThreshold = 400; // Show bar after scrolling 400px down
+
+  function updateStickyBar() {
+    var scrollY = window.scrollY;
+
+    if (scrollY > showThreshold) {
+      stickyBar.classList.add('sticky-product-bar--visible');
+    } else {
+      stickyBar.classList.remove('sticky-product-bar--visible');
+    }
+
+    ticking = false;
+  }
+
+  function onScroll() {
+    lastScrollY = window.scrollY;
+
+    if (!ticking) {
+      window.requestAnimationFrame(updateStickyBar);
+      ticking = true;
+    }
+  }
+
+  // Listen for scroll events
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Add to Cart is handled by product-card-buttons.js for quantity selector functionality
+  // View Cart button is a regular link, no JavaScript needed
+
+  // Update sticky bar price when variant changes
+  function updateStickyBarPrice() {
+    var stickyPriceEl = document.querySelector('[data-sticky-bar-price]');
+    var stickyComparePriceEl = document.querySelector('[data-sticky-bar-compare-price]');
+    var mainPriceEl = document.querySelector('[data-price] .money');
+    var mainComparePriceEl = document.querySelector('[data-price-compare-at] .money');
+
+    if (stickyPriceEl && mainPriceEl) {
+      stickyPriceEl.innerHTML = mainPriceEl.innerHTML;
+    }
+
+    // Update compare price and sale styling
+    if (stickyComparePriceEl && mainComparePriceEl) {
+      var isOnSale = mainComparePriceEl.closest('[data-price-compare-at]');
+      if (isOnSale && isOnSale.classList.contains('visible')) {
+        stickyComparePriceEl.innerHTML = mainComparePriceEl.innerHTML;
+        stickyComparePriceEl.closest('.sticky-product-bar__compare-price').style.display = '';
+        stickyPriceEl.closest('.sticky-product-bar__price').classList.add('sticky-product-bar__price--sale');
+      } else {
+        stickyComparePriceEl.closest('.sticky-product-bar__compare-price').style.display = 'none';
+        stickyPriceEl.closest('.sticky-product-bar__price').classList.remove('sticky-product-bar__price--sale');
+      }
+    }
+  }
+
+  // Watch for changes to the main price element using MutationObserver
+  var mainPriceContainer = document.querySelector('[data-price]');
+  if (mainPriceContainer) {
+    var priceObserver = new MutationObserver(function(mutations) {
+      updateStickyBarPrice();
+    });
+    priceObserver.observe(mainPriceContainer, { childList: true, subtree: true, characterData: true });
+  }
+
+  // Update sticky bar button variant data when variant changes
+  function updateStickyBarVariantData(variant) {
+    var stickyBarAtcBtn = document.querySelector('[data-sticky-bar-atc]');
+    var stickyBarNotifyBtn = document.querySelector('.sticky-product-bar__buttons [data-notify-me-trigger]');
+
+    if (stickyBarAtcBtn && variant) {
+      // Update variant ID
+      stickyBarAtcBtn.setAttribute('data-variant-id', variant.id);
+
+      // Update inventory quantity if tracking is enabled
+      if (variant.inventory_quantity && variant.inventory_quantity > 0) {
+        stickyBarAtcBtn.setAttribute('data-inventory-quantity', variant.inventory_quantity);
+      } else {
+        stickyBarAtcBtn.removeAttribute('data-inventory-quantity');
+      }
+
+      // Update button state
+      if (variant.available) {
+        stickyBarAtcBtn.disabled = false;
+        stickyBarAtcBtn.classList.remove('disabled');
+      } else {
+        stickyBarAtcBtn.disabled = true;
+        stickyBarAtcBtn.classList.add('disabled');
+      }
+    }
+
+    // Update Notify Me button if it exists
+    if (stickyBarNotifyBtn && variant) {
+      stickyBarNotifyBtn.setAttribute('data-variant-id', variant.id);
+      stickyBarNotifyBtn.setAttribute('data-variant-title', variant.title || variant.name || '');
+    }
+  }
+
+  // Also listen for variant change events (backup)
+  document.addEventListener('variantChange', function(e) {
+    setTimeout(updateStickyBarPrice, 50);
+    if (e.detail && e.detail.variant) {
+      updateStickyBarVariantData(e.detail.variant);
+    }
+  });
+
+  // Listen for any click on variant options to update price
+  var variantOptions = document.querySelectorAll('[data-option], .product-options input, .product-options select');
+  variantOptions.forEach(function(option) {
+    option.addEventListener('change', function() {
+      setTimeout(updateStickyBarPrice, 100);
+    });
+    option.addEventListener('click', function() {
+      setTimeout(updateStickyBarPrice, 100);
+    });
+  });
+
+  // =============================================
+  // Sticky Bar Variant Selector Sync
+  // =============================================
+  var stickyBarVariantSelects = document.querySelectorAll('[data-sticky-bar-option]');
+
+  // When sticky bar variant dropdown changes -> update main product form
+  stickyBarVariantSelects.forEach(function(select) {
+    select.addEventListener('change', function() {
+      var optionIndex = this.getAttribute('data-sticky-bar-option');
+      var value = this.value;
+
+      // Try to update the main product form select
+      var mainSelect = document.querySelector('[data-product-option="' + optionIndex + '"]');
+      if (mainSelect) {
+        mainSelect.value = value;
+        mainSelect.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+
+      // Try to update radio buttons
+      var mainRadios = document.querySelectorAll('[data-product-option="option' + (parseInt(optionIndex) + 1) + '"]');
+      mainRadios.forEach(function(radio) {
+        if (radio.value === value) {
+          radio.checked = true;
+          radio.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      });
+    });
+  });
+
+  // When main product form variant changes -> update sticky bar dropdowns
+  function syncStickyBarVariantSelects() {
+    stickyBarVariantSelects.forEach(function(select) {
+      var optionIndex = select.getAttribute('data-sticky-bar-option');
+
+      // Check main select
+      var mainSelect = document.querySelector('[data-product-option="' + optionIndex + '"]');
+      if (mainSelect && mainSelect.value) {
+        select.value = mainSelect.value;
+        return;
+      }
+
+      // Check radio buttons
+      var checkedRadio = document.querySelector('[data-product-option="option' + (parseInt(optionIndex) + 1) + '"]:checked');
+      if (checkedRadio) {
+        select.value = checkedRadio.value;
+      }
+    });
+  }
+
+  // Observe main form for changes
+  var mainOptionsContainer = document.querySelector('[data-product-options-container]');
+  if (mainOptionsContainer) {
+    var optionsObserver = new MutationObserver(function() {
+      syncStickyBarVariantSelects();
+    });
+    optionsObserver.observe(mainOptionsContainer, { childList: true, subtree: true, attributes: true });
+  }
+
+  // Also sync on variant change events
+  document.addEventListener('variantChange', function() {
+    setTimeout(syncStickyBarVariantSelects, 60);
+  });
+
+  // Sync on any main option change
+  var mainFormOptions = document.querySelectorAll('[data-product-option]');
+  mainFormOptions.forEach(function(option) {
+    option.addEventListener('change', function() {
+      setTimeout(syncStickyBarVariantSelects, 60);
+    });
+  });
+
+  // Initial check
+  updateStickyBar();
+
+  // Initial price sync
+  setTimeout(updateStickyBarPrice, 100);
+
+  // Initial variant sync
+  setTimeout(syncStickyBarVariantSelects, 150);
+})();
+</script>

@@ -1,0 +1,39 @@
+<script type="text/javascript">
+  window.OUConfig = {
+    currency: '{{shop.currency}}',
+    money_format: '{{shop.money_format | remove: '"' | remove: "'"}}',
+    collection_ids: [],
+    skus: [],
+    tags: [],
+    tags_by_product: {}
+  };
+
+  {% if product.id %}
+    window.OUConfig.product_id = {{ product.id }};
+
+    {% for tag in product.tags %}
+      window.OUConfig.tags.push("{{ tag | remove: '"' }}");
+    {% endfor %}
+
+    {% for variant in product.variants %}
+      window.OUConfig.skus.push("{{ variant.sku }}");
+    {% endfor %}
+
+    {% for collection in product.collections %}
+      window.OUConfig.collection_ids.push({{ collection.id }});
+    {% endfor %}
+  {% else %}
+    {% for line_item in cart.items %}
+      window.OUConfig.tags_by_product[{{ line_item.product_id }}] = []
+      {% for tag in line_item.product.tags %}
+        window.OUConfig.tags.push("{{ tag | remove: '"' }}");
+        window.OUConfig.tags_by_product[{{ line_item.product_id }}].push("{{ tag | remove: '"' }}");
+      {% endfor %}
+
+    {% for collection in line_item.product.collections %}
+        window.OUConfig.collection_ids.push({{ collection.id }});
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+</script>
+<script id="optimizeupsell-script" src="https://upsell.freetls.fastly.net/script.js?shop=mountainside-medical-equipment.myshopify.com" crossorigin></script>

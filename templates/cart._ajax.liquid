@@ -1,0 +1,14 @@
+{% layout none %}
+<template data-options>
+  {
+    "totalPrice": <span id='revy-cart-subtotal-price'>{{ cart.total_price | money | json }}</span>
+  }
+</template>
+
+<template data-html="list">
+  {% include 'cart-item-list' %}
+</template>
+
+<template data-html="discounts">
+  {% include 'cart-discounts' %}
+</template>

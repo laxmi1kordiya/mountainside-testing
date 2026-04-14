@@ -1,0 +1,100 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "mi-paste"
+          }
+        },
+        "menu_ptnYiz": {
+          "type": "menu",
+          "settings": {
+            "menu": "dental-supplies"
+          }
+        },
+        "menu_APK9z4": {
+          "type": "menu",
+          "settings": {
+            "menu": "gloves"
+          }
+        },
+        "menu_JBUAfw": {
+          "type": "menu",
+          "settings": {
+            "menu": "anesthetic"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_ptnYiz",
+        "menu_APK9z4",
+        "menu_JBUAfw"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "20",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Mi Paste Toothpaste",
+            "text": "<p><strong>What is Mi Paste?</strong><br/><br/>MI Paste is a dental product that contains <a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/What_is_Recaldent_CCP-ACP.pdf?v=1744720228\" target=\"_blank\" title=\"What is Recaldent CCP-ACP\">Recaldent™ (CPP-ACP</a>), a special complex derived from milk protein known as casein phosphopeptide-amorphous calcium phosphate. It is designed to help strengthen and protect teeth by releasing calcium and phosphate ions, which can aid in remineralizing tooth enamel and reducing sensitivity. <a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/Types-of-Mi-Paste-by-GC-Americal.jpg?v=1745841540\" target=\"_blank\" title=\"https://cdn.shopify.com/s/files/1/0996/0350/files/Types-of-Mi-Paste-by-GC-Americal.jpg?v=1745841540\">MI Paste</a> is often used to help prevent and treat dental <br/>issues such as white spot lesions, tooth decay, and sensitivity. It's typically applied directly to the teeth and should be used as advised by a dental professional.</p><p><strong>Benefits of Mi Paste:</strong></p><p>MI Paste offers several benefits, especially for dental health:</p><p><strong>Remineralization:</strong> Helps restore minerals to tooth enamel, strengthening it and reducing sensitivity.<br/><strong>Caries Prevention:</strong> Protects teeth from decay by replenishing lost calcium and phosphate.<br/><strong>Sensitivity Relief:</strong> Provides relief from tooth sensitivity by forming a protective layer over exposed dentin.<br/><strong>Neutralizes Acids</strong>: Balances oral pH, reducing acid wear on teeth.<br/><strong>Safe for All Ages:</strong> Suitable for everyone, including children and individuals with high decay risk.<br/><strong>Hydration: </strong>Moisturizes the mouth, helpful for those with dry mouth conditions.<br/>Non-Abrasive: Gentle on teeth, making it safe for everyday use.<br/></p><p>These benefits make MI Paste a valuable addition to oral care routines, especially for people with specific dental needs or sensitivities. Always follow a dentist's guidance for optimal use.<br/></p><p><strong>How to Use Mi Paste</strong><br/><br/>Here’s how to use MI Paste effectively:<br/><br/><strong>Brush Teeth: </strong>Clean teeth thoroughly with a toothbrush and fluoride toothpaste.<br/><strong>Application:</strong> Use a clean finger or cotton swab to apply a pea-sized amount of MI Paste to the teeth.<br/><strong>Spread Evenly:</strong> Distribute the paste over the surfaces of the teeth, focusing on areas with sensitivity or those prone to decay.<br/><strong>Leave On: </strong>Allow the paste to remain on the teeth for 3-5 minutes.Spit, <br/><strong>Don’t Rinse:</strong> After the application time, spit out any excess paste. Avoid rinsing, eating, or drinking for 30 minutes to maximize the benefits.<br/><strong>Frequency:</strong> Use daily, or as recommended by your dentist, for best results.</p><p>Always follow your dentist’s instructions for personalized dental care.<br/></p><p><strong>MI Paste ingredients</strong>:</p><p>MI Paste contains the following key ingredients:<br/><br/><strong>Recaldent™ (CPP-ACP): </strong>Casein phosphopeptide-amorphous calcium phosphate, derived from milk protein, helps in remineralizing tooth enamel by delivering calcium and phosphate.<br/><strong>Water:</strong> Provides a base for the paste.<br/><strong>Glycerol:</strong> Acts as a humectant for moisture retention.<br/><strong>Sorbitol:</strong> Sweetener that also retains moisture.<br/><strong>Propylene Glycol:</strong> Serves as a solvent and additional humectantSilica: <br/>Mild abrasive for polishing teeth.<br/><strong>Xanthan Gum:</strong> Thickening agent that stabilizes the paste.<br/><strong>Sodium Saccharin:</strong> Sweetener for improved taste.<br/><strong>Flavoring:</strong> Various flavors to enhance the user experience.<br/></p><p><strong>Difference Between MI Paste vs MI Paste Plus</strong>:<br/><br/>MI Paste and MI Paste Plus both serve to enhance dental health by providing essential minerals, but they have some differences:<br/><br/><strong>Fluoride Content:</strong></p><ul><li><strong>MI Paste:</strong> Does not contain fluoride. Suitable for those who need remineralization without additional fluoride exposure.</li><li><strong>MI Paste Plus:</strong> Contains fluoride, enhancing its ability to protect against cavities and strengthen enamel.<br/></li></ul><p><strong>Indications:</strong></p><ul><li><strong>MI Paste:</strong> Ideal for people who want to avoid fluoride, including children under six or individuals with specific medical conditions.</li><li><strong>MI Paste Plus:</strong> Recommended <br/>for those needing extra cavity protection and enhanced remineralization,<br/> often suitable for adults and children over six.<br/></li></ul><p><strong>Uses:</strong></p><ul><li>Both products help in reducing sensitivity, maintaining oral pH, and improving enamel health. The choice depends on specific fluoride needs and dental advice.<br/></li></ul><p>Always consult with your dentist to determine the best option for your individual dental care needs.<br/></p><p><strong>How long should you leave MI Paste on your teeth?</strong><br/><br/>MI Paste should generally be left on your teeth for about three to five minutes. This allows the paste to properly release calcium and phosphate, which can help remineralize and strengthen your teeth. After applying, you can spit out the excess but avoid rinsing your mouth with water for at least 30 minutes to allow the benefits to continue working. Always follow your dentist’s <a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/Mi_Paste_Instruction_for_Use.pdf?v=1744719776\" target=\"_blank\" title=\"Mi Paste Instructions How to Use\">specific instructions</a> regarding usage.</p><p><strong>Is MI Paste the same as toothpaste?</strong></p><p>No, MI Paste is not the same as toothpaste. While both are used for oral care, their purposes differ. Toothpaste primarily cleans your teeth and often contains fluoride to help prevent cavities. M<a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/How_Mi_Paste_Works.pdf?v=1744720599\" target=\"_blank\" title=\"Mi Paste\">I Paste</a>, on the other hand, is a topical treatment designed to deliver calcium and phosphate to the enamel, helping to remineralize and strengthen teeth. It does not contain abrasives for cleaning, so it should be used in addition to, not as a substitute for, regular toothpaste.</p><p><strong>Is MI Paste Prescription Only?</strong><br/><br/>MI Paste is not prescription only; it is available over-the-counter. However, MI Paste Plus, which contains fluoride, typically requires a prescription. It's always a good idea to consult your dentist to see which product is best for your needs.</p><p><strong>Does Mi Paste have any Side Effects?</strong></p><p>MI Paste is generally safe for most users, but some potential side effects may include:</p><ul><li><strong>Allergic Reactions</strong>: Those allergic to milk proteins (casein) or benzoate preservatives might experience reactions.</li><li><strong>Oral Sensitivity</strong>: Some may experience mild irritation or sensitivity in the mouth.</li><li><strong>Digestive Issues</strong>: If swallowed, it could cause minor digestive discomfort.</li></ul><p>It's always best to consult with a dental professional before use, especially if you have known allergies.</p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "regular"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_Eb2jDs": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_Eb2jDs",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

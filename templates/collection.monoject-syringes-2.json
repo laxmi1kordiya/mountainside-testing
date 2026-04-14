@@ -1,0 +1,144 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_ApxRwc": {
+          "type": "menu",
+          "settings": {
+            "menu": "syringes"
+          }
+        },
+        "menu_E9KBnX": {
+          "type": "menu",
+          "settings": {
+            "menu": "skin-prepping-disinfecting"
+          }
+        },
+        "menu_F4AmKF": {
+          "type": "menu",
+          "settings": {
+            "menu": "numbing-and-freezing"
+          }
+        },
+        "menu_Lmweiz": {
+          "type": "menu",
+          "settings": {
+            "menu": "antibiotics"
+          }
+        },
+        "menu_ALcDTJ": {
+          "type": "menu",
+          "settings": {
+            "menu": "allergic-reaction-treatments"
+          }
+        }
+      },
+      "block_order": [
+        "menu_ApxRwc",
+        "menu_E9KBnX",
+        "menu_F4AmKF",
+        "menu_Lmweiz",
+        "menu_ALcDTJ"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Monoject Syringes & Needles: Safe, Sterile, Bestselling Medical Choice",
+            "text": "<p><strong>Buy Monoject Syringes & Needles - The #1 Choice for Medical Precision, Safety, and Versatility</strong></p><p>Experience top-tier health care performance with <strong>Monoject Syringes</strong>, the industry leader in sterile, single-use syringes and needles, trusted by hospitals, clinics, and home health care providers worldwide. Whether you need <strong>Monoject syringes with needles</strong>, <strong>needleless Monoject syringes</strong>, or specialized <strong>Monoject insulin syringes</strong>, our selection is designed to meet all medical, veterinary, and laboratory needs.</p><h2><strong>Why Choose Monoject Syringes?</strong></h2><ul><li><strong>Premium Safety:</strong> Each syringe is individually <br/>packaged, sterile, and engineered for single use to prevent <br/>cross-contamination and infection risk.</li><li><strong>Precision Dosing:</strong> Clearly marked, bold graduation markings (ml/cc) for accurate medication measurement and administration.</li><li><strong>Latex-Free & DEHP-Free:</strong> Manufactured from <br/>non-toxic, medical-grade polypropylene and polypropylene/polyethylene <br/>plunger materials, safe for those with latex allergies.</li><li><strong>Variety of Needle Sizes & Types:</strong> Available in a<br/> full range of gauges and lengths for intramuscular, subcutaneous, and <br/>intradermal injections, as well as flush, irrigation, and oral <br/>medication delivery.</li></ul><h2><strong>Monoject Syringe & Needle Types</strong></h2><p><strong>Syringe Types:</strong></p><ul><li><strong>Luer Lock Syringes:</strong> Secure locking system prevents needle detachment.</li><li><strong>Luer Slip Syringes:</strong> Quick and easy needle application for versatile use.</li><li><strong>Oral/Dispenser Syringes:</strong> No-needle syringes ideal for oral medication or irrigation.</li></ul><p><strong>Needle Sizes:</strong></p><ul><li><strong>Gauge Range:</strong> 18G, 20G, 21G, 22G, 23G, 25G, 27G, 30G</li><li><strong>Length Options:</strong> ½ inch, 1 inch, 1 ½ inch, 2 inch, and more</li></ul><p><strong>Common Pairings:</strong></p><ul><li>1 mL syringes (insulin): 28G–31G, short needle</li><li>3 mL/5 mL/10 mL: 22G–25G, 1”–1.5” needle</li><li>Irrigation: large-bore, blunt tip, needleless</li></ul><p><strong>Volumes & Capacities:</strong></p><ul><li>1cc (1 mL), 3cc (3 mL), 5cc (5 mL), 10cc (10 mL), 20cc (20 mL), 30cc (30 mL), 60cc (60 mL)</li></ul><h2><strong>Top Health Benefits & Uses:</strong></h2><ul><li><strong>Medication Administration:</strong> Accurate delivery of antibiotics, insulin, vaccines, and more.</li><li><strong>Diabetes Care:</strong> Precise insulin dosing with ultra-fine Monoject insulin syringes.</li><li><strong>Blood Collection & Flushes:</strong> Safe, sterile venipuncture and line flushing.</li><li><strong>Oral and Enteral Feeding:</strong> Needleless syringes for safe feeding and medication in pediatrics and elderly care.</li><li><strong>Wound Irrigation and Procedure Use:</strong> Powerful, controlled cleaning for optimal healing.</li></ul><p><strong>Trusted by healthcare professionals for</strong>: <em>injections, blood draws, specimen collection, medication delivery, veterinary care, home diabetic use, dental irrigation,</em> and more.</p><h2><strong>Frequently Asked Questions: (Monoject Syringes & Needles)</strong></h2><p><strong> What is a Monoject syringe used for?</strong></p><p>Monoject syringes are versatile devices used for administering injections (intramuscular, subcutaneous, intradermal), oral medication delivery, blood draws, flushing IV or feeding lines, wound and cavity irrigation, and veterinary use.</p><p><strong>Are Monoject syringes single-use only?</strong></p><p>Yes, Monoject syringes are strictly single-use to prevent contamination and ensure sterility for every procedure.<br/><br/><strong>What is a Monoject syringe made of?</strong></p><p>Monoject syringes are constructed from high-quality, medical-grade, latex-free polypropylene with a siliconeized rubber plunger and DEHP-free components for maximum safety.<br/><br/><strong>What is a Monoject needle used for?</strong></p><p>Monoject needles are designed for safe injections, blood sampling, medication delivery, and fluid withdrawal, with sizes suited for every injection and procedural need.</p><p><strong>How to use a Monoject syringe?</strong></p><p>Select the appropriate size and type, maintain sterility, draw medication or fluid, attach the correct needle if needed, and administer as directed by your healthcare provider. Dispose of immediately after use.<br/><br/><strong>When to use Monoject?</strong></p><p>Use whenever precise, sterile administration or withdrawal of fluids is required—whether for injections, oral medication, irrigation, or lab work.<br/><br/><strong>Can I use the same syringe multiple times?</strong></p><p>No. For your safety and infection prevention, Monoject syringes and needles are strictly single-use only.<br/><br/><strong>What are the three types of syringes for injection?</strong></p><p>The three common types are Luer Lock, Luer Slip, and Insulin/Oral Syringes.<br/><br/><strong>What is a syringe without a needle called?</strong></p><p>A needleless syringe, often used for oral medication, irrigation, or feeding.<br/><br/><strong>Are Monoject syringes safe to use?</strong></p><p>Absolutely. Monoject syringes meet strict FDA and ISO standards for medical safety and sterility.<br/><br/><strong>Order today for:</strong></p><ul><li>Fast shipping</li><li>Competitive prices</li><li>Bulk discounts for clinics and pharmacies</li><li>Trusted brand for premium syringe and needle performance</li></ul><p><strong>Experience the Monoject Difference—Order Now for Reliable, Safe, and Sterile Health Solutions!</strong></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "17595915059df43d23": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_KNgNci": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#ddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_KNgNci"
+      ],
+      "settings": {}
+    },
+    "collection_description_3xKAHX": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_3xKAHX",
+    "17595915059df43d23",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

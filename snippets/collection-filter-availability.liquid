@@ -1,0 +1,55 @@
+{% comment %} Availability Filter (single-select, query param based) {% endcomment %}
+{% comment %} Build clean query string WITHOUT any availability params {% endcomment %}
+{% assign avail_clean_qs = '' %}
+{% if qs != blank %}
+  {% assign qs_parts_avail = qs | split: '&' %}
+  {% for part in qs_parts_avail %}
+    {% unless part contains 'filter.v.availability' or part contains 'page=' %}
+      {% if avail_clean_qs == '' %}
+        {% assign avail_clean_qs = part %}
+      {% else %}
+        {% assign avail_clean_qs = avail_clean_qs | append: '&' | append: part %}
+      {% endif %}
+    {% endunless %}
+  {% endfor %}
+{% endif %}
+
+{% for filter in collection.filters %}
+  {% if filter.param_name == 'filter.v.availability' %}
+    <div class="collection-filters__group" data-filter-group="availability">
+      <div class="collection-filters__header">
+        <span class="collection-filters__title">Availability</span>
+      </div>
+      <div class="collection-filters__content">
+        <ul class="filter-list filter-list--boolean" data-filter-list>
+          {% for value in filter.values %}
+            {% if value.active %}
+              {% if avail_clean_qs != '' %}
+                {% assign avail_url = tag_base_url | append: '?' | append: avail_clean_qs %}
+              {% else %}
+                {% assign avail_url = tag_base_url %}
+              {% endif %}
+            {% else %}
+              {% if avail_clean_qs != '' %}
+                {% assign avail_url = tag_base_url | append: '?' | append: avail_clean_qs | append: '&filter.v.availability=' | append: value.value %}
+              {% else %}
+                {% assign avail_url = tag_base_url | append: '?filter.v.availability=' | append: value.value %}
+              {% endif %}
+            {% endif %}
+            <li class="filter-list__item">
+              <a href="{{ avail_url }}" class="filter-list__label{% if value.active %} filter-list__label--active{% endif %}">
+                <span class="filter-list__checkbox-icon">
+                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                    <path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="filter-list__text">{{ value.label }}</span>
+                <span class="filter-list__count">({{ value.count }})</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}

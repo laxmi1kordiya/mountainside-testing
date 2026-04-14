@@ -1,0 +1,271 @@
+{% comment %} Check if returns row should be hidden/replaced for this product {% endcomment %}
+{% assign hide_returns = false %}
+{% if block.settings.hide_returns_by_tag and block.settings.hide_returns_tag != blank %}
+  {% if product.tags contains block.settings.hide_returns_tag %}
+    {% assign hide_returns = true %}
+  {% endif %}
+{% endif %}
+
+{% if hide_returns and block.settings.no_return_label != blank %}
+  {% assign label_1 = block.settings.no_return_label %}
+  {% assign value_1 = block.settings.no_return_value | default: 'Non-Returnable' %}
+  {% assign detail_1 = '' %}
+  {% assign link_1 = '' %}
+  {% assign link_text_1 = '' %}
+{% elsif hide_returns %}
+  {% assign label_1 = '' %}
+  {% assign value_1 = '' %}
+  {% assign detail_1 = '' %}
+  {% assign link_1 = '' %}
+  {% assign link_text_1 = '' %}
+{% else %}
+  {% assign label_1 = block.settings.policy_label_1 | default: 'Returns' %}
+  {% assign value_1 = block.settings.policy_value_1 | default: '30-day refund / replacement' %}
+  {% assign detail_1 = block.settings.policy_detail_1 | default: 'This item can be returned in its original condition for a full refund or replacement within 30 days of receipt.' %}
+  {% assign link_1 = block.settings.policy_link_1 %}
+  {% assign link_text_1 = block.settings.policy_link_text_1 | default: 'Read full return policy' %}
+{% endif %}
+
+{% assign label_2 = block.settings.policy_label_2 | default: 'Payment' %}
+{% assign value_2 = block.settings.policy_value_2 | default: 'Secure transaction' %}
+{% assign detail_2 = block.settings.policy_detail_2 | default: 'Your payment information is processed securely. We do not store credit card details.' %}
+{% assign link_2 = block.settings.policy_link_2 %}
+{% assign link_text_2 = block.settings.policy_link_text_2 | default: 'Learn more about security' %}
+
+{% assign label_3 = block.settings.policy_label_3 | default: 'Packaging' %}
+{% assign value_3 = block.settings.policy_value_3 | default: 'Ships in product packaging' %}
+{% assign detail_3 = block.settings.policy_detail_3 | default: 'Items are carefully packed in their original product packaging to ensure safe delivery.' %}
+{% assign link_3 = block.settings.policy_link_3 %}
+{% assign link_text_3 = block.settings.policy_link_text_3 | default: 'Read shipping policy' %}
+
+<div class="product-refund-policy" {{ block.shopify_attributes }}>
+  {% if label_1 != blank %}
+    <div class="product-refund-policy__row">
+      <span class="product-refund-policy__label">{{ label_1 }}</span>
+      <span class="product-refund-policy__value">
+        <span class="product-refund-policy__trigger" data-policy-trigger="1">{{ value_1 }}</span>
+      </span>
+    </div>
+  {% endif %}
+  {% if label_2 != blank %}
+    <div class="product-refund-policy__row">
+      <span class="product-refund-policy__label">{{ label_2 }}</span>
+      <span class="product-refund-policy__value">
+        <span class="product-refund-policy__trigger" data-policy-trigger="2">{{ value_2 }}</span>
+      </span>
+    </div>
+  {% endif %}
+  {% if label_3 != blank %}
+    <div class="product-refund-policy__row">
+      <span class="product-refund-policy__label">{{ label_3 }}</span>
+      <span class="product-refund-policy__value">
+        <span class="product-refund-policy__trigger" data-policy-trigger="3">{{ value_3 }}</span>
+      </span>
+    </div>
+  {% endif %}
+
+  {% comment %} Popup {% endcomment %}
+  <div class="product-refund-policy__popup" data-policy-popup style="display:none;">
+    <div class="product-refund-policy__popup-inner">
+      <button class="product-refund-policy__popup-close" data-policy-popup-close aria-label="Close">&times;</button>
+      <h4 class="product-refund-policy__popup-title" data-policy-popup-title></h4>
+      <p class="product-refund-policy__popup-text" data-policy-popup-text></p>
+      <a class="product-refund-policy__popup-link" data-policy-popup-link href="#" style="display:none;"></a>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var data = {
+      '1': {
+        title: {{ value_1 | json }},
+        text: {{ detail_1 | json }},
+        link: {{ link_1 | json }},
+        linkText: {{ link_text_1 | json }}
+      },
+      '2': {
+        title: {{ value_2 | json }},
+        text: {{ detail_2 | json }},
+        link: {{ link_2 | json }},
+        linkText: {{ link_text_2 | json }}
+      },
+      '3': {
+        title: {{ value_3 | json }},
+        text: {{ detail_3 | json }},
+        link: {{ link_3 | json }},
+        linkText: {{ link_text_3 | json }}
+      }
+    };
+
+    var allPolicies = document.querySelectorAll('.product-refund-policy');
+    allPolicies.forEach(function(policyEl) {
+      var popup = policyEl.querySelector('[data-policy-popup]');
+      var popupTitle = policyEl.querySelector('[data-policy-popup-title]');
+      var popupText = policyEl.querySelector('[data-policy-popup-text]');
+      var popupLink = policyEl.querySelector('[data-policy-popup-link]');
+      var closeBtn = policyEl.querySelector('[data-policy-popup-close]');
+      if (!popup || !closeBtn) return;
+
+      var triggers = policyEl.querySelectorAll('[data-policy-trigger]');
+      triggers.forEach(function(trigger) {
+        trigger.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var id = trigger.getAttribute('data-policy-trigger');
+          var item = data[id];
+          if (!item) return;
+
+          popupTitle.textContent = item.title;
+          popupText.textContent = item.text;
+
+          if (item.link && item.link !== '') {
+            popupLink.href = item.link;
+            popupLink.textContent = item.linkText;
+            popupLink.style.display = '';
+          } else {
+            popupLink.style.display = 'none';
+          }
+
+          var row = trigger.closest('.product-refund-policy__row');
+          if (row) {
+            var rowBottom = row.offsetTop + row.offsetHeight;
+            popup.style.top = rowBottom + 'px';
+          }
+          popup.style.display = 'block';
+        });
+      });
+
+      closeBtn.addEventListener('click', function() {
+        popup.style.display = 'none';
+      });
+
+      document.addEventListener('click', function(e) {
+        if (popup.style.display === 'block' && !popup.contains(e.target)) {
+          var isTrigger = false;
+          triggers.forEach(function(t) { if (t.contains(e.target)) isTrigger = true; });
+          if (!isTrigger) popup.style.display = 'none';
+        }
+      });
+    });
+  })();
+</script>
+
+<style>
+  .product-refund-policy {
+    position: relative;
+    {% comment %} margin: 10px 0; {% endcomment %}
+  }
+
+  .product-refund-policy__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .product-refund-policy__row:last-of-type {
+    border-bottom: none;
+  }
+
+  .product-refund-policy__label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .product-refund-policy__value {
+    font-size: 13px;
+    color: #555;
+  }
+
+  .product-refund-policy__trigger {
+    cursor: pointer;
+    color: #2162a1;
+    text-underline-offset: 3px;
+  }
+
+  .product-refund-policy__trigger:hover {
+    color: #2162a1;
+    text-decoration: none;
+  }
+
+  /* Popup */
+  .product-refund-policy__popup {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 100;
+  }
+
+  .product-refund-policy__popup-inner {
+    position: relative;
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  .product-refund-policy__popup-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: none;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 20px;
+    line-height: 1;
+    color: #666;
+    cursor: pointer;
+    padding: 2px 8px;
+  }
+
+  .product-refund-policy__popup-close:hover {
+    color: #333;
+    background: #f3f4f6;
+  }
+
+  .product-refund-policy__popup-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 8px 0;
+    padding-right: 30px;
+  }
+
+  .product-refund-policy__popup-text {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+    margin: 0 0 10px 0;
+  }
+
+  .product-refund-policy__popup-link {
+    font-size: 13px;
+    color: #2563eb;
+    text-decoration: none;
+  }
+
+  .product-refund-policy__popup-link:hover {
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 767px) {
+    .product-refund-policy__row {
+      padding: 8px 0;
+    }
+
+    .product-refund-policy__label {
+      font-size: 12px;
+    }
+
+    .product-refund-policy__value {
+      font-size: 12px;
+    }
+
+    .product-refund-policy__popup-inner {
+      padding: 16px;
+    }
+  }
+</style>

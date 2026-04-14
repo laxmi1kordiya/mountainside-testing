@@ -1,0 +1,758 @@
+{% if section.settings.show_related_collections %}
+  {% assign max_collections = section.settings.max_collections | default: 5 %}
+  {% assign products_per_collection = section.settings.products_per_collection | default: 10 %}
+  {% assign current_product_id = product.id %}
+
+  {% assign metafield_collections = product.metafields.custom.related_collections.value %}
+  {% assign has_metafield_collections = false %}
+  {% assign collections_to_display = product.collections %}
+
+  {% if metafield_collections != blank and metafield_collections.size > 0 %}
+    {% assign has_metafield_collections = true %}
+    {% assign collections_to_display = metafield_collections %}
+  {% endif %}
+
+  {% assign collection_count = 0 %}
+
+  {% for col in collections_to_display %}
+    {% if collection_count >= max_collections %}
+      {% break %}
+    {% endif %}
+
+    {% comment %} Skip best-selling collection {% endcomment %}
+    {% assign col_handle_lower = col.handle | downcase %}
+    {% if col_handle_lower contains 'best-selling' or col_handle_lower contains 'best-sellers' %}
+      {% continue %}
+    {% endif %}
+
+    {% comment %} Count products in collection (excluding current product) {% endcomment %}
+    {% assign col_product_count = 0 %}
+    {% for p in col.products limit: products_per_collection %}
+      {% if p.id != current_product_id %}
+        {% assign col_product_count = col_product_count | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+
+    {% comment %} If NOT using metafield, apply product count filters {% endcomment %}
+    {% if has_metafield_collections == false %}
+      {% comment %} Skip if less than 5 products {% endcomment %}
+      {% if col_product_count < 5 %}
+        {% continue %}
+      {% endif %}
+    {% else %}
+      {% comment %} When using metafield, just skip empty collections {% endcomment %}
+      {% if col_product_count == 0 %}
+        {% continue %}
+      {% endif %}
+    {% endif %}
+
+    {% assign collection_count = collection_count | plus: 1 %}
+
+    <section
+      class="rc-carousel rc-carousel--{{ section.id }}"
+      data-rc-carousel-section
+    >
+      <div class="rc-carousel__container">
+        <h2 class="rc-carousel__title product-section--title">
+          {{ col.title }}
+        </h2>
+
+        <div class="rc-carousel__wrapper">
+          <button class="rc-carousel__arrow rc-carousel__arrow--prev" aria-label="Previous" data-rc-prev>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <div class="rc-carousel__track-container" data-rc-track-container>
+            <ul class="rc-carousel__track" data-rc-track>
+              {% assign shown_count = 0 %}
+              {% assign product_fetch_limit = products_per_collection | plus: 1 %}
+              {% for p in col.products limit: product_fetch_limit %}
+                {% if p.id != current_product_id and shown_count < products_per_collection %}
+                  {% assign shown_count = shown_count | plus: 1 %}
+                  {%
+                    include 'product-grid-item',
+                    product: p
+                  %}
+                {% endif %}
+              {% endfor %}
+
+              {% comment %} "See All Products" card {% endcomment %}
+              <li class="productgrid--item rc-carousel__see-all-item">
+                <a href="{{ col.url }}" class="rc-carousel__see-all-card">
+                  <div class="rc-carousel__see-all-inner">
+                    <div class="rc-carousel__see-all-icon">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    <span class="rc-carousel__see-all-text">See All Products</span>
+                    <span class="rc-carousel__see-all-collection">{{ col.title }}</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <button class="rc-carousel__arrow rc-carousel__arrow--next" aria-label="Next" data-rc-next>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+  {% endfor %}
+
+  {% include 'quick-shop' %}
+
+  <style>
+    /* ===========================
+       Related Collections Carousel
+       Matches static-product-recommendations design
+       =========================== */
+
+    .rc-carousel--{{ section.id }} {
+      padding: 40px 0;
+    }
+
+    .rc-carousel--{{ section.id }} + .rc-carousel--{{ section.id }} {
+      padding-top: 0;
+    }
+
+    .rc-carousel--{{ section.id }} .rc-carousel__container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 25px;
+    }
+
+    .rc-carousel--{{ section.id }} .rc-carousel__title {
+      margin-bottom: 24px;
+    }
+
+    /* Carousel wrapper - relative for arrow positioning */
+    .rc-carousel--{{ section.id }} .rc-carousel__wrapper {
+      position: relative;
+    }
+
+    /* Track container - horizontal scroll */
+    .rc-carousel--{{ section.id }} .rc-carousel__track-container {
+      overflow-x: auto;
+      overflow-y: visible;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 5px 0;
+    }
+
+    .rc-carousel--{{ section.id }} .rc-carousel__track-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .rc-carousel--{{ section.id }} .rc-carousel__track {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 20px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      align-items: stretch;
+    }
+
+    /* 5 cards per view: 5*(20%-16px) + 4*20px = 100% */
+    .rc-carousel--{{ section.id }} .rc-carousel__track .productgrid--item {
+      flex: 0 0 calc(20% - 16px);
+      width: auto;
+      max-width: none;
+      min-width: 0;
+      margin: 0;
+      scroll-snap-align: start;
+      box-sizing: border-box;
+    }
+
+    /* === Card element alignment === */
+
+    .rc-carousel--{{ section.id }} .productitem {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .rc-carousel--{{ section.id }} .productitem--image {
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      flex-shrink: 0;
+      height: auto;
+    }
+
+    .rc-carousel--{{ section.id }} .productitem--image img,
+    .rc-carousel--{{ section.id }} .productitem--image .rimg-canvas {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .rc-carousel--{{ section.id }} .productitem--info {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      padding-top: 8px;
+    }
+
+    .rc-carousel--{{ section.id }} .productitem--price {
+      min-height: 48px;
+    }
+
+    .rc-carousel--{{ section.id }} .productitem--title {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 2.8em;
+    }
+
+    .rc-carousel--{{ section.id }} .jdgm-widget.jdgm-preview-badge {
+      min-height: 24px;
+    }
+
+    .rc-carousel--{{ section.id }} .productitem--description {
+      display: none;
+    }
+
+    .rc-carousel--{{ section.id }} .productitem--buttons {
+      margin-top: auto;
+      padding-top: 8px;
+    }
+
+    /* Prevent product cards from rising above arrows */
+    .rc-carousel--{{ section.id }} .productgrid--item,
+    .rc-carousel--{{ section.id }} .productgrid--item:hover,
+    .rc-carousel--{{ section.id }} .productgrid--item.animating,
+    .rc-carousel--{{ section.id }} .productgrid--item.visible {
+      z-index: 1;
+    }
+
+    /* === Arrows === */
+    .rc-carousel--{{ section.id }} .rc-carousel__arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 500;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid #ddd;
+      background: rgba(255, 255, 255, 0.95);
+      color: #333;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    }
+
+    .rc-carousel--{{ section.id }} .rc-carousel__arrow:hover {
+      border-color: #367b36;
+      color: #367b36;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    .rc-carousel--{{ section.id }} .rc-carousel__arrow svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .rc-carousel--{{ section.id }} .rc-carousel__arrow--prev {
+      left: -5px;
+    }
+
+    .rc-carousel--{{ section.id }} .rc-carousel__arrow--next {
+      right: -5px;
+    }
+
+    .rc-carousel--{{ section.id }} .rc-carousel__arrow[data-hidden="true"] {
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+    }
+
+    /* === "See All Products" Card === */
+    .rc-carousel--{{ section.id }} .rc-carousel__see-all-item {
+      flex: 0 0 calc(20% - 16px);
+      scroll-snap-align: start;
+      box-sizing: border-box;
+    }
+
+    .rc-carousel--{{ section.id }} .rc-carousel__see-all-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      min-height: 100%;
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.3s ease;
+      background: #fafafa;
+    }
+
+    .rc-carousel--{{ section.id }} .rc-carousel__see-all-card:hover {
+      border-color: #367b36;
+      background: #f0f7f0;
+      color: #367b36;
+    }
+
+    .rc-carousel--{{ section.id }} .rc-carousel__see-all-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      gap: 12px;
+    }
+
+    .rc-carousel--{{ section.id }} .rc-carousel__see-all-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #e8f5e9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .rc-carousel--{{ section.id }} .rc-carousel__see-all-card:hover .rc-carousel__see-all-icon {
+      background: #367b36;
+      color: #fff;
+    }
+
+    .rc-carousel--{{ section.id }} .rc-carousel__see-all-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .rc-carousel--{{ section.id }} .rc-carousel__see-all-text {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .rc-carousel--{{ section.id }} .rc-carousel__see-all-collection {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.3;
+    }
+
+    .rc-carousel--{{ section.id }} .rc-carousel__see-all-card:hover .rc-carousel__see-all-collection {
+      color: #367b36;
+    }
+
+    /* === 1200px: Tighter gaps === */
+    @media (max-width: 1200px) {
+      .rc-carousel--{{ section.id }} .rc-carousel__track {
+        gap: 18px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__track .productgrid--item,
+      .rc-carousel--{{ section.id }} .rc-carousel__see-all-item {
+        flex: 0 0 calc(20% - 14.4px);
+      }
+    }
+
+    /* === 1024px: 4 cards, smaller arrows === */
+    @media (max-width: 1024px) {
+      .rc-carousel--{{ section.id }} {
+        padding: 35px 0;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__container {
+        padding: 0 15px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__track {
+        gap: 16px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__track .productgrid--item,
+      .rc-carousel--{{ section.id }} .rc-carousel__see-all-item {
+        flex: 0 0 calc(25% - 12px);
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__title {
+        margin-bottom: 20px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--price {
+        min-height: 44px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__arrow {
+        width: 36px;
+        height: 36px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__arrow svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    /* === 768px: Tablet - 3 cards, no arrows === */
+    @media (max-width: 768px) {
+      .rc-carousel--{{ section.id }} {
+        padding: 30px 0;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__container {
+        padding: 0 10px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__title {
+        font-size: 20px;
+        margin-bottom: 16px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__track {
+        gap: 14px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__track .productgrid--item,
+      .rc-carousel--{{ section.id }} .rc-carousel__see-all-item {
+        flex: 0 0 calc(33.333% - 9.5px);
+        width: auto;
+        min-width: 0;
+        max-width: none;
+        margin: 0;
+      }
+      .rc-carousel--{{ section.id }} .productitem {
+        padding: 8px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--image-alternate,
+      .rc-carousel--{{ section.id }} .productitem--image .rimg-canvas:first-child {
+        display: none;
+      }
+      .rc-carousel--{{ section.id }} .productitem--info {
+        padding-top: 6px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--price {
+        min-height: 40px;
+        font-size: 13px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--price .money {
+        font-size: 13px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--title {
+        font-size: 13px;
+        line-height: 1.35;
+        margin-bottom: 4px;
+        margin-top: 0;
+        min-height: calc(13px * 1.35 * 2);
+      }
+      .rc-carousel--{{ section.id }} .productitem--title a {
+        font-size: 13px;
+      }
+      .rc-carousel--{{ section.id }} .jdgm-widget.jdgm-preview-badge {
+        min-height: 22px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--buttons {
+        gap: 6px;
+        padding-top: 6px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--atc-btn {
+        font-size: 11px;
+        padding: 8px 6px;
+        min-height: 32px;
+        height: auto;
+      }
+      .rc-carousel--{{ section.id }} .productitem--qty-selector {
+        height: 32px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--qty-btn {
+        width: 28px;
+        height: 32px;
+        font-size: 14px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--qty-input {
+        font-size: 11px;
+        height: 30px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--sold-out-btn,
+      .rc-carousel--{{ section.id }} .productitem--notify-me-btn {
+        font-size: 11px;
+        padding: 8px 6px;
+        min-height: 32px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--license-msg {
+        font-size: 11px;
+        padding: 6px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--actions {
+        display: none;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__arrow {
+        display: none;
+      }
+      /* See All card tablet */
+      .rc-carousel--{{ section.id }} .rc-carousel__see-all-text {
+        font-size: 14px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__see-all-collection {
+        font-size: 12px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__see-all-icon {
+        width: 40px;
+        height: 40px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__see-all-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    /* === 480px: Mobile - compact fixed-width cards === */
+    @media (max-width: 480px) {
+      .rc-carousel--{{ section.id }} {
+        padding: 20px 0;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__container {
+        padding: 0 10px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__title {
+        font-size: 18px;
+        margin-bottom: 12px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__track {
+        gap: 12px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__track .productgrid--item,
+      .rc-carousel--{{ section.id }} .rc-carousel__see-all-item {
+        flex: 0 0 155px;
+        width: 155px;
+        min-width: 155px;
+        max-width: 155px;
+        margin: 0;
+      }
+      .rc-carousel--{{ section.id }} .productitem {
+        padding: 6px;
+        min-height: 0;
+      }
+      .rc-carousel--{{ section.id }} .productitem--info {
+        padding-top: 5px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--price {
+        min-height: 34px;
+        font-size: 12px;
+        margin-top: 2px;
+        margin-bottom: 0;
+      }
+      .rc-carousel--{{ section.id }} .productitem--price .money {
+        font-size: 12px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--title {
+        font-size: 11px;
+        line-height: 1.3;
+        min-height: calc(11px * 1.3 * 2);
+      }
+      .rc-carousel--{{ section.id }} .productitem--title a {
+        font-size: 11px;
+      }
+      .rc-carousel--{{ section.id }} .jdgm-widget.jdgm-preview-badge {
+        min-height: 20px;
+        font-size: 10px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--vendor {
+        display: none;
+      }
+      .rc-carousel--{{ section.id }} .productitem--ratings {
+        display: none;
+      }
+      .rc-carousel--{{ section.id }} .productitem--buttons {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        padding-top: 5px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--atc-btn {
+        grid-column: 1 / -1;
+        font-size: 9px;
+        padding: 6px 4px;
+        min-height: 28px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--qty-selector {
+        height: 28px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--qty-btn {
+        width: 26px;
+        height: 28px;
+        font-size: 13px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--qty-input {
+        font-size: 10px;
+        height: 26px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--sold-out-btn,
+      .rc-carousel--{{ section.id }} .productitem--notify-me-btn {
+        font-size: 9px;
+        padding: 6px 4px;
+        min-height: 28px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--license-msg {
+        font-size: 9px;
+        padding: 4px;
+      }
+      /* See All card mobile */
+      .rc-carousel--{{ section.id }} .rc-carousel__see-all-inner {
+        padding: 12px;
+        gap: 8px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__see-all-text {
+        font-size: 12px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__see-all-collection {
+        font-size: 10px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__see-all-icon {
+        width: 36px;
+        height: 36px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__see-all-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    /* === 380px: Small mobile === */
+    @media (max-width: 380px) {
+      .rc-carousel--{{ section.id }} .rc-carousel__track {
+        gap: 10px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__track .productgrid--item,
+      .rc-carousel--{{ section.id }} .rc-carousel__see-all-item {
+        flex: 0 0 135px;
+        width: 135px;
+        min-width: 135px;
+        max-width: 135px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--title,
+      .rc-carousel--{{ section.id }} .productitem--title a {
+        font-size: 10px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--title {
+        min-height: calc(10px * 1.3 * 2);
+      }
+      .rc-carousel--{{ section.id }} .productitem--price {
+        min-height: 30px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--price .money {
+        font-size: 11px;
+      }
+      .rc-carousel--{{ section.id }} .productitem--atc-btn {
+        font-size: 8px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__see-all-text {
+        font-size: 11px;
+      }
+      .rc-carousel--{{ section.id }} .rc-carousel__see-all-collection {
+        font-size: 9px;
+      }
+    }
+  </style>
+
+  <script>
+  (function() {
+    var allCarousels = document.querySelectorAll('.rc-carousel--{{ section.id }}');
+    if (!allCarousels.length) return;
+
+    function initSingleCarousel(sectionEl) {
+      var trackContainer = sectionEl.querySelector('[data-rc-track-container]');
+      var track = sectionEl.querySelector('[data-rc-track]');
+      var prevBtn = sectionEl.querySelector('[data-rc-prev]');
+      var nextBtn = sectionEl.querySelector('[data-rc-next]');
+
+      if (!trackContainer || !track) return;
+
+      function getCardWidth() {
+        var card = track.querySelector('.productgrid--item');
+        if (!card) return 220;
+        return card.offsetWidth + 20;
+      }
+
+      function updateArrows() {
+        var scrollLeft = trackContainer.scrollLeft;
+        var maxScroll = trackContainer.scrollWidth - trackContainer.offsetWidth;
+
+        if (maxScroll <= 5) {
+          if (prevBtn) prevBtn.setAttribute('data-hidden', 'true');
+          if (nextBtn) nextBtn.setAttribute('data-hidden', 'true');
+          return;
+        }
+
+        if (prevBtn) {
+          prevBtn.setAttribute('data-hidden', scrollLeft <= 5 ? 'true' : 'false');
+        }
+
+        if (nextBtn) {
+          nextBtn.setAttribute('data-hidden', scrollLeft >= maxScroll - 5 ? 'true' : 'false');
+        }
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+          trackContainer.scrollBy({ left: -getCardWidth() * 2, behavior: 'smooth' });
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+          trackContainer.scrollBy({ left: getCardWidth() * 2, behavior: 'smooth' });
+        });
+      }
+
+      trackContainer.addEventListener('scroll', updateArrows, { passive: true });
+      updateArrows();
+
+      var resizeTimeout;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(updateArrows, 250);
+      });
+    }
+
+    allCarousels.forEach(function(carousel) {
+      initSingleCarousel(carousel);
+    });
+  })();
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Related Collections",
+  "class": "related-collections--section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_related_collections",
+      "label": "Show related collections",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "max_collections",
+      "label": "Number of collections to show",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "products_per_collection",
+      "label": "Products per collection",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "default": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "Related Collections"
+    }
+  ]
+}
+{% endschema %}

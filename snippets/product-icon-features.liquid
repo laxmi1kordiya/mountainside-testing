@@ -1,0 +1,113 @@
+{% comment %}
+  Product Icon Features Block
+  Renders a grid of icons with labels from product metaobject list.
+  Metafield: product.metafields.custom.product_icons (list of metaobject references)
+  Metaobject fields: icon (file_reference), label (single_line_text)
+
+  Receives: block (section block with settings: heading, columns_desktop, columns_mobile, icon_size)
+{% endcomment %}
+
+{% assign icon_entries = product.metafields.custom.product_icons.value %}
+{% assign icon_size = block.settings.icon_size | default: 50 %}
+{% assign icon_size_3x = icon_size | times: 3 %}
+{% assign cols_desktop = block.settings.columns_desktop | default: '2' %}
+{% assign cols_mobile = block.settings.columns_mobile | default: '1' %}
+
+{% if icon_entries and icon_entries.size > 0 %}
+  <div class="product-icon-features product-icon-features--desktop-{{ cols_desktop }} product-icon-features--mobile-{{ cols_mobile }}" {{ block.shopify_attributes }}>
+
+    {% if block.settings.heading != blank %}
+      <h3 class="product-icon-features__heading">{{ block.settings.heading }}</h3>
+    {% endif %}
+
+    <div class="product-icon-features__grid">
+      {% for entry in icon_entries %}
+        {% assign entry_icon = entry.icon.value %}
+        {% assign entry_label = entry.label.value | default: entry.text.value | default: entry.title.value | default: entry.name.value | default: entry.highlight_text.value %}
+
+          <div class="product-icon-features__item">
+            {% if entry_icon != blank %}
+              <div class="product-icon-features__icon" style="width: {{ icon_size }}px; height: {{ icon_size }}px;">
+                <img
+                  src="{{ entry_icon | image_url: width: icon_size_3x }}"
+                  alt="{{ entry_label | escape }}"
+                  width="{{ icon_size }}"
+                  height="{{ icon_size }}"
+                  loading="lazy"
+                >
+              </div>
+            {% endif %}
+            {% if entry_label != blank %}
+              <span class="product-icon-features__label">{{ entry_label }}</span>
+            {% else %}
+            {% endif %}
+          </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+<style>
+  .product-icon-features__heading {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 12px;
+  }
+
+  .product-icon-features__grid {
+    display: grid;
+    {% comment %} gap: 16px; {% endcomment %}
+  }
+
+  /* Desktop columns */
+  .product-icon-features--desktop-1 .product-icon-features__grid { grid-template-columns: 1fr; }
+  .product-icon-features--desktop-2 .product-icon-features__grid { grid-template-columns: repeat(2, 1fr); }
+  .product-icon-features--desktop-3 .product-icon-features__grid { grid-template-columns: repeat(3, 1fr); }
+  .product-icon-features--desktop-4 .product-icon-features__grid { grid-template-columns: repeat(4, 1fr); }
+  .product-icon-features--desktop-5 .product-icon-features__grid { grid-template-columns: repeat(5, 1fr); }
+
+  .product-icon-features__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .product-icon-features__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .product-icon-features__icon img,
+  .product-icon-features__icon svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .product-icon-features__label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+    line-height: 1.3;
+  }
+
+  /* Mobile columns */
+  @media screen and (max-width: 767px) {
+
+    {% comment %} .product-icon-features__grid {
+      gap: 12px;
+    } {% endcomment %}
+
+    .product-icon-features--mobile-1 .product-icon-features__grid { grid-template-columns: 1fr; }
+    .product-icon-features--mobile-2 .product-icon-features__grid { grid-template-columns: repeat(2, 1fr); }
+    .product-icon-features--mobile-3 .product-icon-features__grid { grid-template-columns: repeat(3, 1fr); }
+
+    .product-icon-features__label {
+      font-size: 11px;
+    }
+  }
+</style>

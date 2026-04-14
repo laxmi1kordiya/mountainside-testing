@@ -1,0 +1,100 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "bronchitis-treatments"
+          }
+        },
+        "menu_6WDTck": {
+          "type": "menu",
+          "settings": {
+            "menu": "allergy-relief"
+          }
+        },
+        "menu_ApxRwc": {
+          "type": "menu",
+          "settings": {
+            "menu": "antibiotics"
+          }
+        },
+        "menu_4qxKkV": {
+          "type": "menu",
+          "settings": {
+            "menu": "disinfecting"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_6WDTck",
+        "menu_ApxRwc",
+        "menu_4qxKkV"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Bronchitis Health Information",
+            "text": "<p><strong>What is Bronchitis?</strong><br/><br/>Bronchitis is an inflammation of the <br/>bronchial tubes, which are the airways that carry air to and from the lungs. It can be acute or chronic:<br/><br/><strong>Acute Bronchitis</strong>:</p><ul><li>Often caused by viral infections, such as the common cold or flu.</li><li>Symptoms include cough, mucus production, fatigue, shortness of breath, slight fever and chills, and chest discomfort.</li><li>Usually lasts a few days to a couple of weeks.</li></ul><p><strong>Chronic Bronchitis</strong>:</p><ul><li>A form of chronic obstructive pulmonary disease (COPD).</li><li>Characterized by a persistent, productive cough lasting at least three months, occurring over two consecutive years.</li><li>Primarily caused by long-term irritation from smoking, air pollution, or occupational exposure to irritants.</li></ul><p>Treatment depends on the type of bronchitis and may include rest, fluids, pain relievers, and in some cases, <br/>bronchodilators or antibiotics if a bacterial infection is present. Avoiding smoking and other lung irritants is also crucial.<br/><br/><strong>Bronchitis vs. Asthma</strong><br/><br/>Bronchitis and asthma are both respiratory conditions, but they have distinct characteristics:<br/><br/><strong>Bronchitis:</strong> Inflammation of the bronchial tubes.<br/><br/><strong>Types</strong>:</p><ul><li><strong>Acute:</strong> Often viral, short-term, symptoms like cough and mucus.</li><li><strong>Chronic: </strong>Long-term, related to irritants like smoking.<br/></li></ul><p><strong>Symptoms</strong>:</p><ul><li>Coughing with mucus.</li><li>Fatigue.</li><li>Shortness of breath.</li><li>Chest discomfort.</li></ul><p><strong>Causes</strong>:</p><ul><li><strong>Acute:</strong> Viral infections.</li><li><strong>Chronic:</strong> Smoking, pollution, occupational exposure.</li></ul><p><strong>Treatment</strong>:</p><ul><li>Rest, fluids, pain relievers.</li><li>Bronchodilators, antibiotics if bacterial.</li></ul><p></p><p><strong>Asthma: </strong>A chronic condition causing airway inflammation and narrowing.<br/><br/><strong>Symptoms</strong>:</p><ul><li>Wheezing.</li><li>Coughing.</li><li>Shortness of breath.</li><li>Chest tightness.<br/></li></ul><p><strong>Triggers</strong>:</p><ul><li>Allergens (pollen, dust).</li><li>Exercise.</li><li>Cold air.</li><li>Respiratory infections.</li><li>Stress.</li></ul><p><strong>Management</strong>:</p><ul><li>Inhaled corticosteroids.</li><li>Bronchodilators.</li><li>Avoidance of triggers.</li><li>Long-term control medications.</li></ul><p><strong>Key Differences:</strong></p><ul><li><strong>Bronchitis </strong>is primarily an inflammation, often due to infections or irritants, while asthma is a chronic condition with a hyperreactive airway response.</li><li><strong>Asthma</strong> management involves long-term control, whereas acute bronchitis usually resolves with short-term treatment. Chronic bronchitis is managed as part of COPD care. Asthma symptoms are often reversible with medication, while chronic bronchitis can cause persistent changes to lung tissue.</li></ul>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_NbbaD4": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_NbbaD4",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

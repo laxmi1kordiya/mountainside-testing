@@ -1,0 +1,165 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "needles-and-syringes"
+          }
+        },
+        "menu_6E7Hbw": {
+          "type": "menu",
+          "settings": {
+            "menu": "skin-prepping-disinfecting"
+          }
+        },
+        "menu_x3bGGq": {
+          "type": "menu",
+          "settings": {
+            "menu": "iv-supplies"
+          }
+        },
+        "menu_j4HkbT": {
+          "type": "menu",
+          "settings": {
+            "menu": "antibiotics"
+          }
+        },
+        "menu_EMtcDC": {
+          "type": "menu",
+          "settings": {
+            "menu": "by-injectables"
+          }
+        },
+        "menu_rEVU99": {
+          "type": "menu",
+          "settings": {
+            "menu": "vaccines"
+          }
+        },
+        "menu_wKwrC6": {
+          "type": "menu",
+          "settings": {
+            "menu": "allergic-reaction-treatments"
+          }
+        },
+        "menu_hgagBG": {
+          "type": "menu",
+          "settings": {
+            "menu": "isolation-and-infection-control"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_6E7Hbw",
+        "menu_x3bGGq",
+        "menu_j4HkbT",
+        "menu_EMtcDC",
+        "menu_rEVU99",
+        "menu_wKwrC6",
+        "menu_hgagBG"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "5",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "175934062119aa8e23": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_nGQ9at": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#dddddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_nGQ9at"
+      ],
+      "settings": {}
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "#1 Best Disposable Syringes | Medical-Grade Needles for Safe, Sterile Use",
+            "text": "<p>Are you looking for <strong>safe, sterile, and high-quality disposable syringes</strong>? Discover the top-rated solution for all your medical injection needs, trusted by healthcare professionals, pharmacies, clinics, and individuals at home. Our Disposable Syringes feature precise measurements, ultra-sharp needles, leak-proof seals, and are manufactured under strict quality control for maximum safety and comfort.</p><h3><strong>Top Health Benefits & Features:</strong></h3><ul><li><strong>100% Sterile & Medical-Grade:</strong> Each syringe comes individually packed, maintaining strict sterility and reducing the risk of <strong>cross-contamination</strong>, <strong>blood-borne pathogen transmission</strong>, and <strong>infection</strong>.</li><li><strong>Single-Use Design:</strong> Prevents the risk of <strong>needle sharing</strong>, <strong>spread of diseases</strong> such as <strong>HIV</strong> and <strong>Hepatitis</strong>, and ensures <strong>safe injection practices</strong> as recommended by all top health organizations.</li><li><strong>Ultra-Fine Needle Technology:</strong> Guarantees comfortable, virtually pain-free injections—perfect for <strong>insulin delivery</strong>, <strong>hormone therapy</strong>, <strong>vaccines</strong>, <strong>allergy shots</strong>, <strong>Ozempic injections</strong>, and more.</li><li><strong>Clear Measurement Markings:</strong> Precise dosing for <strong>diabetics</strong>, <strong>pet care</strong>, <strong>chemotherapy</strong>, <strong>immunization</strong>, and other critical therapies.</li><li><strong>Wide Compatibility:</strong> Available in all standard <br/>gauges and sizes for human or veterinary use. Compatible with Ozempic, <br/>insulin, B12, testosterone, and more.</li><li><strong>Latex-Free & Hypoallergenic:</strong> Perfect for sensitive skin; reduces allergic reaction risks.</li><li><strong>Bulk or Single-Packs:</strong> Buy exactly what you need—individual, multi-pack, or wholesale bulk!</li></ul><p>Don’t compromise on health. Our <strong>disposable syringes</strong> deliver the highest safety, precision, and peace of mind—trusted by doctors, recommended by health authorities, and perfect for personal or professional use.</p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_hGkTui": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_hGkTui",
+    "175934062119aa8e23",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

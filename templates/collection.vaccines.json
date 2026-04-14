@@ -1,0 +1,100 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "vaccines"
+          }
+        },
+        "menu_wwPzdy": {
+          "type": "menu",
+          "settings": {
+            "menu": "bacterial-infection-meds"
+          }
+        },
+        "menu_cgFEEU": {
+          "type": "menu",
+          "settings": {
+            "menu": "needles-and-syringes"
+          }
+        },
+        "menu_7QDFrm": {
+          "type": "menu",
+          "settings": {
+            "menu": "disinfecting"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_wwPzdy",
+        "menu_cgFEEU",
+        "menu_7QDFrm"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "15",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Vaccines",
+            "text": "<p><strong>What are Vaccines?</strong><br/><br/>Vaccines are biological preparations designed to provide immunity against specific infectious diseases. They contain components that mimic disease-causing microorganisms, such as bacteria or viruses, but are not capable of causing the disease themselves. These components can be weakened or killed forms of the pathogen, or fragments like proteins or sugars.</p><p>When administered, vaccines stimulate the body's immune system to recognize and fight the pathogens if encountered in the future. This process helps prevent illnesses and can control the spread of infectious diseases. Vaccines have been instrumental in reducing, and in some cases eradicating, diseases such as smallpox, polio, and measles.</p><p>Vaccination is a key public health strategy that protects both individuals and communities through herd immunity, where a large portion of the population becomes immune, thereby reducing the chance of disease spread.</p><p><strong>What are the vaccines that the CDC recommends?</strong></p><p>The Centers for Disease Control and Prevention (CDC) provides immunization schedules that recommend vaccines for different age groups. As of now, key recommendations include:<br/></p><p><strong>For Children and Adolescents:</strong></p><ul><li><a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/CDC_Hepatitis_B_Vaccine_Information.pdf?v=1744716051\" target=\"_blank\" title=\"Hepatitis B Vaccine CDC Information\">Hepatitis B</a></li><li><a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/CDC_Rotavirus_Vaccine_Information.pdf?v=1744716536\" target=\"_blank\" title=\"Rotavirus CDC Health Information\">Rotavirus</a></li><li><a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/CDC_DTaP_Diphtheria_Tetanus_Pertussis_Vaccine_Information_f010db9b-799e-41e8-8566-efeea21ea23f.pdf?v=1744717886\" target=\"_blank\" title=\"https://cdn.shopify.com/s/files/1/0996/0350/files/CDC_DTaP_Diphtheria_Tetanus_Pertussis_Vaccine_Information_f010db9b-799e-41e8-8566-efeea21ea23f.pdf?v=1744717886\">Diphtheria, Tetanus, and Pertussis (DTaP)</a></li><li><a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/CDC_Haemophilus_influenzae_type_b_Hib_Information.pdf?v=1744716926\" target=\"_blank\" title=\"Haemophilus influenzae type b (Hib) CDC Information Sheet\">Haemophilus influenzae type b (Hib)</a></li><li><a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/CDC_Pneumococcal_Conjugate_Vaccine_Information.pdf?v=1744717054\" target=\"_blank\" title=\"Pneumococcal (PCV13) CDC Information\">Pneumococcal (PCV13)</a></li><li><a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/CDC_Polio_Vaccine_Information.pdf?v=1744717167\" target=\"_blank\" title=\"Polio (IPV) CDC Health Information\">Polio (IPV)</a></li><li><a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/CDC_MMR_Vaccine_Information.pdf?v=1744717251\" target=\"_blank\" title=\"Measles, Mumps, and Rubella (MMR) CDC Health Information\">Measles, Mumps, and Rubella (MMR)</a></li><li><a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/CDC_Varicella_Vaccine_Information.pdf?v=1744717363\" target=\"_blank\" title=\"Varicella (chickenpox) Vaccine CDC Health Information\">Varicella (chickenpox)</a></li><li><a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/CDC_Hepatitis_A_Vaccine_Information.pdf?v=1744717479\" target=\"_blank\" title=\"Hepatitis A Vaccine CDC Information\">Hepatitis A</a></li><li><a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/CDC_Influenza_Vaccine_Information.pdf?v=1744717563\" target=\"_blank\" title=\"CDC Influenza Vaccine Information\">Influenza (yearly)</a></li><li><a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/CDC_Meningococcal_ACWY_Vaccine_Information.pdf?v=1744717653\" target=\"_blank\" title=\"Meningococcal CDC Health Information\">Meningococcal</a></li><li><a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/CDC_HPV_Vaccine_Information.pdf?v=1744717796\" target=\"_blank\" title=\"Human Papillomavirus (HPV) CDC Health Information\">Human Papillomavirus (HPV)</a></li><li><a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/CDC_DTaP_Diphtheria_Tetanus_Pertussis_Vaccine_Information_f010db9b-799e-41e8-8566-efeea21ea23f.pdf?v=1744717886\" target=\"_blank\" title=\"Tetanus, Diphtheria, and Pertussis (Tdap) CDC Health Information\">Tetanus, Diphtheria, and Pertussis (Tdap)</a></li></ul><p><a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/CDC_DTaP_Diphtheria_Tetanus_Pertussis_Vaccine_Information_f010db9b-799e-41e8-8566-efeea21ea23f.pdf?v=1744717886\" target=\"_blank\" title=\"Tetanus, Diphtheria, and Pertussis (Tdap) CDC Health Information\"><strong>For Adults:</strong></a></p><ul><li>Influenza (yearly)</li><li>Tetanus, Diphtheria, and Pertussis (Td or Tdap)</li><li><a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/CDC_Recombinant_Zoster_Shingles_Vaccine_Information.pdf?v=1744717993\" target=\"_blank\" title=\"Shingles (Herpes Zoster) CDC Health Information\">Shingles (Herpes Zoster)</a></li><li>Pneumococcal</li><li>Hepatitis A and B</li><li>Human Papillomavirus (HPV)</li><li>Meningococcal</li><li>Measles, Mumps, and Rubella (MMR)</li><li>Varicella</li></ul><p>Specific recommendations can vary based on factors such as age, health conditions, travel plans, and vaccination history. It's always important to consult with healthcare providers for personalized advice and to stay updated with CDC guidelines.</p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_i4Jgkp": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_i4Jgkp",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

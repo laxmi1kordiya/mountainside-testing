@@ -1,0 +1,491 @@
+<script
+  type="application/json"
+  data-section-type="static-product"
+  data-section-id="{{ section.id }}"
+  data-section-data
+>
+  {
+    "settings": {
+      "cart_redirection": {{ section.settings.product_cart_redirect | json }},
+      "layout": {{ section.settings.layout | json }},
+      "money_format": {{ shop.money_format | strip_html | json }},
+      "enable_video_autoplay": {{ section.settings.enable_video_autoplay | json }},
+      "enable_image_zoom": {{ settings.enable_image_zoom | json }},
+      "image_zoom_level": {{ settings.image_zoom_level | json }}
+    },
+    "context": {
+      "product_available": {{ 'product.buttons.add_to_cart' | t | json }},
+      "product_unavailable": {{ 'product.buttons.sold_out' | t | json }}
+    },
+    "product": {{ product | json }}
+  }
+</script>
+
+<section class="product--container {{ section.settings.layout }}" data-product-wrapper>
+  {%
+    include 'product',
+    layout: section.settings.layout,
+    is_product_modal: false
+  %}
+</section>
+
+{% include 'sticky-product-bar' %}
+
+{% schema %}
+{
+  "name": "Product pages",
+  "class": "product--section",
+  "settings": [
+    {
+      "id": "layout",
+      "type": "select",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "layout--two-col",
+          "label": "2 columns"
+        },
+        {
+          "value": "layout--three-col",
+          "label": "3 columns"
+        }
+      ],
+      "default": "layout--three-col"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_autoplay",
+      "label": "Enable autoplay for product videos",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dcb",
+      "label": "Show dynamic checkout button",
+      "info": "Each customer will see their preferred payment method from those available on your store, such as PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "product_cart_redirect",
+      "label": "Enable cart redirection",
+      "info": "Automatically sends users to the Cart page after adding a product.",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bulk_call_button",
+      "label": "Show 'Call for Bulk Order' button",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bulk_email_button",
+      "label": "Show 'Email for Bulk Order' button",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Product title",
+      "limit": 1
+    },
+    {
+      "type": "vendor",
+      "name": "Vendor",
+      "limit": 1
+    },
+    {
+      "type": "judge_me",
+      "name": "Judge.me badge",
+      "limit": 1
+    },
+    {
+      "type": "rating",
+      "name": "Star rating",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1
+    },
+    {
+      "type": "sku",
+      "name": "SKU",
+      "limit": 1
+    },
+    {
+      "type": "form",
+      "name": "Product form",
+      "limit": 1
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1
+    },
+    {
+      "type": "share",
+      "name": "Share buttons",
+      "limit": 1
+    },
+    {
+      "type": "subheading",
+      "name": "Subheading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Subheading text",
+          "info": "Connect to a product metafield via the dynamic source picker"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_read_more",
+          "label": "Enable read more / read less",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "max_lines",
+          "label": "Lines to show before truncation",
+          "min": 3,
+          "max": 20,
+          "step": 1,
+          "default": 6
+        }
+      ]
+    },
+    {
+      "type": "icon_features",
+      "name": "Icon features",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Displays product icons from the 'custom.product_icons' metafield (list of metaobject references with icon and label fields)."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+        },
+        {
+          "type": "select",
+          "id": "columns_desktop",
+          "label": "Columns (desktop)",
+          "options": [
+            { "value": "1", "label": "1" },
+            { "value": "2", "label": "2" },
+            { "value": "3", "label": "3" },
+            { "value": "4", "label": "4" },
+            { "value": "5", "label": "5" }
+          ],
+          "default": "2"
+        },
+        {
+          "type": "select",
+          "id": "columns_mobile",
+          "label": "Columns (mobile)",
+          "options": [
+            { "value": "1", "label": "1" },
+            { "value": "2", "label": "2" },
+            { "value": "3", "label": "3" }
+          ],
+          "default": "1"
+        },
+        {
+          "type": "range",
+          "id": "icon_size",
+          "label": "Icon size",
+          "min": 30,
+          "max": 80,
+          "step": 5,
+          "default": 50,
+          "unit": "px"
+        }
+      ]
+    },
+    {
+      "type": "icon_row",
+      "name": "Icon row",
+      "limit": 2,
+      "settings": [
+        { "type": "header", "content": "Layout" },
+        {
+          "type": "select",
+          "id": "columns_desktop",
+          "label": "Icons per row (desktop)",
+          "options": [
+            { "value": "2", "label": "2" },
+            { "value": "3", "label": "3" },
+            { "value": "4", "label": "4" }
+          ],
+          "default": "3"
+        },
+        {
+          "type": "select",
+          "id": "columns_mobile",
+          "label": "Icons per row (mobile)",
+          "options": [
+            { "value": "1", "label": "1" },
+            { "value": "2", "label": "2" },
+            { "value": "3", "label": "3" },
+            { "value": "4", "label": "4" }
+          ],
+          "default": "3"
+        },
+        {
+          "type": "range",
+          "id": "icon_size",
+          "label": "Icon size",
+          "min": 30,
+          "max": 80,
+          "step": 5,
+          "default": 50,
+          "unit": "px"
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_text_mobile",
+          "label": "Hide text on mobile",
+          "default": false
+        },
+        { "type": "header", "content": "Icon 1" },
+        { "type": "image_picker", "id": "icon_image_1", "label": "Custom image" },
+        { "type": "text", "id": "icon_text_1", "label": "Text", "info": "Connect to dynamic source for product-specific text" },
+        { "type": "header", "content": "Icon 2" },
+        { "type": "image_picker", "id": "icon_image_2", "label": "Custom image" },
+        { "type": "text", "id": "icon_text_2", "label": "Text", "info": "Connect to dynamic source for product-specific text" },
+        { "type": "header", "content": "Icon 3" },
+        { "type": "image_picker", "id": "icon_image_3", "label": "Custom image" },
+        { "type": "text", "id": "icon_text_3", "label": "Text", "info": "Connect to dynamic source for product-specific text" },
+        { "type": "header", "content": "Icon 4" },
+        { "type": "image_picker", "id": "icon_image_4", "label": "Custom image" },
+        { "type": "text", "id": "icon_text_4", "label": "Text", "info": "Connect to dynamic source for product-specific text" },
+        { "type": "header", "content": "Icon 5" },
+        { "type": "image_picker", "id": "icon_image_5", "label": "Custom image" },
+        { "type": "text", "id": "icon_text_5", "label": "Text", "info": "Connect to dynamic source for product-specific text" },
+        { "type": "header", "content": "Conditional icon swap" },
+        { "type": "paragraph", "content": "Override a specific icon when the product has a matching tag (e.g. show 'Non-Returnable' instead of 'Easy Returns' for doctor-only products)." },
+        {
+          "type": "select",
+          "id": "swap_icon_slot",
+          "label": "Icon slot to swap",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "1", "label": "Icon 1" },
+            { "value": "2", "label": "Icon 2" },
+            { "value": "3", "label": "Icon 3" },
+            { "value": "4", "label": "Icon 4" },
+            { "value": "5", "label": "Icon 5" }
+          ],
+          "default": "none"
+        },
+        { "type": "text", "id": "swap_product_tag", "label": "Product tag to match", "info": "e.g. doctor-only, rx-only, non-returnable", "default": "doctor-only" },
+        { "type": "image_picker", "id": "swap_icon_image", "label": "Replacement icon image" },
+        { "type": "text", "id": "swap_icon_text", "label": "Replacement text", "default": "Non-Returnable" }
+      ]
+    },
+    {
+      "type": "richtext",
+      "name": "Rich text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "shipping_info",
+      "name": "Shipping info",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_icon",
+          "label": "Show shipping icon",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Shipping text",
+          "default": "Free Shipping on orders $100"
+        },
+        {
+          "type": "text",
+          "id": "text_2",
+          "label": "Second line text",
+          "info": "Optional second line"
+        },
+        {
+          "type": "text",
+          "id": "text_3",
+          "label": "Third line text",
+          "info": "Optional third line"
+        }
+      ]
+    },
+    {
+      "type": "discount_banner",
+      "name": "Discount banner",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Automatically shows savings when the product has a compare-at price (on sale)."
+        },
+        {
+          "type": "select",
+          "id": "display_format",
+          "label": "Display format",
+          "options": [
+            { "value": "percentage", "label": "Percentage (Save 20%)" },
+            { "value": "amount", "label": "Amount (Save $10.00)" },
+            { "value": "both", "label": "Both (Save 20% / $10.00)" }
+          ],
+          "default": "both"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_icon",
+          "label": "Show discount icon",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "refund_policy",
+      "name": "Refund policy",
+      "limit": 1,
+      "settings": [
+        { "type": "header", "content": "Row 1 — Returns" },
+        {
+          "type": "text",
+          "id": "policy_label_1",
+          "label": "Label",
+          "default": "Returns"
+        },
+        {
+          "type": "text",
+          "id": "policy_value_1",
+          "label": "Value",
+          "default": "30-day refund / replacement"
+        },
+        {
+          "type": "textarea",
+          "id": "policy_detail_1",
+          "label": "Popup detail text",
+          "default": "This item can be returned in its original condition for a full refund or replacement within 30 days of receipt."
+        },
+        {
+          "type": "url",
+          "id": "policy_link_1",
+          "label": "Read more link"
+        },
+        {
+          "type": "text",
+          "id": "policy_link_text_1",
+          "label": "Read more text",
+          "default": "Read full return policy"
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_returns_by_tag",
+          "label": "Hide returns row for tagged products",
+          "default": false,
+          "info": "When enabled, hides the Returns row for products with the specified tag"
+        },
+        {
+          "type": "text",
+          "id": "hide_returns_tag",
+          "label": "Product tag to hide returns",
+          "default": "doctor-only",
+          "info": "Products with this tag will not show the Returns row"
+        },
+        {
+          "type": "text",
+          "id": "no_return_label",
+          "label": "Replacement label",
+          "info": "Leave blank to hide the row entirely"
+        },
+        {
+          "type": "text",
+          "id": "no_return_value",
+          "label": "Replacement value",
+          "info": "Shown instead of the return policy value"
+        },
+        { "type": "header", "content": "Row 2 — Payment" },
+        {
+          "type": "text",
+          "id": "policy_label_2",
+          "label": "Label",
+          "default": "Payment"
+        },
+        {
+          "type": "text",
+          "id": "policy_value_2",
+          "label": "Value",
+          "default": "Secure transaction"
+        },
+        {
+          "type": "textarea",
+          "id": "policy_detail_2",
+          "label": "Popup detail text",
+          "default": "Your payment information is processed securely. We do not store credit card details."
+        },
+        {
+          "type": "url",
+          "id": "policy_link_2",
+          "label": "Read more link"
+        },
+        {
+          "type": "text",
+          "id": "policy_link_text_2",
+          "label": "Read more text",
+          "default": "Learn more about security"
+        },
+        { "type": "header", "content": "Row 3 — Packaging" },
+        {
+          "type": "text",
+          "id": "policy_label_3",
+          "label": "Label",
+          "default": "Packaging"
+        },
+        {
+          "type": "text",
+          "id": "policy_value_3",
+          "label": "Value",
+          "default": "Ships in product packaging"
+        },
+        {
+          "type": "textarea",
+          "id": "policy_detail_3",
+          "label": "Popup detail text",
+          "default": "Items are carefully packed in their original product packaging to ensure safe delivery."
+        },
+        {
+          "type": "url",
+          "id": "policy_link_3",
+          "label": "Read more link"
+        },
+        {
+          "type": "text",
+          "id": "policy_link_text_3",
+          "label": "Read more text",
+          "default": "Read shipping policy"
+        }
+      ]
+    },
+    {
+      "type": "@app"
+    }
+  ]
+}
+
+{% endschema %}

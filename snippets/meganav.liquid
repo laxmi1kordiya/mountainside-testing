@@ -1,0 +1,114 @@
+{% comment %}
+  @param menu LinkList
+    List of menu items
+
+  @param meganav_block Block
+    The block with the meganav properties
+
+  @param max_depth Number
+    The maximum depth to traverse.
+
+  @param meganav_has_triggers Bool
+    Adds in triggers to open meganav items
+
+  @param is_mobile Bool
+    True if the menu is for mobile nav
+
+{% endcomment %}
+
+{%- capture meganav_classes -%}
+  navmenu-submenu
+  navmenu-meganav
+  {% unless is_mobile %}
+    navmenu-meganav--desktop
+  {% endunless %}
+{%- endcapture -%}
+
+{%- capture navmenu_classes -%}
+  navmenu
+  navmenu-depth-2
+  navmenu-meganav-items
+{%- endcapture -%}
+
+<div
+  class="{{ meganav_classes | strip_newlines }}"
+  data-navmenu-submenu
+  {% unless is_mobile %}
+    data-meganav-menu
+    data-meganav-id="{{ meganav_block.id }}"
+    data-meganav-id-{{ meganav_block.id }}
+  {% endunless %}
+>
+  {% unless is_mobile %}
+  <div class="meganav-inner">
+    <div class="navmenu-meganav--scroller">
+  {% endunless %}
+      {% assign meganav_has_triggers = true %}
+      {% if is_site_nav %}
+        {% assign meganav_has_triggers = false %}
+      {% endif %}
+
+      <ul class="{{ navmenu_classes | strip_newlines }}">
+        {%
+          include 'meganav-promo',
+          meganav_block: meganav_block,
+          position: 'first'
+        %}
+
+        {% for menu_item in menu.links %}
+          {% assign nav_item_count = 'navmenu-item-count-' %}
+          {% if menu_item.links.size > 4 %}
+            {% assign nav_item_count = nav_item_count | append: '5-up' %}
+          {% else %}
+            {% assign nav_item_count = nav_item_count | append: menu_item.links.size %}
+          {% endif %}
+
+          {%- capture navmenu_item_classes -%}
+            navmenu-item
+            navmenu-item-parent
+            {{ nav_item_count }}
+            navmenu-id-{{ menu_item.title | handle }}
+            navmenu-meganav-item
+          {%- endcapture -%}
+
+          <li
+            class="{{ navmenu_item_classes | strip_newlines }}"
+            {% if meganav_has_triggers and menu_item.links.size > 0 %}data-navmenu-trigger{% endif %}
+            {% if is_mobile and linklists[menu_item.handle] != blank %}data-navmenu-parent{% endif %}
+            {{ block.shopify_attributes }}>
+            <a href="{{ menu_item.url }}" class="navmenu-item-text navmenu-link-parent">
+              {{ menu_item.title }}
+            </a>
+
+            {% if is_mobile and menu_item.links.size > 0 %}
+              {% include
+                'mobile-navmenu-button',
+                button_label: menu_item.title
+              %}
+            {% endif %}
+
+            {%
+              include 'navlist',
+              menu_list: linklists[menu_item.handle].links,
+              depth: 3,
+              max_depth: 3,
+              is_submenu: true,
+              has_triggers: true,
+              submenu_arrows: true,
+              aria_expanded: true,
+              is_mobile: is_mobile
+            %}
+          </li>
+        {% endfor %}
+
+        {%
+          include 'meganav-promo',
+          meganav_block: meganav_block,
+          position: 'last'
+        %}
+      </ul>
+  {% unless is_mobile %}
+    </div>
+  </div>
+  {% endunless %}
+</div>

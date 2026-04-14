@@ -1,0 +1,93 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "wound-care"
+          }
+        },
+        "menu_4qxKkV": {
+          "type": "menu",
+          "settings": {
+            "menu": "gloves"
+          }
+        },
+        "menu_ApxRwc": {
+          "type": "menu",
+          "settings": {
+            "menu": "bandages-and-wraps"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_4qxKkV",
+        "menu_ApxRwc"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Puracyn Plus Wound Cleanser Information",
+            "text": "<p><strong>What is Puracyn Plus Wound Cleanser</strong><br/><br/>Puracyn Plus Wound Cleanser is a wound care solution designed to clean and irrigate wounds, helping to remove debris and microorganisms. It contains hypochlorous acid, which provides effective antimicrobial action while being gentle on the skin. Ideal for use on cuts, abrasions, and minor burns, it promotes a clean environment for optimal healing. Puracyn Plus is non-irritating, non-toxic, and safe for regular use, making it a trusted choice for wound management.<br/></p><p><strong>Types of Puracyn Plus Wound Cleansers:</strong><br/><br/>Puracyn Plus offers several formulations designed for specific wound care needs:</p><ul><li><strong>Puracyn Plus Wound Irrigation Solution</strong>: Used for cleansing minor cuts, abrasions, and burns, creating an optimal healing environment.</li><li><strong>Puracyn Plus Foot Wash</strong>: Specifically designed for foot care, it helps manage conditions like athlete's foot by keeping the skin clean and protected.<br/></li></ul><p>These products are non-toxic and safe for regular use, promoting effective wound management and hygiene.<br/><br/><strong>How to use Puracyn Plus Wound Cleansers</strong></p><p>To use Puracyn Plus Wound Cleansers effectively:</p><ul><li><strong>Prepare the Area:</strong> Wash your hands thoroughly before touching the wound.</li><li><strong>Apply the Cleanser: </strong>Spray the solution directly onto the wound or affected area to cleanse and irrigate. Ensure the wound is thoroughly covered.</li><li><strong>Gently Pat Dry:</strong> Use a clean gauze or cloth to gently pat the area dry, if needed.</li><li><strong>Follow with a Dressing:</strong> Apply an appropriate dressing to protect the wound and keep it moist.<br/></li></ul><p>Remember, Puracyn Plus is safe for repeated use and helps maintain a clean wound environment.<br/></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_m3QMgM": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_m3QMgM",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

@@ -1,0 +1,157 @@
+{% comment %} Underscore Tag Group Filters {% endcomment %}
+{% comment %} Build categories from tags containing underscores (e.g. Color_Red → filter title "Color", option "Red") {% endcomment %}
+{% assign us_categories = '' %}
+{% assign us_tag_data = '' %}
+{% assign us_tag_count_data = '' %}
+{% for product in collection.products %}
+  {% for tag in product.tags %}
+    {% if tag contains '_' %}
+      {% assign us_cat = tag | split: '_' | first %}
+      {% assign us_val = tag | remove_first: us_cat | remove_first: '_' %}
+      {% if us_val != blank %}
+        {% comment %} Track unique categories {% endcomment %}
+        {% assign us_cat_check = '|||' | append: us_cat | append: '|||' %}
+        {% assign us_categories_check = '|||' | append: us_categories | append: '|||' %}
+        {% unless us_categories_check contains us_cat_check %}
+          {% if us_categories == '' %}
+            {% assign us_categories = us_cat %}
+          {% else %}
+            {% assign us_categories = us_categories | append: '|||' | append: us_cat %}
+          {% endif %}
+        {% endunless %}
+
+        {% comment %} Track unique tag values with counts per category {% endcomment %}
+        {% assign us_entry = us_cat | append: ':::' | append: us_val %}
+        {% assign us_entry_check = '|||' | append: us_entry | append: '|||' %}
+        {% assign us_tag_data_check = '|||' | append: us_tag_data | append: '|||' %}
+        {% unless us_tag_data_check contains us_entry_check %}
+          {% if us_tag_data == '' %}
+            {% assign us_tag_data = us_entry %}
+            {% assign us_tag_count_data = '1' %}
+          {% else %}
+            {% assign us_tag_data = us_tag_data | append: '|||' | append: us_entry %}
+            {% assign us_tag_count_data = us_tag_count_data | append: '|||1' %}
+          {% endif %}
+        {% else %}
+          {% assign us_td_arr = us_tag_data | split: '|||' %}
+          {% assign us_tc_arr = us_tag_count_data | split: '|||' %}
+          {% assign us_new_counts = '' %}
+          {% for us_td in us_td_arr %}
+            {% assign us_idx = forloop.index0 %}
+            {% if us_td == us_entry %}
+              {% assign us_cnt = us_tc_arr[us_idx] | plus: 1 %}
+            {% else %}
+              {% assign us_cnt = us_tc_arr[us_idx] %}
+            {% endif %}
+            {% if us_new_counts == '' %}
+              {% assign us_new_counts = us_cnt %}
+            {% else %}
+              {% assign us_new_counts = us_new_counts | append: '|||' | append: us_cnt %}
+            {% endif %}
+          {% endfor %}
+          {% assign us_tag_count_data = us_new_counts %}
+        {% endunless %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% assign us_cat_array = us_categories | split: '|||' %}
+{% assign us_td_array = us_tag_data | split: '|||' %}
+{% assign us_tc_array = us_tag_count_data | split: '|||' %}
+
+{% for us_category in us_cat_array %}
+  <div class="collection-filters__group" data-filter-group="tag-{{ us_category | handleize }}">
+    <div class="collection-filters__header">
+      <span class="collection-filters__title">{{ us_category }}</span>
+    </div>
+    <div class="collection-filters__content">
+      <div class="filter-list-scroll">
+        <ul class="filter-list" data-filter-list>
+          {% comment %} Check if any tag in this category is active {% endcomment %}
+          {% assign us_has_active = false %}
+          {% for us_td in us_td_array %}
+            {% assign us_td_cat = us_td | split: ':::' | first %}
+            {% if us_td_cat == us_category %}
+              {% assign us_td_val = us_td | split: ':::' | last %}
+              {% assign us_full_tag = us_category | append: '_' | append: us_td_val %}
+              {% assign us_full_handle = us_full_tag | handleize %}
+              {% for ath in url_active_handles %}
+                {% assign ath_handle = ath | handleize %}
+                {% if ath_handle == us_full_handle %}
+                  {% assign us_has_active = true %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+              {% if us_has_active %}{% break %}{% endif %}
+            {% endif %}
+          {% endfor %}
+
+          {% for us_td in us_td_array %}
+            {% assign us_td_cat = us_td | split: ':::' | first %}
+            {% if us_td_cat == us_category %}
+              {% assign us_td_val = us_td | split: ':::' | last %}
+              {% assign us_full_tag = us_category | append: '_' | append: us_td_val %}
+              {% assign us_full_handle = us_full_tag | handleize %}
+              {% assign us_td_idx = forloop.index0 %}
+              {% assign us_count = us_tc_array[us_td_idx] | default: 0 %}
+
+              {% comment %} Check if this tag is active {% endcomment %}
+              {% assign us_is_active = false %}
+              {% for ath in url_active_handles %}
+                {% assign ath_handle = ath | handleize %}
+                {% if ath_handle == us_full_handle %}
+                  {% assign us_is_active = true %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+
+              {% if us_has_active and us_is_active == false %}
+                {% continue %}
+              {% endif %}
+
+              {% comment %} Build URL for add/remove {% endcomment %}
+              {% if us_is_active %}
+                {% assign us_remove_path = '' %}
+                {% assign us_seg_parts = url_tag_segment_clean | split: '+' %}
+                {% for p in us_seg_parts %}
+                  {% unless p == us_full_handle %}
+                    {% if us_remove_path == '' %}{% assign us_remove_path = p %}
+                    {% else %}{% assign us_remove_path = us_remove_path | append: '+' | append: p %}{% endif %}
+                  {% endunless %}
+                {% endfor %}
+                {% if us_remove_path == '' %}
+                  {% assign us_filter_url = collection.url | append: preserved_query_string %}
+                {% else %}
+                  {% assign us_filter_url = collection.url | append: '/' | append: us_remove_path | append: preserved_query_string %}
+                {% endif %}
+              {% else %}
+                {% if url_tag_segment_clean == '' %}
+                  {% assign us_filter_url = collection.url | append: '/' | append: us_full_handle | append: preserved_query_string %}
+                {% else %}
+                  {% assign us_tp = ordered_tag_part %}
+                  {% if us_tp == '' %}{% assign us_tp = us_full_handle %}
+                  {% else %}{% assign us_tp = us_tp | append: '+' | append: us_full_handle %}{% endif %}
+                  {% if ordered_vendor_part != '' %}{% assign us_tp = ordered_vendor_part | append: '+' | append: us_tp %}{% endif %}
+                  {% assign us_filter_url = collection.url | append: '/' | append: us_tp | append: preserved_query_string %}
+                {% endif %}
+              {% endif %}
+
+              <li class="filter-list__item">
+                <a href="{{ us_filter_url }}" class="filter-list__label{% if us_is_active %} filter-list__label--active{% endif %}" data-tag-filter>
+                  <span class="filter-list__checkbox-icon">
+                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                      <path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span class="filter-list__text">{{ us_td_val }}</span>
+                  <span class="filter-list__count">({{ us_count }})</span>
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endfor %}

@@ -1,0 +1,81 @@
+{% comment %}
+  @param block Object
+         Optional object to display block attributes if used as a block
+
+  @param collection Object
+         The collection to display
+
+  @param collection_image Object
+         Image object, can be used to override collection image
+
+  @param collection_image_alt String
+         String to show an alt tag on the image
+
+  @param first_item Boolean
+         Optional parameter to indicate if this is the first item in a loop
+
+{% endcomment %}
+
+{% assign onboard = false %}
+{% assign image = false %}
+{% assign image_alt = false %}
+
+{% if collection == blank or collection.empty? %}
+  {% assign onboard = true %}
+{% endif %}
+
+{% assign collection_title = collection.title %}
+{% assign collection_url = collection.url %}
+
+{% if onboard %}
+  {% assign collection_title = 'onboarding.collection.title' | t  %}
+  {% assign collection_url = '#' %}
+{% endif %}
+
+{% if collection_image and collection_image_alt %}
+  {% assign image = collection_image %}
+  {% assign image_alt = collection_image_alt %}
+{% elsif collection.image %}
+  {% assign image = collection.image %}
+  {% assign image_alt = collection.image.alt | escape %}
+{% else %}
+  {% assign image = collection.products.first.featured_image %}
+  {% assign image_alt = collection_title | escape %}
+{% endif %}
+
+<li class="collection--item" {% if block %}{{ block.shopify_attributes }}{% endif %}>
+  <a href="{{ collection_url }}">
+    <figure class="collection--item-image">
+  {% if image and image_alt %}
+      {% if first_item %}
+        {%
+           include 'rimg',
+           img: image,
+           alt: image_alt,
+           size: '1350x',
+           canvas: false,
+           attr: 'loading="eager" fetchpriority="high"'
+         %}
+        {% else %} 
+         {%
+           include 'rimg',
+           img: image,
+           alt: image_alt,
+           size: '1350x',
+           canvas: false,
+           attr: 'loading="low" fetchpriority="auto"'
+         %}
+        {% endif %}
+        {% else %}
+          {%- capture index -%}
+            {%- cycle '1', '2', '3', '4', '5', '6' -%}
+          {%- endcapture -%}
+          {{ 'collection-' | append: index | placeholder_svg_tag: 'placeholder--image' }}
+        {% endif %}
+    </figure>
+
+    <span class="collection--item-info collection--item-title">
+        {{ collection_title }}
+    </span>
+  </a>
+</li>

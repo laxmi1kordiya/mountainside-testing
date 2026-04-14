@@ -1,0 +1,158 @@
+{% comment %} Tags Filter (Tag-based URL) {% endcomment %}
+{% comment %} Build list of unique tags, excluding vendor names and product types to avoid duplicates {% endcomment %}
+{% assign tag_list = '' %}
+{% assign tag_counts = '' %}
+{% for product in collection.products %}
+  {% for tag in product.tags %}
+    {% assign tag_name = tag %}
+    {% if tag_name != blank %}
+      {% comment %} Skip tags that match a vendor name or product type (shown in their own sections) {% endcomment %}
+      {% assign skip_tag = false %}
+      {% assign tag_name_handle_ex = tag_name | handleize %}
+      {% for v in vendors_array %}
+        {% assign v_handle = v | handleize %}
+        {% if v_handle == tag_name_handle_ex %}
+          {% assign skip_tag = true %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+      {% unless skip_tag %}
+        {% for tp in types_array_for_exclusion %}
+          {% assign tp_handle = tp | handleize %}
+          {% if tp_handle == tag_name_handle_ex %}
+            {% assign skip_tag = true %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+      {% endunless %}
+
+      {% unless skip_tag %}
+        {% comment %} Skip tags with underscores from the main Tags filter {% endcomment %}
+        {% if tag_name contains '_' %}
+          {% assign skip_tag = true %}
+        {% endif %}
+      {% endunless %}
+      {% unless skip_tag %}
+        {% unless tag_list contains tag_name %}
+          {% if tag_list == '' %}
+            {% assign tag_list = tag_name %}
+            {% assign tag_counts = '1' %}
+          {% else %}
+            {% assign tag_list = tag_list | append: '|||' | append: tag_name %}
+            {% assign tag_counts = tag_counts | append: '|||1' %}
+          {% endif %}
+        {% else %}
+          {% assign tag_array_temp = tag_list | split: '|||' %}
+          {% assign count_arr_temp = tag_counts | split: '|||' %}
+          {% assign new_tag_counts = '' %}
+          {% for t in tag_array_temp %}
+            {% assign idx = forloop.index0 %}
+            {% if t == tag_name %}
+              {% assign current_tag_cnt = count_arr_temp[idx] | plus: 1 %}
+            {% else %}
+              {% assign current_tag_cnt = count_arr_temp[idx] %}
+            {% endif %}
+            {% if new_tag_counts == '' %}
+              {% assign new_tag_counts = current_tag_cnt %}
+            {% else %}
+              {% assign new_tag_counts = new_tag_counts | append: '|||' | append: current_tag_cnt %}
+            {% endif %}
+          {% endfor %}
+          {% assign tag_counts = new_tag_counts %}
+        {% endunless %}
+      {% endunless %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% assign tags_array = tag_list | split: '|||' %}
+{% assign tag_counts_array = tag_counts | split: '|||' %}
+
+{% if tags_array.size > 0 %}
+  <div class="collection-filters__group" data-filter-group="tag">
+    <div class="collection-filters__header">
+      <span class="collection-filters__title">Tags</span>
+    </div>
+    <div class="collection-filters__content">
+      <div class="filter-list-scroll">
+        <ul class="filter-list" data-filter-list>
+          {% comment %} Check if any tag from the tags filter is already active {% endcomment %}
+          {% assign has_active_tag = false %}
+          {% for tag_name in tags_array %}
+            {% assign tag_name_check = tag_name | handleize %}
+            {% for ath in url_active_handles %}
+              {% assign ath_check = ath | handleize %}
+              {% if ath_check == tag_name_check %}
+                {% assign has_active_tag = true %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+            {% if has_active_tag %}{% break %}{% endif %}
+          {% endfor %}
+
+          {% for tag_name in tags_array %}
+            {% assign tag_count = tag_counts_array[forloop.index0] | default: 0 %}
+            {% assign tag_handle = tag_name | handleize %}
+
+            {% comment %} Check if this tag is active by matching URL path handles {% endcomment %}
+            {% assign is_tag_active = false %}
+            {% assign tag_name_handle = tag_name | handleize %}
+            {% for ath in url_active_handles %}
+              {% assign ath_handle = ath | handleize %}
+              {% if ath_handle == tag_name_handle %}
+                {% assign is_tag_active = true %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+
+            {% comment %} If a tag is already selected, only show the active tag (single selection) {% endcomment %}
+            {% if has_active_tag and is_tag_active == false %}
+              {% continue %}
+            {% endif %}
+
+            {% comment %} Build tag URL for add/remove {% endcomment %}
+            {% if is_tag_active %}
+              {% comment %} Remove tag from ordered segment {% endcomment %}
+              {% assign remove_path = '' %}
+              {% assign seg_parts = url_tag_segment_clean | split: '+' %}
+              {% for p in seg_parts %}
+                {% unless p == tag_name_handle %}
+                  {% if remove_path == '' %}{% assign remove_path = p %}
+                  {% else %}{% assign remove_path = remove_path | append: '+' | append: p %}{% endif %}
+                {% endunless %}
+              {% endfor %}
+              {% if remove_path == '' %}
+                {% assign filter_url = collection.url | append: preserved_query_string %}
+              {% else %}
+                {% assign filter_url = collection.url | append: '/' | append: remove_path | append: preserved_query_string %}
+              {% endif %}
+            {% else %}
+              {% comment %} Add tag: append after vendor part {% endcomment %}
+              {% if url_tag_segment_clean == '' %}
+                {% assign filter_url = collection.url | append: '/' | append: tag_handle | append: preserved_query_string %}
+              {% else %}
+                {% assign tp = ordered_tag_part %}
+                {% if tp == '' %}{% assign tp = tag_handle %}
+                {% else %}{% assign tp = tp | append: '+' | append: tag_handle %}{% endif %}
+                {% if ordered_vendor_part != '' %}{% assign tp = ordered_vendor_part | append: '+' | append: tp %}{% endif %}
+                {% assign filter_url = collection.url | append: '/' | append: tp | append: preserved_query_string %}
+              {% endif %}
+            {% endif %}
+
+            <li class="filter-list__item">
+              <a href="{{ filter_url }}" class="filter-list__label{% if is_tag_active %} filter-list__label--active{% endif %}" data-tag-filter>
+                <span class="filter-list__checkbox-icon">
+                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                    <path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="filter-list__text">{{ tag_name }}</span>
+                <span class="filter-list__count">({{ tag_count }})</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endif %}

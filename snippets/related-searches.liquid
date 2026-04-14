@@ -1,0 +1,281 @@
+{% comment %}
+  Related Searches (SEO) - Collection-based pills
+  Each pill links to an actual collection page for best SEO.
+  Usage:
+    {% render 'related-searches',
+      heading: 'People Also Searched For',
+      max_terms: 20,
+      manual_handles: 'bandages, first-aid-kits, wound-care',
+      source: 'auto',
+      section_bg_color: '#f1f2f4',
+      title_color: '#333333',
+      title_font_size: 22,
+      tag_bg_color: '#dfe1e5',
+      tag_text_color: '#333333',
+      tag_hover_bg_color: '#c5c8cd',
+      tag_hover_text_color: '#111111',
+      tag_font_size: 14,
+      tag_border_radius: 20,
+      tag_padding_vertical: 10,
+      tag_padding_horizontal: 18,
+      tag_gap: 10,
+      padding_top: 30,
+      padding_bottom: 30
+    %}
+  Parameters:
+    source          - 'auto' | 'manual'
+                      auto = finds related collections from products + appends manual handles
+                      manual = only shows collections from manual_handles
+    manual_handles  - Comma-separated collection handles
+    heading         - Section heading text
+    max_terms       - Max number of pills to show
+{% endcomment %}
+
+{%- liquid
+  assign rs_source = source | default: 'auto'
+  assign rs_heading = heading | default: 'People Also Searched For'
+  assign rs_max = max_terms | default: 10
+  assign rs_manual_raw = manual_handles | default: ''
+  assign rs_handles = ''
+  assign rs_handle_list = ''
+
+  assign rs_section_bg = section_bg_color | default: '#FFFFFF'
+  assign rs_pad_top = padding_top | default: 30
+  assign rs_pad_bottom = padding_bottom | default: 30
+  assign rs_title_clr = title_color | default: '#333333'
+  assign rs_title_fs = title_font_size | default: 22
+  assign rs_tag_bg = tag_bg_color | default: '#e8f5e9'
+  assign rs_tag_clr = tag_text_color | default: '#388138'
+  assign rs_tag_hover_bg = tag_hover_bg_color | default: '#e8f5e9'
+  assign rs_tag_hover_clr = tag_hover_text_color | default: '#388138'
+  assign rs_tag_fs = tag_font_size | default: 14
+  assign rs_tag_br = tag_border_radius | default: 20
+  assign rs_tag_pv = tag_padding_vertical | default: 8
+  assign rs_tag_ph = tag_padding_horizontal | default: 16
+  assign rs_gap = tag_gap | default: 10
+  assign rs_title_fs_mobile = rs_title_fs | minus: 4
+  assign rs_tag_fs_mobile = rs_tag_fs | minus: 1
+  assign rs_tag_pv_mobile = rs_tag_pv | minus: 2
+  assign rs_tag_ph_mobile = rs_tag_ph | minus: 4
+  assign rs_gap_mobile = rs_gap | minus: 2
+-%}
+
+{% comment %} ===== AUTO: Collect related collection handles from products ===== {% endcomment %}
+{% if rs_source == 'auto' %}
+
+  {%- assign rs_current_handle = '' -%}
+  {%- if collection -%}
+    {%- assign rs_current_handle = collection.handle -%}
+  {%- endif -%}
+
+  {%- if collection and collection.products.size > 0 -%}
+    {%- for col_product in collection.products -%}
+      {%- for pc in col_product.collections -%}
+        {%- assign pc_handle = pc.handle | strip -%}
+        {%- if pc_handle == rs_current_handle -%}{%- continue -%}{%- endif -%}
+        {%- if pc_handle == 'all' or pc_handle == 'frontpage' -%}{%- continue -%}{%- endif -%}
+
+        {%- assign handle_check = '~' | append: pc_handle | append: '~' -%}
+        {%- unless rs_handle_list contains handle_check -%}
+          {%- assign rs_handle_list = rs_handle_list | append: handle_check -%}
+          {%- if rs_handles != '' -%}
+            {%- assign rs_handles = rs_handles | append: ',,,' | append: pc_handle -%}
+          {%- else -%}
+            {%- assign rs_handles = pc_handle -%}
+          {%- endif -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- if product and product.collections.size > 0 -%}
+    {%- for pc in product.collections -%}
+      {%- assign pc_handle = pc.handle | strip -%}
+      {%- if pc_handle == 'all' or pc_handle == 'frontpage' -%}{%- continue -%}{%- endif -%}
+
+      {%- assign handle_check = '~' | append: pc_handle | append: '~' -%}
+      {%- unless rs_handle_list contains handle_check -%}
+        {%- assign rs_handle_list = rs_handle_list | append: handle_check -%}
+        {%- if rs_handles != '' -%}
+          {%- assign rs_handles = rs_handles | append: ',,,' | append: pc_handle -%}
+        {%- else -%}
+          {%- assign rs_handles = pc_handle -%}
+        {%- endif -%}
+      {%- endunless -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+{% endif %}
+
+{% comment %} ===== APPEND MANUAL HANDLES ===== {% endcomment %}
+{% if rs_manual_raw != blank %}
+  {%- assign rs_manual_handles = rs_manual_raw | split: ',' -%}
+  {%- for mh in rs_manual_handles -%}
+    {%- assign mh_clean = mh | strip | handleize -%}
+    {%- if mh_clean != blank -%}
+      {%- assign handle_check = '~' | append: mh_clean | append: '~' -%}
+      {%- unless rs_handle_list contains handle_check -%}
+        {%- assign rs_handle_list = rs_handle_list | append: handle_check -%}
+        {%- if rs_handles != '' -%}
+          {%- assign rs_handles = rs_handles | append: ',,,' | append: mh_clean -%}
+        {%- else -%}
+          {%- assign rs_handles = mh_clean -%}
+        {%- endif -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+{% endif %}
+
+{% comment %} ===== RENDER ===== {% endcomment %}
+{%- assign rs_handles_array = rs_handles | split: ',,,' -%}
+{%- assign rs_link_type = link_type | default: 'collections' -%}
+
+{% if rs_link_type == 'products' and product %}
+  {% comment %} ===== RELATED PRODUCTS MODE ===== {% endcomment %}
+  {%- assign rs_product_handles = '' -%}
+  {%- assign rs_product_handle_list = '' -%}
+  {%- assign current_product_handle = product.handle -%}
+
+  {%- for handle in rs_handles_array -%}
+    {%- assign rel_col = collections[handle] -%}
+    {%- if rel_col -%}
+      {%- for rel_product in rel_col.products -%}
+        {%- if rel_product.handle == current_product_handle -%}{%- continue -%}{%- endif -%}
+        {%- assign ph_check = '~' | append: rel_product.handle | append: '~' -%}
+        {%- unless rs_product_handle_list contains ph_check -%}
+          {%- assign rs_product_handle_list = rs_product_handle_list | append: ph_check -%}
+          {%- if rs_product_handles != '' -%}
+            {%- assign rs_product_handles = rs_product_handles | append: ',,,' | append: rel_product.handle -%}
+          {%- else -%}
+            {%- assign rs_product_handles = rel_product.handle -%}
+          {%- endif -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- assign rs_product_array = rs_product_handles | split: ',,,' -%}
+
+  {% if rs_product_array.size > 0 %}
+    <div class="related-searches-pills" style="
+      background-color: {{ rs_section_bg }};
+      padding-top: {{ rs_pad_top }}px;
+      padding-bottom: {{ rs_pad_bottom }}px;
+    ">
+      <div class="related-searches-pills__container">
+        <h3 class="related-searches-pills__title" style="
+          color: {{ rs_title_clr }};
+          font-size: {{ rs_title_fs }}px;
+        ">
+          {{ rs_heading }}
+        </h3>
+        <div class="related-searches-pills__tags">
+          {%- assign rs_count = 0 -%}
+          {%- for p_handle in rs_product_array -%}
+            {%- if rs_count >= rs_max -%}{%- break -%}{%- endif -%}
+            {%- assign rel_prod = all_products[p_handle] -%}
+            {%- if rel_prod and rel_prod.title != blank -%}
+              <a href="{{ rel_prod.url }}" class="related-searches-pills__tag" style="
+                background-color: {{ rs_tag_bg }};
+                color: {{ rs_tag_clr }};
+                font-size: {{ rs_tag_fs }}px;
+                border-radius: {{ rs_tag_br }}px;
+              ">
+                {{ rel_prod.title }}
+              </a>
+              {%- assign rs_count = rs_count | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+{% elsif rs_handles_array.size > 0 %}
+  {% comment %} ===== COLLECTIONS MODE (default) ===== {% endcomment %}
+  <div class="related-searches-pills" style="
+    background-color: {{ rs_section_bg }};
+    padding-top: {{ rs_pad_top }}px;
+    padding-bottom: {{ rs_pad_bottom }}px;
+  ">
+    <div class="related-searches-pills__container">
+      <h3 class="related-searches-pills__title" style="
+        color: {{ rs_title_clr }};
+        font-size: {{ rs_title_fs }}px;
+      ">
+        {{ rs_heading }}
+      </h3>
+      <div class="related-searches-pills__tags">
+        {%- assign rs_count = 0 -%}
+        {%- for handle in rs_handles_array -%}
+          {%- if rs_count >= rs_max -%}{%- break -%}{%- endif -%}
+          {%- assign rel_col = collections[handle] -%}
+          {%- if rel_col and rel_col.title != blank -%}
+            <a href="{{ rel_col.url }}" class="related-searches-pills__tag" style="
+              background-color: {{ rs_tag_bg }};
+              color: {{ rs_tag_clr }};
+              font-size: {{ rs_tag_fs }}px;
+              border-radius: {{ rs_tag_br }}px;
+            ">
+              {{ rel_col.title }}
+            </a>
+            {%- assign rs_count = rs_count | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<style>
+  .related-searches-pills {
+    width: 100%;
+  }
+  .related-searches-pills__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .related-searches-pills__title {
+    font-weight: 400;
+    margin: 0 0 20px 0;
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1.3;
+  }
+  .related-searches-pills__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: {{ rs_gap }}px;
+  }
+  .related-searches-pills__tag {
+    display: inline-block;
+    padding: {{ rs_tag_pv }}px {{ rs_tag_ph }}px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    {% comment %} white-space: nowrap; {% endcomment %}
+    line-height: 1.4;
+  }
+  .related-searches-pills__tag:hover {
+    background-color: {{ rs_tag_hover_bg }} !important;
+    color: {{ rs_tag_hover_clr }} !important;
+    text-decoration: none;
+  }
+  @media (max-width: 768px) {
+    .related-searches-pills__container {
+      padding: 0 15px;
+    }
+    .related-searches-pills__title {
+      font-size: {{ rs_title_fs_mobile }}px !important;
+      margin-bottom: 15px;
+    }
+    .related-searches-pills__tags {
+      gap: {{ rs_gap_mobile }}px;
+    }
+    .related-searches-pills__tag {
+      font-size: {{ rs_tag_fs_mobile }}px !important;
+      padding: {{ rs_tag_pv_mobile }}px {{ rs_tag_ph_mobile }}px;
+    }
+  }
+</style>

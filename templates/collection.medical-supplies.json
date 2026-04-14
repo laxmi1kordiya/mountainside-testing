@@ -1,0 +1,107 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "first-aid-supplies"
+          }
+        },
+        "menu_6WDTck": {
+          "type": "menu",
+          "settings": {
+            "menu": "emergency-supplies"
+          }
+        },
+        "menu_ApxRwc": {
+          "type": "menu",
+          "settings": {
+            "menu": "bandages-and-wraps"
+          }
+        },
+        "menu_4qxKkV": {
+          "type": "menu",
+          "settings": {
+            "menu": "gloves"
+          }
+        },
+        "menu_gny4yN": {
+          "type": "menu",
+          "settings": {
+            "menu": "disinfecting"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_6WDTck",
+        "menu_ApxRwc",
+        "menu_4qxKkV",
+        "menu_gny4yN"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Medical Supplies: Your Trusted Source for Essential Health Care Products, DME & Specialty Equipment | Top Brands, Medicare Info & FAQs",
+            "text": "<p><strong>Medical supplies</strong> are the backbone of every hospital, clinic, pharmacy, and home healthcare setting, ensuring quality patient care, safety, and daily health management. Shop our comprehensive range of trusted medical equipment, durable medical equipment (DME), and everyday healthcare supplies—serving patients, caregivers, and professionals with fast shipping and unbeatable value.</p><h3>What Are Medical Supplies?</h3><p><strong>Medical supplies</strong> include <strong>disposable and reusable products and equipment</strong> used in diagnosis, treatment, care, and prevention of illness or injury. Examples range from <strong>syringes, gloves, wound dressings, gauze and swabs, catheters, incontinence and urology products, first aid items, surgical instruments, PPE</strong>, and <strong>durable medical equipment</strong> (crutches, wheelchairs, hospital beds), to advanced monitoring devices and mobility aids.</p><h3>What Qualifies as Medical Supplies?</h3><p>Medical supplies can be:</p><ul><li><strong>Consumables:</strong> Bandages, gloves, IV sets, syringes</li><li><strong>Diagnostic tools:</strong> Thermometers, blood pressure monitors, glucose meters</li><li><strong>Therapeutic equipment:</strong> Nebulizers, CPAP, oxygen supplies</li><li><strong>Mobility aids:</strong> Walkers, canes, wheelchairs</li><li><strong>DME (Durable Medical Equipment):</strong> Equipment that supports essential daily living and long-term care at home</li></ul><h3>What Does DME Stand For?</h3><p><strong>DME stands for Durable Medical Equipment</strong>—reusable medical devices like wheelchairs, walkers, hospital beds, and home oxygen therapy units, intended for repeated long-term use.</p><h3>What Medical Supplies Does Medicare Pay For?</h3><p><strong>Medicare covers many necessary medical supplies, especially DME,</strong> including:</p><ul><li>Wheelchairs, walkers, hospital beds</li><li>CPAP and respiratory devices</li><li>Nebulizers, blood glucose monitors, test strips</li><li>Commode chairs and home safety equipment</li></ul><p><strong>Medicare usually does NOT cover disposable supplies</strong> like diapers, gloves, or bandages, unless used with covered DME.</p><h3>Who Is the Largest Supplier of Medical Supplies?</h3><ul><li><strong>Medtronic, Cardinal Health, McKesson, and Henry Schein</strong> rank among the <strong>largest medical supply companies globally</strong>.</li><li>In the United States, <strong>McKesson</strong> is the largest supplier/distributor by revenue and reach.</li></ul><h3>What Medical Supply Sells the Most?</h3><p>Among all medical supplies:</p><ul><li><strong>Gloves</strong> (examination and surgical), <strong>syringes</strong>, and <strong>wound care products</strong> are the most widely sold due to high demand in both clinical and home environments.</li><li><strong>Masks and PPE</strong> have also surged in usage since 2020.</li></ul><h3>What is the Most Used Medical Supply?</h3><p><strong>Medical gloves</strong> are the most commonly used supply in hospitals, clinics, and emergency care, offering essential protection for both patients and healthcare workers.</p><h3>Where Do Most Medical Supplies Come From?</h3><ul><li><strong>Most medical supplies are manufactured and sourced from the United States, China, Germany, and India.</strong></li><li>The US leads in DME and high-tech equipment, while China and India are leading producers of consumables and basic medical goods.</li></ul><h3>Why Do Medical Supplies Cost So Much?</h3><p>Medical supplies are costly due to:</p><ul><li><strong>Strict quality and safety regulations</strong></li><li><strong>Manufacturing costs for sterile/disposable supplies</strong></li><li><strong>Import/export tariffs and disrupted supply chains</strong></li><li><strong>Advanced technology for monitoring and specialty equipment</strong></li><li><strong>Brand, material, & insurance reimbursement differences</strong></li></ul><h3>What is the Most Wasted Medical Supply on a Hospital Unit?</h3><p>Studies indicate <strong>single-use items like unused syringes, IV sets, gloves, and expired wound dressings</strong> are most often wasted. Over-ordering or unneeded “kits” contribute to wastage. Our ordering system helps optimize inventory to reduce medical waste and keep costs in check.</p><h2>Key Features & Benefits</h2><ul><li><strong>Full range of medical supplies and DME for home and clinic</strong></li><li><strong>Trusted, leading brands: McKesson, Drive Medical, 3M, Medtronic, Cardinal Health</strong></li><li><strong>Customizable bulk orders & auto-replenishment options</strong></li><li><strong>Competitive pricing and fast nationwide shipping</strong></li><li><strong>Expert support for Medicare, Medicaid, and insurance reimbursement</strong></li></ul><p><strong>Shop from our wide selection of medical supplies today—trusted by hospitals, doctors, caregivers, and families for fast delivery and guaranteed quality.</strong></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_U36q65": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_U36q65",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

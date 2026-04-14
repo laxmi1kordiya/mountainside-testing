@@ -1,0 +1,1385 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "pluginseo_pageTitleTruncateChars": "Medical Supplies Store",
+    "pluginseo_pageTitleEnableAppender": true,
+    "pluginseo_pageTitleAppenderTemplate": "Wholesale Medical Supplies",
+    "pluginseo_pageTitleAppenderTargetLength": "Wholesale prices on medical supplies and equipment.",
+    "pluginseo_pageTitleIndexTemplate": "Medical Supplies Distributor",
+    "pluginseo_metaDescriptionTruncateChars": "Mountainside Medical (SDVOSB) is a medical supplies distributor providing wholesale medical supplies and equipment to healthcare professionals.",
+    "pluginseo_metaDescriptionIndexTemplate": "Medical Supplies Distributor for Healthcare & Pharmaceuticals",
+    "pluginseo_structuredDataDisplayLogo": true,
+    "pluginseo_structuredDataSocialProfileLinks": "https://www.facebook.com/mountainsidemedical,\nhttps://in.pinterest.com/MountainsideMedical/,\nhttps://x.com/mountainsidemed/,status/1641567226191835138",
+    "pluginseo_structuredDataReviewApp": "judgeme",
+    "color_background": "#ffffff",
+    "color_headings": "#0e0e0e",
+    "color_text": "#322c2c",
+    "color_text_light": "#000000",
+    "color_links": "#367b36",
+    "color_button_background": "#4dbe4d",
+    "color_button_text": "#f2fff2",
+    "color_button_secondary_background": "#f8971c",
+    "color_button_secondary_text": "#ffffff",
+    "color_button_secondary_border": "#dddddd",
+    "color_header_background": "#388138",
+    "color_header_text": "#ffffff",
+    "color_input_text": "#4d4d4d",
+    "color_input_background": "#ffffff",
+    "color_input_border": "#dddddd",
+    "color_footer_background": "#f8f8f8",
+    "color_footer_text": "#161515",
+    "color_overlay": "#000000",
+    "overlay_opacity": 50,
+    "type_size_base": 16,
+    "type_heading": "cabin_n7",
+    "type_heading_size": "1",
+    "type_heading_capitalize": false,
+    "type_heading_spacing": 0,
+    "type_body": "sans-serif",
+    "type_menu": "cabin_n7",
+    "type_menu_capitalize": false,
+    "type_menu_spacing": 0,
+    "type_button": "cabin_n7",
+    "type_button_capitalize": false,
+    "type_button_spacing": 0,
+    "type_section": "cabin_n7",
+    "type_section_capitalize": false,
+    "type_section_spacing": 0,
+    "layout_max_width": 1300,
+    "product_show_vendor": true,
+    "product_show_sku": true,
+    "enable_image_zoom": true,
+    "image_zoom_level": "max",
+    "product_enable_recently_viewed_products": true,
+    "product_option_style": "select",
+    "product_sales_badge": true,
+    "product_sales_badge_style": "percentile",
+    "product_ratings_reviews": true,
+    "product_social_sharing": false,
+    "product_slideshow_style": "natural",
+    "product_grid_show_second_image": false,
+    "product_grid_emphasize_price": true,
+    "product_grid_image_style": "natural",
+    "product_grid_quick_shop": false,
+    "product_grid_quick_buy": false,
+    "quickshop_show_dcb": true,
+    "quickshop_product_cart_redirect": false,
+    "social_default_image": "shopify://shop_images/Mountainside_Medical_Equipment0-Square.png",
+    "social_facebook": "https://www.facebook.com/mountainsidemedical/",
+    "social_twitter": "https://x.com/mountainsidemed/status/1641567226191835138",
+    "social_pinterest": "https://in.pinterest.com/MountainsideMedical/",
+    "social_instagram": "https://www.instagram.com/mountainsidemedicalequipment/?hl=en",
+    "social_tumblr": "",
+    "social_vimeo": "https://vimeo.com/280974442?turnstile=0.KBLk9j2PIEuM77WTvKA7RRlpRc6EOFOucKGFDfE4fIblBf-Ab9oZQjxL_Pj1gPItAaqEpvAebREGz9XO0JrlVDoDpQ63CH3q4iPfXrKDniAwgvSHvbUKquv1QKAszDkqjv-0jIWVXXfC54x0ge8gQadJsMqV2sd71Ix5_uDae3xZxxtypJIpo1DzzRjDXTy650m3zsFUxmNsDdj79F0LFO9VxPNcOeo6menkJgIq4bcDG6EAUhkOFzJBGz8mg4_G_bduPflFi-gBdlMnC-h5uRba5h4IGSf8v_Ln2pVCI2l7AS7kAl9Ns20AgeS-Qgs4jGyAtiTwzFS3eSes50bZrFunWws5iObfG89kxBDVA4WsJPXFJWOnMIGC2q3lo_LgTbpLEo0ZhK3AmXhLQqIBBFQJpdxSX8K5hUEUP9SiJvxEA0MSrL88CPHTADYU-Ly31YrTxdgi7AL1zJIL9X0_l6hmwOnyn6VQtPpYA9RJZqmMIH4CabU75Cza__dWdXqCpWTUQDDflDDpX9cJBJfyd3-EnjU0q3rWw-wbd3DmdxS82RFksXhDGI21ahoM-duAx4xhsjqXhyf_X-R-b5tN4fMb4T8QnzyXVjfSOzGAUNyXh6c88ZbKbuqr1py27_99LbBCN6u-h6gwGZ6htkwsPJUcAw3luTv5gNwcg2qxYVCp6RW7vxORWgdoO-_L7wvRc3Q9_omC1YYusDNv4b89-yYIes5VRoOhDHK0yxGp7GbzTR19sNbhuXOeLfT402-JeQItj4d1a4G-D-UgznweO-Uq7IP-TooACNm4Rqf0kwkuMsmK_HnvPmtdA6TO5pdUSv-t9NFPDBt_VfXXxGps3n7MU4NZwvD6HVGnjEu-8cQ.a0xX90D0FNSDMsMpJnpAIg.529c5cad7aa42c77b05042b86428c12c88a805b2e6d1e3246cae1dd53a2296b4",
+    "social_youtube": "https://www.youtube.com/watch?v=396AD7Vwph8",
+    "social_linkedin": "https://www.linkedin.com/company/mountainside-medical-equipment",
+    "social_email": "sales@mountainside-medical.com",
+    "favicon": "shopify://shop_images/Mountainside_Medical_Equipment_0c3f5525-e264-46d9-a630-f7720068f0ac.png",
+    "enable_currency_converter": false,
+    "currency_display_format": "money_with_currency_format",
+    "currency_converter_currencies": "INR GBP CAD USD AUD EUR JPY",
+    "currency_converter_default": "USD",
+    "enable_checkout_lock_icon": false,
+    "continue_shopping_url": "https://www.mountainside-medical.com",
+    "continue_url_cart": true,
+    "continue_url_404": true,
+    "collection_banner_enabled": false,
+    "collection_banner_image": "",
+    "collection_banner_image_mobile": "",
+    "collection_banner_link": "",
+    "collection_banner_radius": 0,
+    "collection_banner_position": "center-left",
+    "collection_banner_pretitle": "",
+    "collection_banner_pretitle_color": "#1e5025",
+    "collection_banner_title": "",
+    "collection_banner_enable_rotating": false,
+    "collection_banner_title_2": "",
+    "collection_banner_title_3": "",
+    "collection_banner_title_4": "",
+    "collection_banner_title_color1": "#1f6228",
+    "collection_banner_title_color2": "#a7b00d",
+    "collection_banner_title_color3": "#1e5025",
+    "collection_banner_title_color4": "#1e5025",
+    "collection_banner_subtitle": "",
+    "collection_banner_subtitle_color": "#1e5025",
+    "collection_banner_button_text": "",
+    "collection_banner_button_text_color": "#ffffff",
+    "collection_banner_button_bg1": "#3f9f4c",
+    "collection_banner_button_bg2": "#000000",
+    "swym_advanced_collections_wishlist_enabled": true,
+    "swym_header_icon_enabled": false,
+    "checkout_header_image": "",
+    "checkout_logo_image": "",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_accent_color": "#197bbd",
+    "checkout_button_color": "#197bbd",
+    "checkout_error_color": "#e32c2b",
+    "social_google": "",
+    "sections": {
+      "static-announcement": {
+        "type": "static-announcement",
+        "settings": {
+          "show_announcement": true,
+          "homepage_announcement": false,
+          "announcement_text": "Black Friday Sale on All Medical Equipment: Shop now & Save up to 60%  ➥",
+          "announcement_text_mobile": "Black Friday Sale: Shop now & Save up to 60% ➥",
+          "announcement_link": "shopify://collections/all",
+          "announcement_color": "#f8f8f8",
+          "announcement_background": "#65ac3e"
+        }
+      },
+      "home-promo-mosaic": {
+        "type": "dynamic-promo-mosaic",
+        "blocks": {
+          "promo-mosaic-block-1": {
+            "type": "promotion",
+            "settings": {
+              "image": "shopify://shop_images/Veteran_Owned_Medical_Supplies_Equipment_Company_sdvosb.jpg",
+              "title": "Veteran Proud",
+              "text": "We are proud to say that Mountainside Medical is a Service-Disabled Veteran Owned Small Business (SDVOSB) verified by the Department of Veterans Affairs and we would like to extend discounts out to our military families.",
+              "color": "#ffffff",
+              "block_link": "shopify://pages/about",
+              "button_text": "Read More",
+              "button_style": "primary",
+              "show_overlay": false,
+              "background": "#0e0e0e",
+              "opacity": 84
+            }
+          }
+        },
+        "block_order": [
+          "promo-mosaic-block-1"
+        ],
+        "settings": {
+          "title": "",
+          "section_height": "small",
+          "text_alignment": "top-left",
+          "maintain_aspect_ratio": true,
+          "compress_blocks": true
+        }
+      },
+      "static-header": {
+        "type": "static-header",
+        "settings": {
+          "sticky_header": true,
+          "full_width_header": true,
+          "logo": "shopify://shop_images/Mountainside-Medical-Logo-png-format_bcfc7937-328f-4123-910e-f4fd4c805725.png",
+          "logo_height": 100,
+          "logo_width": 200,
+          "enable_live_search": true,
+          "enable_live_search_images": true,
+          "enable_live_search_articles_pages": false,
+          "quick_links": "",
+          "menu": "main-menu",
+          "small_promo_heading": "",
+          "small_promo_text": "",
+          "small_promo_text_mobile": "",
+          "small_promo_link": "",
+          "small_promo_icon": "none"
+        }
+      },
+      "static-slideshow": {
+        "type": "static-slideshow",
+        "blocks": {
+          "438179e8-560c-4ba8-b257-b020636f4799": {
+            "type": "slide",
+            "settings": {
+              "background_image": "shopify://shop_images/Top-OTC-Drugs-Sold-1800.jpg",
+              "title": "Trusted Brands of the Top OTC Medicines at the Lowest Prices",
+              "text": "Shop from thousands of Name Brand Medicines and Generic Over the Counter Medications",
+              "color": "#ffffff",
+              "link": "shopify://collections/over-the-counter-drugs",
+              "text_alignment": "center",
+              "button_one_label": "Deals of the Day - Click Here",
+              "button_one_link": "shopify://collections/over-the-counter-drugs",
+              "button_one_style": "primary",
+              "button_two_label": "",
+              "button_two_link": "",
+              "button_two_style": "primary",
+              "show_overlay": true,
+              "overlay_color": "#000000",
+              "overlay_opacity": 27
+            }
+          }
+        },
+        "block_order": [
+          "438179e8-560c-4ba8-b257-b020636f4799"
+        ],
+        "settings": {
+          "show_slideshow": false,
+          "enable_autoplay": false,
+          "autoplay_duration": 8,
+          "slideshow_height": "medium"
+        }
+      },
+      "static-highlights-banners": {
+        "type": "static-highlights-banners",
+        "blocks": {
+          "static-highlights-banners-0": {
+            "type": "highlight",
+            "settings": {
+              "icon": "icon-delivery",
+              "title": "Free US Shipping",
+              "text": "<p>When you spend $100+</p>",
+              "link": ""
+            }
+          },
+          "static-highlights-banners-1": {
+            "type": "highlight",
+            "settings": {
+              "icon": "icon-cell-phone",
+              "title": "Give Us A Call",
+              "text": "<p>+1 (888) 687-4334</p>",
+              "link": ""
+            }
+          },
+          "static-highlights-banners-2": {
+            "type": "highlight",
+            "settings": {
+              "icon": "icon-email",
+              "title": "Email Us",
+              "text": "<p>sales@mountainside-medical.com</p>",
+              "link": ""
+            }
+          },
+          "static-highlights-banners-3": {
+            "type": "highlight",
+            "settings": {
+              "icon": "icon-smile",
+              "title": "Discreet Shipping",
+              "text": "<p>We respect your privacy </p>",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "static-highlights-banners-0",
+          "static-highlights-banners-1",
+          "static-highlights-banners-2",
+          "static-highlights-banners-3"
+        ],
+        "settings": {
+          "show_highlights_banner": true,
+          "color": "#4d4d4d",
+          "icon_color": "#4d4d4d",
+          "background_color": "#f8f8f8"
+        }
+      },
+      "static-footer": {
+        "type": "static-footer",
+        "blocks": {
+          "menu_izPEGe": {
+            "type": "menu",
+            "settings": {
+              "menu": "mountainside-medical"
+            }
+          },
+          "1567427841188": {
+            "type": "menu",
+            "settings": {
+              "menu": "footer"
+            }
+          },
+          "menu_YPetb6": {
+            "type": "menu",
+            "settings": {
+              "menu": "footercs"
+            }
+          },
+          "1567427863973": {
+            "type": "menu",
+            "settings": {
+              "menu": "footerpl"
+            }
+          }
+        },
+        "block_order": [
+          "menu_izPEGe",
+          "1567427841188",
+          "menu_YPetb6",
+          "1567427863973"
+        ],
+        "settings": {
+          "payment_icons": true,
+          "additional_menu": "footer",
+          "show_social_icons": true,
+          "social_facebook_url": "https://www.facebook.com/mountainsidemedical?syclid=d51tl9bujgsc73acps0g",
+          "social_instagram_url": "https://www.instagram.com/mountainsidemedicalequipment/?hl=en&syclid=d51tnkh7bjts73dk3b70",
+          "social_pinterest_url": "https://www.pinterest.com/MountainsideMedical/",
+          "social_icon_size": 48,
+          "social_icon_svg_size": 32,
+          "social_icon_spacing": 10,
+          "social_icon_border_radius": 50,
+          "social_icon_bg_color": "#82bc8b",
+          "social_icon_color": "#333333",
+          "social_icon_hover_bg_color": "#d7ded5",
+          "social_icon_hover_color": "#ffffff"
+        }
+      },
+      "static-product": {
+        "type": "static-product",
+        "blocks": {
+          "judge_me_UJHUEX": {
+            "type": "judge_me",
+            "settings": {}
+          },
+          "title_xCwMJP": {
+            "type": "title",
+            "settings": {}
+          },
+          "sku_UBezzE": {
+            "type": "sku",
+            "settings": {}
+          },
+          "price_MeHRq9": {
+            "type": "price",
+            "settings": {}
+          },
+          "form_ry3DDR": {
+            "type": "form",
+            "settings": {}
+          },
+          "icon_features_KwY8yK": {
+            "type": "icon_features",
+            "settings": {
+              "heading": "",
+              "columns_desktop": "2",
+              "columns_mobile": "2",
+              "icon_size": 50
+            }
+          }
+        },
+        "block_order": [
+          "judge_me_UJHUEX",
+          "title_xCwMJP",
+          "sku_UBezzE",
+          "price_MeHRq9",
+          "form_ry3DDR",
+          "icon_features_KwY8yK"
+        ],
+        "settings": {
+          "layout": "layout--three-col",
+          "enable_video_autoplay": false,
+          "show_dcb": true,
+          "product_cart_redirect": false,
+          "show_bulk_call_button": false,
+          "show_bulk_email_button": false
+        }
+      },
+      "static-collection": {
+        "type": "static-collection",
+        "blocks": {
+          "34d94abd-de13-4415-907b-0d49ea201d19": {
+            "type": "menu",
+            "settings": {
+              "menu": ""
+            }
+          }
+        },
+        "block_order": [
+          "34d94abd-de13-4415-907b-0d49ea201d19"
+        ],
+        "settings": {
+          "show_collection_image": false,
+          "products_per_page_range": 48,
+          "sort_by": true,
+          "show_by": true,
+          "grid_list": true,
+          "show_sidebar": true,
+          "filter_style": "tags",
+          "filter_limit": "10",
+          "filter_position": "below_menus",
+          "menu_depth_range": 3
+        }
+      },
+      "static-list-collections": {
+        "type": "static-list-collections",
+        "settings": {}
+      },
+      "static-cart": {
+        "type": "static-cart",
+        "blocks": {
+          "ca67105a-e370-440d-a34e-208f3ef63b2f": {
+            "type": "richtext",
+            "settings": {
+              "richtext": "<p><strong>Orders Over $100 are eligible for Free Shipping.</strong></p><p></p><p>Note: Over-the-Counter products and RX Items are currently NOT for Sale in the States of Kansas, Washington and Oregon until we obtain the proper license to sell these items in these states.</p>"
+            }
+          }
+        },
+        "block_order": [
+          "ca67105a-e370-440d-a34e-208f3ef63b2f"
+        ],
+        "settings": {
+          "enable_order_notes": true,
+          "enable_shipping_calc": true,
+          "shipping_calc_default_country": "United States"
+        }
+      },
+      "static-recently-viewed": {
+        "type": "static-recently-viewed",
+        "settings": {
+          "enable_recently_viewed_products": true
+        }
+      },
+      "static-product-recommendations": {
+        "type": "static-product-recommendations",
+        "settings": {
+          "show_product_recommendations": true,
+          "product_recommendations_heading": "",
+          "product_recommendations_limit": 10
+        }
+      },
+      "static-product-reviews": {
+        "type": "static-product-reviews",
+        "settings": {}
+      },
+      "16454531912a5379bf": {
+        "type": "dynamic-collection-list",
+        "blocks": {
+          "3f67cfee-04b2-4d76-96f5-6f7acc6e174b": {
+            "type": "collection",
+            "settings": {
+              "collection": "cosmetic-surgery-and-aesthetics-supplies"
+            }
+          },
+          "c41a8850-3752-4ad5-a460-a15fd61de0ee": {
+            "type": "collection",
+            "settings": {
+              "collection": "emergency-responders-ambulances-ems-supplies"
+            }
+          },
+          "5498284f-e263-4cf0-b727-e9acf77f182e": {
+            "type": "collection",
+            "settings": {
+              "collection": "physicians-supplies"
+            }
+          },
+          "02cecd1d-43c2-4958-b4e0-2aed53d6c855": {
+            "type": "collection",
+            "settings": {
+              "collection": "veterinary-supplies"
+            }
+          }
+        },
+        "block_order": [
+          "3f67cfee-04b2-4d76-96f5-6f7acc6e174b",
+          "c41a8850-3752-4ad5-a460-a15fd61de0ee",
+          "5498284f-e263-4cf0-b727-e9acf77f182e",
+          "02cecd1d-43c2-4958-b4e0-2aed53d6c855"
+        ],
+        "settings": {
+          "title": ""
+        }
+      },
+      "9f63416b-3452-4f14-aa5b-771af17df6f4": {
+        "type": "dynamic-search",
+        "settings": {
+          "title": "Search for  Medical Supplies, Medical Equipment and Name Brand & Generic OTC & Pharmaceuticals",
+          "text": "If you still can't find what you are looking for?\nCall us Toll-Free 1-888-687-4334",
+          "placeholder": "What are you looking for?",
+          "enable_live_search": true,
+          "enable_live_search_images": true,
+          "enable_live_search_articles_pages": false,
+          "position": "center-center",
+          "show-overlay": false,
+          "color": "#ffffff",
+          "background": "#000000",
+          "opacity": 85
+        }
+      },
+      "static-blog": {
+        "type": "static-blog",
+        "settings": {
+          "show_rss_link": true,
+          "show_date": true,
+          "show_author": true,
+          "show_excerpt": false,
+          "featured_post": "",
+          "posts_per_page_range": 6
+        }
+      },
+      "static-search": {
+        "type": "static-search",
+        "settings": {
+          "results_per_page_range": 36,
+          "enable_search_articles_pages": false
+        }
+      },
+      "bdbd4814-a579-406c-9772-00f86647d62a": {
+        "type": "dynamic-collection-list",
+        "blocks": {
+          "bdbd4814-a579-406c-9772-00f86647d62a-1679667253d3f7891a-2": {
+            "type": "collection",
+            "settings": {
+              "collection": "mi-paste"
+            }
+          },
+          "bdbd4814-a579-406c-9772-00f86647d62a-1679667253d3f7891a-1": {
+            "type": "collection",
+            "settings": {
+              "collection": "iv-solutions"
+            }
+          },
+          "bdbd4814-a579-406c-9772-00f86647d62a-1679667253d3f7891a-0": {
+            "type": "collection",
+            "settings": {
+              "collection": "lidocaine"
+            }
+          },
+          "bdbd4814-a579-406c-9772-00f86647d62a-1679667253d3f7891a-3": {
+            "type": "collection",
+            "settings": {
+              "collection": "cold-and-flu"
+            }
+          }
+        },
+        "block_order": [
+          "bdbd4814-a579-406c-9772-00f86647d62a-1679667253d3f7891a-2",
+          "bdbd4814-a579-406c-9772-00f86647d62a-1679667253d3f7891a-1",
+          "bdbd4814-a579-406c-9772-00f86647d62a-1679667253d3f7891a-0",
+          "bdbd4814-a579-406c-9772-00f86647d62a-1679667253d3f7891a-3"
+        ],
+        "settings": {
+          "title": ""
+        }
+      },
+      "9596f223-43a3-4403-9411-92b93c184628": {
+        "type": "dynamic-collection-list",
+        "blocks": {
+          "9596f223-43a3-4403-9411-92b93c184628-16838110492807353a-0": {
+            "type": "collection",
+            "settings": {
+              "collection": "injection-syringes"
+            }
+          },
+          "9596f223-43a3-4403-9411-92b93c184628-16838110492807353a-2": {
+            "type": "collection",
+            "settings": {
+              "collection": "mi-paste"
+            }
+          },
+          "9596f223-43a3-4403-9411-92b93c184628-16838110492807353a-1": {
+            "type": "collection",
+            "settings": {
+              "collection": "rsv"
+            }
+          },
+          "9596f223-43a3-4403-9411-92b93c184628-16838110492807353a-3": {
+            "type": "collection",
+            "settings": {
+              "collection": "gauze-rolls-bandages"
+            }
+          }
+        },
+        "block_order": [
+          "9596f223-43a3-4403-9411-92b93c184628-16838110492807353a-0",
+          "9596f223-43a3-4403-9411-92b93c184628-16838110492807353a-2",
+          "9596f223-43a3-4403-9411-92b93c184628-16838110492807353a-1",
+          "9596f223-43a3-4403-9411-92b93c184628-16838110492807353a-3"
+        ],
+        "settings": {
+          "title": ""
+        }
+      },
+      "f6bf6425-ce85-4199-8e70-8e139929a2b3": {
+        "type": "dynamic-collection-list",
+        "blocks": {
+          "f6bf6425-ce85-4199-8e70-8e139929a2b3-168485546657f00c68-0": {
+            "type": "collection",
+            "settings": {
+              "collection": "dentists"
+            }
+          },
+          "f6bf6425-ce85-4199-8e70-8e139929a2b3-168485546657f00c68-1": {
+            "type": "collection",
+            "settings": {
+              "collection": "pharmacies"
+            }
+          },
+          "f6bf6425-ce85-4199-8e70-8e139929a2b3-168485546657f00c68-2": {
+            "type": "collection",
+            "settings": {
+              "collection": "laboratory-supplies"
+            }
+          },
+          "f6bf6425-ce85-4199-8e70-8e139929a2b3-168485546657f00c68-3": {
+            "type": "collection",
+            "settings": {
+              "collection": "urological-supplies-catheters-urinary-bags-leg-bags"
+            }
+          }
+        },
+        "block_order": [
+          "f6bf6425-ce85-4199-8e70-8e139929a2b3-168485546657f00c68-0",
+          "f6bf6425-ce85-4199-8e70-8e139929a2b3-168485546657f00c68-1",
+          "f6bf6425-ce85-4199-8e70-8e139929a2b3-168485546657f00c68-2",
+          "f6bf6425-ce85-4199-8e70-8e139929a2b3-168485546657f00c68-3"
+        ],
+        "settings": {
+          "title": ""
+        }
+      },
+      "8c8c1400-f779-4a21-a4ad-af7141e767c5": {
+        "type": "dynamic-rich-text",
+        "blocks": {
+          "8c8c1400-f779-4a21-a4ad-af7141e767c5-1686658467abf1c093-0": {
+            "type": "text",
+            "settings": {
+              "title": "",
+              "text": "<h3>Join our rapidly growing <a href=\"https://signup.linkshare.com/publishers/registration/landing?mid=41691\" target=\"_blank\">affiliate program</a> and start earning commission on every referred sale.</h3>",
+              "heading_size": "large",
+              "text_alignment": "center"
+            }
+          }
+        },
+        "block_order": [
+          "8c8c1400-f779-4a21-a4ad-af7141e767c5-1686658467abf1c093-0"
+        ],
+        "settings": {
+          "width": "regular"
+        }
+      },
+      "rotating-announcement-bar": {
+        "type": "rotating-announcement-bar",
+        "blocks": {
+          "announcement_message_YE8jUL": {
+            "type": "announcement_message",
+            "settings": {
+              "message_text": "New users? Get 5% off on your first purchase.",
+              "message_link": "",
+              "mobile_message_text": "New users? Get 5% off on your first purchase.",
+              "mobile_message_link": ""
+            }
+          },
+          "announcement_message_VaKCgc": {
+            "type": "announcement_message",
+            "settings": {
+              "message_text": "Free US shipping over $100",
+              "message_link": "",
+              "mobile_message_text": "Free US shipping over $100",
+              "mobile_message_link": ""
+            }
+          }
+        },
+        "block_order": [
+          "announcement_message_YE8jUL",
+          "announcement_message_VaKCgc"
+        ],
+        "settings": {
+          "show_bar": true,
+          "use_gradient": true,
+          "background_color": "#227622",
+          "gradient_color_1": "#295c15",
+          "gradient_color_2": "#6b934a",
+          "gradient_direction": 180,
+          "container_max_width": 1400,
+          "show_phone": true,
+          "phone_number": "+1 (888) 687-4334",
+          "show_email": true,
+          "email_address": "sales@mountainside-medical.com",
+          "left_text_color": "#ffffff",
+          "left_font_size": 14,
+          "left_font_weight": "600",
+          "show_account": true,
+          "right_text_color": "#ffffff",
+          "right_font_size": 14,
+          "right_font_weight": "600",
+          "icon_size": 18,
+          "text_color": "#ffffff",
+          "font_size": 14,
+          "font_weight": "700",
+          "bar_height": 40,
+          "animation_style": "slide-up",
+          "animation_duration": 500,
+          "display_duration": 3000,
+          "mobile_breakpoint": 1160,
+          "mobile_bar_height": 35,
+          "mobile_text_color": "#ffffff",
+          "mobile_font_size": 12,
+          "mobile_font_weight": "600",
+          "mobile_left_font_size": 12,
+          "mobile_right_font_size": 12,
+          "hide_left_mobile": false,
+          "hide_right_mobile": false,
+          "hide_left_text_mobile": true,
+          "hide_right_text_mobile": true
+        }
+      },
+      "product-features-custom": {
+        "type": "product-features-custom",
+        "blocks": {
+          "feature_qh6WEH": {
+            "type": "feature",
+            "settings": {
+              "icon_image": "shopify://shop_images/Group_33.svg",
+              "icon_svg": "",
+              "title": "Sustainable",
+              "description": "Top quality and long product life with no replacement parts required."
+            }
+          },
+          "feature_e9mfi3": {
+            "type": "feature",
+            "settings": {
+              "icon_image": "shopify://shop_images/Group_34.svg",
+              "icon_svg": "",
+              "title": "Cruelty-free",
+              "description": "No animals were used in the development of this product."
+            }
+          },
+          "feature_xPjybK": {
+            "type": "feature",
+            "settings": {
+              "icon_image": "shopify://shop_images/Group_36.svg",
+              "icon_svg": "",
+              "title": "Rechargeable",
+              "description": "USB rechargeable with up to 125 uses per single charge."
+            }
+          },
+          "feature_VXFFr9": {
+            "type": "feature",
+            "settings": {
+              "icon_image": "shopify://shop_images/Group_35.svg",
+              "icon_svg": "",
+              "title": "Hygienic",
+              "description": "Made of bacteria-resistant silicone, easy to clean."
+            }
+          }
+        },
+        "block_order": [
+          "feature_qh6WEH",
+          "feature_e9mfi3",
+          "feature_xPjybK",
+          "feature_VXFFr9"
+        ],
+        "settings": {
+          "show_header": true,
+          "section_title": "Why Choose Our Product",
+          "section_subtitle": "Discover the benefits that set us apart",
+          "background_color": "#ffffff",
+          "card_background": "#ffffff",
+          "heading_color": "#2d5a3d",
+          "text_color": "#333333",
+          "icon_background": "#f0f7f3",
+          "icon_color": "#2d5a3d",
+          "border_radius": 12
+        }
+      },
+      "product-benefits-custom": {
+        "type": "product-benefits-custom",
+        "blocks": {
+          "benefit_PB6zfn": {
+            "type": "benefit",
+            "settings": {
+              "image": "shopify://shop_images/mountain_ice.webp",
+              "image_position": "left",
+              "title": "Deep cleanse",
+              "description": "The iconic Togepi Facial Cleansing Brush is proven to remove 99% of dirt and oil from your skin. Made from velvety soft silicone, it's bacteria-resistant and 35 times more hygienic than nylon brushes. The most gentle and hygienic facial cleanser ever."
+            }
+          },
+          "benefit_4rDigB": {
+            "type": "benefit",
+            "settings": {
+              "image": "shopify://shop_images/MI_2.webp",
+              "image_position": "right",
+              "title": "Firm & toned",
+              "description": "Low-frequency pulsations relieve tension points in facial muscles, smoothing fine lines and firming skin. 94% of users reported that their skin is more toned, and 100% said their skin felt more refreshed after using it."
+            }
+          }
+        },
+        "block_order": [
+          "benefit_PB6zfn",
+          "benefit_4rDigB"
+        ],
+        "settings": {
+          "section_title": "Why your skin will love it",
+          "background_color": "#fafafa",
+          "heading_color": "#2d5a3d",
+          "text_color": "#555555",
+          "image_border_radius": 16
+        }
+      },
+      "collection-bar": {
+        "type": "collection-bar",
+        "custom_css": [
+          ".collection-bar__track a {font-weight: bolder;}"
+        ],
+        "settings": {
+          "enable_section": true,
+          "show_arrows": true,
+          "excluded_collections": ""
+        }
+      }
+    },
+    "content_for_index": [
+      "bdbd4814-a579-406c-9772-00f86647d62a",
+      "16454531912a5379bf",
+      "9f63416b-3452-4f14-aa5b-771af17df6f4",
+      "f6bf6425-ce85-4199-8e70-8e139929a2b3",
+      "home-promo-mosaic",
+      "8c8c1400-f779-4a21-a4ad-af7141e767c5",
+      "9596f223-43a3-4403-9411-92b93c184628"
+    ],
+    "blocks": {
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      },
+      "16881471024131275657": {
+        "type": "shopify://apps/searchanise-search-filter/blocks/app-embed/d8f24ada-02b1-458a-bbeb-5bf16d5c921e",
+        "disabled": true,
+        "settings": {}
+      },
+      "12120936241911852800": {
+        "type": "shopify://apps/judge-me-reviews/blocks/reviews_tab/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": true,
+        "settings": {
+          "position": "right"
+        }
+      },
+      "18228966181090706294": {
+        "type": "shopify://apps/selleasy/blocks/app-embed/790c1a03-a71f-4bc1-9869-00dad526d3c2",
+        "disabled": false,
+        "settings": {
+          "storefrontAccessToken": ""
+        }
+      },
+      "12429728106950981667": {
+        "type": "shopify://apps/blocky-fraud-blocker/blocks/app-embed/aa25b3bf-c2c5-4359-aa61-7836c225c5a9",
+        "disabled": false,
+        "settings": {}
+      },
+      "6174493523689735930": {
+        "type": "shopify://apps/webrex-seo-schema/blocks/webrexSeoEmbed/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+        "disabled": false,
+        "settings": {}
+      },
+      "13768625480086291342": {
+        "type": "shopify://apps/forms/blocks/forms/8744a304-fcb1-4347-b211-bb6b4759a76a",
+        "disabled": false,
+        "settings": {}
+      },
+      "8746983209849429782": {
+        "type": "shopify://apps/dealeasy/blocks/app-embed/e47a8634-0496-480d-9e46-6f7fafd34b30",
+        "disabled": false,
+        "settings": {
+          "dealeasy_public_access_token": "",
+          "using_translated_handles": false,
+          "bundle_cart_validation": false,
+          "custom_script_and_style": "<script></script>\n<style></style>"
+        }
+      },
+      "7800736727063894098": {
+        "type": "shopify://apps/rez-notify-me/blocks/rez/0da60196-81b6-4270-afac-c9294e1641ba",
+        "disabled": true,
+        "settings": {}
+      },
+      "2200952712151285029": {
+        "type": "shopify://apps/microsoft-clarity/blocks/brandAgents_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": true,
+        "settings": {}
+      },
+      "2567389343055140935": {
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": true,
+        "settings": {}
+      },
+      "14724428607702905366": {
+        "type": "shopify://apps/webrex-ai-seo-optimizer/blocks/webrexSeoEmbed/b26797ad-bb4d-48f5-8ef3-7c561521049c",
+        "disabled": false,
+        "settings": {}
+      },
+      "10597026053260177897": {
+        "type": "shopify://apps/wb-frequently-bought-together/blocks/app-embed/5f9bd783-09d5-43d2-bb37-85281ca56a6b",
+        "disabled": false,
+        "settings": {}
+      },
+      "17731418709735804661": {
+        "type": "shopify://apps/wishlist-plus/blocks/storefront-ui-elements/80c3b1fc-3a8f-407e-8367-ffdeebb8b612",
+        "disabled": true,
+        "settings": {}
+      },
+      "17731418709734614044": {
+        "type": "shopify://apps/wishlist-plus/blocks/wishlist-app-embed/80c3b1fc-3a8f-407e-8367-ffdeebb8b612",
+        "disabled": true,
+        "settings": {
+          "storefront_layout_enabled": false,
+          "storefront_layout_primary_bg_color": "#0e0e0e",
+          "storefront_layout_primary_text_color": "#ffffff",
+          "storefront_layout_secondary_bg_color": "#99c299",
+          "storefront_layout_secondary_text_color": "#ffffff",
+          "storefront_layout_ui_border_radius": 13,
+          "storefront_layout_notification_position": "left",
+          "storefront_layout_action_popup_position": "left",
+          "storefront_layout_drawer_position": "left",
+          "storefront_layout_as_section_page": "swym-wishlist"
+        }
+      }
+    }
+  },
+  "presets": {
+    "Supply": {
+      "color_background": "#ffffff",
+      "color_headings": "#222222",
+      "color_text": "#4d4d4d",
+      "color_text_light": "#949494",
+      "color_links": "#1E8570",
+      "color_button_background": "#ffab41",
+      "color_button_text": "#1a390c",
+      "color_button_secondary_background": "#ffffff",
+      "color_button_secondary_text": "#1E8570",
+      "color_button_secondary_border": "#ddd",
+      "color_header_background": "#30656b",
+      "color_header_text": "#ffffff",
+      "color_input_text": "#4d4d4d",
+      "color_input_background": "#ffffff",
+      "color_input_border": "#dddddd",
+      "color_footer_background": "#f8f8f8",
+      "color_footer_text": "#5c5c5c",
+      "color_overlay": "#000000",
+      "overlay_opacity": 50,
+      "type_body": "cabin_n4",
+      "type_heading": "cabin_n7",
+      "type_heading_size": "1",
+      "type_menu": "cabin_n7",
+      "type_section": "cabin_n7",
+      "type_button": "cabin_n7",
+      "continue_shopping_url": "shopify://collections/all",
+      "layout_max_width": 1400,
+      "sections": {
+        "static-announcement": {
+          "type": "static-announcement",
+          "settings": {
+            "announcement_background": "#29927d"
+          }
+        },
+        "home-promo-mosaic": {
+          "type": "dynamic-promo-mosaic",
+          "blocks": {
+            "promo-mosaic-block-1": {
+              "type": "promotion",
+              "settings": {}
+            },
+            "promo-mosaic-block-2": {
+              "type": "promotion",
+              "settings": {}
+            },
+            "promo-mosaic-block-3": {
+              "type": "promotion",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "promo-mosaic-block-1",
+            "promo-mosaic-block-2",
+            "promo-mosaic-block-3"
+          ],
+          "settings": {}
+        },
+        "home-blog-posts": {
+          "type": "dynamic-blog-posts",
+          "settings": {}
+        },
+        "home-twitter-feed": {
+          "type": "dynamic-twitter-feed",
+          "settings": {}
+        },
+        "home-featured-collection-1": {
+          "type": "dynamic-featured-collection",
+          "settings": {}
+        },
+        "home-promo-grid": {
+          "type": "dynamic-promo-grid",
+          "blocks": {
+            "promo-grid-block-1": {
+              "type": "promotion",
+              "settings": {}
+            },
+            "promo-grid-block-2": {
+              "type": "promotion",
+              "settings": {}
+            },
+            "promo-grid-block-3": {
+              "type": "promotion",
+              "settings": {}
+            },
+            "promo-grid-block-4": {
+              "type": "promotion",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "promo-grid-block-1",
+            "promo-grid-block-2",
+            "promo-grid-block-3",
+            "promo-grid-block-4"
+          ],
+          "settings": {}
+        },
+        "home-featured-collection-2": {
+          "type": "dynamic-featured-collection",
+          "settings": {
+            "title": ""
+          }
+        }
+      },
+      "content_for_index": [
+        "home-promo-mosaic",
+        "home-promo-grid",
+        "home-featured-collection-1",
+        "home-featured-collection-2",
+        "home-blog-posts",
+        "home-twitter-feed"
+      ]
+    },
+    "Graphic": {
+      "color_background": "#ffffff",
+      "color_headings": "#484848",
+      "color_text": "#4d4d4d",
+      "color_text_light": "#949494",
+      "color_links": "#e32619",
+      "color_button_background": "#e32619",
+      "color_button_text": "#ffffff",
+      "color_button_secondary_background": "#ffffff",
+      "color_button_secondary_text": "#e32619",
+      "color_button_secondary_border": "#d8d8d8",
+      "color_header_background": "#ffffff",
+      "color_header_text": "#484848",
+      "color_input_text": "#4d4d4d",
+      "color_input_background": "#ffffff",
+      "color_input_border": "#d8d8d8",
+      "color_footer_background": "#ffffff",
+      "color_footer_text": "#686868",
+      "color_overlay": "#000000",
+      "overlay_opacity": 50,
+      "type_body": "lato_n4",
+      "type_heading": "futura_n7",
+      "type_heading_size": "1",
+      "type_menu": "lato_n7",
+      "type_section": "futura_n7",
+      "type_button": "lato_n7",
+      "continue_shopping_url": "shopify://collections/all",
+      "layout_max_width": 1400,
+      "sections": {
+        "static-announcement": {
+          "type": "static-announcement",
+          "settings": {
+            "announcement_background": "#e32619"
+          }
+        },
+        "static-collection": {
+          "type": "static-collection",
+          "settings": {
+            "filter_style": "groups",
+            "filter_limit": "5"
+          }
+        },
+        "home-promo-mosaic": {
+          "type": "dynamic-promo-mosaic",
+          "blocks": {
+            "home-promo-mosaic-1": {
+              "type": "promotion",
+              "settings": {}
+            },
+            "home-promo-mosaic-2": {
+              "type": "promotion",
+              "settings": {}
+            },
+            "home-promo-mosaic-3": {
+              "type": "promotion",
+              "settings": {}
+            },
+            "home-promo-mosaic-4": {
+              "type": "promotion",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "home-promo-mosaic-1",
+            "home-promo-mosaic-2",
+            "home-promo-mosaic-3",
+            "home-promo-mosaic-4"
+          ],
+          "settings": {}
+        },
+        "home-promo-grid": {
+          "type": "dynamic-promo-grid",
+          "blocks": {
+            "home-promo-grid-1": {
+              "type": "promotion",
+              "settings": {
+                "promo_width": "full-width"
+              }
+            },
+            "home-promo-grid-2": {
+              "type": "promotion",
+              "settings": {}
+            },
+            "home-promo-grid-3": {
+              "type": "promotion",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "home-promo-grid-1",
+            "home-promo-grid-2",
+            "home-promo-grid-3"
+          ],
+          "settings": {}
+        },
+        "home-featured-collection-1": {
+          "type": "dynamic-featured-collection",
+          "settings": {}
+        },
+        "home-menu-list": {
+          "type": "dynamic-menu-list",
+          "blocks": {
+            "home-menu-list-1": {
+              "type": "menu",
+              "settings": {}
+            },
+            "home-menu-list-2": {
+              "type": "menu",
+              "settings": {}
+            },
+            "home-menu-list-3": {
+              "type": "menu",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "home-menu-list-1",
+            "home-menu-list-2",
+            "home-menu-list-3"
+          ],
+          "settings": {
+            "title": "Menu list"
+          }
+        },
+        "home-blog-posts": {
+          "type": "dynamic-blog-posts",
+          "settings": {}
+        },
+        "home-twitter-feed": {
+          "type": "dynamic-twitter-feed",
+          "settings": {}
+        },
+        "home-instagram-feed": {
+          "type": "dynamic-instagram-feed",
+          "settings": {}
+        }
+      },
+      "content_for_index": [
+        "home-promo-mosaic",
+        "home-promo-grid",
+        "home-featured-collection-1",
+        "home-menu-list",
+        "home-blog-posts",
+        "home-instagram-feed",
+        "home-twitter-feed"
+      ]
+    },
+    "Industrial": {
+      "color_background": "#ffffff",
+      "color_headings": "#4c4c4c",
+      "color_text": "#4c5154",
+      "color_text_light": "949798",
+      "color_links": "#0076de",
+      "color_button_background": "#0076de",
+      "color_button_text": "#ffffff",
+      "color_button_secondary_background": "#ffffff",
+      "color_button_secondary_text": "#0076de",
+      "color_button_secondary_border": "#d8d8d8",
+      "color_header_background": "#1d2236",
+      "color_header_text": "#ffffff",
+      "color_input_text": "#4c5154",
+      "color_input_background": "#ffffff",
+      "color_input_border": "#d8d8d8",
+      "color_footer_background": "#edeff3",
+      "color_footer_text": "#5c5c5c",
+      "color_overlay": "#000000",
+      "overlay_opacity": 50,
+      "type_body": "libre_franklin_n4",
+      "type_heading": "arimo_n7",
+      "type_heading_size": "1",
+      "type_menu": "libre_franklin_n7",
+      "type_section": "arimo_n7",
+      "type_button": "libre_franklin_n7",
+      "continue_shopping_url": "shopify://collections/all",
+      "layout_max_width": 1400,
+      "sections": {
+        "static-announcement": {
+          "type": "static-announcement",
+          "settings": {
+            "announcement_background": "#0076de"
+          }
+        },
+        "static-footer": {
+          "type": "static-footer",
+          "blocks": {
+            "static-footer-1": {
+              "type": "menu",
+              "settings": {
+                "menu": "footer"
+              }
+            },
+            "static-footer-3": {
+              "type": "newsletter",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "static-footer-1",
+            "static-footer-3"
+          ],
+          "settings": {
+            "additional_menu": ""
+          }
+        },
+        "static-blog": {
+          "type": "static-blog",
+          "settings": {
+            "show_author": false
+          }
+        },
+        "static-product": {
+          "type": "static-product",
+          "settings": {
+            "layout": "layout--three-col"
+          }
+        },
+        "static-article": {
+          "type": "static-article",
+          "settings": {
+            "show_author": false
+          }
+        },
+        "static-collection": {
+          "type": "static-collection",
+          "settings": {
+            "filter_style": "groups"
+          }
+        },
+        "home-promo-mosaic": {
+          "type": "dynamic-promo-mosaic",
+          "blocks": {
+            "home-promo-mosaic-1": {
+              "type": "promotion",
+              "settings": {}
+            },
+            "home-promo-mosaic-2": {
+              "type": "promotion",
+              "settings": {}
+            },
+            "home-promo-mosaic-3": {
+              "type": "promotion",
+              "settings": {}
+            },
+            "home-promo-mosaic-4": {
+              "type": "promotion",
+              "settings": {}
+            },
+            "home-promo-mosaic-5": {
+              "type": "promotion",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "home-promo-mosaic-1",
+            "home-promo-mosaic-2",
+            "home-promo-mosaic-3",
+            "home-promo-mosaic-4",
+            "home-promo-mosaic-5"
+          ],
+          "settings": {
+            "section_height": "medium"
+          }
+        },
+        "home-featured-collection": {
+          "type": "dynamic-featured-collection",
+          "settings": {}
+        },
+        "home-promo-grid": {
+          "type": "dynamic-promo-grid",
+          "blocks": {
+            "home-promo-grid-1": {
+              "type": "promotion",
+              "settings": {}
+            },
+            "home-promo-grid-2": {
+              "type": "promotion",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "home-promo-grid-1",
+            "home-promo-grid-2"
+          ],
+          "settings": {}
+        },
+        "home-blog-posts": {
+          "type": "dynamic-blog-posts",
+          "settings": {}
+        },
+        "home-collection-list": {
+          "type": "dynamic-collection-list",
+          "blocks": {
+            "home-collection-list-1": {
+              "type": "collection",
+              "settings": {}
+            },
+            "home-collection-list-2": {
+              "type": "collection",
+              "settings": {}
+            },
+            "home-collection-list-3": {
+              "type": "collection",
+              "settings": {}
+            },
+            "home-collection-list-4": {
+              "type": "collection",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "home-collection-list-1",
+            "home-collection-list-2",
+            "home-collection-list-3",
+            "home-collection-list-4"
+          ],
+          "settings": {}
+        }
+      },
+      "content_for_index": [
+        "home-promo-mosaic",
+        "home-featured-collection",
+        "home-promo-grid",
+        "home-collection-list",
+        "home-blog-posts"
+      ]
+    }
+  },
+  "platform_customizations": {
+    "custom_css": [
+      ".highlights-banners-custom-icon {width: 35px !important; height: 35px !important;}",
+      ".highlights-banners-icon {justify-content: flex-end;}",
+      ".highlights-banners-icon {max-width: 20%;}"
+    ]
+  }
+}

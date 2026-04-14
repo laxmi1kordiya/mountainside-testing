@@ -1,0 +1,98 @@
+{% comment %}
+  Product Subheading Block
+  Renders a subheading text that can be connected to product metafields
+  via Shopify's dynamic source picker in the theme editor.
+  Includes optional read more / read less toggle for long content.
+
+  Receives: block (section block with settings.text, enable_read_more, max_lines)
+{% endcomment %}
+
+{% if block.settings.text != blank %}
+  <div class="product-subheading-wrapper" {{ block.shopify_attributes }}>
+    <div class="product-subheading{% if block.settings.enable_read_more %} product-subheading--truncated{% endif %}"
+      {% if block.settings.enable_read_more %}
+        style="--subheading-max-lines: {{ block.settings.max_lines }};"
+        data-read-more
+      {% endif %}
+    >
+      {{ block.settings.text }}
+    </div>
+    {% if block.settings.enable_read_more %}
+      <button class="product-subheading__toggle" data-read-more-toggle type="button">
+        <span data-read-more-text>Read more</span>
+        <span data-read-less-text style="display:none;">Read less</span>
+      </button>
+    {% endif %}
+  </div>
+{% endif %}
+
+<style>
+  .product-subheading-wrapper {
+    margin: 15px 0px 0px;
+  }
+
+  .product-subheading {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  .product-subheading--truncated {
+    display: -webkit-box;
+    -webkit-line-clamp: var(--subheading-max-lines, 6);
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .product-subheading--expanded {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
+
+  .product-subheading__toggle {
+    background: none;
+    border: none;
+    padding: 8px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #367b36;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .product-subheading__toggle:hover {
+    color: #2a5f2a;
+  }
+</style>
+
+<script>
+  (function() {
+    var containers = document.querySelectorAll('[data-read-more]');
+    containers.forEach(function(container) {
+      var toggle = container.nextElementSibling;
+      if (!toggle || !toggle.hasAttribute('data-read-more-toggle')) return;
+
+      var moreText = toggle.querySelector('[data-read-more-text]');
+      var lessText = toggle.querySelector('[data-read-less-text]');
+
+      if (container.scrollHeight <= container.clientHeight) {
+        toggle.style.display = 'none';
+        return;
+      }
+
+      toggle.addEventListener('click', function() {
+        var isExpanded = container.classList.contains('product-subheading--expanded');
+        if (isExpanded) {
+          container.classList.remove('product-subheading--expanded');
+          moreText.style.display = '';
+          lessText.style.display = 'none';
+        } else {
+          container.classList.add('product-subheading--expanded');
+          moreText.style.display = 'none';
+          lessText.style.display = '';
+        }
+      });
+    });
+  })();
+</script>

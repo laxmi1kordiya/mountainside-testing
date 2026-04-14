@@ -1,0 +1,164 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "pxs_image_with_text_overlay_yDqHBr": {
+      "type": "pxs-image-with-text-overlay",
+      "name": "Image with text overlay",
+      "settings": {}
+    },
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "types-of-lidocaine"
+          }
+        },
+        "menu_HHGD9B": {
+          "type": "menu",
+          "settings": {
+            "menu": "syringes"
+          }
+        },
+        "menu_RfWarW": {
+          "type": "menu",
+          "settings": {
+            "menu": "numbing-and-freezing"
+          }
+        },
+        "menu_g4kepD": {
+          "type": "menu",
+          "settings": {
+            "menu": "skin-prepping-disinfecting"
+          }
+        },
+        "menu_LJRmxy": {
+          "type": "menu",
+          "settings": {
+            "menu": "antibiotics"
+          }
+        },
+        "menu_xiJKLg": {
+          "type": "menu",
+          "settings": {
+            "menu": "by-injectables"
+          }
+        },
+        "menu_zhJzBN": {
+          "type": "menu",
+          "settings": {
+            "menu": "pain-relief"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_HHGD9B",
+        "menu_RfWarW",
+        "menu_g4kepD",
+        "menu_LJRmxy",
+        "menu_xiJKLg",
+        "menu_zhJzBN"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "20",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "1759399870ac73f594": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_gdDX3q": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#dddddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_gdDX3q"
+      ],
+      "settings": {}
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "The Ultimate Guide for Pain Relief — Uses, Dosage, Benefits & FAQs",
+            "text": "<p>Discover rapid, targeted pain relief with <strong>Lidocaine Injections</strong> — the gold-standard <strong>local anesthetic injection</strong> trusted by health professionals worldwide. Lidocaine (also marketed as Xylocaine) is clinically proven to <strong>numb pain fast</strong>, making it a top choice for <strong>pain management</strong>, <strong>dental anesthesia</strong>, <strong>minor surgical procedures</strong>, <strong>nerve blocks</strong>, and <strong>chronic pain relief</strong>.</p><h3>Key Features & Top Health Benefits:</h3><ul><li><strong>Fast-Acting Local Anesthetic:</strong> Achieve near-instant pain relief with onset within 1-3 minutes.</li><li><strong>Long-Lasting Effect:</strong> Enjoy up to 1-3 hours of numbness for extended procedures or acute pain control.</li><li><strong>Multiple Uses:</strong> Ideal for dental work, wound suturing, minor surgeries, skin disorders, and relieving <strong>neuropathic pain</strong>, <strong>back pain</strong>, or <strong>muscle pain</strong>.</li><li><strong>Convenient Dosage Forms:</strong> Available in various strengths to suit your medical needs — always administered by a healthcare professional for safety.</li><li><strong>Top Choice for Professionals:</strong> Frequently chosen for <strong>local anesthesia</strong> in hospitals and clinics, dentistry, and even tattoo parlors.</li></ul><p><strong>Choose Lidocaine Injections for proven, precise, and safe pain management.</strong><br/><em>Always administered or supervised by a licensed healthcare professional.</em></p>",
+            "heading_size": "small",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_VFFY0G": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "pxs_image_with_text_overlay_yDqHBr",
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_VFFY0G",
+    "1759399870ac73f594",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

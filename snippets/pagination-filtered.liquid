@@ -1,0 +1,195 @@
+{% comment %}
+  Custom pagination for server-side filtered results
+  Preserves all current URL parameters including filters
+
+  @param current_page - Current page number
+  @param total_pages - Total number of pages
+  @param collection_url - Base collection URL
+{% endcomment %}
+
+{% if total_pages > 1 %}
+  {% comment %} Build base URL with all current params except page {% endcomment %}
+  {% assign base_params = '' %}
+  {% assign current_query = request.query_string | default: '' %}
+
+  {% if current_query != '' %}
+    {% assign param_pairs = current_query | split: '&' %}
+    {% for pair in param_pairs %}
+      {% assign key_val = pair | split: '=' %}
+      {% assign param_key = key_val[0] %}
+      {% unless param_key == 'page' %}
+        {% if base_params == '' %}
+          {% assign base_params = pair %}
+        {% else %}
+          {% assign base_params = base_params | append: '&' | append: pair %}
+        {% endif %}
+      {% endunless %}
+    {% endfor %}
+  {% endif %}
+
+  {% comment %} Build page URL helper {% endcomment %}
+  {% if base_params != '' %}
+    {% assign url_prefix = collection_url | append: '?' | append: base_params | append: '&page=' %}
+  {% else %}
+    {% assign url_prefix = collection_url | append: '?page=' %}
+  {% endif %}
+
+  <div class="pagination--container">
+    <nav class="pagination--inner" role="navigation" aria-label="Pagination">
+      {% comment %} Previous Page {% endcomment %}
+      {% if current_page > 1 %}
+        {% assign prev_page = current_page | minus: 1 %}
+        <a href="{{ url_prefix }}{{ prev_page }}" class="pagination--item pagination--prev" aria-label="Previous page">
+          <svg width="8" height="12" viewBox="0 0 8 12" fill="none">
+            <path d="M7 1L2 6L7 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </a>
+      {% else %}
+        <span class="pagination--item pagination--prev pagination--disabled" aria-disabled="true">
+          <svg width="8" height="12" viewBox="0 0 8 12" fill="none">
+            <path d="M7 1L2 6L7 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+      {% endif %}
+
+      {% comment %} Page Numbers {% endcomment %}
+      <div class="pagination--pages">
+        {% assign start_page = 1 %}
+        {% assign end_page = total_pages %}
+
+        {% comment %} Limit visible pages for large page counts {% endcomment %}
+        {% if total_pages > 7 %}
+          {% if current_page <= 4 %}
+            {% assign start_page = 1 %}
+            {% assign end_page = 5 %}
+          {% elsif current_page >= total_pages | minus: 3 %}
+            {% assign start_page = total_pages | minus: 4 %}
+            {% assign end_page = total_pages %}
+          {% else %}
+            {% assign start_page = current_page | minus: 2 %}
+            {% assign end_page = current_page | plus: 2 %}
+          {% endif %}
+        {% endif %}
+
+        {% comment %} First page + ellipsis {% endcomment %}
+        {% if start_page > 1 %}
+          <a href="{{ url_prefix }}1" class="pagination--item">1</a>
+          {% if start_page > 2 %}
+            <span class="pagination--item pagination--ellipsis">...</span>
+          {% endif %}
+        {% endif %}
+
+        {% comment %} Page numbers {% endcomment %}
+        {% for page_num in (start_page..end_page) %}
+          {% if page_num == current_page %}
+            <span class="pagination--item pagination--current" aria-current="page">{{ page_num }}</span>
+          {% else %}
+            <a href="{{ url_prefix }}{{ page_num }}" class="pagination--item">{{ page_num }}</a>
+          {% endif %}
+        {% endfor %}
+
+        {% comment %} Ellipsis + last page {% endcomment %}
+        {% if end_page < total_pages %}
+          {% assign second_last = total_pages | minus: 1 %}
+          {% if end_page < second_last %}
+            <span class="pagination--item pagination--ellipsis">...</span>
+          {% endif %}
+          <a href="{{ url_prefix }}{{ total_pages }}" class="pagination--item">{{ total_pages }}</a>
+        {% endif %}
+      </div>
+
+      {% comment %} Next Page {% endcomment %}
+      {% if current_page < total_pages %}
+        {% assign next_page = current_page | plus: 1 %}
+        <a href="{{ url_prefix }}{{ next_page }}" class="pagination--item pagination--next" aria-label="Next page">
+          <svg width="8" height="12" viewBox="0 0 8 12" fill="none">
+            <path d="M1 1L6 6L1 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </a>
+      {% else %}
+        <span class="pagination--item pagination--next pagination--disabled" aria-disabled="true">
+          <svg width="8" height="12" viewBox="0 0 8 12" fill="none">
+            <path d="M1 1L6 6L1 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+      {% endif %}
+    </nav>
+
+    <div class="pagination--info">
+      Page {{ current_page }} of {{ total_pages }}
+    </div>
+  </div>
+
+  <style>
+    .pagination--container {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .pagination--inner {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .pagination--pages {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .pagination--item {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 36px;
+      height: 36px;
+      padding: 0 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #333;
+      text-decoration: none;
+      background: #fff;
+      transition: all 0.2s ease;
+    }
+
+    .pagination--item:hover:not(.pagination--disabled):not(.pagination--current):not(.pagination--ellipsis) {
+      background: #f5f5f5;
+      border-color: #ccc;
+    }
+
+    .pagination--current {
+      background: #2e7d32;
+      border-color: #2e7d32;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .pagination--disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .pagination--ellipsis {
+      border: none;
+      background: none;
+      min-width: auto;
+      padding: 0 5px;
+    }
+
+    .pagination--info {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    @media screen and (max-width: 480px) {
+      .pagination--item {
+        min-width: 32px;
+        height: 32px;
+        font-size: 13px;
+      }
+    }
+  </style>
+{% endif %}

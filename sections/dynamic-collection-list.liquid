@@ -1,0 +1,586 @@
+<section class="collection-list--container collection-list--circular">
+  {% if section.settings.title != blank %}
+    <h2 class="home-section--title">
+      {{ section.settings.title | escape }}
+    </h2>
+  {% endif %}
+
+  {% if section.blocks.size > 0 %}
+    <ul class="collection-list--grid">
+      {% for block in section.blocks %}
+        {% assign collection = collections[block.settings.collection] %}
+        {% assign collection_title = collection.title | default: 'Collection' %}
+        {% assign collection_url = collection.url | default: '#' %}
+
+        {% assign featured_image = false %}
+        {% assign featured_image_alt = '' %}
+
+        {% if block.settings.image %}
+          {% assign featured_image = block.settings.image %}
+          {% assign featured_image_alt = block.settings.image.alt | escape %}
+        {% endif %}
+
+        <li class="collection--item" {{ block.shopify_attributes }}>
+          <div class="collection--item-wrapper">
+            <a href="{{ collection_url }}" class="collection--circle-link">
+              <div class="collection--circle-container">
+                <figure class="collection--circle-image">
+                  {% if featured_image %}
+                    <img
+                      src="{{ featured_image | img_url: '400x400', crop: 'center' }}"
+                      alt="{{ featured_image_alt | default: collection_title | escape }}"
+                      loading="lazy"
+                    >
+                  {% elsif collection.image %}
+                    <img
+                      src="{{ collection.image | img_url: '400x400', crop: 'center' }}"
+                      alt="{{ collection.image.alt | default: collection_title | escape }}"
+                      loading="lazy"
+                    >
+                  {% elsif collection.products.first.featured_image %}
+                    <img
+                      src="{{ collection.products.first.featured_image | img_url: '400x400', crop: 'center' }}"
+                      alt="{{ collection_title | escape }}"
+                      loading="lazy"
+                    >
+                  {% else %}
+                    {%- capture index -%}
+                      {%- cycle '1', '2', '3', '4', '5', '6' -%}
+                    {%- endcapture -%}
+                    {{ 'collection-' | append: index | placeholder_svg_tag: 'placeholder--image' }}
+                  {% endif %}
+                </figure>
+              </div>
+            </a>
+
+            <div class="collection--info">
+              <span class="collection--title-default">{{ collection_title }}</span>
+
+              <div class="collection--hover-content">
+                <a href="{{ collection_url }}" class="collection--title-hover">{{ collection_title }}</a>
+                <div class="collection--divider"></div>
+                <ul class="collection--links">
+                  {% if block.settings.link_name_1 != blank %}
+                    <li>
+                      <a href="{{ block.settings.link_url_1 | default: collection_url }}">
+                        {{ block.settings.link_name_1 }}
+                      </a>
+                    </li>
+                  {% endif %}
+                  {% if block.settings.link_name_2 != blank %}
+                    <li>
+                      <a href="{{ block.settings.link_url_2 | default: collection_url }}">
+                        {{ block.settings.link_name_2 }}
+                      </a>
+                    </li>
+                  {% endif %}
+                  {% if block.settings.link_name_3 != blank %}
+                    <li>
+                      <a href="{{ block.settings.link_url_3 | default: collection_url }}">
+                        {{ block.settings.link_name_3 }}
+                      </a>
+                    </li>
+                  {% endif %}
+                  {% if block.settings.link_name_4 != blank %}
+                    <li>
+                      <a href="{{ block.settings.link_url_4 | default: collection_url }}">
+                        {{ block.settings.link_name_4 }}
+                      </a>
+                    </li>
+                  {% endif %}
+                  {% if block.settings.link_name_5 != blank %}
+                    <li>
+                      <a href="{{ block.settings.link_url_5 | default: collection_url }}">
+                        {{ block.settings.link_name_5 }}
+                      </a>
+                    </li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile only: Full card link overlay -->
+          <a href="{{ collection_url }}" class="collection--mobile-link"></a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</section>
+
+<style>
+  .collection-list--circular {
+    padding: 10px 40px 20px 40px;
+    background: #fff;
+  }
+
+  .collection-list--circular .home-section--title {
+    text-align: center;
+    margin-top: 0 !important;
+    margin-bottom: 50px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #222;
+  }
+
+  .collection-list--circular .collection-list--grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px 30px;
+    list-style: none;
+    padding: 0 40px;
+    margin: 0 auto;
+    max-width: 1400px;
+  }
+
+  .collection-list--circular .collection--item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 260px;
+  }
+
+  .collection-list--circular .collection--item-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+
+  .collection-list--circular .collection--circle-link {
+    display: block;
+    text-decoration: none;
+  }
+
+  /* Mobile link overlay - hidden on desktop */
+  .collection-list--circular .collection--mobile-link {
+    display: none;
+  }
+
+  .collection-list--circular .collection--circle-container {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    border: 1px solid #e5e5e5;
+  }
+
+  .collection-list--circular .collection--circle-image {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .collection-list--circular .collection--circle-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .collection-list--circular .collection--circle-image svg,
+  .collection-list--circular .collection--circle-image .placeholder--image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .collection-list--circular .collection--info {
+    margin-top: 12px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .collection-list--circular .collection--title-default {
+    display: block;
+    font-size: 15px;
+    font-weight: 400;
+    color: #333;
+    transition: all 0.3s ease;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .collection-list--circular .collection--hover-content {
+    display: none;
+    text-align: left;
+    width: 100%;
+  }
+
+  .collection-list--circular .collection--title-hover {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #5b9a4d;
+    text-decoration: none;
+    margin-bottom: 6px;
+    line-height: 1.3;
+    text-align: center;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #5b9a4d;
+  }
+
+  .collection-list--circular .collection--title-hover:hover {
+    color: #4a8340;
+  }
+
+  .collection-list--circular .collection--divider {
+    display: none;
+  }
+
+  .collection-list--circular .collection--links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+  }
+
+  .collection-list--circular .collection--links li {
+    margin: 4px 0;
+  }
+
+  .collection-list--circular .collection--links a {
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    line-height: 1.4;
+  }
+
+  .collection-list--circular .collection--links a:hover {
+    color: #5b9a4d;
+  }
+
+  /* Hover Effects */
+  .collection-list--circular .collection--item-wrapper:hover .collection--circle-container {
+    width: 110px;
+    height: 110px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    border: 2px solid #5b9a4d;
+  }
+
+  .collection-list--circular .collection--item-wrapper:hover .collection--circle-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .collection-list--circular .collection--item-wrapper:hover .collection--title-default {
+    display: none;
+  }
+
+  .collection-list--circular .collection--item-wrapper:hover .collection--hover-content {
+    display: block;
+  }
+
+  /* Responsive */
+  @media (max-width: 1200px) {
+    .collection-list--circular .collection-list--grid {
+      gap: 25px 30px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .collection-list--circular .collection-list--grid {
+      gap: 15px 30px;
+    }
+
+    .collection-list--circular .collection--item {
+      width: 200px;
+      height: 240px;
+    }
+
+    .collection-list--circular .collection--circle-container {
+      width: 160px;
+      height: 160px;
+    }
+
+    .collection-list--circular .collection--circle-image {
+      width: 152px;
+      height: 152px;
+    }
+
+    .collection-list--circular .collection--item-wrapper:hover .collection--circle-container {
+      width: 90px;
+      height: 90px;
+    }
+
+    .collection-list--circular .collection--item-wrapper:hover .collection--circle-image {
+      width: 82px;
+      height: 82px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .collection-list--circular {
+      padding: 10px 15px 20px 15px;
+    }
+
+    .collection-list--circular .home-section--title {
+      margin-bottom: 12px;
+      font-size: 22px;
+    }
+
+    .collection-list--circular .collection-list--grid {
+      display: block;
+      padding: 0;
+      margin: 0;
+      font-size: 0;
+    }
+
+    .collection-list--circular .collection--item {
+      display: inline-block;
+      vertical-align: top;
+      width: 49%;
+      height: auto;
+      position: relative;
+      margin: 0 0.5% 6px 0.5%;
+      font-size: 14px;
+    }
+
+    .collection-list--circular .collection--item-wrapper {
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      background: #f8f8f8;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: left;
+      gap: 10px;
+      border: 1px solid #eee;
+      height: 80px;
+    }
+
+    .collection-list--circular .collection--circle-link {
+      flex-shrink: 0;
+      pointer-events: none;
+    }
+
+    .collection-list--circular .collection--circle-container {
+      width: 60px;
+      height: 60px;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      border: none;
+    }
+
+    .collection-list--circular .collection--circle-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 0;
+    }
+
+    .collection-list--circular .collection--circle-image img {
+      object-fit: contain;
+    }
+
+    /* Hide hover effects on mobile */
+    .collection-list--circular .collection--item-wrapper:hover .collection--circle-container {
+      width: 60px;
+      height: 60px;
+      border: none;
+    }
+
+    .collection-list--circular .collection--item-wrapper:hover .collection--circle-image {
+      width: 60px;
+      height: 60px;
+    }
+
+    .collection-list--circular .collection--info {
+      margin-top: 0;
+      flex: 1;
+      text-align: left;
+    }
+
+    .collection-list--circular .collection--title-default {
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 14px;
+      font-weight: 500;
+      color: #222;
+      line-height: 1.3;
+    }
+
+    /* Hide hover content on mobile */
+    .collection-list--circular .collection--item-wrapper:hover .collection--title-default {
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .collection-list--circular .collection--hover-content {
+      display: none !important;
+    }
+
+    .collection-list--circular .collection--item-wrapper:hover .collection--hover-content {
+      display: none !important;
+    }
+
+    /* Mobile link overlay - covers entire card */
+    .collection-list--circular .collection--mobile-link {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .collection-list--circular {
+      padding: 10px;
+    }
+
+    .collection-list--circular .collection--item {
+      width: 48%;
+      margin: 0 1% 5px 1%;
+    }
+
+    .collection-list--circular .collection--item-wrapper {
+      padding: 8px;
+      gap: 8px;
+      height: 70px;
+    }
+
+    .collection-list--circular .collection--circle-container,
+    .collection-list--circular .collection--circle-image,
+    .collection-list--circular .collection--item-wrapper:hover .collection--circle-container,
+    .collection-list--circular .collection--item-wrapper:hover .collection--circle-image {
+      width: 50px;
+      height: 50px;
+    }
+
+    .collection-list--circular .collection--title-default {
+      font-size: 13px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Collection list",
+  "class": "collection-list--section",
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Collection list"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "id": "collection",
+          "type": "collection",
+          "label": "Collection"
+        },
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Image"
+        },
+        {
+          "type": "header",
+          "content": "Hover Links"
+        },
+        {
+          "type": "text",
+          "id": "link_name_1",
+          "label": "Link 1 Name"
+        },
+        {
+          "type": "url",
+          "id": "link_url_1",
+          "label": "Link 1 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_name_2",
+          "label": "Link 2 Name"
+        },
+        {
+          "type": "url",
+          "id": "link_url_2",
+          "label": "Link 2 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_name_3",
+          "label": "Link 3 Name"
+        },
+        {
+          "type": "url",
+          "id": "link_url_3",
+          "label": "Link 3 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_name_4",
+          "label": "Link 4 Name"
+        },
+        {
+          "type": "url",
+          "id": "link_url_4",
+          "label": "Link 4 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_name_5",
+          "label": "Link 5 Name"
+        },
+        {
+          "type": "url",
+          "id": "link_url_5",
+          "label": "Link 5 URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection list",
+      "category": "Collection",
+      "blocks": [
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

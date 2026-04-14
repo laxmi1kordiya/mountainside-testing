@@ -1,0 +1,326 @@
+{% comment %}
+  Customer Testimonials Section - No Images Design
+  Matches the exact design from the reference image
+{% endcomment %}
+
+<style>
+  .testimonials-custom {
+    padding: 80px 0;
+    background: {{ section.settings.background_color }};
+  }
+
+  .testimonials-custom__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .testimonials-custom__title {
+    text-align: center;
+    font-size: 52px;
+    font-weight: 400;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 60px 0;
+    line-height: 1.3;
+  }
+
+  .testimonials-custom__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+  }
+
+  .testimonial-card {
+    background: {{ section.settings.card_background }};
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  .testimonial-card__content {
+    padding: 40px 30px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .testimonial-card__quote-icon {
+    font-size: 48px;
+    color: {{ section.settings.quote_icon_color }};
+    margin-bottom: 20px;
+    line-height: 1;
+    font-family: Georgia, serif;
+  }
+
+  .testimonial-card__text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: {{ section.settings.text_color }};
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .testimonial-card__footer {
+    background: {{ section.settings.footer_background }};
+    padding: 25px 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .testimonial-card__footer-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  .testimonial-card__footer-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: {{ section.settings.footer_icon_color }};
+    opacity: 0.8;
+  }
+
+  .testimonial-card__author-info {
+    flex-grow: 1;
+  }
+
+  .testimonial-card__author-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: {{ section.settings.footer_text_color }};
+    margin: 0 0 4px 0;
+    line-height: 1.2;
+  }
+
+  .testimonial-card__author-location {
+    font-size: 14px;
+    color: {{ section.settings.footer_text_color }};
+    margin: 0;
+    opacity: 0.9;
+    line-height: 1.2;
+  }
+
+  @media (max-width: 968px) {
+    .testimonials-custom {
+      padding: 60px 0;
+    }
+
+    .testimonials-custom__title {
+      font-size: 42px;
+      margin-bottom: 40px;
+    }
+
+    .testimonials-custom__grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .testimonial-card__content {
+      padding: 30px 25px;
+      min-height: 250px;
+    }
+
+    .testimonial-card__text {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .testimonials-custom__title {
+      font-size: 34px;
+    }
+
+    .testimonials-custom__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="testimonials-custom">
+  <div class="testimonials-custom__container">
+    {%- if section.settings.section_title != blank -%}
+      <h2 class="testimonials-custom__title">{{ section.settings.section_title }}</h2>
+    {%- endif -%}
+
+    <div class="testimonials-custom__grid">
+      {%- for block in section.blocks -%}
+        <div class="testimonial-card" {{ block.shopify_attributes }}>
+          <div class="testimonial-card__content">
+            <div class="testimonial-card__quote-icon">"</div>
+            {%- if block.settings.testimonial_text != blank -%}
+              <p class="testimonial-card__text">{{ block.settings.testimonial_text }}</p>
+            {%- endif -%}
+          </div>
+
+          <div class="testimonial-card__footer">
+            <div class="testimonial-card__footer-icon">
+              {%- if block.settings.custom_icon != blank -%}
+                {{ block.settings.custom_icon }}
+              {%- else -%}
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              {%- endif -%}
+            </div>
+
+            <div class="testimonial-card__author-info">
+              {%- if block.settings.author_name != blank -%}
+                <h3 class="testimonial-card__author-name">{{ block.settings.author_name }}</h3>
+              {%- endif -%}
+              {%- if block.settings.author_location != blank -%}
+                <p class="testimonial-card__author-location">{{ block.settings.author_location }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials Custom",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title",
+      "default": "What our customers say"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#fafafa"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#3d5a4d"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Testimonial text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "quote_icon_color",
+      "label": "Quote icon color",
+      "default": "#4e7661"
+    },
+    {
+      "type": "header",
+      "content": "Footer Settings"
+    },
+    {
+      "type": "color",
+      "id": "footer_background",
+      "label": "Footer background",
+      "default": "#4e7661"
+    },
+    {
+      "type": "color",
+      "id": "footer_text_color",
+      "label": "Footer text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "footer_icon_color",
+      "label": "Footer icon color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "testimonial_text",
+          "label": "Testimonial text",
+          "default": "My facial cleanser from another brand no longer charges. I will continue to use this product for many years to come!"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Customer name",
+          "default": "Pedro Weston"
+        },
+        {
+          "type": "text",
+          "id": "author_location",
+          "label": "Location",
+          "default": "Texas"
+        },
+        {
+          "type": "html",
+          "id": "custom_icon",
+          "label": "Custom footer icon (SVG)",
+          "info": "Optional: Paste SVG code for a custom icon"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Custom",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial_text": "My facial cleanser from another brand no longer charges. After researching possible fixes, I finally had to accept that it was dead. I searched the internet for possible replacement ideas and found this product highly recommended. It doesnt disappoint in the slightest!",
+            "author_name": "Pedro Weston",
+            "author_location": "Texas"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial_text": "I cant believe its taken me this long to discover the wonders of using a face brush in my skincare routine. I had always heard that using a facial brush was good for skin, but I thought it was just another fad.",
+            "author_name": "Sacha Mcmillan",
+            "author_location": "Virginia"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial_text": "I watched a lot of product videos and thought it was worth a try. Ive been using it for over 6 months and my skin has definitely improved. My complexion is clearer and my skin tone is much more even.",
+            "author_name": "Marcie Knowles",
+            "author_location": "New York"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

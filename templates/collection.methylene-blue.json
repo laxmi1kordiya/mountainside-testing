@@ -1,0 +1,86 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "needles-and-syringes"
+          }
+        },
+        "menu_i7PgGL": {
+          "type": "menu",
+          "settings": {
+            "menu": "skin-prepping-disinfecting"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_i7PgGL"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "20",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Methylene Blue information",
+            "text": "<p><strong>What is Methylene Blue:</strong></p><p>Methylene blue is a synthetic dye and chemical compound with the formula C₁₆H₁₈ClN₃S. It has several important<br/> applications in medicine, biology, and chemistry:</p><p><strong>Medical Uses</strong>:</p><ul><li><strong>Methemoglobinemia Treatment</strong>:<br/> Methylene blue can treat methemoglobinemia, a condition where hemoglobin is unable to release oxygen effectively to body tissues.</li><li><strong>Antidote</strong>: It acts as an antidote for certain types of drug-induced or chemical-induced conditions, such as ifosfamide neurotoxicity.</li><li><strong>Urinary Antiseptic</strong>: Sometimes used in urinary tract infections.</li><li><strong>Diagnostic Tool</strong>: Helps in surgical procedures, often used to visualize and map out affected areas.<br/></li></ul><p><strong>Staining Agent</strong>:</p><p>In biological settings, it’s commonly used as a staining agent to visualize certain structures in cells and tissues, particularly in microscopic examination.<br/><br/><br/><strong>Chemical Applications</strong>:</p><p>Used as a redox indicator in analytical chemistry due to its ability to undergo reversible reduction and oxidation.<br/><br/>Methylene blue has antimicrobial properties and is also explored for potential use in photodynamic therapy for cancer and other infections. Always consult with a healthcare provider or a professional when dealing with methylene blue for medical purposes.<br/><br/><br/><strong>History on Methylene Blue</strong><br/><br/>Methylene blue has an intriguing history dating back to the late 19th century. It was first synthesized by German chemist Heinrich Caro in 1876. Originally developed as a dye, its potential for medical and scientific applications was quickly recognized.</p><p><strong>Early Uses:</strong> Initially used in textile dyeing, methylene blue's vivid color made it popular for staining fabrics.<br/><strong>Introduction to Medicine:</strong> In the 1890s, it was used as an antimalarial drug. This was one of the earliest instances of using synthetic drugs for treating diseases, though its use was eventually overshadowed by chloroquine.<br/><strong>Staining Techniques</strong>: Paul Ehrlich, a pioneering microbiologist, utilized methylene blue for staining in bacteriology. This helped in the visualization of bacteria, leading to advancements in microbiological research and diagnostics.<br/><strong>Therapeutic Applications:</strong> In the mid-20th century, methylene blue's role expanded as it was discovered to be effective in treating methemoglobinemia. It also served as an antidote for certain chemical overdoses.<br/><strong>Modern Research: </strong>Today, methylene blue is studied for potential uses in treating Alzheimer's Disease, depression, and other neurological disorders. Its properties are being explored for use in photodynamic therapy and as a potential broad-spectrum antiviral agent.<br/><br/>Methylene blue's journey from a dye to a versatile therapeutic agent highlights its significance in both industrial and medical fields.<br/><br/><br/></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_Odqmaa": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_Odqmaa",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

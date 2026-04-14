@@ -1,0 +1,137 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_RjQqWc": {
+          "type": "menu",
+          "settings": {
+            "menu": "syringes"
+          }
+        },
+        "menu_MEpMam": {
+          "type": "menu",
+          "settings": {
+            "menu": "by-injectables"
+          }
+        },
+        "menu_6mj7Ee": {
+          "type": "menu",
+          "settings": {
+            "menu": "skin-prepping-disinfecting"
+          }
+        },
+        "menu_LxWXCb": {
+          "type": "menu",
+          "settings": {
+            "menu": "disinfecting"
+          }
+        }
+      },
+      "block_order": [
+        "menu_RjQqWc",
+        "menu_MEpMam",
+        "menu_6mj7Ee",
+        "menu_LxWXCb"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "20",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Pfizer Injectable Vaccines Immunizations, Antibiotic Information",
+            "text": "<p><strong>What are Pfizer Injectables</strong></p><p><a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/Pfizer_Injectables_Catalog_All_Products.pdf?v=1745258329\" target=\"_blank\" title=\"https://cdn.shopify.com/s/files/1/0996/0350/files/Pfizer_Injectables_Catalog_All_Products.pdf?v=1745258329\">Pfizer injectables</a> refer to a range of injectable medications and vaccines produced by Pfizer, a global pharmaceutical company. These products are used in various medical fields, including:<br/><br/><strong>Vaccines:</strong> Such as the Pfizer-BioNTech COVID-19 vaccine, which is a widely known injectable.<br/><strong>Antibiotics:</strong> Injectable antibiotics for treating infections.<br/><strong>Hospital Products:</strong> Medications for pain management, anesthesia, and critical care used in hospital settings.<br/><strong>Biologics:</strong> Includes treatments for chronic illnesses like rheumatoid arthritis and certain cancers.<br/><strong>Hormone Therapies:</strong> Used for conditions requiring hormonal treatments.<br/><br/>These injectables are administered by healthcare professionals in hospitals, clinics, or similar settings, and they serve a wide range of medical purposes, from prevention to treatment of diseases.<br/><br/><strong>What are the Vaccines Pfizer makes?</strong><br/><br/>Pfizer is known for producing several vaccines, including:<br/><br/><strong>Pfizer-BioNTech COVID-19 Vaccine (Comirnaty)</strong>: Developed in collaboration with BioNTech, it's an mRNA vaccine used to prevent COVID-19.<br/><strong>Prevnar 13:</strong> A pneumococcal conjugate vaccine that protects against pneumococcal disease, including pneumonia and invasive infections.<br/><a href=\"https://www.mountainside-medical.com/products/trumenba-meningococcal-vaccine-group-b-injection\" title=\"https://www.mountainside-medical.com/products/trumenba-meningococcal-vaccine-group-b-injection\"><strong>Trumenba</strong></a><strong>:</strong> A vaccine for protection against meningococcal group B disease.<br/>NeisVac-C: Targets meningococcal group C disease.<br/><strong>Tick-borne Encephalitis Vaccine:</strong> Used in certain regions to prevent tick-borne encephalitis.<br/>-</p><p>-</p><p><strong>Pfizer Vaccine Schedule:</strong></p><p>The Pfizer vaccine schedule, particularly for the Pfizer-BioNTech COVID-19 vaccine (Comirnaty), typically involves:<br/><br/><strong>Primary Series: </strong>Two Doses: Administered 3 weeks (21 days) apart.<br/><strong>Boosters: </strong>Additional doses may be recommended for ongoing protection, especially for certain age groups, immunocompromised individuals, or as new variants emerge.<br/><strong>Pediatric Doses:</strong> Adjusted dosing schedules are available for children, differing in dose size and schedule based on age.<br/><br/>For the most current and specific vaccination schedule, including any updates related to boosters or new recommendations, it’s best to consult official health authorities like the CDC or WHO, or speak with a healthcare provider.<br/><br/></p><p></p><p><strong>What are the Antibiotics Pfizer makes?</strong></p><p>Pfizer produces a range of antibiotics that are used to treat various bacterial infections. Some of the well-known antibiotics from Pfizer include:<br/><br/><a href=\"/products/zithromax-azithromycin-tablets-250-mg\" title=\"Zithromax (azithromycin) Tablets 250 mg (Z-Pack)\"><strong>Zithromax </strong></a><strong>(Azithromycin):</strong> A macrolide antibiotic used to treat respiratory infections, skin infections, and sexually transmitted diseases.<br/><strong>Tygacil (Tigecycline):</strong> A broad-spectrum antibiotic used for complicated skin and intra-abdominal infections.<br/><a href=\"/products/unasyn-ampicillin-and-sulbactam-injection-3-gram-add-vantage-vials-10-box-rx\" title=\"Unasyn Ampicillin and Sulbactam Injection 3 Gram Add-Vantage Vials 10/Box (RX)\"><strong>Unasyn</strong></a><strong> (Ampicillin/Sulbactam):</strong> A combination antibiotic for skin, respiratory, and abdominal infections.<br/><strong>Zosyn (Piperacillin/Tazobactam):</strong> Used to treat moderate to severe bacterial infections, including pneumonia and sepsis.<br/><strong>Vfend (Voriconazole):</strong> Though primarily an antifungal, it's sometimes grouped with antibiotics for its role in treating fungal infections.</p><p><strong>Pfizer's Oncology injectables:</strong><br/><br/>Pfizer produces several oncology injectables aimed at treating various types of cancer. Some of these include:<br/><br/><strong>Sutent (Sunitinib):</strong> Used for treating kidney cancer, pancreatic neuroendocrine tumors, and gastrointestinal stromal tumors (GIST).<br/><strong>Bosulif (Bosutinib):</strong> A treatment for chronic myeloid leukemia (CML).<br/><strong>Camptosar (Irinotecan):</strong> Used in combination for colorectal cancer.<br/><strong>Mylotarg (Gemtuzumab Ozogamicin):</strong> Targets acute myeloid leukemia (AML).<br/><strong>Bavencio (Avelumab): </strong>An immune checkpoint inhibitor for Merkel cell carcinoma and urothelial carcinoma.<br/><strong>Daurismo (Glasdegib):</strong> Used in combination with chemotherapy for certain types of AML.</p><p>Pfizer’s oncology pipeline continues to expand as they research and develop new treatments. For detailed and current information, consulting Pfizer’s official resources or healthcare providers is advisable.</p>",
+            "heading_size": "small",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "17595918342c8b4eed": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_mmtiGm": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#ddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_mmtiGm"
+      ],
+      "settings": {}
+    },
+    "collection_description_CSFzVh": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_CSFzVh",
+    "17595918342c8b4eed",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

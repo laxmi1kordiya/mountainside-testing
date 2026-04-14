@@ -1,0 +1,176 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "171136843004633d2d": {
+      "type": "apps",
+      "settings": {}
+    },
+    "f422a9af-a63e-4d96-994e-c7f9acb97689": {
+      "type": "static-product",
+      "blocks": {
+        "judge_me_FWrriw": {
+          "type": "judge_me",
+          "settings": {}
+        },
+        "title_YwemE4": {
+          "type": "title",
+          "settings": {}
+        },
+        "sku_D6daiQ": {
+          "type": "sku",
+          "settings": {}
+        },
+        "price_PLNWTE": {
+          "type": "price",
+          "settings": {}
+        },
+        "form_9i3LeR": {
+          "type": "form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_FWrriw",
+        "title_YwemE4",
+        "sku_D6daiQ",
+        "price_PLNWTE",
+        "form_9i3LeR"
+      ],
+      "settings": {
+        "layout": "layout--three-col",
+        "enable_video_autoplay": true,
+        "show_dcb": true,
+        "product_cart_redirect": false,
+        "show_bulk_call_button": false,
+        "show_bulk_email_button": false
+      }
+    },
+    "52f038a7-2862-4b94-8dbb-37fff37af7e0": {
+      "type": "static-product-recommendations",
+      "settings": {
+        "show_product_recommendations": false,
+        "product_recommendations_heading": "Similar Product's",
+        "product_recommendations_limit": 10
+      }
+    },
+    "related_collections_carousel_section": {
+      "type": "related-collections-carousel",
+      "settings": {
+        "show_related_collections": true,
+        "max_collections": 5,
+        "products_per_collection": 10
+      }
+    },
+    "ae362d0b-3acf-4a44-b08c-48a5c872e1cc": {
+      "type": "static-product-reviews",
+      "disabled": true,
+      "settings": {}
+    },
+    "1718367644c2f44488": {
+      "type": "apps",
+      "settings": {}
+    },
+    "dynamic_rich_text_dEP6Hc": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_xWXq3n": {
+          "type": "text",
+          "settings": {
+            "title": "",
+            "text": "<p><a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/Hylenex_Clinical_Drug_Information.pdf?v=1744800771\" target=\"_blank\" title=\"https://cdn.shopify.com/s/files/1/0996/0350/files/Hylenex_Clinical_Drug_Information.pdf?v=1744800771\">Hylenex Clinical Drug Information</a>     --        <a href=\"https://cdn.shopify.com/s/files/1/0996/0350/files/Hylenex_Product_Information.pdf?v=1744800854\" target=\"_blank\" title=\"https://cdn.shopify.com/s/files/1/0996/0350/files/Hylenex_Product_Information.pdf?v=1744800854\">Hylenex Product Information</a></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_xWXq3n"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "dynamic_rich_text_wMknjm": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_Dx4rcp": {
+          "type": "text",
+          "settings": {
+            "title": "Hylenex Hyaluronidase Injection Information",
+            "text": "<p><strong>What is Hylenex used for?</strong></p><p>Hylenex is a brand name for hyaluronidase, which is an enzyme used in medical settings to help facilitate the <br/>dispersion and absorption of fluids or medications injected into the body. It is often used to improve the absorption of other injected drugs or to help in rehydrating patients. It can also be used to increase the effectiveness of subcutaneous fluid administration in cases like hypodermoclysis (fluid replacement). Additionally, Hylenex can be used to enhance the resolution of subcutaneous and intramuscular drug infiltration.<br/><br/><strong>Hylenex vs Hyaluronidase</strong><br/><br/>Hylenex and hyaluronidase refer to closely related medical products, with some differences primarily in branding and formulation:<br/><br/><strong>Hylenex</strong>:</p><ul><li>Hylenex is a specific brand of hyaluronidase.</li><li>It is a recombinant human hyaluronidase, meaning it is produced using recombinant DNA technology, ensuring it is identical to the natural human enzyme.</li><li>Hylenex is generally used to enhance the absorption and dispersion of co-administered drugs and fluids.<br/></li></ul><p><strong>Hyaluronidase</strong>:</p><ul><li>This is an enzyme that breaks down hyaluronic acid, a component of the extracellular matrix.</li><li>The enzyme facilitates the dispersion and absorption of injected fluids and medications.</li><li>It can be derived from various sources, such as bovine (cow) or recombinant technology.<br/></li></ul><p>In summary, Hylenex is a specific formulation of hyaluronidase designed for medical use, often preferred due to its human-derived enzyme, which may reduce the risk of allergic reactions compared to animal-derived versions.<br/><br/><strong>Hylenex Protocol</strong><br/><br/>Hylenex, containing hyaluronidase, is <br/>primarily used to enhance the absorption and dispersion of other injected drugs or fluids. It's often utilized in various medical scenarios, such as fluid administration, contrast agent dispersion, and subcutaneous drug delivery.</p><p><strong>General Outline for Hylenex Usage Protocol:</strong><br/><br/><strong>Indication</strong>: Ensure verification of Hylenex's necessity for enhancing absorption of fluids or medications.<br/><br/><strong>Dosage</strong>: Typically, Hylenex is administered subcutaneously with the specific dosing based on the accompanying medication or fluid's volume and concentration. Follow specific dosage guidelines as recommended by healthcare practitioners or protocols.<br/><br/><strong>Administration</strong>:</p><ul><li><strong>Preparation:</strong> Confirm it's the right product and prepare the syringe with the recommended dose.</li><li><strong>Injection Site:</strong> Select an appropriate injection site, usually the same site where the accompanying fluid or drug will be administered.</li><li><strong>Technique:</strong> Administer Hylenex subcutaneously, ensuring aseptic techniques.<br/></li></ul><p><strong>Monitoring</strong>: Observe for any <br/>adverse reactions post-administration. These can include local reactions<br/> like redness, swelling, or systemic effects, though they are generally <br/>rare.<br/><br/><strong>Documentation</strong>: Record the usage in the patient’s medical record, including dosage, time, and any observed reactions.<br/><br/>For tailored protocols, always refer to institutional guidelines or consult a healthcare professional.</p><p><strong>Hylenex Side Effects:</strong></p><p>Hylenex can have side effects, although not everyone experiences them. Common side effects may include:<br/><br/><strong>Injection Site Reactions</strong>:</p><ul><li>Redness</li><li>Swelling</li><li>Pain or tenderness<br/></li></ul><p><strong>Allergic Reactions</strong>: Though rare, some individuals may experience:</p><ul><li>Rash</li><li>Itching</li><li>Difficulty breathing<br/></li></ul><p><strong>Other Effects</strong>:</p><ul><li>Headache</li><li>Dizziness<br/></li></ul><p>It's important to monitor for any unusual symptoms after receiving Hylenex and report them to a healthcare provider. If you suspect an allergic reaction, seek medical attention immediately. Always use Hylenex under the supervision of a healthcare professional.<br/><br/><br/><br/><br/><br/><br/><br/></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_Dx4rcp"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "e9106b51-a25a-4d6b-bac3-214373c50952": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": false
+      }
+    },
+    "1759578891f4ecda16": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_PNrFDR": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#dddddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_PNrFDR"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "171136843004633d2d",
+    "f422a9af-a63e-4d96-994e-c7f9acb97689",
+    "52f038a7-2862-4b94-8dbb-37fff37af7e0",
+    "related_collections_carousel_section",
+    "ae362d0b-3acf-4a44-b08c-48a5c872e1cc",
+    "1718367644c2f44488",
+    "dynamic_rich_text_dEP6Hc",
+    "dynamic_rich_text_wMknjm",
+    "e9106b51-a25a-4d6b-bac3-214373c50952",
+    "1759578891f4ecda16"
+  ]
+}

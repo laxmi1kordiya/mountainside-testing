@@ -1,0 +1,84 @@
+
+ {%- liquid
+  assign og_title = page_title | default: shop.name
+  assign og_url = canonical_url | default: request.origin
+  assign og_type = 'website'
+  assign og_description = page_description | default: shop.description | default: shop.name
+  assign og_image = ''
+  assign image_alt = ''
+  assign image_width = ''
+  assign image_height = ''
+
+  if request.page_type == 'product'
+    assign og_title = product.title | strip_html
+    assign og_type = 'product'
+    assign og_image = product.featured_image | image_url: width: 600, height: 500, crop: 'center'
+    assign image_alt = product.featured_image.alt
+    assign image_width = product.featured_image.width
+    assign image_height = product.featured_image.height
+  elsif request.page_type == 'article'
+    assign og_title = article.title | strip_html
+    assign og_type = 'article'
+    assign og_description = article.excerpt_or_content | strip_html
+    if article.image
+      assign og_image = article.image | image_url: width: 600, height: 500, crop: 'center'
+      assign image_alt = article.image.alt
+      assign image_width = article.image.width
+      assign image_height = article.image.height
+    endif
+  elsif request.page_type == 'collection'
+    assign og_type = 'product.group'
+    if collection.image
+      assign og_image = collection.image | image_url: width: 600, height: 500, crop: 'center'
+      assign image_alt = collection.image.alt
+      assign image_width = collection.image.width
+      assign image_height = collection.image.height
+    endif
+  elsif request.page_type == 'password'
+    assign og_url = request.origin
+  endif
+  assign og_title = shop.name
+  assign og_url = shop.url
+  assign og_description = shop.description | default: shop.name
+  if og_image == '' and page_image
+    assign og_image = page_image | img_url: 'master'
+    assign image_alt = page_image.alt
+    assign image_width = page_image.width
+    assign image_height = page_image.height
+  endif
+-%}
+
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:url" content="{{ og_url }}">
+<meta property="og:title" content="{{ og_title | escape }}">
+<meta property="og:type" content="{{ og_type }}">
+<meta property="og:description" content="{{ og_description | escape }}">
+
+{% if og_image %}
+  <meta property="og:image" content="https:{{ og_image }}">
+  <meta property="og:image:alt" content="{{ image_alt }}">
+  <meta property="og:image:width" content="{{ image_width }}">
+  <meta property="og:image:height" content="{{ image_height }}">
+  <meta property="og:image:secure_url" content="https:{{ og_image }}">
+  <meta name="pinterest:image" content="https:{{ og_image }}">
+  <meta name="twitter:image" content="https:{{ og_image }}">
+  <meta name="twitter:image:alt" content="{{ image_alt | escape }}">
+{% endif %}
+
+{%- if request.page_type == 'product' -%}
+  <meta property="og:price:amount" content="{{ product.price | money_without_currency | strip_html }}">
+  <meta property="og:price:currency" content="{{ cart.currency.iso_code }}">
+{%- endif -%}
+
+<meta name="pinterest:title" content="{{ og_title }}">
+<meta name="pinterest:description" content="{{ og_description | escape }}">
+<meta name="pinterest:url" content="{{ og_url }}">
+
+{%- if settings.social_twitter_link != blank -%}
+  <meta name="twitter:site" content="{{ settings.social_twitter_link | split: 'twitter.com/' | last | prepend: '@' }}">
+{%- else -%}
+  <meta name="twitter:site" content="{{ shop.name }}">
+{%- endif -%}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ og_title | escape }}">
+<meta name="twitter:description" content="{{ og_description | escape }}">

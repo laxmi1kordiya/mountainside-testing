@@ -1,0 +1,749 @@
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="rotating-announcement-bar">
+</script>
+
+{% if section.settings.show_bar %}
+<div
+  class="rotating-announcement-bar"
+  data-section-id="{{ section.id }}"
+  data-animation-style="{{ section.settings.animation_style }}"
+  data-animation-duration="{{ section.settings.animation_duration }}"
+  data-display-duration="{{ section.settings.display_duration }}"
+  style="
+    {% if section.settings.use_gradient %}
+      background: linear-gradient({{ section.settings.gradient_direction }}deg, {{ section.settings.gradient_color_1 }}, {{ section.settings.gradient_color_2 }});
+    {% else %}
+      background-color: {{ section.settings.background_color }};
+    {% endif %}
+    height: {{ section.settings.bar_height }}px;
+    overflow: hidden;
+    position: relative;
+  ">
+  <div class="rotating-announcement-bar__container">
+    <!-- Left Section: Contact Info -->
+    <div class="rotating-announcement-bar__left"
+      style="
+        color: {{ section.settings.left_text_color }};
+        font-size: {{ section.settings.left_font_size }}px;
+        font-weight: {{ section.settings.left_font_weight }};
+      ">
+      {% if section.settings.show_phone %}
+        <a href="tel:{{ section.settings.phone_number | remove: ' ' | remove: '-' | remove: '(' | remove: ')' }}"
+           class="rotating-announcement-bar__contact-item"
+           style="color: inherit; text-decoration: none;">
+          <svg class="rotating-announcement-bar__icon" width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          <span class="rotating-announcement-bar__contact-text">{{ section.settings.phone_number }}</span>
+        </a>
+      {% endif %}
+
+      {% if section.settings.show_phone and section.settings.show_email %}
+        <span class="rotating-announcement-bar__separator">|</span>
+      {% endif %}
+
+      {% if section.settings.show_email %}
+        <a href="mailto:{{ section.settings.email_address }}"
+           class="rotating-announcement-bar__contact-item"
+           style="color: inherit; text-decoration: none;">
+          <svg class="rotating-announcement-bar__icon" width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span class="rotating-announcement-bar__contact-text">{{ section.settings.email_address }}</span>
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- Center Section: Rotating Messages -->
+    <div class="rotating-announcement-bar__center">
+      <!-- Desktop Messages -->
+      <div class="rotating-announcement-bar__desktop">
+        {% for block in section.blocks %}
+          {% if block.type == 'announcement_message' %}
+            <div
+              class="rotating-announcement-bar__message {% if forloop.first %}active{% endif %}"
+              data-index="{{ forloop.index0 }}"
+              style="
+                color: {{ section.settings.text_color }};
+                font-size: {{ section.settings.font_size }}px;
+                font-weight: {{ section.settings.font_weight }};
+              ">
+              {% if block.settings.message_link != blank %}
+                <a href="{{ block.settings.message_link }}" style="color: inherit; text-decoration: none;">
+                  {{ block.settings.message_text }}
+                </a>
+              {% else %}
+                {{ block.settings.message_text }}
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <!-- Mobile Messages -->
+      <div class="rotating-announcement-bar__mobile">
+        {% for block in section.blocks %}
+          {% if block.type == 'announcement_message' %}
+            <div
+              class="rotating-announcement-bar__message {% if forloop.first %}active{% endif %}"
+              data-index="{{ forloop.index0 }}"
+              style="
+                color: {{ section.settings.mobile_text_color }};
+                font-size: {{ section.settings.mobile_font_size }}px;
+                font-weight: {{ section.settings.mobile_font_weight }};
+              ">
+              {% if block.settings.mobile_message_link != blank %}
+                <a href="{{ block.settings.mobile_message_link }}" style="color: inherit; text-decoration: none;">
+                  {% if block.settings.mobile_message_text != blank %}
+                    {{ block.settings.mobile_message_text }}
+                  {% else %}
+                    {{ block.settings.message_text }}
+                  {% endif %}
+                </a>
+              {% elsif block.settings.message_link != blank %}
+                <a href="{{ block.settings.message_link }}" style="color: inherit; text-decoration: none;">
+                  {% if block.settings.mobile_message_text != blank %}
+                    {{ block.settings.mobile_message_text }}
+                  {% else %}
+                    {{ block.settings.message_text }}
+                  {% endif %}
+                </a>
+              {% else %}
+                {% if block.settings.mobile_message_text != blank %}
+                  {{ block.settings.mobile_message_text }}
+                {% else %}
+                  {{ block.settings.message_text }}
+                {% endif %}
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Right Section: Cart and Login/Account -->
+    <div class="rotating-announcement-bar__right"
+      style="
+        color: {{ section.settings.right_text_color }};
+        font-size: {{ section.settings.right_font_size }}px;
+        font-weight: {{ section.settings.right_font_weight }};
+      ">
+      {% if section.settings.show_account %}
+        {% if customer %}
+          <a href="/account"
+             class="rotating-announcement-bar__right-item"
+             style="color: inherit; text-decoration: none;">
+            <svg class="rotating-announcement-bar__icon" width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>My Account</span>
+          </a>
+        {% else %}
+          <a href="/account/login"
+             class="rotating-announcement-bar__right-item"
+             style="color: inherit; text-decoration: none;">
+            <svg class="rotating-announcement-bar__icon" width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>Login</span>
+          </a>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  {%- comment -%} Dynamic styles that depend on section settings {%- endcomment -%}
+  .rotating-announcement-bar__message {
+    transition: opacity {{ section.settings.animation_duration }}ms ease-in-out;
+  }
+
+  .rotating-announcement-bar[data-animation-style="slide-up"] .rotating-announcement-bar__message,
+  .rotating-announcement-bar[data-animation-style="slide-down"] .rotating-announcement-bar__message,
+  .rotating-announcement-bar[data-animation-style="slide-left"] .rotating-announcement-bar__message,
+  .rotating-announcement-bar[data-animation-style="slide-right"] .rotating-announcement-bar__message {
+    transition: opacity {{ section.settings.animation_duration }}ms ease-in-out,
+                transform {{ section.settings.animation_duration }}ms ease-in-out;
+  }
+
+  @media screen and (max-width: {{ section.settings.mobile_breakpoint }}px) {
+    .rotating-announcement-bar {
+      height: {{ section.settings.mobile_bar_height }}px !important;
+    }
+
+    .rotating-announcement-bar__container {
+      padding: 0 10px;
+    }
+
+    .rotating-announcement-bar__left {
+      font-size: {{ section.settings.mobile_left_font_size }}px;
+      gap: {% if section.settings.hide_left_text_mobile %}10px{% else %}5px{% endif %};
+      {% if section.settings.hide_left_text_mobile %}
+        flex-shrink: 0;
+        min-width: auto;
+      {% endif %}
+    }
+
+    {% if section.settings.hide_left_text_mobile %}
+      .rotating-announcement-bar__contact-text {
+        display: none;
+      }
+      .rotating-announcement-bar__separator {
+        display: none;
+      }
+    {% endif %}
+
+    .rotating-announcement-bar__right {
+      font-size: {{ section.settings.mobile_right_font_size }}px;
+      gap: {% if section.settings.hide_right_text_mobile %}10px{% else %}10px{% endif %};
+      {% if section.settings.hide_right_text_mobile %}
+        flex-shrink: 0;
+        min-width: auto;
+      {% endif %}
+    }
+
+    {% if section.settings.hide_right_text_mobile %}
+      .rotating-announcement-bar__right-item span {
+        display: none;
+      }
+    {% endif %}
+
+    .rotating-announcement-bar__center {
+      {% if section.settings.hide_left_text_mobile and section.settings.hide_right_text_mobile %}
+        position: static;
+        transform: none;
+        flex: 1;
+        min-width: 0;
+        padding: 0 10px;
+        overflow: hidden;
+      {% else %}
+        width: 40%;
+      {% endif %}
+    }
+
+    .rotating-announcement-bar__message {
+      padding: 0 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .rotating-announcement-bar__desktop {
+      display: none;
+    }
+
+    .rotating-announcement-bar__mobile {
+      display: block;
+    }
+
+    {% if section.settings.hide_left_mobile %}
+      .rotating-announcement-bar__left {
+        display: none;
+      }
+      .rotating-announcement-bar__center {
+        left: 30%;
+        width: 40%;
+      }
+    {% endif %}
+
+    {% if section.settings.hide_right_mobile %}
+      .rotating-announcement-bar__right {
+        display: none;
+      }
+      .rotating-announcement-bar__center {
+        left: auto;
+        right: 10px;
+        transform: none;
+        width: 50%;
+      }
+    {% endif %}
+  }
+</style>
+
+<script>
+  (function() {
+    const announcementBar = document.querySelector('.rotating-announcement-bar[data-section-id="{{ section.id }}"]');
+    if (!announcementBar) return;
+
+    const animationDuration = parseInt(announcementBar.dataset.animationDuration) || 500;
+    const displayDuration = parseInt(announcementBar.dataset.displayDuration) || 3000;
+
+    // Get messages based on screen size
+    function getMessages() {
+      const isMobile = window.innerWidth <= {{ section.settings.mobile_breakpoint }};
+      return announcementBar.querySelectorAll(isMobile ? '.rotating-announcement-bar__mobile .rotating-announcement-bar__message' : '.rotating-announcement-bar__desktop .rotating-announcement-bar__message');
+    }
+
+    let currentIndex = 0;
+    let messages = getMessages();
+    let rotationInterval;
+
+    function showMessage(index) {
+      messages.forEach((msg, i) => {
+        if (i === index) {
+          msg.classList.add('active');
+        } else {
+          msg.classList.remove('active');
+        }
+      });
+    }
+
+    function rotateMessages() {
+      if (messages.length <= 1) return;
+
+      currentIndex = (currentIndex + 1) % messages.length;
+      showMessage(currentIndex);
+    }
+
+    function startRotation() {
+      if (rotationInterval) {
+        clearInterval(rotationInterval);
+      }
+
+      messages = getMessages();
+      if (messages.length > 0) {
+        showMessage(0);
+        currentIndex = 0;
+
+        if (messages.length > 1) {
+          rotationInterval = setInterval(rotateMessages, displayDuration + animationDuration);
+        }
+      }
+    }
+
+    // Handle window resize
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        startRotation();
+      }, 250);
+    });
+
+    // Initialize
+    startRotation();
+  })();
+</script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Rotating Announcement Bar",
+  "class": "rotating-announcement-section",
+  "max_blocks": 10,
+  "settings": [
+    {
+      "type": "header",
+      "content": "General Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bar",
+      "label": "Show announcement bar",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Background Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_gradient",
+      "label": "Use gradient background",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#000000",
+      "info": "Used when gradient is disabled"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_1",
+      "label": "Gradient color 1",
+      "default": "#000000",
+      "info": "Used when gradient is enabled"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_2",
+      "label": "Gradient color 2",
+      "default": "#434343",
+      "info": "Used when gradient is enabled"
+    },
+    {
+      "type": "range",
+      "id": "gradient_direction",
+      "label": "Gradient direction (degrees)",
+      "min": 0,
+      "max": 360,
+      "step": 15,
+      "default": 90,
+      "info": "0° = left to right, 90° = top to bottom, 180° = right to left, 270° = bottom to top"
+    },
+    {
+      "type": "range",
+      "id": "container_max_width",
+      "label": "Container max width (px)",
+      "min": 1000,
+      "max": 2000,
+      "step": 10,
+      "default": 1400
+    },
+    {
+      "type": "header",
+      "content": "Left Section - Contact Info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_phone",
+      "label": "Show phone number",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Phone number",
+      "default": "+1 (888) 687-4334"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_email",
+      "label": "Show email",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "email_address",
+      "label": "Email address",
+      "default": "sales@mountainside-medical.com"
+    },
+    {
+      "type": "color",
+      "id": "left_text_color",
+      "label": "Left section text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "left_font_size",
+      "label": "Left section font size (px)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "left_font_weight",
+      "label": "Left section font weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "header",
+      "content": "Right Section - Account"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show account/login link",
+      "default": true,
+      "info": "Dynamically shows 'Login' or 'My Account' based on customer login status"
+    },
+    {
+      "type": "color",
+      "id": "right_text_color",
+      "label": "Right section text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "right_font_size",
+      "label": "Right section font size (px)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "right_font_weight",
+      "label": "Right section font weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size (px)",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Center - Rotating Messages Typography"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size (px)",
+      "min": 10,
+      "max": 32,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "bar_height",
+      "label": "Bar height (px)",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Animation Settings"
+    },
+    {
+      "type": "select",
+      "id": "animation_style",
+      "label": "Animation style",
+      "options": [
+        { "value": "fade", "label": "Fade" },
+        { "value": "slide-up", "label": "Slide Up" },
+        { "value": "slide-down", "label": "Slide Down" },
+        { "value": "slide-left", "label": "Slide Left" },
+        { "value": "slide-right", "label": "Slide Right" }
+      ],
+      "default": "slide-up",
+      "info": "Choose how messages transition"
+    },
+    {
+      "type": "range",
+      "id": "animation_duration",
+      "label": "Animation duration (ms)",
+      "min": 200,
+      "max": 2000,
+      "step": 100,
+      "default": 500,
+      "info": "How long the transition animation takes"
+    },
+    {
+      "type": "range",
+      "id": "display_duration",
+      "label": "Display duration (ms)",
+      "min": 1000,
+      "max": 9000,
+      "step": 500,
+      "default": 3000,
+      "info": "How long each message stays visible"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_breakpoint",
+      "label": "Mobile breakpoint (px)",
+      "min": 480,
+      "max": 1480,
+      "step": 10,
+      "default": 1160,
+      "info": "Screen width below which mobile settings apply (icons only mode)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_bar_height",
+      "label": "Mobile bar height (px)",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "default": 50
+    },
+    {
+      "type": "color",
+      "id": "mobile_text_color",
+      "label": "Mobile text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "mobile_font_size",
+      "label": "Mobile font size (px)",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "mobile_font_weight",
+      "label": "Mobile font weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "mobile_left_font_size",
+      "label": "Mobile left section font size (px)",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "mobile_right_font_size",
+      "label": "Mobile right section font size (px)",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_left_mobile",
+      "label": "Hide left section on mobile",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_right_mobile",
+      "label": "Hide right section on mobile",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_left_text_mobile",
+      "label": "Hide left section text on mobile (icons only)",
+      "default": true,
+      "info": "Shows only icons for Phone and Email on mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_right_text_mobile",
+      "label": "Hide right section text on mobile (icons only)",
+      "default": true,
+      "info": "Shows only icons for Cart and Login/Account on mobile"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement_message",
+      "name": "Announcement Message",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Desktop Message"
+        },
+        {
+          "type": "textarea",
+          "id": "message_text",
+          "label": "Message text",
+          "default": "Welcome to our store!"
+        },
+        {
+          "type": "url",
+          "id": "message_link",
+          "label": "Message link (optional)"
+        },
+        {
+          "type": "header",
+          "content": "Mobile Message"
+        },
+        {
+          "type": "textarea",
+          "id": "mobile_message_text",
+          "label": "Mobile message text",
+          "info": "Leave blank to use desktop message text"
+        },
+        {
+          "type": "url",
+          "id": "mobile_message_link",
+          "label": "Mobile message link (optional)",
+          "info": "Leave blank to use desktop message link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rotating Announcement Bar",
+      "category": "Header",
+      "blocks": [
+        {
+          "type": "announcement_message",
+          "settings": {
+            "message_text": "Free Shipping on Orders Over $50!",
+            "mobile_message_text": "Free Shipping $50+"
+          }
+        },
+        {
+          "type": "announcement_message",
+          "settings": {
+            "message_text": "New Arrivals - Shop the Latest Collection",
+            "mobile_message_text": "New Arrivals"
+          }
+        },
+        {
+          "type": "announcement_message",
+          "settings": {
+            "message_text": "Limited Time Offer - Save 20% Today!",
+            "mobile_message_text": "Save 20% Today!"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

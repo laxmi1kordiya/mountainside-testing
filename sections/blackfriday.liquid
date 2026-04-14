@@ -1,0 +1,919 @@
+{% comment %}
+  Black Friday Banner Section
+  Customizable promotional banner with diagonal design
+{% endcomment %}
+
+<style>
+  .blackfriday-banner-wrapper {
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+    margin-left: {{ section.settings.margin_left }}px;
+    margin-right: {{ section.settings.margin_right }}px;
+    padding: {{ section.settings.section_padding_top }}px {{ section.settings.section_padding_right }}px {{ section.settings.section_padding_bottom }}px {{ section.settings.section_padding_left }}px;
+    max-width: {{ section.settings.max_width }}%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .blackfriday-banner {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    min-height: {{ section.settings.banner_height }}px;
+    border-radius: {{ section.settings.border_radius }}px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .blackfriday-banner__left {
+    position: relative;
+    background: {{ section.settings.left_bg_color }};
+    padding: {{ section.settings.left_padding_top }}px {{ section.settings.left_padding_right }}px {{ section.settings.left_padding_bottom }}px {{ section.settings.left_padding_left }}px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+    min-width: {{ section.settings.left_section_width }}%;
+  }
+
+  .blackfriday-banner__left::before {
+    content: '';
+    position: absolute;
+    top: {{ section.settings.border_margin }}px;
+    left: {{ section.settings.border_margin }}px;
+    right: {{ section.settings.border_margin }}px;
+    bottom: {{ section.settings.border_margin }}px;
+    border: {{ section.settings.border_width }}px dashed {{ section.settings.border_color }};
+    clip-path: polygon(0 0, 100% 0, calc(100% - {{ section.settings.border_margin }}px) 100%, 0 100%);
+    pointer-events: none;
+  }
+
+  .blackfriday-banner__discount-label {
+    color: {{ section.settings.discount_label_color }};
+    font-size: {{ section.settings.discount_label_size }}px;
+    font-weight: {{ section.settings.discount_label_weight }};
+    letter-spacing: {{ section.settings.discount_label_spacing }}px;
+    text-transform: uppercase;
+    margin-bottom: {{ section.settings.discount_label_margin_bottom }}px;
+    line-height: 1;
+  }
+
+  .blackfriday-banner__discount-value {
+    color: {{ section.settings.discount_value_color }};
+    font-size: {{ section.settings.discount_value_size }}px;
+    font-weight: {{ section.settings.discount_value_weight }};
+    line-height: 0.85;
+    margin-bottom: {{ section.settings.discount_value_margin_bottom }}px;
+  }
+
+  .blackfriday-banner__discount-subtext {
+    color: {{ section.settings.discount_subtext_color }};
+    font-size: {{ section.settings.discount_subtext_size }}px;
+    font-weight: {{ section.settings.discount_subtext_weight }};
+    letter-spacing: {{ section.settings.discount_subtext_spacing }}px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .blackfriday-banner__right {
+    position: relative;
+    flex: 1;
+    background: {{ section.settings.right_bg_color }};
+    padding: {{ section.settings.right_padding_top }}px {{ section.settings.right_padding_right }}px {{ section.settings.right_padding_bottom }}px {{ section.settings.right_padding_left }}px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: -{{ section.settings.overlap_width }}px;
+  }
+
+  .blackfriday-banner__right::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: {{ section.settings.arrow_size }}px solid transparent;
+    border-bottom: {{ section.settings.arrow_size }}px solid transparent;
+    border-left: {{ section.settings.arrow_size }}px solid {{ section.settings.left_bg_color }};
+  }
+
+  .blackfriday-banner__limited-time {
+    color: {{ section.settings.limited_time_color }};
+    font-size: {{ section.settings.limited_time_size }}px;
+    font-weight: {{ section.settings.limited_time_weight }};
+    letter-spacing: {{ section.settings.limited_time_spacing }}px;
+    text-transform: uppercase;
+    margin-bottom: {{ section.settings.limited_time_margin_bottom }}px;
+    line-height: 1;
+  }
+
+  .blackfriday-banner__title {
+    font-size: {{ section.settings.title_size }}px;
+    font-weight: {{ section.settings.title_weight }};
+    letter-spacing: {{ section.settings.title_spacing }}px;
+    text-transform: uppercase;
+    margin-bottom: {{ section.settings.title_margin_bottom }}px;
+    line-height: 0.95;
+  }
+
+  .blackfriday-banner__title-black {
+    color: {{ section.settings.title_black_color }};
+  }
+
+  .blackfriday-banner__title-friday {
+    color: {{ section.settings.title_friday_color }};
+  }
+
+  .blackfriday-banner__subtitle {
+    color: {{ section.settings.subtitle_color }};
+    font-size: {{ section.settings.subtitle_size }}px;
+    font-weight: {{ section.settings.subtitle_weight }};
+    letter-spacing: {{ section.settings.subtitle_spacing }}px;
+    text-transform: uppercase;
+    margin-bottom: {{ section.settings.subtitle_margin_bottom }}px;
+    line-height: 1.2;
+  }
+
+  .blackfriday-banner__code {
+    color: {{ section.settings.code_color }};
+    font-size: {{ section.settings.code_size }}px;
+    font-weight: {{ section.settings.code_weight }};
+    letter-spacing: {{ section.settings.code_spacing }}px;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  @media screen and (max-width: 990px) {
+    .blackfriday-banner__discount-label {
+      font-size: {{ section.settings.discount_label_size | times: 0.8 }}px !important;
+    }
+
+    .blackfriday-banner__discount-value {
+      font-size: {{ section.settings.discount_value_size | times: 0.75 }}px !important;
+    }
+
+    .blackfriday-banner__discount-subtext {
+      font-size: {{ section.settings.discount_subtext_size | times: 0.85 }}px !important;
+    }
+
+    .blackfriday-banner__title {
+      font-size: {{ section.settings.title_size | times: 0.75 }}px !important;
+    }
+  }  
+  @media screen and (max-width: 768px) {
+    .blackfriday-banner {
+      flex-direction: column;
+      min-height: auto;
+    }
+
+    .blackfriday-banner__left {
+      width: 100%;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+      min-width: 100%;
+      padding: 25px 30px !important;
+    }
+
+    .blackfriday-banner__left::before {
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+      margin: 10px !important;
+    }
+
+    .blackfriday-banner__right {
+      margin-left: 0;
+      width: 100%;
+      padding: 25px 30px !important;
+    }
+
+    .blackfriday-banner__right::after {
+      display: none;
+    }
+
+    .blackfriday-banner__discount-label {
+      font-size: {{ section.settings.discount_label_size | times: 0.6 }}px !important;
+      margin-bottom: 3px !important;
+    }
+
+    .blackfriday-banner__discount-value {
+      font-size: {{ section.settings.discount_value_size | times: 0.5 }}px !important;
+      margin-bottom: 3px !important;
+    }
+
+    .blackfriday-banner__discount-subtext {
+      font-size: {{ section.settings.discount_subtext_size | times: 0.65 }}px !important;
+    }
+
+    .blackfriday-banner__limited-time {
+      font-size: {{ section.settings.limited_time_size | times: 0.7 }}px !important;
+      margin-bottom: 2px !important;
+    }
+
+    .blackfriday-banner__title {
+      font-size: {{ section.settings.title_size | times: 0.5 }}px !important;
+      margin-bottom: 5px !important;
+    }
+
+    .blackfriday-banner__subtitle {
+      font-size: {{ section.settings.subtitle_size | times: 0.65 }}px !important;
+      margin-bottom: 3px !important;
+    }
+
+    .blackfriday-banner__code {
+      font-size: {{ section.settings.code_size | times: 0.65 }}px !important;
+    }
+  }
+</style>
+
+<div class="blackfriday-banner-wrapper">
+  <div class="blackfriday-banner">
+    <div class="blackfriday-banner__left">
+      <div class="blackfriday-banner__discount-label">{{ section.settings.discount_label }}</div>
+      <div class="blackfriday-banner__discount-value">{{ section.settings.discount_value }}</div>
+      <div class="blackfriday-banner__discount-subtext">{{ section.settings.discount_subtext }}</div>
+    </div>
+
+    <div class="blackfriday-banner__right">
+      <div class="blackfriday-banner__limited-time">{{ section.settings.limited_time_text }}</div>
+      <h2 class="blackfriday-banner__title">
+        <span class="blackfriday-banner__title-black">{{ section.settings.title_black }}</span>
+        <span class="blackfriday-banner__title-friday">{{ section.settings.title_friday }}</span>
+      </h2>
+      <div class="blackfriday-banner__subtitle">{{ section.settings.subtitle }}</div>
+      <div class="blackfriday-banner__code">{{ section.settings.code_text }}</div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Black Friday Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Maximum Width",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "banner_height",
+      "min": 100,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "label": "Banner Height",
+      "default": 160
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Radius",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Section Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_left",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Left",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_right",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Right",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Left Section - Discount Area"
+    },
+    {
+      "type": "color",
+      "id": "left_bg_color",
+      "label": "Background Color",
+      "default": "#3d8b40"
+    },
+    {
+      "type": "range",
+      "id": "left_section_width",
+      "min": 20,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "label": "Width",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "left_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "left_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "left_padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "left_padding_right",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Dashed Border"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Width",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "border_margin",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Border Margin (Inner Spacing)",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Discount Label Text"
+    },
+    {
+      "type": "text",
+      "id": "discount_label",
+      "label": "Discount Label",
+      "default": "DISCOUNT"
+    },
+    {
+      "type": "color",
+      "id": "discount_label_color",
+      "label": "Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "discount_label_size",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "discount_label_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Font Weight",
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "discount_label_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Letter Spacing",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "discount_label_margin_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Discount Value (10%)"
+    },
+    {
+      "type": "text",
+      "id": "discount_value",
+      "label": "Discount Value",
+      "default": "10%"
+    },
+    {
+      "type": "color",
+      "id": "discount_value_color",
+      "label": "Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "discount_value_size",
+      "min": 30,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "discount_value_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Font Weight",
+      "default": 900
+    },
+    {
+      "type": "range",
+      "id": "discount_value_margin_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Discount Subtext"
+    },
+    {
+      "type": "text",
+      "id": "discount_subtext",
+      "label": "Subtext",
+      "default": "OFF SITEWIDE !"
+    },
+    {
+      "type": "color",
+      "id": "discount_subtext_color",
+      "label": "Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "discount_subtext_size",
+      "min": 12,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "discount_subtext_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Font Weight",
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "discount_subtext_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Letter Spacing",
+      "default": 2
+    },
+    {
+      "type": "header",
+      "content": "Right Section - Main Content"
+    },
+    {
+      "type": "color",
+      "id": "right_bg_color",
+      "label": "Background Color",
+      "default": "#2b2b2b"
+    },
+    {
+      "type": "range",
+      "id": "right_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "right_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "right_padding_left",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "right_padding_right",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "overlap_width",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Overlap Width (Negative Margin)",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "arrow_size",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Arrow Size",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Limited Time Text"
+    },
+    {
+      "type": "text",
+      "id": "limited_time_text",
+      "label": "Text",
+      "default": "LIMITED TIME OFFER"
+    },
+    {
+      "type": "color",
+      "id": "limited_time_color",
+      "label": "Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "limited_time_size",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "limited_time_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Font Weight",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "limited_time_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Letter Spacing",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "limited_time_margin_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Main Title - BLACK"
+    },
+    {
+      "type": "text",
+      "id": "title_black",
+      "label": "BLACK Text",
+      "default": "BLACK"
+    },
+    {
+      "type": "color",
+      "id": "title_black_color",
+      "label": "BLACK Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Main Title - FRIDAY"
+    },
+    {
+      "type": "text",
+      "id": "title_friday",
+      "label": "FRIDAY Text",
+      "default": "FRIDAY"
+    },
+    {
+      "type": "color",
+      "id": "title_friday_color",
+      "label": "FRIDAY Text Color",
+      "default": "#3d8b40"
+    },
+    {
+      "type": "header",
+      "content": "Main Title Settings"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 30,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "title_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Font Weight",
+      "default": 900
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Letter Spacing",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Subtitle (10% OFF EVERYTHING!)"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "10% OFF EVERYTHING!"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 12,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "subtitle_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Font Weight",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "subtitle_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Letter Spacing",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "subtitle_margin_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Code Text"
+    },
+    {
+      "type": "text",
+      "id": "code_text",
+      "label": "Code Text",
+      "default": "USE CODE BLACKFRIDAY10"
+    },
+    {
+      "type": "color",
+      "id": "code_color",
+      "label": "Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "code_size",
+      "min": 12,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "code_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Font Weight",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "code_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Letter Spacing",
+      "default": 2
+    }
+  ],
+  "presets": [
+    {
+      "name": "Black Friday Banner"
+    }
+  ]
+}
+{% endschema %}

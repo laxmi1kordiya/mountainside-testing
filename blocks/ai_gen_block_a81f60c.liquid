@@ -1,0 +1,801 @@
+{% doc %}
+  @prompt
+    Create a clean, modern “Why Choose Us?” section for a medical-supply ecommerce website.
+    
+    STYLE REQUIREMENTS
+    
+    White background with lots of spacing and a clean, healthcare-friendly aesthetic
+    
+    6 feature cards arranged in a responsive 3×2 grid
+    
+    Each card has:
+    
+    A thin light-green border (#6CC16E or similar)
+    
+    Rounded corners (12–16px)
+    
+    A minimal line icon at the top
+    
+    Bold title
+    
+    Short descriptive paragraph
+    
+    Hover effect:
+    
+    Light green glow/shadow behind the card
+    
+    Slight upward movement (2–4px)
+    
+    Smooth transition (0.3s)
+    
+    Icons should be outline-style, medical or business themed
+    
+    Typography: clean sans-serif (Inter, Poppins, or similar)
+    
+    CONTENT FOR EACH CARD (use this copy exactly)
+    
+    1️⃣ 500K+ Served
+    We’ve supported over half a million customers with dependable, competitively priced medical supplies. Our long-standing reputation reflects two decades of trusted service.
+    
+    2️⃣ B2B Excellence
+    We specialize in serving healthcare facilities, government agencies, and professional buyers with efficient procurement, bulk pricing, and seamless fulfillment.
+    
+    3️⃣ Trusted Supply
+    We partner directly with leading manufacturers, ensuring you receive only authentic, compliant, and fully authorized medical products.
+    
+    4️⃣ Veteran-Owned
+    As a certified Service-Disabled Veteran-Owned Small Business, we uphold the highest standards of integrity, discipline, and accountability in every partnership.
+    
+    5️⃣ FDA Compliant
+    We distribute FDA-approved products that meet stringent healthcare and safety standards, ensuring accuracy, reliability, and clinical trust.
+    
+    6️⃣ Easy Returns
+    Our 30-day return policy provides confidence and flexibility, making your purchasing experience simple, safe, and hassle-free.
+    
+    Include a prominent headline:
+    “Why Choose Us?”
+    Subheading: “Find out what makes us different and why thousands of customers trust us.”
+    
+    Make the entire section clean, structured, symmetrical, and visually premium., In the mobile version, it is showing 6 cards continuously from up to down. Can you instead add a scroll right button.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-why-choose-us-{{ ai_gen_id }} {
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.section_padding_top }}px 20px {{ block.settings.section_padding_bottom }}px;
+  }
+
+  .ai-why-choose-us__container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.container_max_width }}px;
+    margin: 0 auto;
+  }
+
+  .ai-why-choose-us__header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: {{ block.settings.header_spacing }}px;
+  }
+
+  .ai-why-choose-us__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 {{ block.settings.title_margin }}px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .ai-why-choose-us__subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_size }}px;
+    color: {{ block.settings.subtitle_color }};
+    margin: 0;
+    line-height: 1.6;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ai-why-choose-us__grid-wrapper-{{ ai_gen_id }} {
+    position: relative;
+  }
+
+  .ai-why-choose-us__grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: {{ block.settings.card_gap }}px;
+    margin-top: {{ block.settings.grid_margin_top }}px;
+  }
+
+  .ai-why-choose-us__card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background }};
+    border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: {{ block.settings.card_padding }}px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .ai-why-choose-us__card-{{ ai_gen_id }}:hover {
+    transform: translateY(-{{ block.settings.card_hover_lift }}px);
+    box-shadow: 0 {{ block.settings.card_hover_shadow_y }}px {{ block.settings.card_hover_shadow_blur }}px {{ block.settings.card_hover_shadow_color }};
+  }
+
+  .ai-why-choose-us__icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    margin: 0 auto {{ block.settings.icon_margin }}px;
+    color: {{ block.settings.icon_color }};
+  }
+
+  .ai-why-choose-us__icon-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    stroke-width: 1.5;
+  }
+
+  .ai-why-choose-us__card-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.card_title_size }}px;
+    color: {{ block.settings.card_title_color }};
+    margin: 0 0 {{ block.settings.card_title_margin }}px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .ai-why-choose-us__card-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.card_text_size }}px;
+    color: {{ block.settings.card_text_color }};
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .ai-why-choose-us__nav-button-{{ ai_gen_id }} {
+    display: none;
+  }
+
+  @media screen and (max-width: 989px) {
+    .ai-why-choose-us__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-why-choose-us-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_top | times: 0.7 }}px 16px {{ block.settings.section_padding_bottom | times: 0.7 }}px;
+    }
+
+    .ai-why-choose-us__title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.75 }}px;
+    }
+
+    .ai-why-choose-us__subtitle-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subtitle_size | times: 0.9 }}px;
+    }
+
+    .ai-why-choose-us__grid-wrapper-{{ ai_gen_id }} {
+      padding: 0 40px;
+    }
+
+    .ai-why-choose-us__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(6, 85%);
+      gap: {{ block.settings.card_gap | times: 0.75 }}px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      scroll-snap-type: x mandatory;
+    }
+
+    .ai-why-choose-us__grid-{{ ai_gen_id }}::-webkit-scrollbar {
+      display: none;
+    }
+
+    .ai-why-choose-us__card-{{ ai_gen_id }} {
+      padding: {{ block.settings.card_padding | times: 0.8 }}px;
+      scroll-snap-align: start;
+      min-width: 0;
+    }
+
+    .ai-why-choose-us__nav-button-{{ ai_gen_id }} {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      background-color: {{ block.settings.card_background }};
+      border: 2px solid {{ block.settings.card_border_color }};
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 2;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .ai-why-choose-us__nav-button-{{ ai_gen_id }}:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    .ai-why-choose-us__nav-button-{{ ai_gen_id }} svg {
+      width: 20px;
+      height: 20px;
+      color: {{ block.settings.icon_color }};
+    }
+
+    .ai-why-choose-us__nav-button--prev-{{ ai_gen_id }} {
+      left: 0;
+    }
+
+    .ai-why-choose-us__nav-button--next-{{ ai_gen_id }} {
+      right: 0;
+    }
+
+    .ai-why-choose-us__nav-button-{{ ai_gen_id }}.disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+  }
+{% endstyle %}
+
+<why-choose-us-{{ ai_gen_id }} class="ai-why-choose-us-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-why-choose-us__container-{{ ai_gen_id }}">
+    <div class="ai-why-choose-us__header-{{ ai_gen_id }}">
+      <h2 class="ai-why-choose-us__title-{{ ai_gen_id }}">{{ block.settings.section_title }}</h2>
+      <p class="ai-why-choose-us__subtitle-{{ ai_gen_id }}">{{ block.settings.section_subtitle }}</p>
+    </div>
+
+    <div class="ai-why-choose-us__grid-wrapper-{{ ai_gen_id }}">
+      <button class="ai-why-choose-us__nav-button-{{ ai_gen_id }} ai-why-choose-us__nav-button--prev-{{ ai_gen_id }}" aria-label="Previous cards">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="ai-why-choose-us__grid-{{ ai_gen_id }}">
+        <div class="ai-why-choose-us__card-{{ ai_gen_id }}">
+          <div class="ai-why-choose-us__icon-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3 class="ai-why-choose-us__card-title-{{ ai_gen_id }}">{{ block.settings.card_1_title }}</h3>
+          <p class="ai-why-choose-us__card-text-{{ ai_gen_id }}">{{ block.settings.card_1_text }}</p>
+        </div>
+
+        <div class="ai-why-choose-us__card-{{ ai_gen_id }}">
+          <div class="ai-why-choose-us__icon-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </div>
+          <h3 class="ai-why-choose-us__card-title-{{ ai_gen_id }}">{{ block.settings.card_2_title }}</h3>
+          <p class="ai-why-choose-us__card-text-{{ ai_gen_id }}">{{ block.settings.card_2_text }}</p>
+        </div>
+
+        <div class="ai-why-choose-us__card-{{ ai_gen_id }}">
+          <div class="ai-why-choose-us__icon-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <h3 class="ai-why-choose-us__card-title-{{ ai_gen_id }}">{{ block.settings.card_3_title }}</h3>
+          <p class="ai-why-choose-us__card-text-{{ ai_gen_id }}">{{ block.settings.card_3_text }}</p>
+        </div>
+
+        <div class="ai-why-choose-us__card-{{ ai_gen_id }}">
+          <div class="ai-why-choose-us__icon-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <h3 class="ai-why-choose-us__card-title-{{ ai_gen_id }}">{{ block.settings.card_4_title }}</h3>
+          <p class="ai-why-choose-us__card-text-{{ ai_gen_id }}">{{ block.settings.card_4_text }}</p>
+        </div>
+
+        <div class="ai-why-choose-us__card-{{ ai_gen_id }}">
+          <div class="ai-why-choose-us__icon-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+          <h3 class="ai-why-choose-us__card-title-{{ ai_gen_id }}">{{ block.settings.card_5_title }}</h3>
+          <p class="ai-why-choose-us__card-text-{{ ai_gen_id }}">{{ block.settings.card_5_text }}</p>
+        </div>
+
+        <div class="ai-why-choose-us__card-{{ ai_gen_id }}">
+          <div class="ai-why-choose-us__icon-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <h3 class="ai-why-choose-us__card-title-{{ ai_gen_id }}">{{ block.settings.card_6_title }}</h3>
+          <p class="ai-why-choose-us__card-text-{{ ai_gen_id }}">{{ block.settings.card_6_text }}</p>
+        </div>
+      </div>
+
+      <button class="ai-why-choose-us__nav-button-{{ ai_gen_id }} ai-why-choose-us__nav-button--next-{{ ai_gen_id }}" aria-label="Next cards">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+</why-choose-us-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class WhyChooseUs{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.grid = null;
+        this.prevButton = null;
+        this.nextButton = null;
+      }
+
+      connectedCallback() {
+        this.grid = this.querySelector('.ai-why-choose-us__grid-{{ ai_gen_id }}');
+        this.prevButton = this.querySelector('.ai-why-choose-us__nav-button--prev-{{ ai_gen_id }}');
+        this.nextButton = this.querySelector('.ai-why-choose-us__nav-button--next-{{ ai_gen_id }}');
+
+        if (this.grid && this.prevButton && this.nextButton) {
+          this.setupNavigation();
+        }
+      }
+
+      setupNavigation() {
+        this.prevButton.addEventListener('click', () => this.scrollPrev());
+        this.nextButton.addEventListener('click', () => this.scrollNext());
+        this.grid.addEventListener('scroll', () => this.updateButtonStates());
+        
+        this.updateButtonStates();
+      }
+
+      scrollPrev() {
+        const cardWidth = this.grid.querySelector('.ai-why-choose-us__card-{{ ai_gen_id }}').offsetWidth;
+        const gap = parseInt(getComputedStyle(this.grid).gap);
+        this.grid.scrollBy({
+          left: -(cardWidth + gap),
+          behavior: 'smooth'
+        });
+      }
+
+      scrollNext() {
+        const cardWidth = this.grid.querySelector('.ai-why-choose-us__card-{{ ai_gen_id }}').offsetWidth;
+        const gap = parseInt(getComputedStyle(this.grid).gap);
+        this.grid.scrollBy({
+          left: cardWidth + gap,
+          behavior: 'smooth'
+        });
+      }
+
+      updateButtonStates() {
+        const isAtStart = this.grid.scrollLeft <= 0;
+        const isAtEnd = this.grid.scrollLeft + this.grid.clientWidth >= this.grid.scrollWidth - 1;
+
+        if (isAtStart) {
+          this.prevButton.classList.add('disabled');
+        } else {
+          this.prevButton.classList.remove('disabled');
+        }
+
+        if (isAtEnd) {
+          this.nextButton.classList.add('disabled');
+        } else {
+          this.nextButton.classList.remove('disabled');
+        }
+      }
+    }
+
+    customElements.define('why-choose-us-{{ ai_gen_id }}', WhyChooseUs{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Why choose us",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section heading"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Title",
+      "default": "Why Choose Us?"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Subtitle",
+      "default": "Find out what makes us different and why thousands of customers trust us."
+    },
+    {
+      "type": "header",
+      "content": "Card 1"
+    },
+    {
+      "type": "text",
+      "id": "card_1_title",
+      "label": "Title",
+      "default": "500K+ Served"
+    },
+    {
+      "type": "textarea",
+      "id": "card_1_text",
+      "label": "Description",
+      "default": "We've supported over half a million customers with dependable, competitively priced medical supplies. Our long-standing reputation reflects two decades of trusted service."
+    },
+    {
+      "type": "header",
+      "content": "Card 2"
+    },
+    {
+      "type": "text",
+      "id": "card_2_title",
+      "label": "Title",
+      "default": "B2B Excellence"
+    },
+    {
+      "type": "textarea",
+      "id": "card_2_text",
+      "label": "Description",
+      "default": "We specialize in serving healthcare facilities, government agencies, and professional buyers with efficient procurement, bulk pricing, and seamless fulfillment."
+    },
+    {
+      "type": "header",
+      "content": "Card 3"
+    },
+    {
+      "type": "text",
+      "id": "card_3_title",
+      "label": "Title",
+      "default": "Trusted Supply"
+    },
+    {
+      "type": "textarea",
+      "id": "card_3_text",
+      "label": "Description",
+      "default": "We partner directly with leading manufacturers, ensuring you receive only authentic, compliant, and fully authorized medical products."
+    },
+    {
+      "type": "header",
+      "content": "Card 4"
+    },
+    {
+      "type": "text",
+      "id": "card_4_title",
+      "label": "Title",
+      "default": "Veteran-Owned"
+    },
+    {
+      "type": "textarea",
+      "id": "card_4_text",
+      "label": "Description",
+      "default": "As a certified Service-Disabled Veteran-Owned Small Business, we uphold the highest standards of integrity, discipline, and accountability in every partnership."
+    },
+    {
+      "type": "header",
+      "content": "Card 5"
+    },
+    {
+      "type": "text",
+      "id": "card_5_title",
+      "label": "Title",
+      "default": "FDA Compliant"
+    },
+    {
+      "type": "textarea",
+      "id": "card_5_text",
+      "label": "Description",
+      "default": "We distribute FDA-approved products that meet stringent healthcare and safety standards, ensuring accuracy, reliability, and clinical trust."
+    },
+    {
+      "type": "header",
+      "content": "Card 6"
+    },
+    {
+      "type": "text",
+      "id": "card_6_title",
+      "label": "Title",
+      "default": "Easy Returns"
+    },
+    {
+      "type": "textarea",
+      "id": "card_6_text",
+      "label": "Description",
+      "default": "Our 30-day return policy provides confidence and flexibility, making your purchasing experience simple, safe, and hassle-free."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "container_max_width",
+      "min": 1000,
+      "max": 1600,
+      "step": 100,
+      "unit": "px",
+      "label": "Container width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 20,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 20,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "header_spacing",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Header spacing",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "grid_margin_top",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Grid top margin",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "min": 15,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Card gap",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Card padding",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title",
+      "default": "#0e0e0e"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle",
+      "default": "#4d4d4d"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border",
+      "default": "#6CC16E"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon",
+      "default": "#6CC16E"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card title",
+      "default": "#0e0e0e"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card text",
+      "default": "#4d4d4d"
+    },
+    {
+      "type": "color",
+      "id": "card_hover_shadow_color",
+      "label": "Hover shadow",
+      "default": "rgba(108, 193, 110, 0.3)"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "title_margin",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Title margin",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "card_title_size",
+      "min": 16,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Card title size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_title_margin",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Card title margin",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_text_size",
+      "min": 13,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Card text size",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Border width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "icon_margin",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon margin",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Hover effect"
+    },
+    {
+      "type": "range",
+      "id": "card_hover_lift",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Lift distance",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "card_hover_shadow_y",
+      "min": 5,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Shadow Y offset",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_hover_shadow_blur",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Shadow blur",
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why choose us"
+    }
+  ]
+}
+{% endschema %}

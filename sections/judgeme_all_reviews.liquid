@@ -1,0 +1,25 @@
+<div id='judgeme_all_reviews_page' class="page clearfix jdgm-all-reviews-page">
+  <div class="jdgm-all-reviews-page__wrapper">
+
+  {% if collection.handle != 'dry-skin' %}
+    <h1 class="jdgm-all-reviews-page__title">{{ page.title }}</h1>
+  {% endif %}
+
+  <div class='jdgm-all-reviews-page__description'>
+    {{ page.content }}
+  </div>
+
+  {% include 'judgeme_all_reviews' %}
+</div>
+</div>
+{% schema %}
+  {
+    "name": "Judgeme Reviews",
+    "settings": [],
+    "presets":[
+      {
+        "name":"Judgeme page Reviews"
+      }
+    ]
+  }
+{% endschema %}

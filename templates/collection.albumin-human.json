@@ -1,0 +1,130 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_6WDTck": {
+          "type": "menu",
+          "settings": {
+            "menu": "emergency-supplies"
+          }
+        },
+        "menu_4qxKkV": {
+          "type": "menu",
+          "settings": {
+            "menu": "gloves"
+          }
+        },
+        "menu_epw3K9": {
+          "type": "menu",
+          "settings": {
+            "menu": "disinfecting"
+          }
+        }
+      },
+      "block_order": [
+        "menu_6WDTck",
+        "menu_4qxKkV",
+        "menu_epw3K9"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "17593317641f849932": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_X9EmJ3": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#dddddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_X9EmJ3"
+      ],
+      "settings": {}
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Albumin Human Injection: Essential for Emergency and Critical Care",
+            "text": "<h3>Medical Uses</h3><p>Albumin injections are primarily used for their ability to maintain colloid osmotic pressure in the blood:</p><ul><li><strong>Hypovolemia:</strong> Restores and maintains blood volume after trauma, surgery, or burns.</li><li><strong>Hypoalbuminemia:</strong> Corrects low albumin levels due to malnutrition, major injury, infections, pancreatitis, or liver disease.</li><li><strong>Severe Burns:</strong> Administered after the initial 24 hours to replace protein loss and stabilize cardiovascular function.</li><li><strong>Liver Cirrhosis with Ascites:</strong> Prevents fluid shifts after large-volume paracentesis.</li><li><strong>Adult Respiratory Distress Syndrome (ARDS):</strong> Used with diuretics to manage fluid volume overload.</li><li><strong>Hemolytic Disease of the Newborn:</strong> Treats severe cases in newborns.</li><li><strong>Ovarian Hyperstimulation Syndrome (OHSS):</strong> Manages fluid shifts in severe cases.</li><li><strong>Cardiopulmonary Bypass Surgery:</strong> Used as a priming fluid.</li></ul><h3>Mechanism of Action</h3><p>Albumin maintains body colloid osmotic pressure, preventing fluid leakage from blood vessels:</p><ul><li><strong>Volume Expansion:</strong> Draws fluid from tissues into the bloodstream, increasing circulating blood volume and reducing edema.</li><li><strong>Carrier Protein:</strong> Transports hormones, enzymes, fatty acids, and drugs.</li></ul><h3>Administration</h3><p>Administered via intravenous (IV) infusion, albumin is available in 5% and 25% concentrations:</p><ul><li><strong>Dosage and Infusion:</strong> Adjusted based on the patient’s condition and response.</li><li><strong>Dilution:</strong> Should be diluted with normal saline or 5% dextrose, not sterile water.</li><li><strong>Solution Quality:</strong> Use only clear or slightly colored solutions; avoid using cloudy or particle-containing solutions.</li></ul><h3>Risks and Contraindications</h3><p>While adverse reactions are rare, careful consideration is necessary:</p><ul><li><strong>Allergic Reactions:</strong> Not suitable for those with hypersensitivity to albumin; symptoms include hives and wheezing.</li><li><strong>Fluid Overload:</strong> Risk for patients with severe heart<br/> failure, pulmonary edema, or hypertension. Monitor for overload signs <br/>like shortness of breath.</li><li><strong>Severe Anemia:</strong> Albumin does not carry oxygen and may dilute red blood cells, impacting oxygenation.</li><li><strong>Infectious Disease Risk:</strong> Extremely low risk of disease transmission due to advanced manufacturing processes.</li></ul><p>Albumin injection is a life-saving solution, essential in various medical scenarios. Always consult healthcare providers for proper administration and monitoring.</p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_opwXaf": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_opwXaf",
+    "17593317641f849932",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

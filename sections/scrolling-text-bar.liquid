@@ -1,0 +1,511 @@
+{% comment %}
+  Scrolling Text Bar Section
+  - Continuous marquee-style scrolling from right to left
+  - Only shows messages that have text (skips blank ones)
+  - Add as many messages as you want via blocks
+{% endcomment %}
+
+{% assign valid_messages = "" %}
+{% assign message_count = 0 %}
+{% for block in section.blocks %}
+  {% if block.type == 'text_message' and block.settings.message_text != blank %}
+    {% assign message_count = message_count | plus: 1 %}
+  {% endif %}
+{% endfor %}
+
+{% if section.settings.show_bar and message_count > 0 %}
+<div
+  class="scrolling-text-bar"
+  data-section-id="{{ section.id }}"
+  style="
+    {% if section.settings.use_gradient %}
+      background: linear-gradient({{ section.settings.gradient_direction }}deg, {{ section.settings.gradient_color_1 }}, {{ section.settings.gradient_color_2 }});
+    {% else %}
+      background-color: {{ section.settings.background_color }};
+    {% endif %}
+    height: {{ section.settings.bar_height }}px;
+    overflow: hidden;
+  ">
+  <div class="scrolling-text-bar__track" style="animation-duration: {{ section.settings.scroll_speed }}s;">
+    {% comment %} First set of messages {% endcomment %}
+    {% for block in section.blocks %}
+      {% if block.type == 'text_message' and block.settings.message_text != blank %}
+        <span class="scrolling-text-bar__item" {{ block.shopify_attributes }}
+          style="
+            color: {{ section.settings.text_color }};
+            font-size: {{ section.settings.font_size }}px;
+            font-weight: {{ section.settings.font_weight }};
+            {% if section.settings.text_uppercase %}text-transform: uppercase;{% endif %}
+            {% if section.settings.letter_spacing != 0 %}letter-spacing: {{ section.settings.letter_spacing }}px;{% endif %}
+          ">
+          {% if block.settings.show_icon and block.settings.icon_type != 'none' %}
+            <span class="scrolling-text-bar__icon">
+              {% case block.settings.icon_type %}
+                {% when 'star' %}
+                  <svg width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                {% when 'heart' %}
+                  <svg width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                {% when 'check' %}
+                  <svg width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                {% when 'truck' %}
+                  <svg width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                {% when 'tag' %}
+                  <svg width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                {% when 'gift' %}
+                  <svg width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+                {% when 'percent' %}
+                  <svg width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>
+                {% when 'dot' %}
+                  <span style="display: inline-block; width: {{ section.settings.icon_size | divided_by: 2 }}px; height: {{ section.settings.icon_size | divided_by: 2 }}px; background: currentColor; border-radius: 50%;"></span>
+              {% endcase %}
+            </span>
+          {% endif %}
+          {% if block.settings.message_link != blank %}
+            <a href="{{ block.settings.message_link }}" style="color: inherit; text-decoration: none;">
+              {{ block.settings.message_text }}
+            </a>
+          {% else %}
+            {{ block.settings.message_text }}
+          {% endif %}
+        </span>
+        {% if section.settings.show_separator %}
+          <span class="scrolling-text-bar__separator" style="color: {{ section.settings.separator_color }}; margin: 0 {{ section.settings.message_spacing }}px;">
+            {{ section.settings.separator_text }}
+          </span>
+        {% else %}
+          <span style="margin: 0 {{ section.settings.message_spacing }}px;"></span>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% comment %} Duplicate messages for seamless loop - repeat 3 more times to ensure full coverage {% endcomment %}
+    {% for i in (1..3) %}
+      {% for block in section.blocks %}
+        {% if block.type == 'text_message' and block.settings.message_text != blank %}
+          <span class="scrolling-text-bar__item"
+            style="
+              color: {{ section.settings.text_color }};
+              font-size: {{ section.settings.font_size }}px;
+              font-weight: {{ section.settings.font_weight }};
+              {% if section.settings.text_uppercase %}text-transform: uppercase;{% endif %}
+              {% if section.settings.letter_spacing != 0 %}letter-spacing: {{ section.settings.letter_spacing }}px;{% endif %}
+            ">
+            {% if block.settings.show_icon and block.settings.icon_type != 'none' %}
+              <span class="scrolling-text-bar__icon">
+                {% case block.settings.icon_type %}
+                  {% when 'star' %}
+                    <svg width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  {% when 'heart' %}
+                    <svg width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                  {% when 'check' %}
+                    <svg width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  {% when 'truck' %}
+                    <svg width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                  {% when 'tag' %}
+                    <svg width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                  {% when 'gift' %}
+                    <svg width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+                  {% when 'percent' %}
+                    <svg width="{{ section.settings.icon_size }}" height="{{ section.settings.icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>
+                  {% when 'dot' %}
+                    <span style="display: inline-block; width: {{ section.settings.icon_size | divided_by: 2 }}px; height: {{ section.settings.icon_size | divided_by: 2 }}px; background: currentColor; border-radius: 50%;"></span>
+                {% endcase %}
+              </span>
+            {% endif %}
+            {% if block.settings.message_link != blank %}
+              <a href="{{ block.settings.message_link }}" style="color: inherit; text-decoration: none;">
+                {{ block.settings.message_text }}
+              </a>
+            {% else %}
+              {{ block.settings.message_text }}
+            {% endif %}
+          </span>
+          {% if section.settings.show_separator %}
+            <span class="scrolling-text-bar__separator" style="color: {{ section.settings.separator_color }}; margin: 0 {{ section.settings.message_spacing }}px;">
+              {{ section.settings.separator_text }}
+            </span>
+          {% else %}
+            <span style="margin: 0 {{ section.settings.message_spacing }}px;"></span>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .scrolling-text-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .scrolling-text-bar__track {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    animation: scrolling-text-marquee linear infinite;
+    will-change: transform;
+    /* Start with content visible - no blank space */
+    transform: translateX(0);
+  }
+
+  /* Ensure content is visible immediately on load */
+  .scrolling-text-bar {
+    visibility: visible !important;
+  }
+
+  .scrolling-text-bar__track,
+  .scrolling-text-bar__item {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .scrolling-text-bar__track:hover {
+    {% if section.settings.pause_on_hover %}
+      animation-play-state: paused;
+    {% endif %}
+  }
+
+  @keyframes scrolling-text-marquee {
+    0% {
+      transform: translateX(-25%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .scrolling-text-bar__item {
+    display: inline-flex;
+    align-items: center;
+    gap: {{ section.settings.icon_gap }}px;
+    flex-shrink: 0;
+  }
+
+  .scrolling-text-bar__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .scrolling-text-bar__separator {
+    flex-shrink: 0;
+  }
+
+  /* Mobile Styles */
+  @media screen and (max-width: {{ section.settings.mobile_breakpoint }}px) {
+    .scrolling-text-bar {
+      height: {{ section.settings.mobile_bar_height }}px !important;
+    }
+
+    .scrolling-text-bar__item {
+      font-size: {{ section.settings.mobile_font_size }}px !important;
+    }
+
+    .scrolling-text-bar__track {
+      animation-duration: {{ section.settings.mobile_scroll_speed }}s !important;
+    }
+  }
+</style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Scrolling Text Bar",
+  "class": "scrolling-text-bar-section",
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "header",
+      "content": "General Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bar",
+      "label": "Show scrolling bar",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Background Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_gradient",
+      "label": "Use gradient background",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_1",
+      "label": "Gradient color 1",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_2",
+      "label": "Gradient color 2",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "gradient_direction",
+      "label": "Gradient direction (degrees)",
+      "min": 0,
+      "max": 360,
+      "step": 15,
+      "default": 90
+    },
+    {
+      "type": "header",
+      "content": "Text Settings"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size (px)",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "checkbox",
+      "id": "text_uppercase",
+      "label": "Uppercase text",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter spacing (px)",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Bar Size"
+    },
+    {
+      "type": "range",
+      "id": "bar_height",
+      "label": "Bar height (px)",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Scroll Animation"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll speed (seconds for one loop)",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "default": 20,
+      "info": "Lower = faster scrolling"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Separator & Spacing"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_separator",
+      "label": "Show separator between messages",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "separator_text",
+      "label": "Separator character",
+      "default": "•",
+      "info": "Examples: • | ★ ✦ ◆ —"
+    },
+    {
+      "type": "color",
+      "id": "separator_color",
+      "label": "Separator color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "message_spacing",
+      "label": "Spacing between messages (px)",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Icon Settings"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size (px)",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "icon_gap",
+      "label": "Gap between icon and text (px)",
+      "min": 2,
+      "max": 20,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_breakpoint",
+      "label": "Mobile breakpoint (px)",
+      "min": 480,
+      "max": 1020,
+      "step": 10,
+      "default": 770
+    },
+    {
+      "type": "range",
+      "id": "mobile_bar_height",
+      "label": "Mobile bar height (px)",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "mobile_font_size",
+      "label": "Mobile font size (px)",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mobile_scroll_speed",
+      "label": "Mobile scroll speed (seconds)",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "default": 15
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_message",
+      "name": "Message",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "message_text",
+          "label": "Message text",
+          "info": "Leave blank to skip this message"
+        },
+        {
+          "type": "url",
+          "id": "message_link",
+          "label": "Link (optional)"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_icon",
+          "label": "Show icon",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "icon_type",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "star", "label": "Star" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "check", "label": "Checkmark" },
+            { "value": "truck", "label": "Truck (Shipping)" },
+            { "value": "tag", "label": "Tag (Sale)" },
+            { "value": "gift", "label": "Gift" },
+            { "value": "percent", "label": "Percent" },
+            { "value": "dot", "label": "Dot" }
+          ],
+          "default": "star"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scrolling Text Bar",
+      "category": "Header",
+      "blocks": [
+        {
+          "type": "text_message",
+          "settings": {
+            "message_text": "Free Shipping on Orders Over $50"
+          }
+        },
+        {
+          "type": "text_message",
+          "settings": {
+            "message_text": "Shop New Arrivals"
+          }
+        },
+        {
+          "type": "text_message",
+          "settings": {
+            "message_text": "Save 20% on First Order"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

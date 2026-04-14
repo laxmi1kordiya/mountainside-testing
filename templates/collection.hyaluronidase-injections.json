@@ -1,0 +1,130 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_XgQfTM": {
+          "type": "menu",
+          "settings": {
+            "menu": "aesthetics-supplies"
+          }
+        },
+        "menu_ApxRwc": {
+          "type": "menu",
+          "settings": {
+            "menu": "syringes"
+          }
+        },
+        "menu_F4AmKF": {
+          "type": "menu",
+          "settings": {
+            "menu": "numbing-and-freezing"
+          }
+        }
+      },
+      "block_order": [
+        "menu_XgQfTM",
+        "menu_ApxRwc",
+        "menu_F4AmKF"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "1759357045fc1aea5e": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_KencRb": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#dddddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_KencRb"
+      ],
+      "settings": {}
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Hyaluronidase Injections & Hylenex – Fast, Effective Filler Dissolving & Enhanced Injection Therapy",
+            "text": "<p><strong>Restore Your Natural Beauty or Improve Absorption with Safe, Fast-Acting Hyaluronidase Injections. Trusted Worldwide for Dissolving Hyaluronic Acid Fillers, Managing Complications, and Enhancing Subcutaneous Treatments.</strong></p><h2>Order Hyaluronidase Injections & Hylenex – Fast, Safe Filler Dissolving & Emergency Filler Correction</h2><p><em>Get expert-grade hyaluronidase today for safe, rapid reversal of hyaluronic acid fillers and enhanced drug absorption. Trusted by top clinics and hospitals worldwide for optimal patient outcomes!</em></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_IvHSGS": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_IvHSGS",
+    "1759357045fc1aea5e",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

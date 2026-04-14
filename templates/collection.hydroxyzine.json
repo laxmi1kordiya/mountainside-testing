@@ -1,0 +1,130 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "needles-and-syringes"
+          }
+        },
+        "menu_ffp6a6": {
+          "type": "menu",
+          "settings": {
+            "menu": "aesthetics-supplies"
+          }
+        },
+        "menu_i7PgGL": {
+          "type": "menu",
+          "settings": {
+            "menu": "skin-prepping-disinfecting"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_ffp6a6",
+        "menu_i7PgGL"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "20",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Hydroxyzine: Powerful Antihistamine & Anxiolytic for Anxiety, Itching, Sleep, and Allergies | Uses, Dosage, Side Effects & FAQ",
+            "text": "<p><strong>Hydroxyzine</strong> (brand names: Atarax, Vistaril) is a trusted, non-narcotic, prescription antihistamine with potent anti-anxiety, sedative, anti-itch, and anti-allergy effects. Purposely prescribed by doctors for short-term anxiety management, relief of itching and hives, sedation before procedures, and adjunct therapy for insomnia, hydroxyzine is prized for its rapid onset and multi-purpose use.</p><h3>What Is Hydroxyzine Mostly Used For?</h3><ul><li><strong>Anxiety relief</strong> (short-term, generalized anxiety disorder)</li><li><strong>Sleep aid (sedation/insomnia)</strong></li><li><strong>Allergic itching and hives (pruritus, urticaria)</strong></li><li><strong>Pre-surgical sedation</strong></li><li><strong>Adjunct to pain control or anti-nausea therapy</strong></li></ul><h3>Is Hydroxyzine Similar to Xanax?</h3><p><strong>No, hydroxyzine is not chemically related to Xanax (alprazolam).</strong> Hydroxyzine is an antihistamine; Xanax is a benzodiazepine. Hydroxyzine is non-habit-forming, making it a safer alternative for anxiety relief without addiction risk.</p><h3>Is Hydroxyzine Just Benadryl?</h3><p>No. <strong>Hydroxyzine and Benadryl (diphenhydramine) are both first-generation antihistamines</strong>, but hydroxyzine is more potent for anxiety and sedation, while Benadryl is mainly for allergies and sleep.</p><h3>Why Is Hydroxyzine a High Risk Medication?</h3><ul><li><strong>Risk of QT prolongation (heart rhythm changes)</strong></li><li>Sedation, especially in elderly patients (increased fall risk)</li><li>Potential drug interactions</li><li><strong>Should be used with caution in older adults and those with cardiac conditions</strong></li></ul><h3>What Happens When You Take Hydroxyzine Daily?</h3><ul><li>May develop <strong>tolerance to sedation</strong></li><li>Possible side effects: drowsiness, dry mouth, constipation</li><li>Not recommended for long-term daily use except under close medical supervision</li><li>Can safely be used nightly for short-term sleep or anxiety relief if prescribed</li></ul><h3>Is Hydroxyzine a Strong Sleeping Pill?</h3><p><strong>Hydroxyzine is commonly used as a non-addictive sleep aid,</strong> with strong sedative effects for many users. It is often favored as a short-term solution for insomnia or sleep maintenance.</p><h3>What Cannot Be Mixed With Hydroxyzine?</h3><ul><li><strong>Alcohol or other sedatives/benzodiazepines</strong> (increases CNS depression)</li><li><strong>Opioids</strong> (risk of respiratory depression)</li><li><strong>QT-prolonging medications</strong> (risk of heart rhythm issues)</li><li>Always tell your doctor all medications and supplements you take</li></ul><h3>What Does It Feel Like to Be on Hydroxyzine?</h3><ul><li>Most feel <strong>calm, relaxed, and drowsy</strong></li><li>Relief from itching and allergy symptoms</li><li>Some may feel mild grogginess, “hangover,” or dry mouth the next day</li></ul><h3>What Is the Closest Drug to Hydroxyzine?</h3><ul><li><strong>Diphenhydramine (Benadryl)</strong> – close for sedation & allergy relief</li><li><strong>Cetirizine (Zyrtec)</strong> – close for allergy, but much less sedating</li><li><strong>Other first-generation antihistamines</strong> (chlorpheniramine, promethazine)</li></ul><h3>How Long Does It Take for Hydroxyzine to Kick In?</h3><ul><li><strong>Onset is rapid – usually within 15–30 minutes</strong> after oral dosing</li><li>Peak effects are seen in 2 hours</li></ul><h3>Is Hydroxyzine a Narcotic?</h3><p><strong>No—hydroxyzine is not a narcotic or a controlled substance.</strong> It has no addictive or abuse potential.</p><h3>Is Hydroxyzine the Same as Zyrtec?</h3><p><strong>No. Zyrtec (cetirizine) is a second-generation antihistamine derived from hydroxyzine,</strong> but with less sedation and minimal anxiety benefit.</p><h3>Who Should Avoid Hydroxyzine?</h3><ul><li><strong>Elderly patients</strong> (unless prescribed with caution)</li><li>Those with history of <strong>long QT syndrome/heart rhythm disorders</strong></li><li><strong>Severe liver disease</strong></li><li>Pregnant women (unless prescribed for special indications)</li></ul><h3>Is It Okay to Take Hydroxyzine Every Night for Sleep?</h3><ul><li><strong>Safe in the short term if prescribed,</strong> but not ideal for ongoing, long-term insomnia. Discuss with your doctor for better long-term sleep solutions.</li></ul><h3>What Are the Major Side Effects of Hydroxyzine?</h3><ul><li><strong>Drowsiness, dry mouth, headache, blurred vision</strong></li><li>Constipation, urinary retention</li><li>Rare: confusion, heart rhythm changes (QT prolongation)</li></ul><h3>When Is the Best Time to Take Hydroxyzine for Anxiety?</h3><ul><li><strong>Take 15–30 minutes before anticipated anxiety-provoking events</strong> or at bedtime for sleep-related anxiety. Dose and timing should follow your provider's instructions.</li></ul><h2>Key Features & Benefits</h2><ul><li><strong>Fast-acting: anxiety, sleep, and allergy relief</strong></li><li><strong>Non-habit forming, non-narcotic</strong></li><li><strong>Oral tablets, capsules, and solution available</strong></li><li><strong>Safe alternative to benzodiazepines</strong></li><li><strong>Rx only – always use as directed by your doctor</strong></li></ul><p><strong>Order Hydroxyzine (Atarax, Vistaril) today for proven, prescription-strength relief—perfect for anxiety, sleep troubles, and allergies.</strong></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "1759587094e08ecf11": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_KEXE7T": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#ddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_KEXE7T"
+      ],
+      "settings": {}
+    },
+    "collection_description_PFo8pf": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_PFo8pf",
+    "1759587094e08ecf11",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

@@ -1,0 +1,4 @@
+{% if template.name == 'index' %}<style id='ws-critical-css'>{% render 'critical-css-home' %}</style>
+{% elsif template.name == 'product' %}<style id='ws-critical-css'>{% render 'critical-css-product' %}</style>
+{% elsif template.name == 'collection' %}<style id='ws-critical-css'>{% render 'critical-css-collection' %}</style>
+{% endif %}

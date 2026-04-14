@@ -1,0 +1,123 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_RjQqWc": {
+          "type": "menu",
+          "settings": {
+            "menu": "syringes"
+          }
+        },
+        "menu_6mj7Ee": {
+          "type": "menu",
+          "settings": {
+            "menu": "skin-prepping-disinfecting"
+          }
+        }
+      },
+      "block_order": [
+        "menu_RjQqWc",
+        "menu_6mj7Ee"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "20",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Solu-Medrol Injection (Methylprednisolone) – Fast-Acting Relief for Inflammation, Allergies, and Autoimmune Conditions",
+            "text": "<p><strong>Solu-Medrol Injection (methylprednisolone sodium succinate)</strong> is a powerful, fast-acting corticosteroid used by doctors and hospitals worldwide for emergency and chronic management of inflammation, severe allergies, autoimmune disorders, and certain acute conditions. Backed by clinical efficacy and trusted by physicians, Solu-Medrol quickly reduces inflammation, suppresses immune response, and relieves severe symptoms across a range of medical conditions.</p><p><strong>Order Solu-Medrol Injection USP today from our licensed online pharmacy for fast delivery, guaranteed authenticity, and top pharmaceutical safety. Always use under the guidance of a healthcare professional.</strong></p>",
+            "heading_size": "small",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "175940678262443476": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_8PPdAb": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#ddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_8PPdAb"
+      ],
+      "settings": {}
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_AqTFDt": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_AqTFDt",
+    "dynamic_rich_text_LNjHmp",
+    "175940678262443476"
+  ]
+}

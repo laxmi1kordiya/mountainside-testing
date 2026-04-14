@@ -1,0 +1,75 @@
+{% comment %}
+  Collection Filter - Query parameter based filtering
+  Shows collections that products in the current collection also belong to
+  Uses JS client-side filtering via ?collections= query param
+{% endcomment %}
+
+{% comment %} Build list of unique collections from current collection's products {% endcomment %}
+{% assign coll_list = '' %}
+{% assign coll_counts = '' %}
+{% for product in collection.products %}
+  {% for prod_coll in product.collections %}
+    {% assign coll_title = prod_coll.title %}
+    {% if coll_title != blank and coll_title != collection.title %}
+      {% unless coll_list contains coll_title %}
+        {% if coll_list == '' %}
+          {% assign coll_list = coll_title %}
+          {% assign coll_counts = '1' %}
+        {% else %}
+          {% assign coll_list = coll_list | append: '|||' | append: coll_title %}
+          {% assign coll_counts = coll_counts | append: '|||1' %}
+        {% endif %}
+      {% else %}
+        {% assign coll_array_temp = coll_list | split: '|||' %}
+        {% assign coll_count_arr_temp = coll_counts | split: '|||' %}
+        {% assign new_coll_counts = '' %}
+        {% for c in coll_array_temp %}
+          {% assign idx = forloop.index0 %}
+          {% if c == coll_title %}
+            {% assign current_coll_cnt = coll_count_arr_temp[idx] | plus: 1 %}
+          {% else %}
+            {% assign current_coll_cnt = coll_count_arr_temp[idx] %}
+          {% endif %}
+          {% if new_coll_counts == '' %}
+            {% assign new_coll_counts = current_coll_cnt %}
+          {% else %}
+            {% assign new_coll_counts = new_coll_counts | append: '|||' | append: current_coll_cnt %}
+          {% endif %}
+        {% endfor %}
+        {% assign coll_counts = new_coll_counts %}
+      {% endunless %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% assign colls_array = coll_list | split: '|||' %}
+{% assign coll_counts_array = coll_counts | split: '|||' %}
+
+{% if colls_array.size > 0 %}
+  <div class="collection-filters__group" data-filter-group="collection">
+    <div class="collection-filters__header">
+      <span class="collection-filters__title">Collection</span>
+    </div>
+    <div class="collection-filters__content">
+      <div class="filter-list-scroll">
+        <ul class="filter-list" data-filter-list>
+          {% for coll_name in colls_array %}
+            {% assign coll_count = coll_counts_array[forloop.index0] | default: 0 %}
+            <li class="filter-list__item">
+              <label class="filter-list__label" data-collection-filter>
+                <input type="checkbox" class="filter-list__checkbox" data-filter-active="false">
+                <span class="filter-list__checkbox-icon">
+                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                    <path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="filter-list__text">{{ coll_name }}</span>
+                <span class="filter-list__count">({{ coll_count }})</span>
+              </label>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endif %}

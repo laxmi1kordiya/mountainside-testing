@@ -1,0 +1,114 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_YytWy3": {
+          "type": "menu",
+          "settings": {
+            "menu": "wound-care"
+          }
+        },
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "first-aid-supplies"
+          }
+        },
+        "menu_ApxRwc": {
+          "type": "menu",
+          "settings": {
+            "menu": "bandages-and-wraps"
+          }
+        },
+        "menu_4qxKkV": {
+          "type": "menu",
+          "settings": {
+            "menu": "gloves"
+          }
+        },
+        "menu_gny4yN": {
+          "type": "menu",
+          "settings": {
+            "menu": "disinfecting"
+          }
+        },
+        "menu_6WDTck": {
+          "type": "menu",
+          "settings": {
+            "menu": "skin"
+          }
+        }
+      },
+      "block_order": [
+        "menu_YytWy3",
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_ApxRwc",
+        "menu_4qxKkV",
+        "menu_gny4yN",
+        "menu_6WDTck"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Emulsions for Wound Healing Information",
+            "text": "<p><strong>What are Emulsions for Wound Healing</strong></p><p>Emulsions for wound healing are formulations that combine water and oil phases to create a stable mixture that can be applied to wounds. These emulsions are designed to provide several benefits for healing, including:<br/><br/><strong>Moisture Retention:</strong> They help maintain an optimal moisture level in the wound, which is crucial for promoting faster healing and reducing the risk of infection.<br/><strong>Barrier Protection:</strong> Emulsions can form a protective layer over the wound, shielding it from external contaminants.<br/><strong>Nutrient Delivery:</strong> Some emulsions are enriched with nutrients, vitamins, or bioactive compounds that can aid in tissue repair and regeneration.<br/><strong>Ease of Application:</strong> Being in a liquid or semi-liquid form, emulsions are easy to apply and spread evenly over the wound surface.<br/><strong>Comfort: </strong>They are often soothing, reducing discomfort and irritation associated with wound healing.Types of </p><p>These emulsions can be used for a variety of wounds, including surgical wounds, burns, chronic ulcers, and more.<br/><br/><strong>Types of Emulsions for Wound Healing:</strong></p><p>Emulsions for wound healing can be categorized based on their formulation and intended use. Here are some common types:<br/><br/><strong>Oil-in-Water (O/W) Emulsions:</strong> These have oil droplets dispersed in a water phase. They are lightweight, non-greasy, and provide a cooling effect, making them suitable for burns and acute wounds.<br/><strong>Water-in-Oil (W/O) Emulsions:</strong> These have water droplets dispersed in an oil phase. They are thicker, providing a more substantial barrier that is beneficial for dry or chronic wounds.<br/><strong>Hydrocolloid Emulsions:</strong> These contain hydrocolloids that form a gel upon contact with wound exudate, keeping the wound moist and promoting healing.<br/><strong>Antimicrobial Emulsions</strong>: Formulated with antimicrobial agents to reduce the risk of infection in the wound.<br/><strong>Enzymatic Emulsions: </strong>Contain enzymes that actively debride necrotic tissue, facilitating wound cleaning.<br/><strong>Silicone-based Emulsions:</strong> Offer a protective, non-reactive barrier which can be useful for minimizing scar formation.<br/><strong>Lipid-rich Emulsions:</strong> Enriched with essential fatty acids to aid in cell regeneration and repair.</p><p>Each type of emulsion is designed to address specific aspects of wound healing, and the choice depends on the wound type and patient needs.<br/><br/><strong>What Types of Wounds Benefit the most from Emulsions :</strong></p><p>Emulsions can be particularly beneficial for a variety of wounds due to their moisturizing and protective properties.  Here are some types of wounds that benefit the most:<br/><br/><strong>Burns:</strong> The cooling and hydrating properties of oil-in-water emulsions can soothe burns and aid in recovery.<br/><strong>Chronic Ulcers:</strong> Including pressure ulcers and diabetic foot ulcers, where maintaining moisture and providing a protective barrier is crucial for healing.<br/><strong>Surgical Wounds:</strong> Emulsions can help keep the wound site moist, promoting cell proliferation and reducing scar tissue formation.<br/><strong>Minor Cuts and Abrasions:</strong> Emulsions offer a protective layer that helps prevent infections and speeds up healing.<br/><strong>Dry or Scabbed Wounds:</strong> Water-in-oil emulsions can provide the necessary moisture to soften and aid in the healing process.<br/><strong>Radiation Dermatitis:</strong> For skin irritation and damage caused by radiation therapy, emulsions can soothe and protect the skin.<br/><strong>Eczema or Dermatitis-induced Wounds:</strong> Emulsions can moisturize and help repair skin barriers.</p><p>Choosing the right formulation is essential for addressing specific wound characteristics and patient needs.<br/><br/></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_574sXS": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_574sXS",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

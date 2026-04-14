@@ -1,0 +1,135 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_ApxRwc": {
+          "type": "menu",
+          "settings": {
+            "menu": "syringes"
+          }
+        },
+        "menu_E9KBnX": {
+          "type": "menu",
+          "settings": {
+            "menu": "skin-prepping-disinfecting"
+          }
+        },
+        "menu_F4AmKF": {
+          "type": "menu",
+          "settings": {
+            "menu": "numbing-and-freezing"
+          }
+        },
+        "menu_CnPRmC": {
+          "type": "menu",
+          "settings": {
+            "menu": "gloves"
+          }
+        },
+        "menu_4qxKkV": {
+          "type": "menu",
+          "settings": {
+            "menu": "disinfecting"
+          }
+        },
+        "menu_dyJDM3": {
+          "type": "menu",
+          "settings": {
+            "menu": "general-supplies"
+          }
+        },
+        "menu_XgQfTM": {
+          "type": "menu",
+          "settings": {
+            "menu": "aesthetics-supplies"
+          }
+        },
+        "menu_TiE3qF": {
+          "type": "menu",
+          "settings": {
+            "menu": "anesthetic"
+          }
+        },
+        "menu_RBiqFY": {
+          "type": "menu",
+          "settings": {
+            "menu": "allergic-reaction-treatments"
+          }
+        }
+      },
+      "block_order": [
+        "menu_ApxRwc",
+        "menu_E9KBnX",
+        "menu_F4AmKF",
+        "menu_CnPRmC",
+        "menu_4qxKkV",
+        "menu_dyJDM3",
+        "menu_XgQfTM",
+        "menu_TiE3qF",
+        "menu_RBiqFY"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Unlock Ultimate Wellness with our Top-Rated Vitamin Injections!",
+            "text": "<p>Boost your energy, support immune health, and improve mental clarity with our premium Vitamin Injections — the #1 choice for those seeking fast, high-absorption nutrients. Backed by science and trusted by clinics, our vitamin injections deliver essential nutrients directly into your bloodstream for maximum effectiveness.</p><h3><strong>What Do Vitamin Injections Do to the Body?</strong></h3><p>Vitamin injections bypass the digestive system, ensuring <strong>better absorption</strong> and <strong>rapid results</strong>. Experience increased energy, enhanced immunity, improved skin health, and reduced fatigue — benefits often unattainable with vitamins taken orally. These injections fortify metabolism, support healthy nerve function, and promote overall wellbeing.</p><h3><strong>Do Vitamin Injections Really Work?</strong></h3><p>Absolutely! Clinical studies show that vitamin injections, such as <strong>vitamin B12 shots</strong>, deliver nutrients more efficiently than pills, with noticeable improvements in energy, cognition, and mood. Our high-potency injections are formulated for <strong>maximum bioavailability</strong>.</p><h3><strong>What Vitamin Injections Are Best?</strong></h3><p>Our bestsellers include:</p><ul><li><strong>Vitamin B12 Injections:</strong> For energy, mood, and nerve health.</li><li><strong>Vitamin C Injections:</strong> For immune support and antioxidant protection.</li><li><strong>Myers' Cocktail:</strong> A powerful blend of B-vitamins, magnesium, calcium, and vitamin C, popular for fatigue, migraines, and overall rejuvenation.</li><li><strong>Injectable Vitamin D:</strong> Supports bone health, mood, and immune system function.</li></ul><h3><strong>How Long Does a Vitamin Injection Last?</strong></h3><p>Depending on the nutrient, effects can last <strong>from several days to a few weeks</strong>. For example, B12 injections are typically administered every 1-4 weeks based on individual needs. Consistent treatments ensure optimal results.</p><h3><strong>Frequently Asked Health Questions</strong></h3><p><strong>Who Should Avoid B12 Injections?</strong><br/>People with <em>Leber’s disease</em>, certain allergies, or those sensitive to cobalt should avoid B12 injections—consult your healthcare provider before starting.</p><p><strong>How Much Does a B12 Shot Cost?</strong><br/>Prices range from <strong>$20-$100 per injection</strong>, depending on clinic or provider.<br/><br/><strong>Are Vitamin Injections FDA Approved?</strong><br/>The vitamins used are generally FDA approved, but injections should be administered by a licensed healthcare professional.<br/><br/><strong>Are Vitamin Injections Painful?</strong><br/>Most report only a slight pinch; discomfort is minimal and temporary.<br/><br/><strong>Are B12 Shots Better Than Pills?</strong><br/>Yes! B12 shots offer <strong>higher absorption rates</strong> and faster results, especially for those with digestive issues or B12 malabsorption.<br/><br/><strong>Are Vitamin Injections Worth It?</strong><br/>For those seeking <strong>quick and effective vitamin replenishment</strong>, injections are often worth it—particularly for individuals with deficiencies or absorption challenges.<br/><br/><strong>Who Should Avoid Vitamin C Injections?</strong><br/>People with kidney disease, certain metabolic disorders, or allergies should avoid high-dose vitamin C injections.<br/><br/><strong>Where Is the Best Place to Inject B12?</strong><br/>The most effective sites are the <strong>deltoid (upper arm), thigh, or buttocks</strong>—always administered by a trained healthcare provider.<br/><br/><strong>What is in the Myers Cocktail?</strong><br/>A powerful combo: <strong>B-vitamins (B12, B6), Vitamin C, magnesium, and calcium</strong> for all-around wellness.</p><p><strong>Are Vitamin Injections Prescription Only?</strong><br/>Most injectable vitamins <strong>require a prescription</strong> and should be overseen by a medical professional.</p><p><strong>Is There an Injectable Vitamin D?</strong><br/>Yes, <strong>Vitamin D injections</strong> are available for those with significant deficiencies or absorption issues—administered by a healthcare provider.<br/><br/><strong>Transform your vitality with pharmaceutical-grade vitamin injections—clinically proven, high-traffic product!</strong><br/><strong>Order now or consult with one of our healthcare professionals to see if vitamin injections are right for you.</strong></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_aEClao": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_aEClao",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

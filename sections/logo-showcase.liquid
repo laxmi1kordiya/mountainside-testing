@@ -1,0 +1,410 @@
+<section class="logo-showcase-section" style="padding: 10px 0 5px;">
+  <div class="logo-showcase-container">
+    {% if section.settings.title != blank %}
+      <h2 class="logo-showcase-title">
+        {{ section.settings.title | escape }}
+      </h2>
+    {% endif %}
+
+    <div class="logo-showcase-wrapper">
+      <div class="logo-showcase-track">
+        {% for block in section.blocks %}
+          <div class="logo-showcase-item" {{ block.shopify_attributes }}>
+            {% if block.settings.link != blank %}
+              <a class="logo-showcase-link" href="{{ block.settings.link }}" {% if block.settings.open_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+            {% endif %}
+
+            <div class="logo-showcase-image-container">
+              {% if block.settings.bw_image %}
+                <img
+                  class="logo-showcase-image logo-bw"
+                  src="{{ block.settings.bw_image | image_url: width: 300 }}"
+                  alt="{{ block.settings.bw_image.alt | default: 'Partner logo' }}"
+                  loading="lazy"
+                  width="160"
+                  height="80"
+                >
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder--image logo-bw' }}
+              {% endif %}
+
+              {% if block.settings.color_image %}
+                <img
+                  class="logo-showcase-image logo-color"
+                  src="{{ block.settings.color_image | image_url: width: 300 }}"
+                  alt="{{ block.settings.color_image.alt | default: 'Partner logo' }}"
+                  loading="lazy"
+                  width="160"
+                  height="80"
+                >
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder--image logo-color' }}
+              {% endif %}
+            </div>
+
+            {% if block.settings.link != blank %}
+              </a>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .logo-showcase-section {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .logo-showcase-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .logo-showcase-title {
+    text-align: {{ section.settings.title_alignment }};
+    margin-bottom: 30px;
+    font-size: {{ section.settings.title_size }}px;
+    color: {{ section.settings.title_color }};
+    font-weight: 600;
+  }
+
+  .logo-showcase-wrapper {
+    overflow: hidden;
+  }
+
+  .logo-showcase-track {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: {{ section.settings.logo_gap }}px;
+  }
+
+  .logo-showcase-item {
+    flex: 0 0 calc((100% - {{ section.settings.logo_gap | times: 4 }}px) / 5);
+    max-width: calc((100% - {{ section.settings.logo_gap | times: 4 }}px) / 5);
+  }
+
+  .logo-showcase-link {
+    display: block;
+    text-decoration: none;
+  }
+
+  .logo-showcase-image-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 20px;
+    background-color: transparent;
+    min-height: 120px;
+    overflow: visible;
+  }
+
+  .logo-showcase-image {
+    width: 140px;
+    height: auto;
+    max-height: 90px;
+    object-fit: contain;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .logo-bw {
+    opacity: 1;
+  }
+
+  .logo-color {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    width: 140px;
+    max-height: 90px;
+  }
+
+  .logo-showcase-item:hover .logo-bw {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+
+  .logo-showcase-item:hover .logo-color {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+
+  /* Tablet */
+  @media screen and (max-width: 991px) {
+    .logo-showcase-track {
+      gap: 20px;
+    }
+
+    .logo-showcase-item {
+      flex: 0 0 calc((100% - 60px) / 4);
+      max-width: calc((100% - 60px) / 4);
+    }
+  }
+
+  /* Mobile */
+  @media screen and (max-width: 767px) {
+    .logo-showcase-container {
+      padding: 0 15px;
+    }
+
+    .logo-showcase-wrapper {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: {{ section.settings.scrollbar_color }} {{ section.settings.scrollbar_track_color }};
+      padding-bottom: 15px;
+      margin-bottom: -5px;
+    }
+
+    .logo-showcase-wrapper::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .logo-showcase-wrapper::-webkit-scrollbar-track {
+      background: {{ section.settings.scrollbar_track_color }};
+      border-radius: 10px;
+    }
+
+    .logo-showcase-wrapper::-webkit-scrollbar-thumb {
+      background: {{ section.settings.scrollbar_color }};
+      border-radius: 10px;
+    }
+
+    .logo-showcase-wrapper::-webkit-scrollbar-thumb:hover {
+      background: {{ section.settings.scrollbar_hover_color }};
+    }
+
+    .logo-showcase-track {
+      justify-content: flex-start;
+      gap: 15px;
+      width: max-content;
+      padding-right: 15px;
+    }
+
+    .logo-showcase-item {
+      flex: 0 0 {{ section.settings.mobile_logo_width }}px;
+      max-width: {{ section.settings.mobile_logo_width }}px;
+    }
+
+    .logo-showcase-image-container {
+      padding: 12px 15px;
+      min-height: auto;
+    }
+
+    .logo-showcase-image {
+      width: 120px;
+      max-height: 75px;
+    }
+
+    .logo-color {
+      width: 120px;
+      max-height: 75px;
+    }
+
+    .logo-showcase-title {
+      font-size: calc({{ section.settings.title_size }}px * 0.75);
+      margin-bottom: 20px;
+    }
+  }
+
+  /* Placeholder styling */
+  .logo-showcase-image-container .placeholder--image {
+    width: 80%;
+    height: auto;
+    opacity: 0.5;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Logo Showcase",
+  "class": "logo-showcase--section",
+  "tag": "section",
+  "max_blocks": 10,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Our Partners"
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "Title Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title Size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "default": 28,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 15,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 15,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "logo_gap",
+      "label": "Space Between Logos (Desktop)",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 30,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Logo Styling"
+    },
+    {
+      "type": "color",
+      "id": "logo_bg_color",
+      "label": "Logo Background Color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "logo_hover_bg_color",
+      "label": "Logo Hover Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "logo_border_radius",
+      "label": "Logo Border Radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "default": 8,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_logo_width",
+      "label": "Mobile Logo Width",
+      "info": "Set to show 2.5 logos (e.g., 130px for typical screens)",
+      "min": 100,
+      "max": 200,
+      "step": 5,
+      "default": 130,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "scrollbar_color",
+      "label": "Scrollbar Color",
+      "default": "#888888"
+    },
+    {
+      "type": "color",
+      "id": "scrollbar_track_color",
+      "label": "Scrollbar Track Color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "scrollbar_hover_color",
+      "label": "Scrollbar Hover Color",
+      "default": "#555555"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "id": "bw_image",
+          "type": "image_picker",
+          "label": "Black & White Logo",
+          "info": "Displayed by default (grayscale/monochrome version)"
+        },
+        {
+          "id": "color_image",
+          "type": "image_picker",
+          "label": "Color Logo",
+          "info": "Displayed on hover (colorful version)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_tab",
+          "label": "Open link in new tab",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo Showcase",
+      "category": "Image",
+      "blocks": [
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" },
+        { "type": "logo" }
+      ]
+    }
+  ]
+}
+{% endschema %}

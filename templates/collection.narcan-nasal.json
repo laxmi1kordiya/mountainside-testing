@@ -1,0 +1,129 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "pxs_image_with_text_overlay_KnBHbH": {
+      "type": "pxs-image-with-text-overlay",
+      "name": "Image with text overlay",
+      "settings": {}
+    },
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "narcan"
+          }
+        },
+        "menu_4qxKkV": {
+          "type": "menu",
+          "settings": {
+            "menu": "disinfecting"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_4qxKkV"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "1759591641e8680681": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_bNwbdM": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#dddddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_bNwbdM"
+      ],
+      "settings": {}
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Narcan Nasal Spray - Quick Guide on How To Use Narcan and Possible Side Effects",
+            "text": "<p><strong>What is Narcan Nasal Spray</strong></p><p>Narcan Nasal Spray is a brand name for a medication that contains naloxone, which is an opioid antagonist. It's used to rapidly reverse the effects of an opioid overdose. When administered, it works by quickly binding to opioid receptors, displacing the opioids and reversing their effects, which can restore normal breathing in a person whose breathing has slowed or stopped due to opioids.<br/><br/>Narcan is available as a pre-packaged nasal spray, making it easy for bystanders, first responders, or friends and family of those at risk of overdose to administer it without the need for needles or complex medical training. It’s a critical tool in emergency situations and can be lifesaving when used promptly. However, it is essential to call emergency services immediately, even if Narcan temporarily alleviates the overdose symptoms, as further medical attention will be necessary.<br/><br/><strong>How to Use Narcan</strong><br/><br/>Training for using Narcan Nasal Spray is important to effectively respond to opioid overdoses. Here’s a basic guide on how to use it:<br/><br/><strong>Recognize an Opioid Overdose:</strong></p><p><strong>1. Signs</strong></p><ul><li>Unresponsiveness</li><li>Slow or stopped breathing</li><li>Blue or purple fingernails/lips</li><li>Gurgling or choking sounds<br/></li></ul><p><strong>2. Call for Emergency Help</strong></p><ul><li>Dial emergency services (e.g., 911) and provide clear information about the situation.<br/></li></ul><p><strong>Administer Narcan Nasal Spray</strong></p><p>1. <strong>Lay the Person Flat: </strong>Place the person on their back to ensure proper administration.</p><p><strong>2. Prepare the Device:</strong> Remove the Narcan Nasal Spray from its packaging. It's ready to use with no assembly required.<br/><br/><strong>3.</strong> <strong>Position the Nozzle: </strong>Tilt the person’s head back slightly. Insert the nozzle into one nostril, providing support below the chin if necessary.<br/><br/><strong>4</strong>. <strong>Administer the Dose</strong>: Press the plunger firmly to release the dose into the nostril.<br/><br/><strong>Post-Administration Care:</strong></p><p><strong>1. Evaluate and Repeat if Necessary</strong>: After 2-3 minutes, if there’s no response or minimal improvement, administer a second dose using a new spray.<br/><br/><strong>2.</strong> <strong>Recovery Position</strong>: If breathing improves, lay the person on their side in the recovery position to prevent choking.<br/><br/><strong>3. Stay with the Person:</strong> Monitor until emergency personnel arrive. Be aware that additional doses may be required if symptoms return.<br/><br/><strong>Training and Practice:</strong></p><ul><li>Regular training sessions are beneficial for proficiency.</li><li>Use resources from local health departments or organizations specializing in overdose prevention for hands-on practice and educational materials.<br/></li></ul><p>Proper training enhances confidence and efficiency in administering Narcan during emergencies.<br/><br/><strong>Narcan Side Effects:  </strong></p><p>Narcan (naloxone) Nasal Spray is generally safe, but some side effects may occur. These can include:<br/><br/>1. <strong>Withdrawal Symptoms</strong>:</p><ul><li>Nausea or vomiting</li><li>Sweating</li><li>Rapid heartbeat</li><li>Shaking or tremors</li><li>Irritability or anxiety<br/></li></ul><p><strong>2.</strong> <strong>Rare Side Effects</strong>:</p><ul><li>High blood pressure</li><li>Difficulty breathing</li><li>Pulmonary edema (fluid in the lungs)<br/></li></ul><p>Most side effects are related to the abrupt reversal of opioid effects. It's important to have medical supervision after administering Narcan, as further medical assistance may be necessary.</p>",
+            "heading_size": "small",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_llEQPL": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "pxs_image_with_text_overlay_KnBHbH",
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_llEQPL",
+    "1759591641e8680681",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

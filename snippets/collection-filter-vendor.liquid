@@ -1,0 +1,115 @@
+{% comment %} Vendor Filter (native query param or tag-based URL fallback) {% endcomment %}
+{% comment %} Check if Shopify native vendor filter is available {% endcomment %}
+{% assign has_native_vendor_filter = false %}
+{% for filter in collection.filters %}
+  {% if filter.param_name == 'filter.p.vendor' %}
+    {% assign has_native_vendor_filter = true %}
+    {% assign native_vendor_filter = filter %}
+  {% endif %}
+{% endfor %}
+
+{% if has_native_vendor_filter %}
+  {% comment %} Use Shopify native filter.p.vendor (query param based) {% endcomment %}
+  <div class="collection-filters__group" data-filter-group="vendor">
+    <div class="collection-filters__header">
+      <span class="collection-filters__title">Vendor</span>
+    </div>
+    <div class="collection-filters__content">
+      <div class="filter-list-scroll">
+        <ul class="filter-list" data-filter-list>
+          {% for value in native_vendor_filter.values %}
+            {% if value.count > 0 or value.active %}
+              <li class="filter-list__item">
+                <a href="{{ value.url }}" class="filter-list__label{% if value.active %} filter-list__label--active{% endif %}">
+                  <span class="filter-list__checkbox-icon">
+                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                      <path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span class="filter-list__text">{{ value.label }}</span>
+                  <span class="filter-list__count">({{ value.count }})</span>
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% elsif vendors_array.size > 0 %}
+  {% comment %} Fallback: Tag-based URL vendor filter {% endcomment %}
+  <div class="collection-filters__group" data-filter-group="vendor">
+    <div class="collection-filters__header">
+      <span class="collection-filters__title">Vendor</span>
+    </div>
+    <div class="collection-filters__content">
+      <div class="filter-list-scroll">
+        <ul class="filter-list" data-filter-list>
+          {% for vendor in vendors_array %}
+            {% assign vendor_count = counts_array[forloop.index0] | default: 0 %}
+            {% assign vendor_handle = vendor | handleize %}
+
+            {% comment %} Skip vendors whose handle doesn't exist as a tag (would lead to empty filter page) {% endcomment %}
+            {% assign vendor_has_tag = false %}
+            {% for th in tag_handles_set %}
+              {% if th == vendor_handle %}
+                {% assign vendor_has_tag = true %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+            {% unless vendor_has_tag %}{% continue %}{% endunless %}
+
+            {% assign is_active = false %}
+            {% for ath in url_active_handles %}
+              {% assign ath_handle = ath | handleize %}
+              {% if ath_handle == vendor_handle %}
+                {% assign is_active = true %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+
+            {% if is_active %}
+              {% comment %} Remove vendor from ordered segment {% endcomment %}
+              {% assign remove_path = '' %}
+              {% assign seg_parts = url_tag_segment_clean | split: '+' %}
+              {% for p in seg_parts %}
+                {% unless p == vendor_handle %}
+                  {% if remove_path == '' %}{% assign remove_path = p %}
+                  {% else %}{% assign remove_path = remove_path | append: '+' | append: p %}{% endif %}
+                {% endunless %}
+              {% endfor %}
+              {% if remove_path == '' %}
+                {% assign filter_url = collection.url | append: preserved_query_string %}
+              {% else %}
+                {% assign filter_url = collection.url | append: '/' | append: remove_path | append: preserved_query_string %}
+              {% endif %}
+            {% else %}
+              {% comment %} Add vendor: insert before tag part {% endcomment %}
+              {% if url_tag_segment_clean == '' %}
+                {% assign filter_url = collection.url | append: '/' | append: vendor_handle | append: preserved_query_string %}
+              {% else %}
+                {% assign vp = ordered_vendor_part %}
+                {% if vp == '' %}{% assign vp = vendor_handle %}
+                {% else %}{% assign vp = vp | append: '+' | append: vendor_handle %}{% endif %}
+                {% if ordered_tag_part != '' %}{% assign vp = vp | append: '+' | append: ordered_tag_part %}{% endif %}
+                {% assign filter_url = collection.url | append: '/' | append: vp | append: preserved_query_string %}
+              {% endif %}
+            {% endif %}
+
+            <li class="filter-list__item">
+              <a href="{{ filter_url }}" class="filter-list__label{% if is_active %} filter-list__label--active{% endif %}" data-tag-filter>
+                <span class="filter-list__checkbox-icon">
+                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                    <path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="filter-list__text">{{ vendor }}</span>
+                <span class="filter-list__count">({{ vendor_count }})</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endif %}

@@ -1,0 +1,210 @@
+{% if section.settings.enable_recently_viewed_products %}
+  {%- capture recently_viewed_data -%}
+    {%-
+      include 'product-recently-viewed',
+      product: product
+    -%}
+  {%- endcapture %}
+
+  <script
+    type="application/json"
+    data-section-type="static-recently-viewed"
+    data-section-id="{{ section.id }}"
+    data-section-data
+  >
+    {
+      {{ recently_viewed_data }}
+    }
+  </script>
+
+  <aside
+    aria-label="Recently viewed products"
+    class="product-section--container product-recently-viewed--section"
+  >
+    <div class="product-recently-viewed-wrapper">
+      <div class="product-recently-viewed-header">
+        <h2 class="product-recently-viewed-heading">
+          {{ 'general.time.previous' | t }}
+        </h2>
+        <button
+          class="product-recently-viewed-clear"
+          data-clear-recently-viewed
+        >
+          {{ 'general.time.clear' | t }}
+        </button>
+      </div>
+
+      <ul
+        class="
+          product-section--content
+          product-recently-viewed--content
+          imagestyle--{{ settings.product_grid_image_style }}
+        "
+        data-recently-viewed-container
+      ></ul>
+    </div>
+  </aside>
+  <style>
+    /* === Recently Viewed - Alignment === */
+
+    /* Image - enforce square, hide alternate on mobile */
+    .product-recently-viewed-card .productitem--image {
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+    }
+
+    .product-recently-viewed-card .productitem--image img,
+    .product-recently-viewed-card .productitem--image .rimg-canvas {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Price area - fixed height so prices align across cards */
+    .product-recently-viewed-card .productitem--price {
+      min-height: 48px;
+    }
+
+    /* Title - 2 lines max, fixed height so titles align */
+    .product-recently-viewed-card .productitem--title {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 2.8em;
+    }
+
+    /* Reviews - fixed height so reviews align */
+    .product-recently-viewed-card .jdgm-widget.jdgm-preview-badge {
+      min-height: 24px;
+    }
+
+    /* Hide description in carousel */
+    .product-recently-viewed-card .productitem--description {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      /* Hide alternate hover image on mobile */
+      .product-recently-viewed-card .productitem--image-alternate {
+        display: none;
+      }
+    }
+  </style>
+
+  <script>
+  (function() {
+    /* Equalize recently viewed card heights after Flickity loads */
+    function equalizeCards() {
+      var cards = document.querySelectorAll('.product-recently-viewed-card');
+      if (cards.length === 0) return;
+
+      /* Reset heights first */
+      cards.forEach(function(card) { card.style.height = ''; });
+
+      /* Find tallest card */
+      var maxHeight = 0;
+      cards.forEach(function(card) {
+        var h = card.offsetHeight;
+        if (h > maxHeight) maxHeight = h;
+      });
+
+      /* Set all cards to tallest height */
+      if (maxHeight > 0) {
+        cards.forEach(function(card) { card.style.height = maxHeight + 'px'; });
+      }
+    }
+
+    /* Run after Flickity initializes and images load */
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(m) {
+        if (m.target.classList && m.target.classList.contains('flickity-enabled')) {
+          setTimeout(equalizeCards, 300);
+          setTimeout(equalizeCards, 1000);
+        }
+      });
+    });
+
+    var container = document.querySelector('.product-recently-viewed--content');
+    if (container) {
+      observer.observe(container, { attributes: true, attributeFilter: ['class'] });
+    }
+
+    /* Also run on resize */
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(equalizeCards, 300);
+    });
+
+    /* Also run on image load events */
+    document.addEventListener('rimg:load', function() {
+      setTimeout(equalizeCards, 200);
+    });
+
+    /* Two-finger scroll / trackpad support for Flickity carousel */
+    function enableWheelScroll() {
+      var carousel = document.querySelector('.product-recently-viewed--content');
+      if (!carousel || !carousel.classList.contains('flickity-enabled')) return;
+
+      var nextBtn = carousel.querySelector('.flickity-button.next');
+      var prevBtn = carousel.querySelector('.flickity-button.previous');
+      if (!nextBtn && !prevBtn) return;
+
+      var scrollTimeout;
+      carousel.addEventListener('wheel', function(e) {
+        // Allow normal page scroll when user scrolls vertically over the section.
+        // Only hijack true horizontal wheel gestures for carousel navigation.
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) return;
+
+        var delta = e.deltaX;
+        if (delta === 0) return;
+
+        e.preventDefault();
+
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(function() {
+          if (delta > 0 && nextBtn) {
+            nextBtn.click();
+          } else if (prevBtn) {
+            prevBtn.click();
+          }
+        }, 50);
+      }, { passive: false });
+    }
+
+    /* Init wheel scroll after Flickity is ready */
+    var wheelObserver = new MutationObserver(function(mutations) {
+      mutations.forEach(function(m) {
+        if (m.target.classList && m.target.classList.contains('flickity-enabled')) {
+          setTimeout(enableWheelScroll, 300);
+          wheelObserver.disconnect();
+        }
+      });
+    });
+
+    if (container) {
+      if (container.classList.contains('flickity-enabled')) {
+        setTimeout(enableWheelScroll, 300);
+      } else {
+        wheelObserver.observe(container, { attributes: true, attributeFilter: ['class'] });
+      }
+    }
+  })();
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Recently viewed products",
+  "class": "recently-viewed--section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_recently_viewed_products",
+      "label": "Enable recently viewed products"
+    }
+  ]
+}
+
+{% endschema %}

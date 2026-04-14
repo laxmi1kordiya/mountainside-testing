@@ -1,0 +1,137 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "pxs_image_with_text_overlay_rR88tr": {
+      "type": "pxs-image-with-text-overlay",
+      "disabled": true,
+      "name": "Image with text overlay",
+      "settings": {}
+    },
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_4qxKkV": {
+          "type": "menu",
+          "settings": {
+            "menu": "gloves"
+          }
+        },
+        "menu_MpGH7y": {
+          "type": "menu",
+          "settings": {
+            "menu": "skin-prepping-disinfecting"
+          }
+        },
+        "menu_fAieLW": {
+          "type": "menu",
+          "settings": {
+            "menu": "urological-supplies"
+          }
+        }
+      },
+      "block_order": [
+        "menu_4qxKkV",
+        "menu_MpGH7y",
+        "menu_fAieLW"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Vaginal Speculums: Essential Gynecological Exam Tool for Health, Comfort, and Precision",
+            "text": "<p><strong>Discover the gold-standard in women's health with our premium Vaginal Speculums, designed for clinical efficiency and patient comfort.</strong> Perfect for routine gynecological exams, pap smears, and other women’s health screenings, our speculums feature the latest innovations for modern medicine. Whether you're a healthcare professional or looking to understand the tools used in your gynecologist’s office, this top-selling medical instrument delivers the highest standards for safety, hygiene, and effectiveness.</p><p><strong>Choose our Vaginal Speculum for maximum patient comfort, safety, and exam accuracy.</strong> Backed by thousands of healthcare professionals worldwide and trusted in countless women’s health clinics, our product is the #1 choice for all your gynecological exam needs.</p><p><strong>Order today to provide the best in women’s health care and ensure optimal exam experiences for all patients!</strong></p>",
+            "heading_size": "large",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "1759411362dcf10c8f": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_88iKyQ": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#dddddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_88iKyQ"
+      ],
+      "settings": {}
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_RxUVAH": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "pxs_image_with_text_overlay_rR88tr",
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_RxUVAH",
+    "dynamic_rich_text_LNjHmp",
+    "1759411362dcf10c8f"
+  ]
+}

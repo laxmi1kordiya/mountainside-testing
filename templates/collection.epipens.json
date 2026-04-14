@@ -1,0 +1,79 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "narcan"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Epipens and Generic Epinephrine Autoinjectors Helpful Information",
+            "text": "<h5><strong>What is an EpiPen</strong></h5><p>An EpiPen is a brand of epinephrine auto-injector used to treat severe allergic reactions, known as anaphylaxis. It delivers a specific dose of epinephrine (adrenaline), which helps to rapidly reduce the body's allergic response by relaxing the muscles in the airways and tightening blood vessels. This can alleviate symptoms such as difficulty breathing, swelling, and low blood pressure. EpiPens are designed for quick, emergency use, and can be <br/>self-administered or given by others. It is crucial for individuals with severe allergies to carry an EpiPen and know how to use it properly.<br/><br/><strong>Epipen Alternatives</strong><br/><br/>There are several alternatives to the EpiPen for delivering emergency epinephrine in cases of severe allergic reactions. Some of these include:</p><ul><li><a href=\"https://www.mountainside-medical.com/products/amneal-epinephrine-auto-injector-0-15-mg-injection-syringe-0-15-ml-2-pack\" title=\"https://www.mountainside-medical.com/products/amneal-epinephrine-auto-injector-0-15-mg-injection-syringe-0-15-ml-2-pack\"><strong>Epinephrine Autoinjector</strong></a><strong>:</strong> This device is compact and provides voice instructions on how to administer the injection, which can be helpful in stressful situations.</li><li><strong>Adrenaclick:</strong> Similar to EpiPen, this device delivers epinephrine via an auto-injector. However, the usage instructions and design are slightly different.</li><li><strong>Symjepi:</strong> This is a pre-filled syringe that is a more traditional injection method, rather than an auto-injector. It is smaller and often more affordable.<br/></li></ul><p><strong>How to use Epipen</strong><br/><br/>Using an EpiPen involves a few simple steps:<br/><br/><strong>1</strong>. <strong>Prepare the EpiPen</strong>: Remove the EpiPen from its carrier tube and take off the safety cap.<br/><br/><strong>2.</strong> <strong>Hold the EpiPen</strong>: Firmly grasp the EpiPen in your fist with the orange tip pointing downward. Keep your fingers away from both ends to avoid accidental injection.<br/><br/><strong>3.</strong> <strong>Administer the Injection</strong>: Swing and push the orange tip firmly into the middle of the outer thigh, through clothing if necessary. Hold in place for about 3 seconds. The injection is automatic, and you’ll hear a click.<br/><br/><strong>4</strong>. <strong>Remove the EpiPen</strong>: Remove the EpiPen and massage the injection area for about 10 seconds.<br/><br/><strong>5.</strong> <strong>Get Emergency Help</strong>: Call emergency services immediately, even if symptoms improve. Inform them of the epinephrine administration.<br/><br/><strong>6. Follow-up Care</strong>: Hand over the used EpiPen to the emergency responders when they arrive. A second dose may be needed if symptoms do not improve within 5-15 minutes.<br/><br/>Always read the instructions specific to your EpiPen model and consult your healthcare provider for guidance.<br/><br/><br/><strong>Epipen Side Effects</strong>:<br/><br/>EpiPen, like any medication, can have side effects. Common ones include:</p><p><strong>Increased Heart Rate:</strong> You may experience a rapid or pounding heartbeat.<br/><strong>Anxiety or Nervousness:</strong> Feelings of nervousness or anxiety can occur.<br/><strong>Sweating</strong>: Increased sweating is possible.<br/><strong>Dizziness:</strong> Some people may feel dizzy after using an EpiPen.<br/><strong>Headache:</strong> Mild to moderate headaches can occur.<br/><strong>Nausea or Vomiting:</strong> These gastrointestinal symptoms might be experienced.<br/><strong>Weakness or Tremors:</strong> Some people report feeling weak or having tremors.<br/><br/>Serious side effects are rare but can include heart attack or stroke, especially in those with certain pre-existing conditions. Always consult with a healthcare provider about potential risks and ensure you know how to use an EpiPen correctly.<br/></p>",
+            "heading_size": "small",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_X8NEU2": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_X8NEU2",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

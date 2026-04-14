@@ -1,0 +1,131 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "mi-paste"
+          }
+        },
+        "menu_HPFUnD": {
+          "type": "menu",
+          "settings": {
+            "menu": "dental-supplies"
+          }
+        },
+        "menu_rpb7mz": {
+          "type": "menu",
+          "settings": {
+            "menu": "gloves"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_HPFUnD",
+        "menu_rpb7mz"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "tags",
+        "filter_limit": "5",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_7DcUX6": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_7LppYU": {
+          "type": "text",
+          "settings": {
+            "title": "Mi Paste – Ultimate Tooth Remineralization & Enamel Protection Toothpaste",
+            "text": "<h4>MI Paste by GC America: Professional Enamel Repair & Oral Health Enhancement</h4><p>Are you searching for the <em>best dental product</em> to strengthen enamel, protect against tooth sensitivity, and restore white spots? <strong>MI Paste by GC America</strong> is the <em>top dentist-recommended solution</em> that uses cutting-edge bioactive technology to <strong>remineralize enamel</strong> and <strong>combat tooth decay</strong> while offering protection for sensitive teeth.</p><p><strong>Mi Paste</strong> is the <em>#1 dentist-recommended</em> professional dental care product designed to <strong>remineralize teeth</strong>, protect delicate <strong>tooth enamel</strong>, soothe <strong>sensitive teeth</strong>, and <strong>prevent cavities</strong>. Infused with <strong>Recaldent™ (CPP-ACP)</strong>, a revolutionary milk-derived protein, Mi Paste helps <strong>reverse early signs of tooth decay</strong>, <strong>whiten teeth naturally</strong>, and protect against <strong>acid erosion</strong> caused by everyday foods and drinks.<br/><br/><strong>Top Benefits:</strong></p><ul><li><strong>Remineralizes tooth enamel:</strong> Replace lost minerals, repair white spot lesions, and make teeth stronger.</li><li><strong>Reduces tooth sensitivity:</strong> Soothe and protect nerve endings, offering fast and lasting relief.</li><li><strong>Protects against cavities & dental caries:</strong> Form a protective shield to prevent decay and erosion.</li><li><strong>Safe for orthodontic care:</strong> Ideal for use with <strong>braces</strong>, <strong>aligners</strong>, and after dental treatments like <strong>whitening</strong> or <strong>deep cleaning</strong>.</li><li><strong>Balances oral pH levels:</strong> Helps fight <strong>acidic plaque</strong>, supporting <strong>gum health</strong> and preventing <strong>gingivitis</strong>.</li><li><strong>Natural, fluoride-free & safe for kids:</strong> Gentle enough for daily family use.</li><li><strong>Boosts teeth whitening results:</strong> Use after whitening to reduce sensitivity and protect enamel.</li></ul><p>⭐⭐⭐⭐⭐ <em>Thousands of customers trust MI Paste to protect their smile!</em></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_7LppYU"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "width": "regular"
+      }
+    },
+    "175940134684c42e5f": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_Mwh64g": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#dddddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_Mwh64g"
+      ],
+      "settings": {}
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_9Wc85V": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_9Wc85V",
+    "175940134684c42e5f",
+    "dynamic_rich_text_7DcUX6"
+  ]
+}

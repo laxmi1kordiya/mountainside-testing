@@ -1,0 +1,29 @@
+<article class="site-page" data-template-page>
+  <header class="page-masthead">
+    <h1 class="page-title">
+      {{ page.title }}
+    </h1>
+  </header>
+
+  {% if page.content != blank %}
+    <div class="page-content rte">
+      {{ page.content 
+   | replace: '<h1', '<h2 style="font-size:20px;"' 
+   | replace: '</h1>', '</h2>' 
+   | replace: 'href="http', 'href="https' 
+}}
+    </div>
+  {% endif %}
+</article>
+
+{% schema %}
+  {
+    "name": "Page",
+    "settings": [],
+    "presets":[
+      {
+        "name":"Default Page"
+      }
+    ]
+  }
+{% endschema %}

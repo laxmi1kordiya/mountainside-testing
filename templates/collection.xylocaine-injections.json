@@ -1,0 +1,93 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "types-of-lidocaine"
+          }
+        },
+        "menu_HHGD9B": {
+          "type": "menu",
+          "settings": {
+            "menu": "syringes"
+          }
+        },
+        "menu_RfWarW": {
+          "type": "menu",
+          "settings": {
+            "menu": "numbing-and-freezing"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_HHGD9B",
+        "menu_RfWarW"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "20",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Xylocaine Injection – Fast-Acting Local Anesthetic for Effective Pain Relief",
+            "text": "<p><strong>Buy Xylocaine Injection 2% (Lidocaine) – Trusted, Safe, and Reliable Anesthetic Solution for Medical Procedures</strong></p><h3><strong>What is Xylocaine Injection Used For?</strong></h3><p><strong>Xylocaine Injection</strong> (also known as <strong>Lidocaine Injection</strong>) is a top-rated, FDA-approved local anesthetic commonly used for:</p><ul><li><strong>Dental anesthesia</strong></li><li><strong>Minor surgical procedures</strong></li><li><strong>Nerve block injections</strong></li><li><strong>Relief of pain from injuries</strong></li><li><strong>Minor skin procedures and stitches</strong></li><li><strong>Medical diagnostics</strong></li></ul><p>It works swiftly to numb targeted areas, delivering <strong>fast and effective pain management</strong>.</p><h3><strong>How Long Does a Xylocaine Injection Last?</strong></h3><p>A typical dose of Xylocaine Injection provides <strong>numbing effects within 2–5 minutes</strong>, and the pain relief typically <strong>lasts 1–2 hours</strong> depending on the procedure and dosage.</p><h3><strong>Can Lidocaine Cause Bruising?</strong></h3><p><strong>Lidocaine (Xylocaine) injections</strong> are generally safe, but some patients may experience <strong>bruising or mild redness at the injection site</strong>, especially after multiple injections or in sensitive skin.</p><h3><strong>Is Lidocaine Injection Safe While Pregnant?</strong></h3><p><strong>Xylocaine (Lidocaine) can be used during pregnancy</strong> when deemed necessary by your physician. However, always <strong>consult your healthcare professional</strong> before use, as individual cases may vary.</p><h3><strong>Where NOT to Use Xylocaine?</strong></h3><p>Never inject Xylocaine into:</p><ul><li><strong>Inflamed or infected tissues</strong></li><li><strong>Intravenously for local anesthesia (unless specified by the doctor)</strong></li><li><strong>Sensitive areas like eyes, spinal canal (unless intended for specialized procedures)</strong></li></ul><h3><strong>What’s the Difference Between Lidocaine and Xylocaine?</strong></h3><p><strong>Lidocaine and Xylocaine are essentially the same drug</strong>; Xylocaine is a brand name for lidocaine hydrochloride. Both are effective <strong>topical and injectable local anesthetics</strong> widely used in medical and dental settings.</p><h3><strong>How Much Time Does Xylocaine Take to Work?</strong></h3><p>Xylocaine Injection begins to <strong>work within 2–5 minutes</strong>, rapidly eliminating pain and preparing the area for your procedure.</p><h3><strong>What is the Major Side Effect of Lidocaine?</strong></h3><p>The most significant side effects include:</p><ul><li>Temporary <strong>numbness</strong></li><li><strong>Tingling or swelling</strong></li><li><strong>Rare allergic reactions</strong></li><li>In high doses or accidental intravascular injection: <strong>dizziness, irregular heartbeat, tremors, or seizures</strong></li></ul><p><strong>Always seek medical advice if adverse reactions occur.</strong></p><h3><strong>What Are the Precautions for Xylocaine Injection?</strong></h3><ul><li><strong>Do not use if allergic to lidocaine or amide-type anesthetics</strong></li><li><strong>Use with caution in liver, kidney, or heart conditions</strong></li><li><strong>Keep out of children's reach</strong></li><li><strong>Inform your doctor about all medications and allergies</strong></li><li><strong>Monitor for signs of toxicity, such as dizziness or visual disturbances</strong></li></ul><h3><strong>What is Another Name for Xylocaine Injection?</strong></h3><p>Other common names include <strong>Lidocaine Injection</strong> and <strong>Lignocaine Injection</strong>. Xylocaine is the widely recognized branded version.</p><h3><strong>How Do You Inject Xylocaine?</strong></h3><ul><li><strong>Administered by healthcare professionals only</strong></li><li>Injection is given <strong>subcutaneously, intradermally, or via nerve block</strong> methods depending on the procedure.</li><li><strong>Sterile technique</strong> is mandatory.</li></ul><h2><strong>Get Fast, Reliable Pain Relief with Xylocaine Injection</strong></h2><p>Order now and experience <strong>rapid onset and dependable anesthesia</strong> for your minor procedures, pain relief, and dental work.</p>",
+            "heading_size": "small",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_EwALuQ": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_EwALuQ",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

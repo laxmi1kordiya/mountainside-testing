@@ -1,0 +1,100 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "pxs_image_with_text_overlay_XDrLhF": {
+      "type": "pxs-image-with-text-overlay",
+      "disabled": true,
+      "name": "Image with text overlay",
+      "settings": {}
+    },
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "urological-supplies"
+          }
+        },
+        "menu_9tJpwr": {
+          "type": "menu",
+          "settings": {
+            "menu": "incontinence-products"
+          }
+        },
+        "menu_ePEmCc": {
+          "type": "menu",
+          "settings": {
+            "menu": "isolation-and-infection-control"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_9tJpwr",
+        "menu_ePEmCc"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "20",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Urological Supplies Helpful Information",
+            "text": "<p><strong>What are Urological Supplies</strong><br/><br/>Urological supplies are products used to support and manage urinary tract health and related conditions. These supplies are essential for individuals with urinary incontinence, difficulty urinating, or other urological issues. </p><p><strong>Types of Urological Supplies</strong></p><p>Key types of urological supplies include:<br/><br/><strong>Catheters:</strong></p><p><strong>Intermittent Catheters:</strong> Used temporarily to drain urine from the bladder.<br/><strong>Indwelling Foley Catheters:</strong> Inserted into the bladder for continuous drainage.<br/><strong>External Catheters:</strong> Worn externally, typically for males (e.g., condom catheters).</p><p><strong>Drainage Bags:</strong></p><p><strong>Leg Bags</strong>: Worn on the leg for mobility and to collect urine.<br/><strong>Urinary Drainage Bags:</strong> Larger capacity bags used overnight.</p><p><strong>Catheter Insertion Kits: </strong>Include necessary items for sterile catheter insertion, like gloves, lubricant, and antiseptic wipes.</p><p><strong>Penile Sheaths: </strong>Used to manage incontinence in men without the need for a catheter.</p><p><strong>Incontinence Pads and Briefs: </strong>Absorbent products designed to manage urinary leakage.</p><p><strong>Cystoscopy Supplies: </strong>Instruments and tools for examining the bladder.</p><p><strong>Urinary Drainage Accessories: </strong>Tubing, clamps, and connectors to aid in the management of urinary drainage systems.</p><p>These supplies are crucial for maintaining hygiene, comfort, and quality of life for individuals with urological needs.</p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_1kxxcJ": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "pxs_image_with_text_overlay_XDrLhF",
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_1kxxcJ",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

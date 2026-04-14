@@ -1,0 +1,113 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "pxs_image_with_text_overlay_4HBUfp": {
+      "type": "pxs-image-with-text-overlay",
+      "name": "Image with text overlay",
+      "settings": {}
+    },
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "types-of-lidocaine"
+          }
+        },
+        "menu_HHGD9B": {
+          "type": "menu",
+          "settings": {
+            "menu": "syringes"
+          }
+        },
+        "menu_RfWarW": {
+          "type": "menu",
+          "settings": {
+            "menu": "numbing-and-freezing"
+          }
+        },
+        "menu_g4kepD": {
+          "type": "menu",
+          "settings": {
+            "menu": "skin-prepping-disinfecting"
+          }
+        },
+        "menu_xkx4PL": {
+          "type": "menu",
+          "settings": {
+            "menu": "bacterial-infection-meds"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_HHGD9B",
+        "menu_RfWarW",
+        "menu_g4kepD",
+        "menu_xkx4PL"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "20",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Lidocaine",
+            "text": "<p><strong>What is Lidocaine</strong><br/><br/>Lidocaine is a local anesthetic and antiarrhythmic medication. It works by blocking sodium channels, which inhibits nerve impulse transmission, leading to temporary numbness or loss of sensation in a specific area. Topically, it's used to relieve pain from minor injuries or procedures, such as dental work, minor surgeries, or skin conditions. It can also be administered intravenously for treating certain heart rhythm disorders. Available in various forms—including creams, gels, patches, and injections—lidocaine is highly effective and widely used in medical settings.<br/><br/><strong>Types of Lidocaine</strong></p><p>Lidocaine is available in several forms, each tailored for specific uses:</p><p><strong>1. Topical Lidocaine:</strong></p><ul><li><strong>Creams and Gels:</strong> Used for skin conditions, minor burns, or itching.</li><li><strong>Patches:</strong> Provide localized pain relief, often for back pain or shingles.</li><li><strong>Sprays:</strong> Used in dental procedures or to numb the throat before certain medical exams.</li></ul><p><strong>2. Injectable Lidocaine:</strong></p><ul><li><strong>Local Anesthetic:</strong> Administered via injection to numb a specific area for minor surgeries or procedures.</li><li><strong>Epidural:</strong> Used in combination with other medications during labor or surgical procedures.</li></ul><p>3. <strong>Intravenous Lidocaine:</strong></p><ul><li>Used in hospitals to treat certain cardiac arrhythmias.</li></ul><p>4.<strong>Oral Lidocaine:</strong></p><ul><li><strong>Viscous Solutions:</strong> Used to relieve pain in conditions like oral ulcers or sore throats.<br/></li></ul><p>Each form of lidocaine is formulated for its specific application to ensure effective pain relief or arrhythmia management.<br/></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_G2a5KV": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "pxs_image_with_text_overlay_4HBUfp",
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_G2a5KV",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

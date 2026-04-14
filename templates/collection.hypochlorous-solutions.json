@@ -1,0 +1,100 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "wound-care"
+          }
+        },
+        "menu_6WDTck": {
+          "type": "menu",
+          "settings": {
+            "menu": "emergency-supplies"
+          }
+        },
+        "menu_ApxRwc": {
+          "type": "menu",
+          "settings": {
+            "menu": "bandages-and-wraps"
+          }
+        },
+        "menu_4qxKkV": {
+          "type": "menu",
+          "settings": {
+            "menu": "gloves"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_6WDTck",
+        "menu_ApxRwc",
+        "menu_4qxKkV"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Hypochlorous Solution Types, Benefits and  Information",
+            "text": "<p><strong>What is Hypochlorous Solution</strong></p><p>Hypochlorous solution is a gentle, yet powerful disinfectant and antiseptic known for its antimicrobial properties. It is effective against a wide range of pathogens, including bacteria, viruses, and fungi. Naturally occurring in the human immune system, it is non-toxic and safe for use on skin, wounds, and surfaces. Used in healthcare and skincare, hypochlorous solution is valued for its efficacy in wound healing and infection control, making it a versatile and essential component in sanitation and hygiene.<br/><br/><strong>Types of Hypochlorous Solution </strong></p><p>Hypochlorous solution comes in various forms depending on its intended use. Here are the common types:<br/><br/><strong>Wound Care Solutions:</strong></p><ul><li>Used for cleaning and disinfecting wounds. These are typically formulated to be non-irritating and safe for direct application on skin.</li></ul><p><br/><strong>Disinfectant Solutions:</strong></p><ul><li>Higher concentration solutions intended for sanitizing surfaces in healthcare or industrial settings.<br/></li></ul><p><strong>Eye Care Solutions:</strong></p><ul><li>Specially formulated for use in managing conditions like conjunctivitis, ensuring they are gentle and non-irritating.<br/></li></ul><p><strong>Oral Rinse Solutions:</strong></p><ul><li>Used for managing oral hygiene and reducing bacterial load in the mouth.<br/></li></ul><p><strong>General Sanitizers:</strong></p><ul><li>Lower concentration solutions useful for hand hygiene and general sanitizing tasks.<br/></li></ul><p>Each type is formulated to suit specific applications, so it’s important to choose the right one based on the <br/>intended use and safety guidelines.<br/><br/><strong>Hypochlorous Solution Benefits</strong></p><p>Hypochlorous solution offers several benefits, particularly in medical and sanitization contexts:<br/><br/><strong>Broad-Spectrum Antimicrobial Action:</strong></p><ul><li>Effectively kills bacteria, viruses, and fungi, making it a versatile disinfectant.</li></ul><p><strong>Non-Toxic and Biocompatible:</strong></p><ul><li>Safe for use on skin, wounds, and mucous membranes; it is naturally produced by the human immune system.<br/></li></ul><p><strong>Wound Healing:</strong></p><ul><li>Promotes faster healing by reducing microbial load and inflammation in wounds.<br/></li></ul><p><strong>Safe for Multiple Applications:</strong></p><ul><li>Can be used for wound care, eye care, oral hygiene, and general sanitization without causing irritation.<br/></li></ul><p><strong>Environmentally Friendly:</strong></p><ul><li>Breaks down into harmless substances, making it eco-friendly compared to harsher chemical disinfectants.<br/></li></ul><p><strong>No Rinsing Required:</strong></p><ul><li>Leaves no harmful residues, eliminating the need for rinsing after use.<br/></li></ul><p>These benefits make hypochlorous solution a valuable tool in healthcare, personal hygiene, and infection control.<br/></p><p><strong>How to Use Hypochlorous Solution</strong></p><p>Using hypochlorous solution effectively depends on its intended application. Here's a general guide:<br/><br/><strong>For Wound Care:</strong></p><p><strong>1. Preparation:</strong></p><ul><li>Clean the surrounding skin area if necessary.</li><li>Ensure your hands are clean or wear gloves.<br/></li></ul><p><strong>2.</strong> <strong>Application:</strong></p><ul><li>Spray or apply the solution directly onto the wound.</li><li>Allow it to air dry or gently pat dry with a sterile gauze if needed.<br/></li></ul><p><strong>3</strong>. <strong>Frequency:</strong></p><ul><li>Use as directed by a healthcare provider, typically 1-3 times daily or as needed.<br/></li></ul><p><strong>For Disinfection (Surfaces):</strong></p><p><strong>1. Preparation:</strong></p><ul><li>Clean the surface to remove dirt or debris.<br/></li></ul><p><strong>2.</strong> <strong>Application:</strong></p><ul><li>Spray the solution evenly over the surface.</li><li>Allow it to remain wet for the contact time recommended by the manufacturer.</li><li>No rinsing required unless specified.<br/></li></ul><p><strong>For Eye Care:</strong></p><p><strong>1. Consultation:</strong></p><ul><li>Use only products specifically formulated for eye care.</li><li>Follow ophthalmologist or package instructions.<br/></li></ul><p><strong>2. Application:</strong></p><ul><li>Apply as drops or use a clean cloth to gently clean the eye area.<br/></li></ul><p><strong>Fro Oral Rinse</strong></p><p><strong>1</strong>. <strong>Application:</strong></p><ul><li>Use the solution as a mouthwash, swishing for the recommended time before spitting it out.<br/></li></ul><p><strong>General Tips:</strong></p><p><strong>Follow Instructions:</strong> Always adhere to the specific guidelines provided by the product manufacturer or healthcare provider.</p><p><strong>Safety:</strong> Ensure the formulation is appropriate for the intended use (e.g., wound care vs. surface disinfection).</p><p><strong>Storage:</strong> Keep the solution in a cool, dry place away from direct sunlight to maintain its efficacy.</p><p>Using hypochlorous solution properly ensures its effectiveness and safety for various purposes.<br/><br/></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_Izyzrs": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_Izyzrs",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

@@ -1,0 +1,188 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "iv-supplies"
+          }
+        },
+        "menu_4qxKkV": {
+          "type": "menu",
+          "settings": {
+            "menu": "skin-prepping-disinfecting"
+          }
+        },
+        "menu_yPMHHR": {
+          "type": "menu",
+          "settings": {
+            "menu": "needles-and-syringes"
+          }
+        },
+        "menu_9RTR9q": {
+          "type": "menu",
+          "settings": {
+            "menu": "gloves"
+          }
+        },
+        "menu_jK8KCf": {
+          "type": "menu",
+          "settings": {
+            "menu": "numbing-and-freezing"
+          }
+        },
+        "menu_pfm6Yk": {
+          "type": "menu",
+          "settings": {
+            "menu": "by-injectables"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_4qxKkV",
+        "menu_yPMHHR",
+        "menu_9RTR9q",
+        "menu_jK8KCf",
+        "menu_pfm6Yk"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "b2b_banner_desktop_link": "",
+        "b2b_banner_mobile_link": "",
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "175936142716dc90e0": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_fKdgzk": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#dddddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_fKdgzk"
+      ],
+      "settings": {}
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Buy #1-Rated IV Clave Connectors, Needleless Tubing Connectors & IV Spikes – Trusted for Infection Control and Safe IV Therapy!",
+            "text": "<h4>IV Clave Connectors: Ultimate Needleless Safety and Performance</h4><p>Looking for <strong>IV Clave Connectors</strong>, <strong>Needleless Tubing Connectors</strong>, and <strong>IV Spikes</strong> with top safety, unbeatable infection prevention, and rock-solid compatibility with all IV administration sets and vascular access devices? Our supercharged <strong>IV Clave Connectors</strong> provide the gold-standard in <strong>needleless IV access</strong>—reducing bloodstream infections, improving IV therapy outcomes, and maximizing both patient and clinician safety.</p><h4>Order now—Experience the safest, most reliable <strong>IV clave system</strong> for all your <strong>IV infusion</strong> and <strong>vascular access</strong> needs!</h4><p><strong>Bulk purchasing & fast shipping available. Trusted by hospitals & clinics worldwide.</strong></p>",
+            "heading_size": "large",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "1773063854bc2b03c6": {
+      "type": "apps",
+      "blocks": {
+        "webrex_ai_seo_optimizer_product_description_tabs_ihwxMF": {
+          "type": "shopify://apps/webrex-ai-seo-optimizer/blocks/productDescriptionTabs/b26797ad-bb4d-48f5-8ef3-7c561521049c",
+          "settings": {
+            "layout_view": "tabs",
+            "description_position": "inside",
+            "description_tab_title": "Description",
+            "max_width": 1100,
+            "tab_design_style": "cards",
+            "tab_title_font_size": 16,
+            "tab_title_text_color": "#212529",
+            "active_tab_title_text_color": "#ffffff",
+            "tab_background_color": "#f8f9fa",
+            "tab_active_background_color": "#388138",
+            "tab_border_color": "#e9ecef",
+            "classic_underline_color": "#4ECDC4",
+            "classic_underline_thickness": 3,
+            "tab_content_background_color": "#ffffff",
+            "accordion_title_font_size": 16,
+            "accordion_title_text_color": "#212529",
+            "accordion_active_title_text_color": "#212529",
+            "accordion_title_bg_color": "#f5f5f5",
+            "accordion_active_title_bg_color": "#ffffff",
+            "accordion_content_background_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_ai_seo_optimizer_product_description_tabs_ihwxMF"
+      ],
+      "settings": {}
+    },
+    "collection_description_u9re5A": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_u9re5A",
+    "175936142716dc90e0",
+    "dynamic_rich_text_LNjHmp",
+    "1773063854bc2b03c6"
+  ]
+}

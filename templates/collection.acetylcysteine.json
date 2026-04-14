@@ -1,0 +1,136 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_4qxKkV": {
+          "type": "menu",
+          "settings": {
+            "menu": "respiratory-supplies"
+          }
+        }
+      },
+      "block_order": [
+        "menu_4qxKkV"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "b2b_banner_desktop_link": "",
+        "b2b_banner_mobile_link": "",
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "enable_menu_accordion": true,
+        "show_related_searches": true,
+        "related_searches_title": "People Also Searched For",
+        "related_searches_max": 10,
+        "related_searches_bg": "#ffffff",
+        "related_searches_title_color": "#1a1a1a",
+        "related_searches_pill_bg": "#e8f5e9",
+        "related_searches_pill_text": "#388138",
+        "related_searches_pill_hover_bg": "#e8f5e9",
+        "related_searches_pill_hover_text": "#388138",
+        "show_active_filters_bar": false,
+        "show_filter_availability": true,
+        "show_filter_price": true,
+        "show_filter_type": false,
+        "show_filter_vendor": true,
+        "show_filter_collection": true,
+        "show_filter_tags": true,
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_b4NPRX": {
+      "type": "collection-description",
+      "name": "Collection Description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "1759577796a1f88e68": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_e6atLY": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#dddddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_e6atLY"
+      ],
+      "settings": {}
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Acetylcysteine Medications – The Ultimate Antioxidant & Mucolytic Solution",
+            "text": "<p><strong>Buy Acetylcysteine (NAC) Online | Benefits, Uses, Dosage, Side Effects & Health FAQs</strong></p><h4>What is Acetylcysteine?</h4><p><strong>Acetylcysteine</strong> (also known as <strong>N-acetylcysteine/NAC</strong>) is a powerful antioxidant and mucolytic medication, highly recommended for respiratory health, liver support, and detoxification. Ranked as a leading <strong>respiratory supplement</strong> and <strong>liver detox medicine</strong>, acetylcysteine is used both as a prescription drug and as a supplement worldwide.</p><h4>Key Uses of Acetylcysteine</h4><ul><li><strong>Treatment of acetaminophen (paracetamol) overdose</strong> <em>(life-saving antidote, prevents liver damage)</em></li><li><strong>Mucolytic agent:</strong> Thins mucus secretions for easier breathing in conditions like chronic bronchitis, COPD, asthma, cystic fibrosis</li><li><strong>Antioxidant support:</strong> Replenishes glutathione levels, reducing oxidative stress</li><li><strong>Liver health:</strong> Supports natural liver detox and protects against toxins</li><li><strong>Immune support:</strong> Strengthens immune defense against infections and inflammation</li><li><strong>Mental health:</strong> Supports brain health and may benefit psychiatric disorders</li></ul><h4>Mechanism of Action</h4><p>Acetylcysteine works by acting as a <strong>precursor to glutathione</strong>, the body's master antioxidant. It breaks down thick mucus and neutralizes harmful free radicals, protecting cells from oxidative stress. In acetaminophen overdose, acetylcysteine restores depleted glutathione in the liver, allowing safe breakdown and removal of toxic metabolites.</p><h4>Benefits</h4><ul><li><strong>Powerful antioxidant effect</strong></li><li><strong>Improves breathing and clears mucus</strong></li><li><strong>Protects and detoxifies the liver</strong></li><li><strong>Reduces inflammation</strong></li><li><strong>Promotes immune function</strong></li><li><strong>May support brain and mental health</strong></li><li><strong>Helps with respiratory infections and chronic lung disease</strong></li></ul><h4>Dosage</h4><p><strong>For Acetaminophen Overdose:</strong></p><ul><li><em><strong>IV (21-hour protocol):</strong></em> Initial loading dose followed by continuous infusions over 21 hours</li><li><em><strong>Oral:</strong></em> Dosing over 72 hours as prescribed<br/></li></ul><p><strong>For Mucolytic/Antioxidant Use:</strong></p><ul><li><em>Adults:</em> 600mg to 1200mg daily divided doses</li><li><em>Always follow doctor’s instructions & package labeling</em></li></ul><h4>Side Effects</h4><ul><li><strong>Common:</strong> Nausea, vomiting, diarrhea, mild stomach upset, rash</li><li><strong>Serious (rare):</strong> Allergic reactions (rash, swelling, difficulty breathing), low blood pressure, fever (rare)</li><li><strong>Precautions:</strong> Individuals with asthma may experience bronchospasm; use under medical supervision</li></ul><h4>Is Acetylcysteine Safe?</h4><p><strong>Acetylcysteine is generally very safe</strong> when used as recommended. Adverse effects are rare and usually mild. Always consult your healthcare professional before starting new supplements or medications, especially if you have existing health conditions or are pregnant/breastfeeding.</p><h2>Frequently Asked Questions (FAQs)</h2><h3><strong>What is the drug acetylcysteine used for?</strong></h3><p>Acetylcysteine is primarily used to treat acetaminophen (paracetamol) overdose, as a mucolytic agent for lung diseases (COPD, asthma, cystic fibrosis), and as an antioxidant supplement to boost glutathione levels in the body.</p><h3><strong>Why would someone need acetylcysteine?</strong></h3><p>You may need acetylcysteine if you suffer from chronic respiratory problems with thick mucus, require liver support (especially after overdose), or seek antioxidant protection from oxidative stress.</p><h3> <strong>Is it okay to take acetylcysteine every day?</strong></h3><p>Yes, daily use is common for chronic respiratory conditions and antioxidant support. Always follow healthcare provider’s dosage recommendations.</p><h3><strong>How safe is acetylcysteine?</strong></h3><p>Acetylcysteine is considered safe, with very few side effects when used properly. Rare adverse reactions may occur, so consult a doctor before use.</p><h3><strong>Can NAC cause fever?</strong></h3><p>Fever is a rare side effect of NAC but can happen in sensitive individuals.</p><h3><strong>Does NAC affect sleep?</strong></h3><p>NAC does not typically cause sleep disturbances and is not a sedative or stimulant, but individual responses may vary.</p><h3><strong>What is the difference between NAC and acetylcysteine?</strong></h3><p>NAC and acetylcysteine are the same compound; “NAC” is simply an abbreviation.</p><h3><strong>Can I take paracetamol and acetylcysteine together?</strong></h3><p>Yes, but acetylcysteine is especially crucial if there is an overdose of paracetamol; consult your healthcare provider for specific situations.</p><h3><strong>Who cannot take acetylcysteine?</strong></h3><p>People with allergic reactions to acetylcysteine, severe asthma, or certain metabolic disorders should avoid it. Always check with your doctor before use.</p><h3><strong>Can I buy acetylcysteine over the counter?</strong></h3><p>In some countries, acetylcysteine/NAC supplements can be bought over the counter. Prescription may be required for higher doses or injectable forms.</p><h3><strong>What are the disadvantages of acetylcysteine?</strong></h3><p>Potential disadvantages include mild gastrointestinal side effects, rare allergic reactions, and possible drug interactions.</p><h3><strong>What is the 21 hour protocol for acetylcysteine?</strong></h3><p>This is an intravenous treatment plan for acetaminophen overdose: a loading dose, then two subsequent doses over 21 hours to prevent liver failure.</p><h3><strong>Is it better to take acetylcysteine in the morning or evening?</strong></h3><p>Either time is acceptable; split doses may be preferred for lung or antioxidant benefits. Take at the same time(s) daily for best results.</p><h3><strong>What to avoid when taking NAC?</strong></h3><p>Avoid alcohol, certain antibiotics, and consult your doctor if taking other medications as interactions are possible.</p><h3><strong>What is the daily limit for acetylcysteine?</strong></h3><p>The typical safe daily limit is up to 1,200mg for supplements; prescribed doses may be higher for medical conditions as directed by a physician.</p><h3><strong>What does NAC do to your brain?</strong></h3><p>NAC supports brain health by reducing oxidative stress and inflammation, which may help improve symptoms in certain mental health disorders.</p><p><strong>Why Choose Our Acetylcysteine?</strong></p><ul><li><strong>Top-rated, pharmaceutical-grade NAC</strong></li><li><strong>Clinically backed for efficacy and safety</strong></li><li><strong>Fast shipping, competitive prices</strong></li><li><strong>Trusted by thousands for lung & liver support</strong></li></ul><p><strong>Order Now</strong> for the most trusted Acetylcysteine supplement online. <strong>Enhance your respiratory, liver, and antioxidant health today!</strong></p>",
+            "heading_size": "large",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_b4NPRX",
+    "1759577796a1f88e68",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

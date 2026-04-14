@@ -1,0 +1,35 @@
+{% comment %}
+  List Filter (Vendor, Product Type, etc.)
+  Uses Shopify's native URL-based filtering for proper functionality
+
+  @param filter - the list filter object from collection.filters
+{% endcomment %}
+
+<div class="filter-list-scroll">
+  <ul class="filter-list" data-filter-list>
+    {% for value in filter.values %}
+      {% if value.count > 0 or value.active %}
+        <li class="filter-list__item">
+          <label class="filter-list__label{% if value.active %} filter-list__label--active{% endif %}{% if value.count == 0 and value.active == false %} filter-list__label--disabled{% endif %}">
+            <input
+              type="checkbox"
+              class="filter-list__checkbox"
+              {% if value.active %}checked{% endif %}
+              {% if value.count == 0 and value.active == false %}disabled{% endif %}
+              data-filter-url="{{ value.url }}"
+              data-filter-url-remove="{{ value.url_to_remove }}"
+              data-filter-active="{% if value.active %}true{% else %}false{% endif %}"
+            >
+            <span class="filter-list__checkbox-icon">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                <path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="filter-list__text">{{ value.label }}</span>
+            <span class="filter-list__count">({{ value.count }})</span>
+          </label>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>

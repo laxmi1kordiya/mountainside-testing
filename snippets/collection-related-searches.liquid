@@ -1,0 +1,329 @@
+{% comment %}
+  Related Searches / "People Also Searched For" section
+  Sorted by product count (most products first):
+    1. {collection title} by {vendor} — vendors with 5+ products
+    2. {collection title} to {tag} — tags with 5+ products
+    3. Collection names — sorted by shared product count
+{% endcomment %}
+
+{% assign max_items = related_searches_max | default: 12 %}
+{% assign min_products = 5 %}
+
+{% comment %} ===== Step 1: Build vendor list with product counts ===== {% endcomment %}
+{% assign valid_vendor_keys = '' %}
+{% assign valid_vendor_names = '' %}
+{% assign valid_vendor_counts = '' %}
+
+{% for product in collection.products %}
+  {% assign pv = product.vendor %}
+  {% assign pv_handle = pv | handleize %}
+
+  {% assign vendor_is_tag = false %}
+  {% for tag in product.tags %}
+    {% assign check_h = tag | handleize %}
+    {% if check_h == pv_handle %}
+      {% assign vendor_is_tag = true %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  {% if vendor_is_tag %}
+    {% unless valid_vendor_keys contains pv_handle %}
+      {% if valid_vendor_keys == '' %}
+        {% assign valid_vendor_keys = pv_handle %}
+        {% assign valid_vendor_names = pv %}
+        {% assign valid_vendor_counts = '1' %}
+      {% else %}
+        {% assign valid_vendor_keys = valid_vendor_keys | append: '|||' | append: pv_handle %}
+        {% assign valid_vendor_names = valid_vendor_names | append: '|||' | append: pv %}
+        {% assign valid_vendor_counts = valid_vendor_counts | append: '|||1' %}
+      {% endif %}
+    {% else %}
+      {% assign vk_temp = valid_vendor_keys | split: '|||' %}
+      {% assign vc_temp = valid_vendor_counts | split: '|||' %}
+      {% assign new_vc = '' %}
+      {% for vk in vk_temp %}
+        {% if vk == pv_handle %}
+          {% assign inc_c = vc_temp[forloop.index0] | plus: 1 %}
+        {% else %}
+          {% assign inc_c = vc_temp[forloop.index0] %}
+        {% endif %}
+        {% if new_vc == '' %}
+          {% assign new_vc = inc_c %}
+        {% else %}
+          {% assign new_vc = new_vc | append: '|||' | append: inc_c %}
+        {% endif %}
+      {% endfor %}
+      {% assign valid_vendor_counts = new_vc %}
+    {% endunless %}
+  {% endif %}
+{% endfor %}
+
+{% assign rs_vendors = valid_vendor_names | split: '|||' %}
+{% assign rs_vendor_keys = valid_vendor_keys | split: '|||' %}
+{% assign rs_vendor_counts = valid_vendor_counts | split: '|||' %}
+
+{% comment %} ===== Step 2: Build tag list with product counts ===== {% endcomment %}
+{% comment %} Exclude tags that match vendor handles or collection handle {% endcomment %}
+{% assign tag_names = '' %}
+{% assign tag_handles_list = '' %}
+{% assign tag_counts = '' %}
+{% assign coll_h = collection.handle %}
+{% assign vendor_keys_check = '|||' | append: valid_vendor_keys | append: '|||' %}
+
+{% for product in collection.products %}
+  {% for tag in product.tags %}
+    {% if tag != blank %}
+      {% assign th = tag | handleize %}
+      {% if th != coll_h %}
+        {% comment %} Skip if this tag is a vendor handle (exact match with delimiters) {% endcomment %}
+        {% assign th_delimited = '|||' | append: th | append: '|||' %}
+        {% assign is_vendor_tag = false %}
+        {% if vendor_keys_check contains th_delimited %}
+          {% assign is_vendor_tag = true %}
+        {% endif %}
+        {% unless is_vendor_tag %}
+          {% unless tag_handles_list contains th %}
+            {% if tag_handles_list == '' %}
+              {% assign tag_names = tag %}
+              {% assign tag_handles_list = th %}
+              {% assign tag_counts = '1' %}
+            {% else %}
+              {% assign tag_names = tag_names | append: '|||' | append: tag %}
+              {% assign tag_handles_list = tag_handles_list | append: '|||' | append: th %}
+              {% assign tag_counts = tag_counts | append: '|||1' %}
+            {% endif %}
+          {% else %}
+            {% assign th_temp = tag_handles_list | split: '|||' %}
+            {% assign tc_temp = tag_counts | split: '|||' %}
+            {% assign new_tc = '' %}
+            {% for t in th_temp %}
+              {% if t == th %}
+                {% assign inc_t = tc_temp[forloop.index0] | plus: 1 %}
+              {% else %}
+                {% assign inc_t = tc_temp[forloop.index0] %}
+              {% endif %}
+              {% if new_tc == '' %}
+                {% assign new_tc = inc_t %}
+              {% else %}
+                {% assign new_tc = new_tc | append: '|||' | append: inc_t %}
+              {% endif %}
+            {% endfor %}
+            {% assign tag_counts = new_tc %}
+          {% endunless %}
+        {% endunless %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% assign rs_tag_names = tag_names | split: '|||' %}
+{% assign rs_tag_handles = tag_handles_list | split: '|||' %}
+{% assign rs_tag_counts = tag_counts | split: '|||' %}
+
+{% comment %} ===== Step 3: Build related collections with shared product counts ===== {% endcomment %}
+{% assign coll_titles = '' %}
+{% assign coll_handles = '' %}
+{% assign coll_shared_counts = '' %}
+
+{% for product in collection.products %}
+  {% for c in product.collections %}
+    {% if c.title != collection.title and c.all_products_count >= min_products %}
+      {% unless coll_titles contains c.title %}
+        {% if coll_titles == '' %}
+          {% assign coll_titles = c.title %}
+          {% assign coll_handles = c.handle %}
+          {% assign coll_shared_counts = '1' %}
+        {% else %}
+          {% assign coll_titles = coll_titles | append: '|||' | append: c.title %}
+          {% assign coll_handles = coll_handles | append: '|||' | append: c.handle %}
+          {% assign coll_shared_counts = coll_shared_counts | append: '|||1' %}
+        {% endif %}
+      {% else %}
+        {% assign ct_temp = coll_titles | split: '|||' %}
+        {% assign cs_temp = coll_shared_counts | split: '|||' %}
+        {% assign new_cs = '' %}
+        {% for ct in ct_temp %}
+          {% if ct == c.title %}
+            {% assign inc_s = cs_temp[forloop.index0] | plus: 1 %}
+          {% else %}
+            {% assign inc_s = cs_temp[forloop.index0] %}
+          {% endif %}
+          {% if new_cs == '' %}
+            {% assign new_cs = inc_s %}
+          {% else %}
+            {% assign new_cs = new_cs | append: '|||' | append: inc_s %}
+          {% endif %}
+        {% endfor %}
+        {% assign coll_shared_counts = new_cs %}
+      {% endunless %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% assign coll_titles_arr = coll_titles | split: '|||' %}
+{% assign coll_handles_arr = coll_handles | split: '|||' %}
+{% assign coll_shared_arr = coll_shared_counts | split: '|||' %}
+
+{% comment %} ===== Count qualified items ===== {% endcomment %}
+{% assign qualified_count = 0 %}
+{% for c in rs_vendor_counts %}
+  {% assign c_num = c | plus: 0 %}
+  {% if c_num >= min_products %}
+    {% assign qualified_count = qualified_count | plus: 1 %}
+  {% endif %}
+{% endfor %}
+{% for c in rs_tag_counts %}
+  {% assign c_num = c | plus: 0 %}
+  {% if c_num >= min_products %}
+    {% assign qualified_count = qualified_count | plus: 1 %}
+  {% endif %}
+{% endfor %}
+{% for c in coll_shared_arr %}
+  {% assign c_num = c | plus: 0 %}
+  {% if c_num >= 2 %}
+    {% assign qualified_count = qualified_count | plus: 1 %}
+  {% endif %}
+{% endfor %}
+
+{% if qualified_count > 0 %}
+<div class="related-searches" data-related-searches>
+  <div class="related-searches__inner">
+    <h2 class="related-searches__title">{{ related_searches_title | default: 'People Also Searched For' }}</h2>
+    <div class="related-searches__pills">
+      {% assign items_shown = 0 %}
+
+      {% comment %} === 1. {collection} by {vendor} — sorted by product count desc === {% endcomment %}
+      {% for i in (1..50) %}
+        {% assign check_level = 51 | minus: i %}
+        {% if check_level >= min_products %}
+          {% for vendor in rs_vendors %}
+            {% if items_shown < max_items %}
+              {% assign v_count = rs_vendor_counts[forloop.index0] | plus: 0 %}
+              {% if v_count == check_level %}
+                {% assign vendor_handle = rs_vendor_keys[forloop.index0] %}
+                {% comment %} Skip if vendor is already an active filter {% endcomment %}
+                {% assign vendor_active = false %}
+                {% for ct in current_tags %}
+                  {% assign ct_h = ct | handleize %}
+                  {% if ct_h == vendor_handle %}
+                    {% assign vendor_active = true %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+                {% unless vendor_active %}
+                  <a href="{{ collection.url }}/{{ vendor_handle }}" class="related-searches__pill">
+                    {{ collection.title }} by {{ vendor }}
+                  </a>
+                  {% assign items_shown = items_shown | plus: 1 %}
+                {% endunless %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+
+      {% comment %} === 2. {collection} to {tag} — sorted by product count desc === {% endcomment %}
+      {% for i in (1..50) %}
+        {% assign check_level = 51 | minus: i %}
+        {% if check_level >= min_products %}
+          {% for tag_name in rs_tag_names %}
+            {% if items_shown < max_items %}
+              {% assign t_count = rs_tag_counts[forloop.index0] | plus: 0 %}
+              {% if t_count == check_level %}
+                {% assign tag_h = rs_tag_handles[forloop.index0] %}
+                {% comment %} Skip if tag is already an active filter {% endcomment %}
+                {% assign tag_active = false %}
+                {% for ct in current_tags %}
+                  {% assign ct_h = ct | handleize %}
+                  {% if ct_h == tag_h %}
+                    {% assign tag_active = true %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+                {% unless tag_active %}
+                  <a href="{{ collection.url }}/{{ tag_h }}" class="related-searches__pill">
+                    {{ collection.title }} to {{ tag_name }}
+                  </a>
+                  {% assign items_shown = items_shown | plus: 1 %}
+                {% endunless %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+
+      {% comment %} === 3. Collections sorted by shared product count desc === {% endcomment %}
+      {% for i in (1..50) %}
+        {% assign check_level = 51 | minus: i %}
+        {% if check_level >= 2 %}
+          {% for title in coll_titles_arr %}
+            {% if items_shown < max_items %}
+              {% assign shared = coll_shared_arr[forloop.index0] | plus: 0 %}
+              {% if shared == check_level %}
+                {% assign handle = coll_handles_arr[forloop.index0] %}
+                <a href="/collections/{{ handle }}" class="related-searches__pill">
+                  {{ title }}
+                </a>
+                {% assign items_shown = items_shown | plus: 1 %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .related-searches {
+    border-top: 1px solid #e5e5e5;
+    background: {{ rs_bg | default: '#f5f5f5' }};
+    border-radius: 8px;
+    padding: 24px 28px;
+    max-width: 1300px;
+    margin: auto;
+  }
+  .related-searches__title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 16px;
+    color: {{ rs_title_color | default: '#1a1a1a' }};
+  }
+  .related-searches__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .related-searches__pill {
+    display: inline-block;
+    background: {{ rs_pill_bg | default: '#e0e0e0' }};
+    color: {{ rs_pill_text | default: '#333333' }};
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    line-height: 1.4;
+  }
+  .related-searches__pill:hover {
+    background: {{ rs_pill_hover_bg | default: '#d0d0d0' }};
+    color: {{ rs_pill_hover_text | default: '#111111' }};
+    text-decoration: none;
+  }
+  @media screen and (max-width: 767px) {
+    .related-searches {
+      padding: 18px 16px;
+      margin: 20px 0 16px;
+    }
+    .related-searches__title {
+      font-size: 17px;
+      margin-bottom: 12px;
+    }
+    .related-searches__pill {
+      font-size: 13px;
+      padding: 6px 12px;
+    }
+  }
+</style>
+{% endif %}

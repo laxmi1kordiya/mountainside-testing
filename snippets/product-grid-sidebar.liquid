@@ -1,0 +1,165 @@
+{% comment %}
+  @param filter_style {String}
+    Type of filtering style, 'none', 'tags', or 'groups'
+
+  @param filter_position {String}
+    Where to position filters, 'above_menus', or 'below_menus'
+
+  @param filter_limit {String}
+    How many tags (non grouped) should show
+
+  @param menu_depth {String}
+    How many child menus to show
+
+  @param enable_menu_accordion {Boolean}
+    Whether sidebar menus use accordion collapse/expand
+{% endcomment %}
+
+<div class="productgrid--sidebar">
+
+  {% if filter_position == 'above_menus' %}
+    {% include 'product-grid-sidebar-filters' %}
+  {% endif %}
+
+  {% comment %}
+    Collection menus
+  {% endcomment %}
+  {% if section.blocks.size > 0 %}
+    {% assign sidebar_menu_depth = menu_depth | times: 1 %}
+
+    <nav
+      aria-label="{{ 'general.accessibility.nav_sidebar' | t }}"
+      class="productgrid--sidebar-section"
+    >
+      {% for block in section.blocks %}
+        {% assign menu = block.settings.menu %}
+
+        {% if linklists[menu] == blank or linklists[menu].links.size == 0 %}
+          {% comment %}
+            Exit iteration if a menu doesn't exist, or selected menu has no links
+          {% endcomment %}
+          {% break %}
+        {% endif %}
+
+        {% if enable_menu_accordion %}
+          <div class="sidebar-accordion" data-sidebar-accordion>
+            <button class="sidebar-accordion__header" data-sidebar-accordion-toggle aria-expanded="false">
+              <h2 class="productgrid--sidebar-title sidebar-accordion__title">
+                {{ linklists[menu].title }}
+              </h2>
+              <span class="sidebar-accordion__icon">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 4.5L6 8.5L10 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="sidebar-accordion__content" data-sidebar-accordion-content>
+              <div class="productgrid--sidebar-item productgrid--sidebar-menu">
+                {%
+                  include 'navlist',
+                  menu_list: linklists[block.settings.menu].links,
+                  depth: 1,
+                  max_depth: sidebar_menu_depth,
+                  aria_expanded: true
+                %}
+              </div>
+            </div>
+          </div>
+        {% else %}
+          <h2 class="productgrid--sidebar-title">
+            {{ linklists[menu].title }}
+          </h2>
+          <div class="productgrid--sidebar-item productgrid--sidebar-menu">
+            {%
+              include 'navlist',
+              menu_list: linklists[block.settings.menu].links,
+              depth: 1,
+              max_depth: sidebar_menu_depth,
+              aria_expanded: true
+            %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </nav>
+  {% endif %}
+
+  {% unless filter_position == 'above_menus' %}
+    {% include 'product-grid-sidebar-filters' %}
+  {% endunless %}
+</div>
+
+{% if enable_menu_accordion %}
+<style>
+  .sidebar-accordion {
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .sidebar-accordion:last-child {
+    border-bottom: none;
+  }
+  .sidebar-accordion__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    color: inherit;
+    font-family: inherit;
+  }
+  .sidebar-accordion__header:hover {
+    opacity: 0.7;
+  }
+  .sidebar-accordion__title {
+    margin: 0;
+    pointer-events: none;
+  }
+  .sidebar-accordion__icon {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+  }
+  .sidebar-accordion__header[aria-expanded="true"] .sidebar-accordion__icon {
+    transform: rotate(180deg);
+  }
+  .sidebar-accordion__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .sidebar-accordion__content.is-open {
+    max-height: 2000px;
+  }
+</style>
+
+<script>
+  (function() {
+    var toggles = document.querySelectorAll('[data-sidebar-accordion-toggle]');
+    toggles.forEach(function(toggle) {
+      toggle.addEventListener('click', function() {
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        var content = this.nextElementSibling;
+
+        this.setAttribute('aria-expanded', !expanded);
+
+        if (expanded) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          requestAnimationFrame(function() {
+            content.style.maxHeight = '0';
+          });
+          content.classList.remove('is-open');
+        } else {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          content.classList.add('is-open');
+          content.addEventListener('transitionend', function handler() {
+            content.style.maxHeight = '';
+            content.removeEventListener('transitionend', handler);
+          });
+        }
+      });
+    });
+  })();
+</script>
+{% endif %}

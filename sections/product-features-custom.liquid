@@ -1,0 +1,322 @@
+{% comment %}
+  Custom Product Features Section with Icons and Images
+  Fully customizable with settings
+{% endcomment %}
+
+<style>
+  .pf-custom-features {
+    padding: 60px 0;
+    background: {{ section.settings.background_color }};
+  }
+
+  .pf-custom-features__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .pf-custom-features__header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .pf-custom-features__title {
+    font-size: 36px;
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 15px 0;
+    line-height: 1.2;
+  }
+
+  .pf-custom-features__subtitle {
+    font-size: 18px;
+    color: {{ section.settings.text_color }};
+    margin: 0;
+    opacity: 0.8;
+  }
+
+  .pf-custom-features__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  .pf-feature-card {
+    background: {{ section.settings.card_background }};
+    border-radius: {{ section.settings.border_radius }}px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .pf-feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  .pf-feature-card__icon-wrapper {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: {{ section.settings.icon_background }};
+    border-radius: 50%;
+  }
+
+  .pf-feature-card__icon-wrapper img {
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: contain;
+  }
+
+  .pf-feature-card__icon-wrapper svg {
+    width: 50px;
+    height: 50px;
+    fill: {{ section.settings.icon_color }};
+  }
+
+  .pf-feature-card__title {
+    font-size: 22px;
+    font-weight: 600;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 15px 0;
+  }
+
+  .pf-feature-card__description {
+    font-size: 15px;
+    line-height: 1.6;
+    color: {{ section.settings.text_color }};
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  @media (max-width: 768px) {
+    .pf-custom-features {
+      padding: 40px 0;
+    }
+
+    .pf-custom-features__title {
+      font-size: 28px;
+    }
+
+    .pf-custom-features__grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .pf-feature-card {
+      padding: 30px 20px;
+    }
+  }
+</style>
+
+<section class="pf-custom-features">
+  <div class="pf-custom-features__container">
+    {% if section.settings.show_header %}
+      <div class="pf-custom-features__header">
+        {% if section.settings.section_title != blank %}
+          <h2 class="pf-custom-features__title">{{ section.settings.section_title }}</h2>
+        {% endif %}
+        {% if section.settings.section_subtitle != blank %}
+          <p class="pf-custom-features__subtitle">{{ section.settings.section_subtitle }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="pf-custom-features__grid">
+      {% for block in section.blocks %}
+        <div class="pf-feature-card" {{ block.shopify_attributes }}>
+          <div class="pf-feature-card__icon-wrapper">
+            {% if block.settings.icon_image != blank %}
+              <img
+                src="{{ block.settings.icon_image | img_url: '100x100' }}"
+                alt="{{ block.settings.title }}"
+                loading="lazy"
+              />
+            {% elsif block.settings.icon_svg != blank %}
+              {{ block.settings.icon_svg }}
+            {% else %}
+              {%comment%} Default icon {%endcomment%}
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            {% endif %}
+          </div>
+
+          {% if block.settings.title != blank %}
+            <h3 class="pf-feature-card__title">{{ block.settings.title }}</h3>
+          {% endif %}
+
+          {% if block.settings.description != blank %}
+            <p class="pf-feature-card__description">{{ block.settings.description }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Features Custom",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_header",
+      "label": "Show section header",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title",
+      "default": "Why Choose Our Product"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section subtitle",
+      "default": "Discover the benefits that set us apart"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#2d5a3d"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "icon_background",
+      "label": "Icon background",
+      "default": "#f0f7f3"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#2d5a3d"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Icon Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon image",
+          "info": "Upload an icon image (recommended size: 100x100px). This will override the SVG icon if provided."
+        },
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "SVG Icon code",
+          "info": "Paste SVG code here if not using an image. Example: <svg>...</svg>"
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Describe your product feature here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Features Custom",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Sustainable",
+            "description": "Top quality and long product life with no replacement parts required."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Cruelty-free",
+            "description": "No animals were used in the development of this product."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Rechargeable",
+            "description": "USB rechargeable with up to 125 uses per single charge."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Hygienic",
+            "description": "Made of bacteria-resistant silicone, easy to clean."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

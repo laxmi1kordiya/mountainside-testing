@@ -1,0 +1,100 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "respiratory-supplies"
+          }
+        },
+        "menu_6E7Hbw": {
+          "type": "menu",
+          "settings": {
+            "menu": "suctioning"
+          }
+        },
+        "menu_x3bGGq": {
+          "type": "menu",
+          "settings": {
+            "menu": "disinfecting"
+          }
+        },
+        "menu_hgagBG": {
+          "type": "menu",
+          "settings": {
+            "menu": "isolation-and-infection-control"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_6E7Hbw",
+        "menu_x3bGGq",
+        "menu_hgagBG"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "5",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Respiratory Supplies",
+            "text": "<p>Respiratory supplies are products and equipment used to support individuals with breathing difficulties or respiratory conditions. These supplies are essential for delivering oxygen therapy, managing asthma, or providing ventilatory support. Key types of respiratory supplies include:<br/><br/><strong>Oxygen Therapy Equipment:</strong></p><ul><li><a href=\"/collections/oxygen-concentrators\" title=\"Oxygen Concentrators\"><strong>Oxygen Concentrators</strong></a><strong>:</strong> Devices that filter and concentrate oxygen from the air for inhalation.</li><li><a href=\"/products/replacement-oxygen-tanks-cylinders-for-lif-o-gen-system\" title=\"Replacement Oxygen Tank for Allied Healthcare Lif-O-Gen System\"><strong>Oxygen Cylinders</strong></a><strong>:</strong> Portable tanks containing compressed oxygen for therapy on the go.</li><li><a href=\"/collections/oxygen-masks\" title=\"Oxygen Masks\"><strong>Oxygen Masks</strong></a><strong> and </strong><a href=\"/collections/nasal-cannulas\" title=\"Nasal Cannulas\"><strong>Nasal Cannulas</strong></a><strong>:</strong> Interfaces for delivering oxygen to the patient.<br/></li></ul><p><a href=\"/collections/nebulizers-and-accessories\" title=\"Nebulizer Machines\"><strong>Nebulizers</strong></a><strong>:</strong></p><ul><li>Devices that turn liquid medication into a mist for inhalation, commonly used for asthma or COPD management.<br/></li></ul><p><strong>Inhalers:</strong></p><ul><li><a href=\"/collections/albuterol-1\" title=\"Albuterol Sulfate Inhalers, Solutions and Tablets\"><strong>Metered-Dose Inhalers</strong></a><strong> (MDIs):</strong> Deliver a specific amount of medication directly to the lungs.</li><li><a href=\"/collections/asthma\" title=\"Asthma Inhalers\"><strong>Dry Powder Inhalers</strong></a><strong> (DPIs):</strong> Use the patient’s breath to draw medication into the airways.<br/></li></ul><p><a href=\"/collections/cpap\" title=\"CPAP\"><strong>CPAP</strong></a><strong> and BiPAP Machines:</strong></p><ul><li>Used for sleep apnea treatment, these machines provide continuous or bi-level positive airway pressure to keep airways open.<br/></li></ul><p><strong>Ventilators:</strong></p><ul><li>Machines that assist or take over breathing for individuals who are unable to breathe independently.<br/></li></ul><p><strong>Airway Management Supplies:</strong></p><ul><li><a href=\"/collections/endotracheal-tubes\" title=\"Endotracheal Tubes\"><strong>Endotracheal Tubes</strong></a><strong>:</strong> Used for intubating patients who need mechanical ventilation.</li><li><a href=\"/products/dic-tracheostomy-tubes\" title=\"DIC Tracheostomy Tubes\"><strong>Tracheostomy Tubes</strong></a><strong>:</strong> Inserted into the trachea to facilitate breathing.<br/></li></ul><p><strong>Respiratory Assistive Devices:</strong></p><ul><li><strong>Peak Flow Meters:</strong> Measure lung function in asthma management.</li><li><a href=\"/collections/incentive-spirometers\" title=\"Incentive Spirometers\"><strong>Spirometers</strong></a><strong>:</strong> Assess respiratory function and capacity.<br/></li></ul><p>These respiratory supplies are critical in managing a variety of respiratory conditions, enhancing patients’ quality of life by ensuring adequate ventilation and oxygenation.</p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_eU82ug": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_eU82ug",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

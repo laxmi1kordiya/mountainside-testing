@@ -1,0 +1,468 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "1718367644c2f44488": {
+      "type": "apps",
+      "blocks": {
+        "webrex_ai_seo_optimizer_breadcrumb_section_grkPkq": {
+          "type": "shopify://apps/webrex-ai-seo-optimizer/blocks/breadcrumbSection/b26797ad-bb4d-48f5-8ef3-7c561521049c",
+          "settings": {
+            "visible_on_desktop": true,
+            "visible_on_mobile": false,
+            "firstItemText": "Home",
+            "seperateSymbol": ">",
+            "breadcrumbAlignment": "flex-start",
+            "font_size": 14,
+            "mainColour": "#000000",
+            "seperateColour": "#000000",
+            "hoverColor": "#388238",
+            "background_color": "rgba(0,0,0,0)",
+            "uppercase": false,
+            "hoverUnderline": false,
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 10,
+            "spaceBetween": 0,
+            "marginBottom": 0,
+            "menu": "",
+            "allCollectionsLabel": "All Products",
+            "showProductTitle": true,
+            "productCollectionPrioritize": false,
+            "priorityCollection": "smallest",
+            "blocked_collection_list": [],
+            "showBlogBreadcrumbs": true,
+            "showPageBreadcrumbs": true
+          }
+        }
+      },
+      "block_order": [
+        "webrex_ai_seo_optimizer_breadcrumb_section_grkPkq"
+      ],
+      "custom_css": [
+        ".seo-breadcrumb ul li:last-child a {display: inline-block; /* Increase this number until the first word is fully visible */ max-width: 15ch; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; vertical-align: bottom;}"
+      ],
+      "settings": {}
+    },
+    "f422a9af-a63e-4d96-994e-c7f9acb97689": {
+      "type": "static-product",
+      "blocks": {
+        "judge_me_reviews_preview_badge_pLChxM": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "judge_me_rj3BgW": {
+          "type": "judge_me",
+          "disabled": true,
+          "settings": {}
+        },
+        "title_yApNCN": {
+          "type": "title",
+          "settings": {}
+        },
+        "vendor_eARyDt": {
+          "type": "vendor",
+          "settings": {}
+        },
+        "sku_bF9Lgn": {
+          "type": "sku",
+          "settings": {}
+        },
+        "price_gPHiRV": {
+          "type": "price",
+          "settings": {}
+        },
+        "form_iVLMBX": {
+          "type": "form",
+          "settings": {}
+        },
+        "icon_features_XifYBr": {
+          "type": "icon_features",
+          "settings": {
+            "heading": "",
+            "columns_desktop": "2",
+            "columns_mobile": "2",
+            "icon_size": 50
+          }
+        },
+        "subheading_6Ciga9": {
+          "type": "subheading",
+          "settings": {
+            "text": "{{ product.metafields.custom.subheading.value }}",
+            "enable_read_more": true,
+            "max_lines": 3
+          }
+        },
+        "icon_row_gwCjRd": {
+          "type": "icon_row",
+          "settings": {
+            "columns_desktop": "4",
+            "columns_mobile": "4",
+            "icon_size": 50,
+            "hide_text_mobile": false,
+            "icon_image_1": "shopify://shop_images/Screenshot_2026-02-24_at_6.39.34_PM.png",
+            "icon_text_1": "Fast Delivery",
+            "icon_image_2": "shopify://shop_images/Screenshot_2026-02-24_at_6.39.41_PM.png",
+            "icon_text_2": "24/7 Support",
+            "icon_image_3": "shopify://shop_images/Screenshot_2026-02-24_at_6.33.16_PM.png",
+            "icon_text_3": "Easy Returns",
+            "icon_image_4": "shopify://shop_images/Screenshot_2026-02-24_at_6.40.03_PM.png",
+            "icon_text_4": "Hospital Grade",
+            "icon_text_5": "",
+            "swap_icon_slot": "3",
+            "swap_product_tag": "doctor-only",
+            "swap_icon_image": "shopify://shop_images/Untitled_design_1_c386749e-6be4-4db0-8daf-fb9de10ad3d3.png",
+            "swap_icon_text": "No Returns"
+          }
+        },
+        "discount_banner_JK379y": {
+          "type": "discount_banner",
+          "settings": {
+            "display_format": "both",
+            "show_icon": true
+          }
+        },
+        "shipping_info_7t3Db9": {
+          "type": "shipping_info",
+          "settings": {
+            "show_icon": true,
+            "text": "Free Shipping on orders above $100",
+            "text_2": "",
+            "text_3": ""
+          }
+        },
+        "refund_policy_NDrMea": {
+          "type": "refund_policy",
+          "settings": {
+            "policy_label_1": "Returns",
+            "policy_value_1": "30-day return / replacement",
+            "policy_detail_1": "This item can be returned in its original condition for a full refund or replacement within 30 days of receipt.",
+            "policy_link_1": "shopify://pages/returns-replacements",
+            "policy_link_text_1": "Read full return policy",
+            "hide_returns_by_tag": true,
+            "hide_returns_tag": "doctor-only",
+            "no_return_label": "",
+            "no_return_value": "",
+            "policy_label_2": "Payment",
+            "policy_value_2": "Secure transaction",
+            "policy_detail_2": "Your payment information is processed securely. We do not store credit card details.",
+            "policy_link_2": "",
+            "policy_link_text_2": "Learn more about security",
+            "policy_label_3": "Packaging",
+            "policy_value_3": "Ships in product packaging",
+            "policy_detail_3": "Items are carefully packed in their original product packaging to ensure safe delivery.",
+            "policy_link_3": "",
+            "policy_link_text_3": "Read shipping policy"
+          }
+        },
+        "icon_row_DiiXPa": {
+          "type": "icon_row",
+          "settings": {
+            "columns_desktop": "3",
+            "columns_mobile": "3",
+            "icon_size": 50,
+            "hide_text_mobile": true,
+            "icon_image_1": "shopify://shop_images/family.png",
+            "icon_text_1": "Service-Disabled Veteran-Owned Small Business",
+            "icon_image_2": "shopify://shop_images/mountain.png",
+            "icon_text_2": "Located in Adirondack Mountains in NY",
+            "icon_image_3": "shopify://shop_images/vereran.png",
+            "icon_text_3": "Family Owned Business 2002",
+            "icon_text_4": "",
+            "icon_text_5": "",
+            "swap_icon_slot": "none",
+            "swap_product_tag": "doctor-only",
+            "swap_icon_text": "Non-Returnable"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_preview_badge_pLChxM",
+        "judge_me_rj3BgW",
+        "title_yApNCN",
+        "vendor_eARyDt",
+        "sku_bF9Lgn",
+        "price_gPHiRV",
+        "form_iVLMBX",
+        "icon_features_XifYBr",
+        "subheading_6Ciga9",
+        "icon_row_gwCjRd",
+        "discount_banner_JK379y",
+        "shipping_info_7t3Db9",
+        "refund_policy_NDrMea",
+        "icon_row_DiiXPa"
+      ],
+      "custom_css": [
+        ".price--main .money {font-weight: bold;}"
+      ],
+      "settings": {
+        "layout": "layout--three-col",
+        "enable_video_autoplay": true,
+        "show_dcb": true,
+        "product_cart_redirect": false,
+        "show_bulk_call_button": false,
+        "show_bulk_email_button": false
+      }
+    },
+    "52f038a7-2862-4b94-8dbb-37fff37af7e0": {
+      "type": "static-product-recommendations",
+      "custom_css": [
+        ".product-recommendations--carousel {padding-top: 10px; padding-bottom: 10px;}"
+      ],
+      "settings": {
+        "show_product_recommendations": true,
+        "product_recommendations_heading": "Similar Product's",
+        "product_recommendations_limit": 10
+      }
+    },
+    "related_collections_carousel_section": {
+      "type": "related-collections-carousel",
+      "custom_css": [
+        ".rc-carousel {padding-top: 3px; padding-bottom: 3px;}"
+      ],
+      "settings": {
+        "show_related_collections": true,
+        "max_collections": 3,
+        "products_per_collection": 10
+      }
+    },
+    "1772172907192831e2": {
+      "type": "apps",
+      "blocks": {
+        "wb_frequently_bought_together_single_product_JB9jpy": {
+          "type": "shopify://apps/wb-frequently-bought-together/blocks/single-product/5f9bd783-09d5-43d2-bb37-85281ca56a6b",
+          "disabled": true,
+          "settings": {}
+        },
+        "wb_frequently_bought_together_frequently_buy_NM6mRf": {
+          "type": "shopify://apps/wb-frequently-bought-together/blocks/frequently-buy/5f9bd783-09d5-43d2-bb37-85281ca56a6b",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "wb_frequently_bought_together_single_product_JB9jpy",
+        "wb_frequently_bought_together_frequently_buy_NM6mRf"
+      ],
+      "settings": {}
+    },
+    "17659843895d28a075": {
+      "type": "apps",
+      "blocks": {
+        "dealeasy_vd_cards_VywK3t": {
+          "type": "shopify://apps/dealeasy/blocks/vd-cards/e47a8634-0496-480d-9e46-6f7fafd34b30",
+          "settings": {
+            "lb-product-handle": "",
+            "lb-product-id": ""
+          }
+        }
+      },
+      "block_order": [
+        "dealeasy_vd_cards_VywK3t"
+      ],
+      "settings": {}
+    },
+    "1772171996e9dafcc4": {
+      "type": "apps",
+      "blocks": {
+        "webrex_ai_seo_optimizer_product_description_tabs_nHaTTU": {
+          "type": "shopify://apps/webrex-ai-seo-optimizer/blocks/productDescriptionTabs/b26797ad-bb4d-48f5-8ef3-7c561521049c",
+          "settings": {
+            "layout_view": "tabs",
+            "description_position": "inside",
+            "description_tab_title": "Description",
+            "max_width": 1250,
+            "tab_design_style": "cards",
+            "tab_title_font_size": 16,
+            "tab_title_text_color": "#212529",
+            "active_tab_title_text_color": "#ffffff",
+            "tab_background_color": "#f8f9fa",
+            "tab_active_background_color": "#388138",
+            "tab_border_color": "#e9ecef",
+            "classic_underline_color": "#4ecdc4",
+            "classic_underline_thickness": 3,
+            "tab_content_background_color": "#ffffff",
+            "accordion_title_font_size": 16,
+            "accordion_title_text_color": "#212529",
+            "accordion_active_title_text_color": "#212529",
+            "accordion_title_bg_color": "#f5f5f5",
+            "accordion_active_title_bg_color": "#ffffff",
+            "accordion_content_background_color": "#ffffff"
+          }
+        },
+        "judge_me_reviews_review_widget_ByCciY": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_ai_seo_optimizer_product_description_tabs_nHaTTU",
+        "judge_me_reviews_review_widget_ByCciY"
+      ],
+      "settings": {}
+    },
+    "apps_Ga9AAe": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_fciTKc": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_fciTKc"
+      ],
+      "settings": {}
+    },
+    "e9106b51-a25a-4d6b-bac3-214373c50952": {
+      "type": "static-recently-viewed",
+      "custom_css": [
+        ".product-recently-viewed--section {margin-top: 0px;}"
+      ],
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "product_related_searches_aMGcVF": {
+      "type": "product-related-searches",
+      "name": "Product Related Searches",
+      "settings": {
+        "show_related_searches": true,
+        "heading": "People Also Searched For",
+        "max_tags": 10,
+        "section_bg_color": "#ffffff",
+        "padding_top": 30,
+        "padding_bottom": 30,
+        "title_color": "#333333",
+        "title_font_size": 22,
+        "tag_bg_color": "#e8f5e9",
+        "tag_text_color": "#388138",
+        "tag_hover_bg_color": "#e8f5e9",
+        "tag_hover_text_color": "#388138",
+        "tag_font_size": 14,
+        "tag_border_radius": 20,
+        "tag_padding_vertical": 8,
+        "tag_padding_horizontal": 16,
+        "tag_gap": 10
+      }
+    },
+    "17658829157b3e8518": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_cards_carousel_JJdHD3": {
+          "type": "shopify://apps/judge-me-reviews/blocks/cards_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "show_sample_reviews": true,
+            "reviews_selection": "current_product",
+            "products": [],
+            "star_rating": "all",
+            "show_review_media": true,
+            "display_order": "media_first",
+            "no_image_fallback": "review_text_only",
+            "max_reviews": 30,
+            "review_length": "small",
+            "text_size": "small",
+            "image_ratio": "0.75",
+            "reviews_shown": 5,
+            "show_reviewer_name": true,
+            "show_product_name": true,
+            "hide_arrows_mobile": true,
+            "arrows_position": "sides",
+            "max_width": 1100,
+            "corner_styling": "extra_round",
+            "header_text_color": "#000000",
+            "text_color": "#000000",
+            "card_color": "#e9f1e9",
+            "stars_color": "#367b36",
+            "arrows_color": "#000000",
+            "transition_speed": 3,
+            "header_text": "Reviewed by 16K+ Customers",
+            "show_average_rating": true
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_cards_carousel_JJdHD3"
+      ],
+      "custom_css": [
+        "* {margin-bottom: 0;}",
+        ".jdgm-content {margin-top: 30px;}"
+      ],
+      "settings": {}
+    },
+    "ae362d0b-3acf-4a44-b08c-48a5c872e1cc": {
+      "type": "static-product-reviews",
+      "disabled": true,
+      "settings": {}
+    },
+    "17592414505b6a7931": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_A9icrH": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 1300,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#dddddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_A9icrH"
+      ],
+      "name": "FAQs",
+      "settings": {}
+    }
+  },
+  "order": [
+    "1718367644c2f44488",
+    "f422a9af-a63e-4d96-994e-c7f9acb97689",
+    "52f038a7-2862-4b94-8dbb-37fff37af7e0",
+    "related_collections_carousel_section",
+    "1772172907192831e2",
+    "17659843895d28a075",
+    "1772171996e9dafcc4",
+    "apps_Ga9AAe",
+    "e9106b51-a25a-4d6b-bac3-214373c50952",
+    "product_related_searches_aMGcVF",
+    "17658829157b3e8518",
+    "ae362d0b-3acf-4a44-b08c-48a5c872e1cc",
+    "17592414505b6a7931"
+  ]
+}

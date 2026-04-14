@@ -1,0 +1,158 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_xP3jAf": {
+          "type": "menu",
+          "settings": {
+            "menu": "gloves"
+          }
+        },
+        "menu_ApxRwc": {
+          "type": "menu",
+          "settings": {
+            "menu": "first-aid-supplies"
+          }
+        },
+        "menu_HjNyQE": {
+          "type": "menu",
+          "settings": {
+            "menu": "syringes"
+          }
+        },
+        "menu_tx99W4": {
+          "type": "menu",
+          "settings": {
+            "menu": "bandages-and-wraps"
+          }
+        },
+        "menu_tFzgYM": {
+          "type": "menu",
+          "settings": {
+            "menu": "gauze"
+          }
+        },
+        "menu_Xjmntf": {
+          "type": "menu",
+          "settings": {
+            "menu": "antibiotics"
+          }
+        },
+        "menu_zjyxEg": {
+          "type": "menu",
+          "settings": {
+            "menu": "general-supplies"
+          }
+        }
+      },
+      "block_order": [
+        "menu_xP3jAf",
+        "menu_ApxRwc",
+        "menu_HjNyQE",
+        "menu_tx99W4",
+        "menu_tFzgYM",
+        "menu_Xjmntf",
+        "menu_zjyxEg"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "1759403378c86c60c5": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_VM6Bkq": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#dddddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_VM6Bkq"
+      ],
+      "settings": {}
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Nitrile Gloves – Premium, Medical Grade, Disposable Gloves for Ultimate Protection | Latex-Free | Powder-Free | Heavy Duty | Hypoallergenic",
+            "text": "<p>Upgrade your protection and health standards with our <strong>Premium Medical Nitrile Gloves</strong>, trusted by healthcare professionals, food handlers, janitors, mechanics, and tattoo artists. Engineered as the best disposable gloves on the market, these powder-free and latex-free gloves offer unbeatable barrier protection from viruses, bacteria, chemicals, and more. Whether you’re fighting infection control, working in hospitals, clinics, or laboratories, or handling food and chemicals, our nitrile gloves provide the <strong>ultimate combination of safety, comfort, and durability</strong>.<br/><br/><strong>Order Your Nitrile Gloves Now—The Leading Choice for Health, Cleanliness, and Safety!</strong><br/>Stay protected and hygienic with America’s top-rated exam and medical gloves—<strong>Latex-Free, Powder-Free, Hypoallergenic, and Chemical-Resistant!</strong></p><p><strong>#nitrilegloves #disposablegloves #medicalgloves #latexfree #healthandsafety</strong></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_nq5zvq": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_nq5zvq",
+    "1759403378c86c60c5",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

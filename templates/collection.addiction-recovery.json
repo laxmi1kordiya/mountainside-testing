@@ -1,0 +1,86 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_4qxKkV": {
+          "type": "menu",
+          "settings": {
+            "menu": "emergency-supplies"
+          }
+        },
+        "menu_3wWQJX": {
+          "type": "menu",
+          "settings": {
+            "menu": "narcan"
+          }
+        }
+      },
+      "block_order": [
+        "menu_4qxKkV",
+        "menu_3wWQJX"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Addiction Recovery Medication Information",
+            "text": "<p><strong>What are Addiction Recovery Medication</strong></p><p>Addiction recovery medications, also known as medication-assisted treatment (MAT), are used to help individuals overcome substance use disorders. These medications are often used in combination with counseling and behavioral therapies to provide a comprehensive treatment approach. Here are some common medications used  for different types of substance use disorders:<br/><br/><strong>Opioid Addiction:</strong></p><p><strong>Methadone</strong></p><ul><li>A long-acting opioid agonist that helps reduce cravings and withdrawal symptoms.<br/></li></ul><p><strong>Buprenorphine</strong></p><ul><li>A partial opioid agonist that alleviates <br/>withdrawal symptoms and reduces cravings. Often combined with naloxone <br/>(Suboxone) to prevent misuse.<br/></li></ul><p><strong>Naltrexone</strong></p><ul><li>An opioid antagonist that blocks the effects of opioids, preventing the feeling of euphoria.<br/><br/></li></ul><p><strong>Alcohol Addiction:</strong></p><p><strong>Disulfiram (Antabuse)</strong></p><ul><li>Causes unpleasant effects when alcohol is consumed, deterring individuals from drinking.<br/></li></ul><p><strong>Naltrexone (ReVia, Vivitrol)</strong></p><ul><li>Reduces cravings and pleasurable effects of alcohol.<br/></li></ul><p><strong>Acamprosate (Campral)</strong></p><ul><li>Helps reduce withdrawal symptoms and cravings related to alcohol dependence.<br/><br/></li></ul><p><strong>Nicotine Addiction:</strong></p><p><strong>Nicotine Replacement Therapy (NRT)</strong></p><ul><li>Includes patches, gum, lozenges, inhalers, and nasal sprays that provide controlled doses of nicotine to ease withdrawal.<br/></li></ul><p><strong>Bupropion (Zyban)</strong></p><ul><li>Reduces cravings and withdrawal symptoms associated with quitting smoking.<br/></li></ul><p><strong>Varenicline (Chantix)</strong></p><ul><li>Reduces withdrawal symptoms and the pleasure associated with smoking.<br/></li></ul><p>These medications can significantly support recovery by stabilizing brain chemistry, blocking the euphoric effects of substances, and reducing cravings. It's important for treatment to be tailored to the individual's needs, and it should be overseen by healthcare professionals.</p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_GHgGT5": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_GHgGT5",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

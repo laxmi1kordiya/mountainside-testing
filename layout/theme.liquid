@@ -1,0 +1,442 @@
+<!doctype html>
+<html class="no-js no-touch" lang="{{ shop.locale }}">
+  <head>
+    {% render 'ws-speed-imports' %}
+<meta name="google-site-verification" content="nCBfeZp9noW_8SIYUt8nHICeYuRvDc5yIF78p2gpPAo" />
+ {%- render 'ecom_header' -%}
+    {% render 'pagefly-head' %}
+     {% render 'social-meta-tags' %}
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+
+    {% comment %} Critical preconnects only - reduced from 11 to 4 for better performance {% endcomment %}
+    {% comment %} <link rel="preconnect" href="https://cdn.shopify.com" crossorigin> {% endcomment %}
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.judge.me" crossorigin> 
+    <link rel="dns-prefetch" href="https://searchserverapi.com">
+    <link rel="dns-prefetch" href="https://cdn.shopifycloud.com">
+    <link rel="dns-prefetch" href="https://upsell-app.logbase.io">
+
+    <title>
+      {{- page_title -}}
+
+      {%- if current_tags -%}
+        {%- include 'advanced-tag-loop' -%}
+        {% assign title_tags = '' %}
+        {% assign meta_tags = current_tags | join: ', ' %}
+        {%- for tag in current_tags -%}
+          {% assign is_advanced_tag = false %}
+          {% assign cat = tag | split: '_' | first %}
+
+          {%- unless cat == tag -%}
+            {%- if cat_array contains cat -%}
+              {% assign is_advanced_tag = true %}
+              {% assign title_tags = title_tags | append: ', ' | append: tag | replace_first: '_', ': ' %}
+            {%- endif -%}
+          {%- endunless -%}
+
+          {%- unless is_advanced_tag -%}
+            {% assign title_tags = title_tags | append: ', ' | append: tag %}
+          {%- endunless -%}
+        {%- endfor -%}
+        {{ 'general.title.tags' | t: tags: title_tags | remove_first: ', ' }}
+      {%- endif -%}
+
+      {%- if current_page != 1 -%}
+        {{- 'general.title.page' | t: page: current_page -}}
+      {%- endif -%}
+
+      {%- unless page_title contains shop.name -%}
+        {{- 'general.title.shop' | t: shop: shop.name -}}
+      {%- endunless -%}
+    </title>
+
+
+
+     {% if page_description %}
+      <meta
+        name="description"
+        content="{{ page_description |default:shop.name | escape }}{% if current_tags %} {{ 'general.meta.tagged_html' | t: tags: meta_tags | escape }}.{% endif %}{% if current_page != 1 %} {{ 'general.meta.page' | t: page_number: current_page }}.{% endif %}"
+      >
+    {% else %}
+      <meta
+        name="description"
+        content="{{ shop.name | escape }}{% if current_tags %} {{ 'general.meta.tagged_html' | t: tags: meta_tags | escape }}.{% endif %}{% if current_page != 1 %} {{ 'general.meta.page' | t: page_number: current_page }}.{% endif %}"
+      >
+    {% endif %}
+
+    {% include 'favicon' %}
+
+    {%- assign has_query_filters = false -%}
+    {%- if template contains 'collection' -%}
+      {%- assign page_url = content_for_header | split: '"pageurl":"' | last | split: '"' | first | url_decode -%}
+      {%- if page_url contains 'filter.' or page_url contains 'sort_by=' -%}
+        {%- assign has_query_filters = true -%}
+      {%- endif -%}
+    {%- endif -%}
+    {% if template contains 'collection' and has_query_filters %}
+      <meta name="robots" content="noindex,nofollow" />
+      <link rel="canonical" href="{{ shop.url }}{{ collection.url }}" />
+    {% elsif template contains 'collection' and current_tags and collection.products_count > 5 %}
+      <meta name="robots" content="index,follow">
+      <link rel="canonical" href="{{ canonical_url }}" />
+    {% elsif template contains 'collection' and collection.products_count < 5 %}
+      <link rel="canonical" href="{{ shop.url }}{{ collection.url }}" />
+    {% elsif template contains 'collection' %}
+      <meta name="robots" content="index,follow" />
+      <link rel="canonical" href="{{ canonical_url }}" /> 
+    {% else %}
+      <link rel="canonical" href="{{ canonical_url }}">
+    {% endif %}
+
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="preload" href="{{ settings.type_heading | font_url }}" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="{{ settings.type_menu | font_url }}" as="font" type="font/woff2" crossorigin="anonymous">
+
+    {%- comment -%} Preload product LCP image for faster discovery {%- endcomment -%}
+    {% if template.name == 'product' and product.featured_image != blank %}
+      <link
+        rel="preload"
+        as="image"
+        href="{{ product.featured_image | img_url: 'x700' }}"
+        imagesrcset="{{ product.featured_image | img_url: 'x700' }} 1x, {{ product.featured_image | img_url: 'x1400' }} 2x"
+        fetchpriority="high">
+    {% endif %}
+
+    {% comment %} Handled by ws-defer-css snippet {% endcomment %}
+
+    <!-- Critical CSS for LCP element (collection description) -->
+    <style>
+      /* Inline critical styles to eliminate render delay */
+      .collection--description.rte {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #322c2c;
+        margin: 1rem 0;
+        max-width: 100%;
+      }
+      .collection--title {
+        font-family: 'Cabin', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-weight: 700;
+        font-size: 2rem;
+        line-height: 1.2;
+        color: #0e0e0e;
+        margin: 0 0 1rem 0;
+      }
+      .collection--information {
+        margin: 2rem 0;
+      }
+      .productgrid--masthead {
+        margin-bottom: 2rem;
+      }
+      /* Ensure immediate paint */
+      .rte p { margin: 0 0 1em 0; }
+      .rte { display: block; }
+      body { margin: 0; }
+      * { box-sizing: border-box; }
+    </style>
+
+    {{ content_for_header }}
+
+    <script>
+      document.documentElement.className=document.documentElement.className.replace(/\bno-js\b/,'js');
+      if(window.Shopify&&window.Shopify.designMode)document.documentElement.className+=' in-theme-editor';
+      if(('ontouchstart' in window)||window.DocumentTouch&&document instanceof DocumentTouch)document.documentElement.className=document.documentElement.className.replace(/\bno-touch\b/,'has-touch');
+    </script>
+
+    {% render 'ws-defer-css', filename: 'theme.scss.css', pages: 'collection,index,product', minify: false, local: true %}
+    {% render 'ws-defer-css', filename: 'custom.css', pages: 'collection,index,product', minify: false, local: true %}
+    {% include 'judgeme_core' %}
+    {% include 'header-scripts' %}
+
+    <meta name="robots" content="max-image-preview:large">
+    
+  </head>
+
+  <body class="template-{{ template.name }}">
+    <a class="skip-to-main" href="#site-main">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+    {% if template.name == 'password' %}
+      <main id="site-main" class="site-main" aria-label="Main content" tabindex="-1">
+        {{ content_for_layout }}
+      </main>
+    {% else %}
+      {% section 'rotating-announcement-bar' %}
+      {% comment %} {% section 'static-announcement' %} {% endcomment %}
+      <header
+        class="site-header site-header-nav--open"
+        role="banner"
+        data-site-header
+      >
+        {% section 'static-header' %}
+      </header>
+
+      {% comment %}
+        Cart Notification - Positioned immediately after header
+      {% endcomment %}
+      <div class="cart-notification-wrapper" data-cart-notification-wrapper style="position: relative;">
+        <div class="cart-notification" id="cart-notification" data-cart-notification>
+          <button type="button" class="cart-notification__close" data-cart-notification-close aria-label="Close">&times;</button>
+          <div class="cart-notification__inner">
+            <div class="cart-notification__content">
+              <div class="cart-notification__header">
+                <svg class="cart-notification__check" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <h3 class="cart-notification__title">Added to your cart:</h3>
+              </div>
+              <div class="cart-notification__product" data-cart-notification-product>
+                <div class="cart-notification__image" data-cart-notification-image></div>
+                <div class="cart-notification__product-info">
+                  <p class="cart-notification__product-title" data-cart-notification-title></p>
+                  <p class="cart-notification__product-variant" data-cart-notification-variant></p>
+                  <p class="cart-notification__product-qty" data-cart-notification-qty></p>
+                </div>
+              </div>
+            </div>
+            <div class="cart-notification__actions">
+              <div class="cart-notification__subtotal">
+                <p class="cart-notification__subtotal-label">Cart subtotal</p>
+                <p class="cart-notification__subtotal-value" data-cart-notification-subtotal></p>
+              </div>
+              <div class="cart-notification__buttons">
+                <a href="/cart" class="cart-notification__btn cart-notification__btn--view-cart">View cart (2)</a>
+                <a href="/checkout" class="cart-notification__btn cart-notification__btn--checkout">Checkout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% if template.name == 'collection' or template.name == 'product' %}
+        {% section 'collection-bar' %}
+      {% endif %}
+
+      <div class="intersection-target" data-header-intersection-target></div>
+      <main id="site-main" class="site-main" aria-label="Main content" tabindex="-1">
+        <script defer src="//searchserverapi.com/widgets/shopify/init.js?a=3N9p4u0S0Q"></script>
+        {{ content_for_layout }}
+      </main>
+      {% section 'static-footer' %}
+    {% endif %}
+
+    {% comment %}
+      Below are various templates used in JavaScript
+    {% endcomment %}
+    <div style="display: none;" aria-hidden="true" data-templates>
+      {% include 'message-banner' %}
+      {% include 'atc-banner' %}
+    </div>
+
+    {% comment %}
+      Modal container, used on Collections, Password, and QuickShop
+    {% endcomment %}
+    {% include 'modal' %}
+
+    {%- if template contains 'customer' -%}
+      <script defer src="{{ 'shopify_common.js' | shopify_asset_url }}"></script>
+      <script defer src="{{ 'customer_area.js' | shopify_asset_url }}"></script>
+    {%- endif -%}
+
+    <script defer src="{{ 'vendors-main.bundle.js' | asset_url }}"></script>
+    <script defer src="{{ 'Account.bundle.js' | asset_url }}"></script>
+
+    {% if settings.enable_currency_converter %}
+      <script defer src="//cdn.shopify.com/s/javascripts/currencies.js"></script>
+    {% endif %}
+
+    <script
+      defer
+      src="{{ 'empire.js' | asset_url }}"
+      data-scripts
+      data-shopify-api-url="{{ 'api.jquery.js' | shopify_asset_url }}"
+      data-shopify-countries="/services/javascripts/countries.js"
+      data-shopify-common="{{ 'shopify_common.js' | shopify_asset_url }}"
+      data-shopify-cart="{{ 'jquery.cart.js' | asset_url }}"
+      data-pxu-polyfills="{{ 'polyfills.js' | asset_url }}"
+    ></script>
+
+    {%- comment -%} Custom discount sorting script {%- endcomment -%}
+    <script defer src="{{ 'discount-sorting.js' | asset_url }}"></script>
+
+    {%- comment -%} Cart line total updater - updates data-cartitem-total on quantity change {%- endcomment -%}
+    <script defer src="{{ 'cart-line-total-updater.js' | asset_url }}"></script>
+
+    {%- comment -%} Product card buttons (Add to Cart & Buy Now) for collection pages {%- endcomment -%}
+    <script defer src="{{ 'product-card-buttons.js' | asset_url }}"></script>
+
+    {%- comment -%} Notify Me When Available - Back in stock notifications {%- endcomment -%}
+    <script defer src="{{ 'notify-me-stock.js' | asset_url }}"></script>
+
+    {%- comment -%} Newsletter popup handler - Shows correct popup for newsletter vs back-in-stock {%- endcomment -%}
+    {%- comment -%} Note: No defer so it runs immediately to hide wrong popup {%- endcomment -%}
+    <script defer src="{{ 'newsletter-popup-handler.js' | asset_url }}"></script>
+
+    {%- comment -%} Notify Me Popup Modal - Uses Shopify customer form to create customers {%- endcomment -%}
+    <div class="notify-me-modal" id="notify-me-modal" data-notify-me-modal>
+      <div class="notify-me-modal__overlay" data-notify-me-modal-close></div>
+      <div class="notify-me-modal__container">
+        <button type="button" class="notify-me-modal__close" data-notify-me-modal-close aria-label="Close">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="notify-me-modal__content">
+          <div class="notify-me-modal__header">
+            <h3 class="notify-me-modal__title">Get Notified When Back in Stock</h3>
+            <p class="notify-me-modal__product-name" data-notify-me-modal-product-name></p>
+          </div>
+
+          {%- comment -%} Shopify customer form - same as newsletter, creates customer with tags {%- endcomment -%}
+          {% form 'customer', class: 'notify-me-modal__form', id: 'notify-me-customer-form' %}
+            <input type="hidden" name="contact[tags]" value="" data-notify-me-modal-tags>
+
+            <div class="notify-me-modal__success" style="display: none;">
+              <div class="notify-me-modal__success-icon">
+                <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="28" cy="28" r="26" fill="none" stroke="#f8971c" stroke-width="4"/>
+                  <path d="M18 28L25 35L38 22" stroke="#f8971c" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h4 class="notify-me-modal__success-title">You're on the list!</h4>
+              <p class="notify-me-modal__success-text">We'll email you when this item is back in stock.</p>
+            </div>
+
+            <div class="notify-me-modal__input-group">
+              <label for="notify-me-email" class="notify-me-modal__label">Email Address</label>
+              <input
+                type="email"
+                id="notify-me-email"
+                class="notify-me-modal__input"
+                name="contact[email]"
+                placeholder="Enter your email"
+                data-notify-me-modal-email
+                autocomplete="email"
+                autocorrect="off"
+                autocapitalize="off"
+                required
+              >
+            </div>
+            <button type="submit" class="notify-me-modal__submit" data-notify-me-modal-submit>
+              <span class="notify-me-modal__submit-text">Notify Me</span>
+              <span class="notify-me-modal__submit-loading" style="display: none;">
+                <svg class="notify-me-modal__spinner" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="31.4 31.4" transform="rotate(-90 12 12)"/>
+                </svg>
+              </span>
+            </button>
+          {% endform %}
+
+          <div class="notify-me-modal__error" data-notify-me-modal-error style="display: none;">
+            <p class="notify-me-modal__error-text">Something went wrong. Please try again.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} Newsletter Success Popup - Shows after newsletter subscription {%- endcomment -%}
+    <div class="newsletter-success-popup" id="newsletter-success-popup" data-newsletter-popup style="display: none;">
+      <div class="newsletter-success-popup__overlay" data-newsletter-popup-close></div>
+      <div class="newsletter-success-popup__container">
+        <button type="button" class="newsletter-success-popup__close" data-newsletter-popup-close aria-label="Close">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="newsletter-success-popup__content">
+          <div class="newsletter-success-popup__icon">
+            <svg class="checkmark-animated" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle class="checkmark-circle" cx="40" cy="40" r="36" fill="none" stroke="#4CAF50" stroke-width="4"/>
+              <path class="checkmark-check" fill="none" stroke="#4CAF50" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M24 40 L34 50 L56 28"/>
+            </svg>
+          </div>
+          <h3 class="newsletter-success-popup__title">Thank You for Subscribing!</h3>
+          <p class="newsletter-success-popup__message">Check your email for exclusive offers and updates from Mountainside Medical.</p>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} Store shop URL for API calls 
+    <script>
+      window.SHOP_URL = "{{ shop.permanent_domain }}";
+      window.CUSTOMER_LOGGED_IN = {{ customer | yep: 'true', nope: 'false' }};
+      {% if customer %}
+      window.CUSTOMER_ID = "{{ customer.id }}";
+      {% endif %}
+    </script>
+    {%- endcomment -%}
+
+
+
+    <script>
+    window.SHOP_URL = "{{ shop.permanent_domain }}";
+    window.CUSTOMER_LOGGED_IN = {% if customer %}true{% else %}false{% endif %};
+    {% if customer %}
+    window.CUSTOMER_ID = "{{ customer.id }}";
+    {% endif %}
+    window.CUSTOMER_HAS_LICENSE = {% if customer.tags contains 'doctor-only' %}true{% else %}false{% endif %};
+
+    // Fix bfcache: reload when browser restores a cached page
+    window.addEventListener('pageshow', function(event) {
+      if (event.persisted) {
+        window.location.reload();
+      }
+    });
+  </script>
+
+  {% if customer %}
+    <script>
+      // Customer is logged in — set cookie marker
+      document.cookie = "customer_logged_in=1;path=/;max-age=2592000;SameSite=Lax";
+      sessionStorage.removeItem('_login_reload');
+    </script>
+  {% else %}
+    <script>
+      (function() {
+        // Cookie says logged in but page rendered as logged out = stale cache
+        if (document.cookie.indexOf('customer_logged_in=1') !== -1) {
+          if (!sessionStorage.getItem('_login_reload')) {
+            sessionStorage.setItem('_login_reload', '1');
+            window.location.reload();
+            return;
+          }
+          // Reloaded once, still logged out — session truly expired
+          document.cookie = "customer_logged_in=;path=/;max-age=0";
+          sessionStorage.removeItem('_login_reload');
+        }
+      })();
+    </script>
+  {% endif %}
+
+
+    {% include 'body-scripts' %}
+    {% include 'structured-data' %}
+
+  {%- render "ecom_footer"-%}{% render 'spdn2' %}<!-- WPD Start -->
+                {% if customer.tags.size > 0 and template != 'cart' %}
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                      let checkoutbtninterval = setInterval(function(){
+                        var x=document.querySelectorAll("input[name='checkout'], button[name='checkout'], input[name='goto_pp'], button[name='goto_pp'], input[name='goto_gc'], button[name='goto_gc'], [href$='checkout']");
+                        var WPD_RedirectToCart = function(e) {
+                          	e.stopPropagation();
+                            e.preventDefault();
+                            window.location = '/cart';
+                            };
+                            for (var i = 0; i < x.length; i++) {
+                                x[i].addEventListener('click', WPD_RedirectToCart, false);
+                            }
+                        },500)
+                });
+              </script>
+               {% endif %}
+         
+
+               {% if customer.tags.size > 0 and template == 'cart' %}
+                 {% include 'wcp_cart' %}
+               {% endif %}
+               <!-- WPD End -->
+  </body>
+</html>

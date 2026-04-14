@@ -1,0 +1,276 @@
+{% comment %}
+  Custom Product Benefits Section with Image + Text Layout
+  Fully customizable with settings
+{% endcomment %}
+
+<style>
+  .pf-custom-benefits {
+    padding: 80px 0;
+    background: {{ section.settings.background_color }};
+  }
+
+  .pf-custom-benefits__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .pf-custom-benefits__header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .pf-custom-benefits__title {
+    font-size: 40px;
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .pf-benefit-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+
+  .pf-benefit-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .pf-benefit-row--reverse {
+    direction: rtl;
+  }
+
+  .pf-benefit-row--reverse > * {
+    direction: ltr;
+  }
+
+  .pf-benefit-content {
+    padding: 20px;
+  }
+
+  .pf-benefit-content__title {
+    font-size: 32px;
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 20px 0;
+    line-height: 1.3;
+  }
+
+  .pf-benefit-content__description {
+    font-size: 16px;
+    line-height: 1.8;
+    color: {{ section.settings.text_color }};
+    margin: 0;
+  }
+
+  .pf-benefit-image {
+    border-radius: {{ section.settings.image_border_radius }}px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .pf-benefit-image:hover {
+    transform: scale(1.02);
+  }
+
+  .pf-benefit-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  @media (max-width: 968px) {
+    .pf-custom-benefits {
+      padding: 60px 0;
+    }
+
+    .pf-custom-benefits__title {
+      font-size: 32px;
+    }
+
+    .pf-benefit-row {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .pf-benefit-row--reverse {
+      direction: ltr;
+    }
+
+    .pf-benefit-content__title {
+      font-size: 26px;
+    }
+
+    .pf-benefit-content__description {
+      font-size: 15px;
+    }
+  }
+</style>
+
+<section class="pf-custom-benefits">
+  <div class="pf-custom-benefits__container">
+    {% if section.settings.section_title != blank %}
+      <div class="pf-custom-benefits__header">
+        <h2 class="pf-custom-benefits__title">{{ section.settings.section_title }}</h2>
+      </div>
+    {% endif %}
+
+    {% for block in section.blocks %}
+      <div class="pf-benefit-row {% if block.settings.image_position == 'right' %}pf-benefit-row--reverse{% endif %}" {{ block.shopify_attributes }}>
+        <div class="pf-benefit-content">
+          {% if block.settings.title != blank %}
+            <h3 class="pf-benefit-content__title">{{ block.settings.title }}</h3>
+          {% endif %}
+          {% if block.settings.description != blank %}
+            <p class="pf-benefit-content__description">{{ block.settings.description }}</p>
+          {% endif %}
+        </div>
+
+        <div class="pf-benefit-image">
+          {% if block.settings.image != blank %}
+            <img
+              src="{{ block.settings.image | img_url: '800x' }}"
+              srcset="{{ block.settings.image | img_url: '400x' }} 400w,
+                      {{ block.settings.image | img_url: '600x' }} 600w,
+                      {{ block.settings.image | img_url: '800x' }} 800w,
+                      {{ block.settings.image | img_url: '1000x' }} 1000w"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              alt="{{ block.settings.title }}"
+              loading="lazy"
+              width="800"
+              height="600"
+            />
+          {% else %}
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Benefits Custom",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title",
+      "default": "Why your skin will love it"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#fafafa"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#2d5a3d"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#555555"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 16
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Image position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "right"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Deep cleanse"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "The iconic Facial Cleansing Brush is proven to remove 99% of dirt and oil from your skin."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Benefits Custom",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "image_position": "right",
+            "title": "Deep cleanse",
+            "description": "The iconic Facial Cleansing Brush is proven to remove 99% of dirt and oil from your skin. Made from velvety soft silicone, it's bacteria-resistant and 35 times more hygienic than nylon brushes."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "image_position": "left",
+            "title": "Firm & toned",
+            "description": "Low-frequency pulsations relieve tension points in facial muscles, smoothing fine lines and firming skin. 94% of users reported that their skin is more toned."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,144 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_gny4yN": {
+          "type": "menu",
+          "settings": {
+            "menu": "disinfecting"
+          }
+        },
+        "menu_6WDTck": {
+          "type": "menu",
+          "settings": {
+            "menu": "isolation-and-infection-control"
+          }
+        },
+        "menu_bUTYBV": {
+          "type": "menu",
+          "settings": {
+            "menu": "first-aid-supplies"
+          }
+        },
+        "menu_MH4e3w": {
+          "type": "menu",
+          "settings": {
+            "menu": "general-supplies"
+          }
+        },
+        "menu_kjXnGW": {
+          "type": "menu",
+          "settings": {
+            "menu": "gloves"
+          }
+        }
+      },
+      "block_order": [
+        "menu_gny4yN",
+        "menu_6WDTck",
+        "menu_bUTYBV",
+        "menu_MH4e3w",
+        "menu_kjXnGW"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "17593564292d1ab0e5": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_pLR93r": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#dddddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_pLR93r"
+      ],
+      "settings": {}
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Hand Sanitizers – Ultimate Germ Protection | FDA & CDC Approved | Top-Rated by Experts 2025",
+            "text": "<h2>The <strong>Best Hand Sanitizer</strong> for Superior Hand Hygiene & Health Protection</h2><p>Searching for the <strong>best hand sanitizer</strong> to keep your family safe? Our premium hand sanitizer offers advanced, hospital-grade protection, killing 99.99% of germs, viruses, and bacteria with each use. Formulated with CDC-recommended at least 60% ethyl alcohol content, our sanitizer guarantees maximum efficacy, fast action, and gentle care for your skin.</p><h2>Take Control of Your Health—Order the #1 Rated Hand Sanitizer Today!</h2><p><strong>Stay protected. Stay healthy. Choose the hand sanitizer recommended by top health authorities and hospitals worldwide.</strong></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_7QGBIf": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_7QGBIf",
+    "17593564292d1ab0e5",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

@@ -1,0 +1,107 @@
+{% comment %}
+  Display options for a product
+
+  @param product
+
+  @param selected_variant
+
+  @param style
+{% endcomment %}
+
+{% assign hide_select_a11y = "" %}
+
+{% if style == 'radio' %}
+  {% assign hide_select_a11y = "tabindex='-1'" %}
+{% endif %}
+
+<div data-product-options-container>
+  <select name="id" data-variants {{ hide_select_a11y }}  class="form-options no-js-required">
+    {% for variant in product.variants %}
+      {%- capture option_content -%}
+        {%- if variant.available -%}
+          {{ variant.title }} - {{ variant.price | money }}
+        {%- else -%}
+          {{ variant.title }} - {{ 'products.status.sold_out' | t }}
+        {%- endif -%}
+      {%- endcapture -%}
+
+      <option
+        {% if variant.id == selected_variant.id %}selected="selected"{% endif %}
+        data-variant-id="{{ variant.id }}"
+        {% if variant.available %}
+          data-sku="{{ variant.sku }}"
+          value="{{ variant.id }}"
+        {% else %}
+          disabled="disabled"
+        {% endif %}>
+        {{ option_content | strip_newlines }}
+      </option>
+    {% endfor %}
+  </select>
+
+  {% for option in product.options_with_values %}
+    {% if style == 'select' %}
+      <div class="form-field form-options js-required">
+        <div class="form-field-select-wrapper">
+          <select
+            id="data-product-option-{{ forloop.index0 }}"
+            class="form-field-input form-field-select"
+            data-product-option="{{ forloop.index0 }}">
+            {% for value in option.values %}
+              <option
+                value="{{ value | escape }}"
+                {% if option.selected_value == value %}selected="selected"{% endif %}>
+                {{ value }}
+              </option>
+            {% endfor %}
+          </select>
+          <label
+            for="data-product-option-{{ forloop.index0 }}"
+            class="form-field-title"
+          >
+            {{ option.name }}
+          </label>
+          {% include 'icon-chevron-down-small' %}
+        </div>
+      </div>
+    {% elsif style == 'radio' %}
+      <fieldset class="form-options js-required">
+        <legend class="option-header">
+          <span class="option-name">{{ option.name }}</span>
+        </legend>
+
+        <div class="option-values">
+          {% assign optionIndex = forloop.index %}
+
+            {% for value in option.values %}
+              <div
+                class="
+                  option-value
+                  {% if option.selected_value == value %}option-selected{% endif %}
+                "
+              >
+                <label
+                  for="data-product-option-{{ optionIndex }}-{{ forloop.index0 }}"
+                  class="option-value-label"
+                >
+                  <input
+                    class="option-value-input"
+                    type="radio"
+                    name="{{ option.name | url_encode }}"
+                    value="{{ value | escape }}"
+                    tabindex="0"
+                    aria-label="{{ value | escape }}"
+                    {% if option.selected_value == value %}checked{% endif %}
+                    data-product-option="{{ 'option' | append: optionIndex }}"
+                    id="data-product-option-{{ optionIndex }}-{{ forloop.index0 }}"
+                  >
+
+                  <span class="option-value-name" tabindex="-1">{{ value }}</span>
+                </label>
+              </div>
+            {% endfor %}
+        </div>
+      </fieldset>
+    {% endif %}
+  {% endfor %}
+</div>

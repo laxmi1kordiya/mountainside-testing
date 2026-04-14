@@ -1,0 +1,925 @@
+{% comment %} Native Collection Filters CSS and JS {% endcomment %}
+{% render 'ws-defer-css', filename: 'collection-filters.css', pages: 'collection', minify: false, local: true %}
+
+<script
+  type="application/json"
+  data-section-type="static-collection"
+  data-section-id="{{ section.id }}"
+  data-section-data
+>
+  {
+    "context": {
+      "see_more": {{ 'general.general.see_more' | t | json }},
+      "see_less": {{ 'general.general.see_less' | t | json }},
+      "collectionUrl": {{ collection.url | default: '/collections/all' | json }}
+    }
+  }
+</script>
+
+{% comment %} <script src="{{ 'collection-filters.js' | asset_url }}" defer></script> {% endcomment %}
+<script src="{{ 'custom.js' | asset_url }}" defer></script>
+
+{% assign show_sidebar = false %}
+{% assign show_filters = true %}
+{% assign show_filter_trigger = false %}
+
+{% comment %} Check for native Shopify filters (collection-specific) {% endcomment %}
+{% assign has_native_filters = false %}
+{% if collection.filters.size > 0 %}
+  {% assign has_native_filters = true %}
+{% endif %}
+
+{% if section.settings.filter_style == 'none' and has_native_filters == false %}
+  {% assign show_filters = false %}
+{% endif %}
+
+{% if section.settings.show_sidebar %}
+  {% comment %}
+    Sidebar toggle is used on mobile only, and will only show Filters
+    Always show sidebar when enabled - our custom filters (vendor, collection, tags) should always be available
+  {% endcomment %}
+  {% assign show_filter_trigger = true %}
+  {% assign show_sidebar = true %}
+{% endif %}
+
+{% assign paginate_by = section.settings.products_per_page_range %}
+{% if template contains 'view-24' %}
+  {% assign paginate_by = 24 %}
+{% elsif template contains 'view-36' %}
+  {% assign paginate_by = 36 %}
+{% elsif template contains 'view-48' %}
+  {% assign paginate_by = 48 %}
+{% endif %}
+
+{%- capture collection_classes -%}
+  {% if show_sidebar %}
+    layout--has-sidebar
+  {% else %}
+    layout--no-sidebar
+  {% endif %}
+{%- endcapture -%}
+
+{% paginate collection.products by paginate_by %}
+  <div class="productgrid--outer {{ collection_classes | strip_newlines }}">
+    {% if show_sidebar %}
+      {%
+        include 'product-grid-sidebar',
+        filter_style: section.settings.filter_style,
+        filter_position: section.settings.filter_position,
+        filter_limit: section.settings.filter_limit,
+        menu_depth: section.settings.menu_depth_range,
+        show_filter_availability: section.settings.show_filter_availability,
+        show_filter_price: section.settings.show_filter_price,
+        show_filter_vendor: section.settings.show_filter_vendor,
+        show_filter_collection: section.settings.show_filter_collection,
+        show_filter_tags: section.settings.show_filter_tags,
+        enable_menu_accordion: section.settings.enable_menu_accordion
+      %}
+    {% endif %}
+
+    <div class="productgrid--wrapper">
+      {% include 'breadcrumbs' %}
+
+      {% comment %} Active Filters Display - Below Breadcrumbs {% endcomment %}
+      {% if section.settings.show_active_filters_bar %}
+        {% render 'collection-active-filters-bar' %}
+      {% endif %}
+
+      {% comment %} Collection Banner - After Breadcrumbs (uses global theme settings) {% endcomment %}
+      {% if settings.collection_banner_enabled and settings.collection_banner_image != blank %}
+        <div class="collection-banner">
+          <a href="{{ settings.collection_banner_link | default: '#' }}" class="collection-banner__link">
+            <picture class="collection-banner__picture">
+              {% if settings.collection_banner_image_mobile != blank %}
+                <source media="(max-width: 767px)" srcset="{{ settings.collection_banner_image_mobile | img_url: '800x' }}">
+              {% endif %}
+              <img
+                src="{{ settings.collection_banner_image | img_url: '1400x' }}"
+                alt="{{ settings.collection_banner_image.alt | default: collection.title | escape }}"
+                class="collection-banner__image"
+                loading="eager"
+              >
+            </picture>
+            <div class="collection-banner__content collection-banner__content--{{ settings.collection_banner_position }}">
+              <div class="collection-banner__content-inner">
+                {% if settings.collection_banner_pretitle != blank %}
+                  <p class="collection-banner__pretitle">{{ settings.collection_banner_pretitle }}</p>
+                {% endif %}
+                {% if settings.collection_banner_title != blank %}
+                  {% if settings.collection_banner_enable_rotating %}
+                    {%- assign title_1 = settings.collection_banner_title | escape -%}
+                    {%- assign title_2 = settings.collection_banner_title_2 | escape -%}
+                    {%- assign title_3 = settings.collection_banner_title_3 | escape -%}
+                    {%- assign title_4 = settings.collection_banner_title_4 | escape -%}
+                    {%- assign rotating_titles = title_1 -%}
+                    {%- if title_2 != blank -%}
+                      {%- assign rotating_titles = rotating_titles | append: '|||' | append: title_2 -%}
+                    {%- endif -%}
+                    {%- if title_3 != blank -%}
+                      {%- assign rotating_titles = rotating_titles | append: '|||' | append: title_3 -%}
+                    {%- endif -%}
+                    {%- if title_4 != blank -%}
+                      {%- assign rotating_titles = rotating_titles | append: '|||' | append: title_4 -%}
+                    {%- endif -%}
+                    <h2 class="collection-banner__title collection-banner__title--typing"
+                        data-typing-titles="{{ rotating_titles }}"
+                        data-typing-speed="80"
+                        data-erase-speed="40"
+                        data-pause-before-erase="2000"
+                        data-pause-before-type="500">
+                      <span class="collection-banner__title-text"></span><span class="collection-banner__cursor">|</span>
+                    </h2>
+                  {% else %}
+                    <h2 class="collection-banner__title">{{ settings.collection_banner_title }}</h2>
+                  {% endif %}
+                {% endif %}
+                {% if settings.collection_banner_subtitle != blank %}
+                  <p class="collection-banner__subtitle">{{ settings.collection_banner_subtitle }}</p>
+                {% endif %}
+                {% if settings.collection_banner_button_text != blank %}
+                  <span class="collection-banner__button">{{ settings.collection_banner_button_text }}</span>
+                {% endif %}
+              </div>
+            </div>
+          </a>
+        </div>
+        <link rel="stylesheet" href="{{ 'collection-banner.css' | asset_url }}">
+        <style>
+          .collection-banner { border-radius: {{ settings.collection_banner_radius }}px; }
+          .collection-banner__pretitle { color: {{ settings.collection_banner_pretitle_color }}; }
+          .collection-banner__title { background: linear-gradient(135deg, {{ settings.collection_banner_title_color1 }}, {{ settings.collection_banner_title_color2 }}, {{ settings.collection_banner_title_color3 }}, {{ settings.collection_banner_title_color4 }}); }
+          .collection-banner__subtitle { color: {{ settings.collection_banner_subtitle_color }}; }
+          .collection-banner__button { color: {{ settings.collection_banner_button_text_color }}; background: linear-gradient(120deg, {{ settings.collection_banner_button_bg1 }}, {{ settings.collection_banner_button_bg2 }}); }
+        </style>
+        <script defer src="{{ 'collection-banner.js' | asset_url }}"></script>
+      {% endif %}
+
+      <div class="productgrid--masthead">
+        {% if section.settings.show_collection_image and collection.image %}
+          <figure class="collection--image">
+            {%
+              include 'rimg',
+              img: collection.image,
+              size: '1350x',
+              lazy: true,
+              canvas: true
+            %}
+          </figure>
+        {% endif %}
+
+        <div class="collection--header-wrapper">
+          <div class="collection--information">
+            <h1 class="collection--title">
+              {% if current_tags and current_tags.size > 0 %}
+                {% comment %} Classify each active tag as vendor, type, or tag {% endcomment %}
+                {% assign active_vendor_name = '' %}
+                {% assign active_type_name = '' %}
+                {% assign active_tag_name = '' %}
+                {% assign active_tag_is_underscore = false %}
+
+                {% comment %} Build vendor and type lookup from ALL collection products {% endcomment %}
+                {% assign all_vendor_handles = '' %}
+                {% assign all_vendor_names = '' %}
+                {% assign all_type_handles = '' %}
+                {% assign all_type_names = '' %}
+                {% for p in collection.products %}
+                  {% assign vh = p.vendor | handleize %}
+                  {% unless all_vendor_handles contains vh %}
+                    {% if all_vendor_handles == '' %}
+                      {% assign all_vendor_handles = vh %}
+                      {% assign all_vendor_names = p.vendor %}
+                    {% else %}
+                      {% assign all_vendor_handles = all_vendor_handles | append: '|||' | append: vh %}
+                      {% assign all_vendor_names = all_vendor_names | append: '|||' | append: p.vendor %}
+                    {% endif %}
+                  {% endunless %}
+                  {% assign th = p.type | handleize %}
+                  {% if th != '' %}
+                    {% unless all_type_handles contains th %}
+                      {% if all_type_handles == '' %}
+                        {% assign all_type_handles = th %}
+                        {% assign all_type_names = p.type %}
+                      {% else %}
+                        {% assign all_type_handles = all_type_handles | append: '|||' | append: th %}
+                        {% assign all_type_names = all_type_names | append: '|||' | append: p.type %}
+                      {% endif %}
+                    {% endunless %}
+                  {% endif %}
+                {% endfor %}
+                {% assign vendor_handles_arr = all_vendor_handles | split: '|||' %}
+                {% assign vendor_names_arr = all_vendor_names | split: '|||' %}
+                {% assign type_handles_arr = all_type_handles | split: '|||' %}
+                {% assign type_names_arr = all_type_names | split: '|||' %}
+
+                {% for tag in current_tags %}
+                  {% assign tag_h = tag | handleize %}
+                  {% assign classified = false %}
+
+                  {% comment %} Check vendor {% endcomment %}
+                  {% for vh in vendor_handles_arr %}
+                    {% if vh == tag_h %}
+                      {% assign active_vendor_name = vendor_names_arr[forloop.index0] %}
+                      {% assign classified = true %}
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
+
+                  {% comment %} Check type {% endcomment %}
+                  {% unless classified %}
+                    {% for th in type_handles_arr %}
+                      {% if th == tag_h %}
+                        {% assign active_type_name = type_names_arr[forloop.index0] %}
+                        {% assign classified = true %}
+                        {% break %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endunless %}
+
+                  {% comment %} Otherwise it is a general tag {% endcomment %}
+                  {% unless classified %}
+                    {% if active_tag_name == '' %}
+                      {% if tag contains '_' %}
+                        {% assign tag_parts = tag | split: '_' %}
+                        {% assign active_tag_name = tag | remove_first: tag_parts[0] | remove_first: '_' %}
+                        {% assign active_tag_is_underscore = true %}
+                      {% else %}
+                        {% assign active_tag_name = tag %}
+                      {% endif %}
+                    {% endif %}
+                  {% endunless %}
+                {% endfor %}
+
+                {% comment %} Also check for active vendor from query param filter {% endcomment %}
+                {% if active_vendor_name == '' %}
+                  {% for filter in collection.filters %}
+                    {% if filter.param_name == 'filter.p.vendor' %}
+                      {% for fv in filter.active_values %}
+                        {% assign active_vendor_name = fv.label %}
+                        {% break %}
+                      {% endfor %}
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+
+                {% comment %} Build title: Title to {Tag} by {Vendor} {% endcomment %}
+                {{ collection.title }}
+                {% if active_tag_name != '' %}{% if active_tag_is_underscore %} {{ active_tag_name }}{% else %} to {{ active_tag_name }}{% endif %}{% endif %}
+                {% comment %}{% if active_type_name != '' %} {{ active_type_name }}{% endif %}{% endcomment %}
+                {% if active_vendor_name != '' %} by {{ active_vendor_name }}{% endif %}
+              {% else %}
+                {% comment %} Check for active vendor filter even without tags {% endcomment %}
+                {% assign qp_vendor_name = '' %}
+                {% for filter in collection.filters %}
+                  {% if filter.param_name == 'filter.p.vendor' %}
+                    {% for fv in filter.active_values %}
+                      {% assign qp_vendor_name = fv.label %}
+                      {% break %}
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+                {% if qp_vendor_name != '' %}
+                  {{ collection.title }} by {{ qp_vendor_name }}
+                {% else %}
+                  {{ collection.title }}
+                {% endif %}
+              {% endif %}
+            </h1>
+
+            {% if collection.description != blank %}
+              <div class="collection--description rte">
+                
+
+                {% if collection.handle == 'nurses-fashion-products' %}
+  {{ collection.description
+     | replace: '<h1></h1>', ''
+     | replace: '<h1> </h1>', ''
+  }}
+{% else %}
+  {{ collection.description }}
+{% endif %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        {% comment %} B2B Collection Banner - After Title {% endcomment %}
+        {% if collection.handle == 'bulk-medical-supplies' %}
+          <div class="b2b-collection-banner-wrapper">
+            {% comment %} Desktop Banner {% endcomment %}
+            {% if section.settings.b2b_banner_desktop_image != blank %}
+              <div class="b2b-collection-banner b2b-collection-banner--desktop">
+                {% if section.settings.b2b_banner_desktop_link != blank %}
+                  <a href="{{ section.settings.b2b_banner_desktop_link }}" class="b2b-collection-banner__link">
+                {% endif %}
+                  <img
+                    src="{{ section.settings.b2b_banner_desktop_image | img_url: '1600x' }}"
+                    srcset="{{ section.settings.b2b_banner_desktop_image | img_url: '800x' }} 800w,
+                            {{ section.settings.b2b_banner_desktop_image | img_url: '1200x' }} 1200w,
+                            {{ section.settings.b2b_banner_desktop_image | img_url: '1600x' }} 1600w"
+                    sizes="100vw"
+                    alt="{{ section.settings.b2b_banner_desktop_image.alt | default: collection.title }}"
+                    class="b2b-collection-banner__image"
+                    loading="lazy"
+                  >
+                {% if section.settings.b2b_banner_desktop_link != blank %}
+                  </a>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% comment %} Mobile Banner {% endcomment %}
+            {% if section.settings.b2b_banner_mobile_image != blank %}
+              <div class="b2b-collection-banner b2b-collection-banner--mobile">
+                {% if section.settings.b2b_banner_mobile_link != blank %}
+                  <a href="{{ section.settings.b2b_banner_mobile_link }}" class="b2b-collection-banner__link">
+                {% endif %}
+                  <img
+                    src="{{ section.settings.b2b_banner_mobile_image | img_url: '800x' }}"
+                    srcset="{{ section.settings.b2b_banner_mobile_image | img_url: '400x' }} 400w,
+                            {{ section.settings.b2b_banner_mobile_image | img_url: '600x' }} 600w,
+                            {{ section.settings.b2b_banner_mobile_image | img_url: '800x' }} 800w"
+                    sizes="100vw"
+                    alt="{{ section.settings.b2b_banner_mobile_image.alt | default: collection.title }}"
+                    class="b2b-collection-banner__image"
+                    loading="lazy"
+                  >
+                {% if section.settings.b2b_banner_mobile_link != blank %}
+                  </a>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+
+        {% endif %}
+
+        {% if current_tags.size > 0 %}
+          <div class="productgrid--filters">
+            {%- include 'product-grid-tags-active' %}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if show_filter_trigger or section.settings.show_by or section.settings.grid_list %}
+        {% capture utility_class %}
+          productgrid--utils
+
+          {% if show_filter_trigger or section.settings.grid_list %}
+            productgrid--utils--visible-mobile
+          {% endif %}
+
+          {% unless section.settings.show_by or section.settings.grid_list %}
+            productgrid--utils--hidden-desktop
+          {% endunless %}
+        {% endcapture %}
+        <nav
+          class="{{ utility_class | strip_newlines }}"
+          aria-label="{{ 'general.accessibility.nav_collection_utilities' | t }}"
+        >
+          {% if show_filter_trigger %}
+            {%- assign filter_count = 0 -%}
+            {%- if current_tags.size > 0 -%}
+              {%- assign filter_count = current_tags.size -%}
+            {%- endif -%}
+            <div class="productgrid--utils utils-filter">
+              <button
+                class="utils-filter-button"
+                type="button"
+                aria-label="{{ 'product_grid.filters.title_count' | t: count: filter_count }}"
+                data-productgrid-trigger-filters
+              >
+                <span class="utils-filter-icon">
+                  {%- include 'icon-filters' -%}
+                </span>
+                <span class="utils-filter-text">
+                  {{- 'product_grid.filters.title_count' | t: count: filter_count -}}
+                </span>
+              </button>
+            </div>
+          {% endif %}
+
+          {%- if section.settings.show_by or section.settings.grid_list -%}
+            <div
+              class="
+                productgrid--utils
+                utils-view
+                {% if section.settings.grid_list == false %}
+                  utils-hide
+                {% endif %}
+              "
+            >
+              <div class="utils-view-container">
+                {%- if section.settings.show_by -%}
+                  {%-
+                    include 'product-grid-showby',
+                    show_by: paginate_by,
+                    grid_list: section.settings.grid_list
+                  -%}
+                {%- endif -%}
+
+                {% if section.settings.grid_list %}
+                  <div class="utils-viewtoggle">
+                    <span class="utils-viewtoggle-label">
+                      {{ 'product_grid.view_as.title' | t }}
+                    </span>
+
+                    <button
+                      class="utils-viewtoggle-button active"
+                      data-collection-view="grid-view"
+                      aria-label="grid view"
+                    >
+                      {% include 'icon-library', id: 'icon-grid' %}
+                    </button>
+
+                    <button
+                      class="utils-viewtoggle-button"
+                      data-collection-view="list-view"
+                      aria-label="list view"
+                    >
+                      {% include 'icon-library', id: 'icon-list' %}
+                    </button>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {%- endif -%}
+        </nav>
+      {% endif %}
+
+      {% if collection.products.size > 0 %}
+        <ul class="productgrid--items">
+          {% if has_custom_filters %}
+            {% comment %} =====================================================
+               SERVER-SIDE FILTERED PRODUCT LOOP
+               ===================================================== {% endcomment %}
+
+            {% assign filtered_count = 0 %}
+            {% assign displayed_count = 0 %}
+            {% assign skip_count = custom_page | minus: 1 | times: paginate_by %}
+
+            {% for product in collection.products %}
+              {% assign show_product = true %}
+
+              {% comment %} Check vendor filter - compare with strip to handle whitespace {% endcomment %}
+              {% if filter_vendors != '' %}
+                {% assign vendor_match = false %}
+                {% assign product_vendor_clean = product.vendor | strip %}
+                {% for v in filter_vendors_array %}
+                  {% assign filter_vendor_clean = v | strip %}
+                  {% if product_vendor_clean == filter_vendor_clean %}
+                    {% assign vendor_match = true %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+                {% unless vendor_match %}
+                  {% assign show_product = false %}
+                {% endunless %}
+              {% endif %}
+
+              {% comment %} Check collection filter - compare with strip to handle whitespace {% endcomment %}
+              {% if show_product and filter_collections != '' %}
+                {% assign collection_match = false %}
+                {% for fc in filter_collections_array %}
+                  {% assign filter_collection_clean = fc | strip %}
+                  {% for pc in product.collections %}
+                    {% assign product_collection_clean = pc.title | strip %}
+                    {% if product_collection_clean == filter_collection_clean %}
+                      {% assign collection_match = true %}
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
+                  {% if collection_match %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+                {% unless collection_match %}
+                  {% assign show_product = false %}
+                {% endunless %}
+              {% endif %}
+
+              {% if show_product %}
+                {% assign filtered_count = filtered_count | plus: 1 %}
+
+                {% comment %} Only display products for current page {% endcomment %}
+                {% if filtered_count > skip_count and displayed_count < paginate_by %}
+                  {% assign is_lcp = false %}
+                  {% if displayed_count < 4 %}
+                    {% assign is_lcp = true %}
+                  {% endif %}
+                  {%
+                    include 'product-grid-item',
+                    product: product,
+                    is_lcp: is_lcp
+                  %}
+                  {% assign displayed_count = displayed_count | plus: 1 %}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+
+            {% comment %} Store filtered count for pagination {% endcomment %}
+            {% assign total_filtered_pages = filtered_count | divided_by: paginate_by | ceil %}
+            {% if filtered_count > 0 and total_filtered_pages == 0 %}
+              {% assign total_filtered_pages = 1 %}
+            {% endif %}
+
+          {% else %}
+            {% comment %} =====================================================
+               STANDARD PRODUCT LOOP (No custom filters)
+               ===================================================== {% endcomment %}
+            {% assign displayed_product_ids = "" %}
+
+            {% for product in collection.products %}
+              {% if product.tags contains 'manually' %}
+                {%
+                  include 'product-grid-item',
+                  product: product
+                %}
+                {% assign displayed_product_ids = displayed_product_ids | append: product.id | append: ',' %}
+              {% endif %}
+            {% endfor %}
+
+            {% for product in collection.products %}
+              {% assign product_id_string = product.id | append: ',' %}
+              {% unless displayed_product_ids contains product_id_string %}
+                {%
+                  include 'product-grid-item',
+                  product: product
+                %}
+              {% endunless %}
+            {% endfor %}
+          {% endif %}
+        </ul>
+
+        {% comment %} Show message if no products match filters {% endcomment %}
+        {% if has_custom_filters and displayed_count == 0 %}
+          <div class="productgrid--no-results">
+            <h2 class="productgrid--no-results-title">
+              No products match your selected filters.
+            </h2>
+            <a class="productgrid--no-results-button" href="{{ collection.url }}">
+              Clear Filters
+            </a>
+          </div>
+        {% endif %}
+      {% else %}
+        {% comment %} Check if this is a vendor tag filter with no matching tag products {% endcomment %}
+        {% assign has_vendor_tag_fallback = false %}
+        {% if collection.all_products_count > 0 and current_tags.size > 0 %}
+          {% assign has_vendor_tag_fallback = true %}
+        {% endif %}
+
+        {% if has_vendor_tag_fallback %}
+          {% comment %} JS will fetch unfiltered products and filter by vendor {% endcomment %}
+          <ul class="productgrid--items" data-vendor-fallback-grid
+            data-collection-url="{{ collection.url }}"
+            data-current-tags="{{ current_tags | join: '|||' }}"
+            data-paginate-by="{{ paginate_by }}">
+          </ul>
+          <div class="productgrid--no-results" data-vendor-fallback-no-results style="display:none;">
+            <h2 class="productgrid--no-results-title">
+              {{ 'product_grid.no_results.tags_empty' | t }}
+            </h2>
+            <a class="productgrid--no-results-button" href="{{ collection.url }}">
+              {{ 'search.general.view_all_products' | t }}
+            </a>
+          </div>
+        {% else %}
+          <div class="productgrid--no-results">
+            <h2 class="productgrid--no-results-title">
+              {%- if collection.all_products_count == 0 -%}
+                {{ 'product_grid.no_results.empty' | t }}
+              {%- else -%}
+                {{ 'product_grid.no_results.tags_empty' | t }}
+              {%- endif -%}
+            </h2>
+            <a class="productgrid--no-results-button" href="/collections/all">
+              {{ 'search.general.view_all_products' | t }}
+            </a>
+          </div>
+        {% endif %}
+      {% endif %}
+
+      {% comment %} Pagination - use custom pagination when filters active {% endcomment %}
+      {% if has_custom_filters %}
+        {% if total_filtered_pages > 1 %}
+          {% render 'pagination-filtered',
+            current_page: custom_page,
+            total_pages: total_filtered_pages,
+            collection_url: collection.url
+          %}
+        {% endif %}
+      {% else %}
+        {%
+          include 'pagination',
+          grid_list: true
+        %}
+      {% endif %}
+
+      {% comment %} Related Searches Section {% endcomment %}
+      {% if section.settings.show_related_searches %}
+        {% render 'collection-related-searches',
+          related_searches_title: section.settings.related_searches_title,
+          related_searches_max: section.settings.related_searches_max,
+          rs_bg: section.settings.related_searches_bg,
+          rs_title_color: section.settings.related_searches_title_color,
+          rs_pill_bg: section.settings.related_searches_pill_bg,
+          rs_pill_text: section.settings.related_searches_pill_text,
+          rs_pill_hover_bg: section.settings.related_searches_pill_hover_bg,
+          rs_pill_hover_text: section.settings.related_searches_pill_hover_text
+        %}
+      {% endif %}
+
+      {% comment %} Collection description moved to standalone "Collection Description" section {% endcomment %}
+    </div>
+  </div>
+{% endpaginate %}
+
+{% include 'quick-shop' %}
+
+
+{% schema %}
+{
+  "name": "Collection pages",
+  "class": "collection--section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "label": "Show collection image",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "B2B Collection Banner (bulk-medical-supplies only)"
+    },
+    {
+      "type": "image_picker",
+      "id": "b2b_banner_desktop_image",
+      "label": "Desktop Banner Image",
+      "info": "Image displayed on desktop for B2B collection"
+    },
+    {
+      "type": "url",
+      "id": "b2b_banner_desktop_link",
+      "label": "Desktop Banner Link",
+      "info": "URL to link when desktop banner is clicked"
+    },
+    {
+      "type": "image_picker",
+      "id": "b2b_banner_mobile_image",
+      "label": "Mobile Banner Image",
+      "info": "Image displayed on mobile for B2B collection"
+    },
+    {
+      "type": "url",
+      "id": "b2b_banner_mobile_link",
+      "label": "Mobile Banner Link",
+      "info": "URL to link when mobile banner is clicked"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page_range",
+      "label": "Products per page",
+      "min": 24,
+      "max": 48,
+      "step": 12,
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Utility bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "sort_by",
+      "label": "Show \"Sort by\" Dropdown",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_by",
+      "label": "Show products per page links",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "grid_list",
+      "label": "Show grid/list view toggle",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Sidebar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sidebar",
+      "label": "Show sidebar",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "filter_style",
+      "label": "Filters ([?](https://support.pixelunion.net/article/390-empires-products-and-collections#Filters))",
+      "options": [
+        {
+          "value": "none",
+          "label": "Hide filters"
+        },
+        {
+          "value": "tags",
+          "label": "By tag"
+        },
+        {
+          "value": "groups",
+          "label": "By group"
+        }
+      ],
+      "default": "tags"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_menu_accordion",
+      "label": "Enable sidebar menu accordion",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Related searches"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_related_searches",
+      "label": "Show related searches section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "related_searches_title",
+      "label": "Related searches title",
+      "default": "People Also Searched For"
+    },
+    {
+      "type": "range",
+      "id": "related_searches_max",
+      "label": "Max items to show",
+      "min": 4,
+      "max": 30,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "color",
+      "id": "related_searches_bg",
+      "label": "Related searches background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "related_searches_title_color",
+      "label": "Related searches title color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "related_searches_pill_bg",
+      "label": "Pill background color",
+      "default": "#e8f5e9"
+    },
+    {
+      "type": "color",
+      "id": "related_searches_pill_text",
+      "label": "Pill text color",
+      "default": "#388138"
+    },
+    {
+      "type": "color",
+      "id": "related_searches_pill_hover_bg",
+      "label": "Pill hover background",
+      "default": "#e8f5e9"
+    },
+    {
+      "type": "color",
+      "id": "related_searches_pill_hover_text",
+      "label": "Pill hover text color",
+      "default": "#388138"
+    },
+    {
+      "type": "header",
+      "content": "Filter visibility"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_active_filters_bar",
+      "label": "Show active filters bar",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filter_availability",
+      "label": "Show availability filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filter_price",
+      "label": "Show price filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filter_vendor",
+      "label": "Show vendor filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filter_collection",
+      "label": "Show collection filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filter_tags",
+      "label": "Show tags filter",
+      "default": true
+    },
+    {
+      "id": "filter_limit",
+      "type": "select",
+      "label": "Hide additional tags after",
+      "options": [
+        {
+          "value": "5",
+          "label": "5 tags"
+        },
+        {
+          "value": "6",
+          "label": "6 tags"
+        },
+        {
+          "value": "8",
+          "label": "8 tags"
+        },
+        {
+          "value": "10",
+          "label": "10 tags"
+        },
+        {
+          "value": "15",
+          "label": "15 tags"
+        },
+        {
+          "value": "20",
+          "label": "20 tags"
+        },
+        {
+          "value": "999",
+          "label": "Show all tags"
+        }
+      ],
+      "default": "999"
+    },
+    {
+      "type": "select",
+      "id": "filter_position",
+      "label": "Filters position",
+      "options": [
+        {
+          "value": "above_menus",
+          "label": "Above menus"
+        },
+        {
+          "value": "below_menus",
+          "label": "Below menus"
+        }
+      ],
+      "default": "above_menus"
+    },
+    {
+      "type": "range",
+      "id": "menu_depth_range",
+      "label": "Menu depth visibility ([?](https://help.shopify.com/manual/sell-online/online-store/menus-and-links#create-a-drop-down-menu))",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        {
+          "id": "menu",
+          "type": "link_list",
+          "label": "Menu",
+          "info": "This menu will show as many dropdown items as specified in \"Menu depth visibility\"."
+        }
+      ],
+      "limit": 10
+    }
+  ]
+}
+
+{% endschema %}

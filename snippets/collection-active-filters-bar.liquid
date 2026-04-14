@@ -1,0 +1,257 @@
+{% comment %}
+  Active Filters Bar - Displayed below breadcrumbs on collection page
+  Uses Shopify's tag-based URL filtering for tag/vendor/type filters
+  Uses collection.filters API for price and availability
+{% endcomment %}
+
+{% comment %} Parse active tag handles from URL path {% endcomment %}
+{% assign url_parts = request.path | split: '/' %}
+{% assign url_tag_segment = url_parts[3] | default: '' %}
+{% assign url_active_handles = url_tag_segment | split: '+' %}
+
+{% if url_tag_segment != '' %}
+  {% assign tag_base_url = collection.url | append: '/' | append: url_tag_segment %}
+{% else %}
+  {% assign tag_base_url = collection.url %}
+{% endif %}
+
+{% comment %} Preserve query params {% endcomment %}
+{% assign preserved_query = '' %}
+{% assign qs = request.query_string | default: '' %}
+{% if qs != blank %}
+  {% assign qs_parts = qs | split: '&' %}
+  {% for part in qs_parts %}
+    {% unless part contains 'page=' or part contains 'vendors=' or part contains 'product_types=' or part contains 'tags=' or part contains 'collections=' %}
+      {% if preserved_query == '' %}
+        {% assign preserved_query = part %}
+      {% else %}
+        {% assign preserved_query = preserved_query | append: '&' | append: part %}
+      {% endif %}
+    {% endunless %}
+  {% endfor %}
+{% endif %}
+{% if preserved_query != '' %}
+  {% assign preserved_query_string = '?' | append: preserved_query %}
+{% else %}
+  {% assign preserved_query_string = '' %}
+{% endif %}
+
+{% comment %} Check for active availability filter using collection.filters API {% endcomment %}
+{% assign has_active_availability = false %}
+{% for filter in collection.filters %}
+  {% if filter.param_name == 'filter.v.availability' %}
+    {% for value in filter.values %}
+      {% if value.active %}
+        {% assign has_active_availability = true %}
+        {% assign active_availability_label = value.label %}
+        {% assign active_availability_remove_url = value.url_to_remove %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+{% comment %} Check for active price filter {% endcomment %}
+{% assign has_active_price = false %}
+{% for filter in collection.filters %}
+  {% if filter.type == 'price_range' %}
+    {% if filter.min_value.value != nil or filter.max_value.value != nil %}
+      {% assign has_active_price = true %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% comment %} Only show bar if there are active filters {% endcomment %}
+{% if url_tag_segment != '' or has_active_availability or has_active_price %}
+  <div class="active-filters-bar" data-active-filters-bar>
+    <div class="active-filters-bar__inner">
+      <span class="active-filters-bar__label">Active Filters:</span>
+
+      <div class="active-filters-bar__tags">
+        {% comment %} Show active availability filter {% endcomment %}
+        {% if has_active_availability %}
+          <a href="{{ active_availability_remove_url }}" class="active-filters-bar__tag" data-active-availability>
+            <span>{{ active_availability_label }}</span>
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 2L8 8M8 2L2 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+        {% endif %}
+
+        {% comment %} Show active price filter {% endcomment %}
+        {% for filter in collection.filters %}
+          {% if filter.type == 'price_range' %}
+            {% if filter.min_value.value != nil or filter.max_value.value != nil %}
+              <a href="{{ tag_base_url }}{{ preserved_query_string }}" class="active-filters-bar__tag">
+                <span>
+                  {{ filter.label }}:
+                  {% if filter.min_value.value %}{{ filter.min_value.value | money_without_trailing_zeros }}{% else %}{{ filter.range_min | money_without_trailing_zeros }}{% endif %}
+                  -
+                  {% if filter.max_value.value %}{{ filter.max_value.value | money_without_trailing_zeros }}{% else %}{{ filter.range_max | money_without_trailing_zeros }}{% endif %}
+                </span>
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 2L8 8M8 2L2 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </a>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+
+        {% comment %} Show active tag filters from URL path {% endcomment %}
+        {% for ath in url_active_handles %}
+          {% comment %} Build remove URL: all URL tags except this one {% endcomment %}
+          {% assign remove_path = '' %}
+          {% assign ath_handle = ath | handleize %}
+          {% for other in url_active_handles %}
+            {% assign other_handle = other | handleize %}
+            {% unless other_handle == ath_handle %}
+              {% if remove_path == '' %}
+                {% assign remove_path = other %}
+              {% else %}
+                {% assign remove_path = remove_path | append: '+' | append: other %}
+              {% endif %}
+            {% endunless %}
+          {% endfor %}
+          {% if remove_path == '' %}
+            {% assign remove_url = collection.url | append: preserved_query_string %}
+          {% else %}
+            {% assign remove_url = collection.url | append: '/' | append: remove_path | append: preserved_query_string %}
+          {% endif %}
+
+          <a href="{{ remove_url }}" class="active-filters-bar__tag" data-active-tag="{{ ath | escape }}">
+            <span>{{ ath | replace: '-', ' ' }}</span>
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 2L8 8M8 2L2 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+        {% endfor %}
+      </div>
+
+      <a href="{{ collection.url }}{% if collection.sort_by %}?sort_by={{ collection.sort_by }}{% endif %}" class="active-filters-bar__clear">
+        Clear All
+      </a>
+    </div>
+  </div>
+
+  <style>
+    .active-filters-bar {
+      margin: 15px 0 20px;
+      padding: 12px 16px;
+      background: #f8f8f8;
+      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+    }
+
+    .active-filters-bar__inner {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .active-filters-bar__label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      margin-right: 5px;
+    }
+
+    .active-filters-bar__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .active-filters-bar__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #333;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .active-filters-bar__tag:hover {
+      background: #333;
+      color: #fff;
+      border-color: #333;
+    }
+
+    .active-filters-bar__tag svg {
+      width: 10px;
+      height: 10px;
+      opacity: 0.6;
+    }
+
+    .active-filters-bar__tag:hover svg {
+      opacity: 1;
+    }
+
+    .active-filters-bar__clear {
+      font-size: 12px;
+      color: #666;
+      text-decoration: underline;
+      white-space: nowrap;
+      margin-left: auto;
+    }
+
+    .active-filters-bar__clear:hover {
+      color: #333;
+    }
+
+    @media screen and (max-width: 767px) {
+      .active-filters-bar {
+        margin: 12px 0 16px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        position: relative;
+      }
+
+      .active-filters-bar__inner {
+        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .active-filters-bar__label {
+        font-size: 13px;
+        font-weight: 700;
+        width: 100%;
+        margin-right: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .active-filters-bar__tags {
+        gap: 8px;
+        width: 100%;
+      }
+
+      .active-filters-bar__tag {
+        padding: 8px 12px;
+        font-size: 13px;
+        border-radius: 25px;
+        min-height: 36px;
+      }
+
+      .active-filters-bar__tag:active {
+        background: #333;
+        color: #fff;
+        border-color: #333;
+      }
+
+      .active-filters-bar__tag svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      .active-filters-bar__clear {
+        font-size: 13px;
+        padding: 8px 0;
+        position: absolute;
+        top: 12px;
+        right: 14px;
+      }
+    }
+  </style>
+{% endif %}

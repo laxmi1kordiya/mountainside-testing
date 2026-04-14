@@ -1,0 +1,26 @@
+{% render 'ws-critical-css' %}
+
+<style>
+  body > * {
+    visibility: hidden;
+  }
+  #shopify-section-rotating-announcement-bar,
+  #shopify-section-static-header,
+  .site-header,
+  .site-navigation-wrapper,
+  .site-mobile-nav,
+  .announcement-bar,
+  .hero-slider,
+  [data-hero-slider] {
+    visibility: visible;
+  }
+</style>
+<script>
+  window.addEventListener("DOMContentLoaded", function() {
+    document.head.insertAdjacentHTML("beforeend", "<style>body > *{visibility:visible;}</style>");
+  });
+</script>
+<noscript>
+  <style>body > *{visibility:visible;}</style>
+</noscript>
+

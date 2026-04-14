@@ -1,0 +1,116 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "narcan"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "1759341880e242368a": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_N3yy4n": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#dddddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_N3yy4n"
+      ],
+      "settings": {}
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "",
+            "text": "<h2><strong>Common Allergic Reaction Medications and Their Uses</strong></h2><h3>1. <strong>Antihistamines</strong></h3><ul><li><strong>Use:</strong><br/><br/>Relieve symptoms like itching, sneezing, runny nose, watery eyes, hives, and mild skin rashes.<br/>Used for hay fever (allergic rhinitis), food allergies, insect stings, and mild allergic drug reactions.<br/></li></ul><p><strong>Examples:</strong></p><ul><li><strong>Oral:</strong> Diphenhydramine (Benadryl), cetirizine (Zyrtec), loratadine (Claritin), fexofenadine (Allegra).</li><li><strong>Topical:</strong> Creams or gels for skin itching from insect bites or mild reactions.</li></ul><h3>2. <strong>Corticosteroids</strong></h3><p><strong>Use:</strong></p><ul><li><strong>Systemic (oral/injection):</strong> Treat more severe or <br/>persistent allergic reactions, such as serious skin reactions, swelling,<br/> severe asthma attacks, or anaphylaxis (as an adjunct, <em>not</em> first-line for anaphylaxis).</li><li><strong>Topical:</strong> Reduce localized inflammation and rash from contact dermatitis, eczema, or mild allergic skin reactions.</li><li><strong>Nasal:</strong> Treat nasal congestion and inflammation in allergic rhinitis (hay fever).<br/></li></ul><p><strong>Examples:</strong> Prednisone, dexamethasone (oral/injectable); hydrocortisone, triamcinolone (topical); fluticasone (nasal spray).<br/></p><h3>3. <strong>Epinephrine (Adrenaline)</strong></h3><p><strong>Use:</strong></p><ul><li><strong>Emergency treatment of anaphylaxis,</strong> which is a <br/>life-threatening, severe allergic reaction causing trouble breathing, <br/>throat swelling, and/or a drop in blood pressure.<br/>Must be given quickly (usually via auto-injector, e.g., EpiPen).<br/></li></ul><p><strong>Example:</strong> Epinephrine auto-injector.</p><h3>4. <strong>Decongestants</strong></h3><p><strong>Use:</strong></p><ul><li>Relieve nasal stuffiness and congestion during allergic rhinitis or mild allergies.</li></ul><p><strong>Examples:</strong> Pseudoephedrine (Sudafed), oxymetazoline (Afrin nasal spray).</p><h3>5. <strong>Leukotriene Receptor Antagonists</strong></h3><p><strong>Use:</strong></p><ul><li>Manage allergy-induced asthma or allergic rhinitis.</li></ul><p><strong>Example:</strong> Montelukast (Singulair).</p><h3>6. <strong>Mast Cell Stabilizers</strong></h3><p><strong>Use:</strong></p><ul><li>Prevent allergy symptoms, especially for allergic eye and nose symptoms.</li></ul><p><strong>Examples:</strong> Cromolyn sodium (NasalCrom).</p><p>Allergic reaction medications are chosen based on the severity and type of allergy. Mild reactions use antihistamines and topical steroids, while severe reactions (anaphylaxis) require immediate epinephrine. Other drugs help with congestion, asthma, or prevention of recurring allergies. Always consult a healthcare professional for treatment and emergency care.<br/><br/></p>",
+            "heading_size": "small",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_fJqxnc": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_fJqxnc",
+    "1759341880e242368a",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

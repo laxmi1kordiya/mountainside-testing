@@ -1,0 +1,43 @@
+{% layout none %}
+
+{% assign product_json = product | json %}
+{% assign product_json_sha256 = product_json | sha256 %}
+
+{% capture settings_string %}
+  {{ settings.product_social_sharing }}
+  {{ settings.product_show_vendor }}
+  {{ settings.product_ratings_reviews }}
+  {{ settings.product_show_sku }}
+  {{ 'general.general.quantity' | t }}
+  {{ 'products.product.add_to_cart' | t }}
+  {{ 'products.product.sold_out' | t }}
+  {{ 'products.product.view_details' | t }}
+  {{ 'products.product.by_vendor_html' | t }}
+  {{ 'products.product.by_vendor' | t }}
+  {{ 'products.product.sku_html' | t }}
+{% endcapture %}
+{% assign settings_sha256 = settings_string | sha256 %}
+
+<template data-options>
+  {
+    "product": {{ product_json }},
+    "hash": {{ product_json_sha256 | append: settings_sha256 | json }},
+    "settings": {
+      "money_format": {{ money_format | json }},
+      "enable_image_zoom": {{ settings.enable_image_zoom | json }},
+      "image_zoom_level": {{ settings.image_zoom_level | json }}
+    },
+    "context": {
+      "product_available": {{ 'product.buttons.add_to_cart' | t | json }},
+      "product_unavailable": {{ 'product.buttons.sold_out' | t | json }}
+    }
+  }
+</template>
+
+<template data-html="content">
+  {%-
+    include 'product',
+    layout: false,
+    is_product_modal: true
+  -%}
+</template>

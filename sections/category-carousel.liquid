@@ -1,0 +1,559 @@
+{%- comment -%}
+  Category Carousel
+  Shop by category with collection circles and product card panels
+{%- endcomment -%}
+
+{%- assign products_limit = section.settings.products_per_collection -%}
+
+<section
+  class="ccc ccc--{{ section.id }}"
+  data-ccc-section
+  data-ccc-card-gap="{{ section.settings.card_gap }}"
+  data-ccc-autoplay-speed="{{ section.settings.autoplay_speed }}"
+  data-ccc-enable-autoplay="{{ section.settings.enable_autoplay }}"
+  data-ccc-view-all-text="{{ section.settings.view_all_text | escape }}"
+>
+  <div class="ccc__container">
+    {%- comment -%} Section Header {%- endcomment -%}
+    <div class="ccc__header">
+      {% if section.settings.show_subtitle and section.settings.subtitle != blank %}
+        <p class="ccc__subtitle">{{ section.settings.subtitle }}</p>
+      {% endif %}
+      {% if section.settings.title_normal != blank or section.settings.title_highlight != blank %}
+        <h2 class="ccc__title">
+          <span class="title-normal">{{ section.settings.title_normal }}</span>
+          <span class="title-highlight">{{ section.settings.title_highlight }}</span>
+        </h2>
+      {% endif %}
+    </div>
+
+    {%- comment -%} Collection Circles Carousel {%- endcomment -%}
+    <div class="ccc__circles-wrapper">
+      {% if section.settings.show_circle_arrows %}
+        <button class="ccc__circle-arrow ccc__circle-arrow--prev" aria-label="Previous categories" data-ccc-circle-prev>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 12H5M5 12L11 6M5 12L11 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      {% endif %}
+
+      <div class="ccc__circles-track-container" data-ccc-circles-container>
+        <div class="ccc__circles-track" data-ccc-circles-track>
+          {% for block in section.blocks %}
+            {%- assign coll = collections[block.settings.collection] -%}
+            {% if coll != blank %}
+              <button
+                class="ccc__circle{% if forloop.first %} ccc__circle--active{% endif %}"
+                type="button"
+                data-ccc-circle
+                data-ccc-index="{{ forloop.index0 }}"
+                data-ccc-handle="{{ coll.handle }}"
+                data-ccc-title="{{ coll.title | escape }}"
+                data-ccc-url="{{ coll.url }}"
+                {{ block.shopify_attributes }}
+              >
+                <div class="ccc__circle-image-wrapper">
+                  {% if block.settings.custom_image != blank %}
+                    <img
+                      src="{{ block.settings.custom_image | image_url: width: 150 }}"
+                      alt="{{ coll.title | escape }}"
+                      class="ccc__circle-image"
+                      width="100px"
+                      height="100px"
+                    >
+                  {% elsif coll.image != blank %}
+                    <img
+                      src="{{ coll.image | image_url: width: 150 }}"
+                      alt="{{ coll.title | escape }}"
+                      class="ccc__circle-image"
+                      width="100px"
+                      height="100px"
+                    >
+                  {% else %}
+                    <div class="ccc__circle-placeholder">
+                      {{ 'collection-1' | placeholder_svg_tag }}
+                    </div>
+                  {% endif %}
+                </div>
+                <span class="ccc__circle-label">{{ coll.title }}</span>
+              </button>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if section.settings.show_circle_arrows %}
+        <button class="ccc__circle-arrow ccc__circle-arrow--next" aria-label="Next categories" data-ccc-circle-next>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      {% endif %}
+    </div>
+
+    {%- comment -%} Product Panels {%- endcomment -%}
+    <div class="ccc__panels">
+      {% for block in section.blocks %}
+        {%- assign coll = collections[block.settings.collection] -%}
+        {% if coll != blank %}
+          <div
+            class="ccc__panel{% if forloop.first %} ccc__panel--active{% endif %}"
+            data-ccc-panel="{{ forloop.index0 }}"
+          >
+            <div class="ccc__products-wrapper">
+              {% if section.settings.show_product_arrows %}
+                <button class="ccc__product-arrow ccc__product-arrow--prev" aria-label="Previous products" data-ccc-product-prev>
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              {% endif %}
+
+              <div class="ccc__products-track-container" data-ccc-products-container>
+                <div class="ccc__products-track" data-ccc-products-track>
+                  {% for product in coll.products limit: products_limit %}
+                    <div class="ccc__card" data-ccc-card>
+                      <div class="ccc__card-inner">
+                        {%- comment -%} Badges {%- endcomment -%}
+                        {%- assign current_variant = product.selected_or_first_available_variant -%}
+                        {%- assign variant_compare_price = current_variant.compare_at_price -%}
+                        {%- assign variant_price = current_variant.price -%}
+                        {%- assign has_discount = false -%}
+                        {%- if variant_compare_price != blank and variant_compare_price > variant_price -%}
+                          {%- assign has_discount = true -%}
+                        {%- endif -%}
+                        <div class="ccc__badges">
+                          {% if product.available == false %}
+                            <span class="badge badge--sold-out">Sold Out</span>
+                          {% elsif has_discount %}
+                            {% assign savings_amount = variant_compare_price | minus: variant_price %}
+                            {% assign savings_percent = savings_amount | times: 100.0 | divided_by: variant_compare_price | round %}
+                            <span class="badge badge--sale">Sale {{ savings_percent }}%</span>
+                          {% endif %}
+
+                          {%- comment -%} Low stock badge (uses first available variant to avoid looping all variants) {%- endcomment -%}
+                          {%- assign variant_qty = current_variant.inventory_quantity | default: 0 -%}
+                          {% if product.available and current_variant.inventory_management == 'shopify' and variant_qty > 0 and variant_qty <= 10 %}
+                            <span class="badge badge--low-stock">Low Stock</span>
+                          {% endif %}
+
+                          {% if product.tags contains 'best-seller' or product.tags contains 'bestseller' or product.tags contains 'top-selling' %}
+                            <span class="badge badge--bestseller">Best Seller</span>
+                          {% elsif product.tags contains 'new' or product.tags contains 'new-arrival' %}
+                            <span class="badge badge--new">New Arrival</span>
+                          {% elsif product.tags contains 'trending' %}
+                            <span class="badge badge--trending">Trending</span>
+                          {% elsif product.tags contains 'popular' %}
+                            <span class="badge badge--popular">Popular</span>
+                          {% endif %}
+                        </div>
+
+                        {%- comment -%} Product Image {%- endcomment -%}
+                        <div class="ccc__image-wrapper">
+                          <a href="{{ product.url }}" class="ccc__image-link">
+                            {% if product.featured_image != blank %}
+                              <img
+                                src="{{ product.featured_image | image_url: width: 400 }}"
+                                alt="{{ product.featured_image.alt | escape | default: product.title }}"
+                                loading="lazy"
+                                class="ccc__image ccc__image--primary"
+                              >
+                              {%- assign hover_image = product.images[1] | default: product.featured_image -%}
+                              <img
+                                src="{{ hover_image | image_url: width: 400 }}"
+                                alt="{{ hover_image.alt | escape | default: product.title }}"
+                                loading="lazy"
+                                class="ccc__image ccc__image--secondary"
+                              >
+                            {% else %}
+                              <div class="ccc__placeholder">
+                                {{ 'product-1' | placeholder_svg_tag }}
+                              </div>
+                            {% endif %}
+                          </a>
+
+                          {%- comment -%} Quick Actions Overlay {%- endcomment -%}
+                          <div class="ccc__quick-actions">
+                            <a href="{{ product.url }}" class="quick-action quick-action--view" title="Quick View">
+                              <svg viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/></svg>
+                            </a>
+                          </div>
+                        </div>
+
+                        {%- comment -%} Product Info {%- endcomment -%}
+                        <div class="ccc__info">
+                          {%- comment -%} Reviews - Judge.me {%- endcomment -%}
+                          <div class="ccc__reviews">
+                            <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}">
+                              {{ product.metafields.judgeme.badge }}
+                            </div>
+                          </div>
+
+                          {%- comment -%} Product Title {%- endcomment -%}
+                          <h3 class="ccc__product-title">
+                            <a href="{{ product.url }}">{{ product.title }}</a>
+                          </h3>
+
+                          {%- comment -%} Price {%- endcomment -%}
+                          <div class="ccc__price">
+                            {% if has_discount %}
+                              <span class="price--compare">{{ variant_compare_price | money }}</span>
+                            {% endif %}
+                            <span class="price--current">{{ variant_price | money }}</span>
+                          </div>
+
+                          {%- comment -%} Check if product requires medical license {%- endcomment -%}
+                          {% assign is_rx_product = false %}
+                          {% assign customer_has_license = false %}
+                          {% if product.tags contains 'rx' or product.tags contains 'prescription' or product.tags contains 'doctor-only' or product.tags contains 'rx-only' or product.tags contains 'medical-license' or product.type == 'Prescription' %}
+                            {% assign is_rx_product = true %}
+                          {% endif %}
+                          {% if customer and customer.tags contains 'medical-license' or customer and customer.tags contains 'licensed' or customer and customer.tags contains 'verified-professional' %}
+                            {% assign customer_has_license = true %}
+                          {% endif %}
+
+                          {%- comment -%} Buttons {%- endcomment -%}
+ {%- assign variant_qty = current_variant.inventory_quantity | default: 0 -%}
+                          <div class="ccc__buttons">
+                            {% if product.available == false %}
+                              <button class="btn btn--sold-out" disabled>
+                                <span>Sold Out</span>
+                              </button>
+                            {% elsif is_rx_product and customer_has_license == false %}
+                              <a href="{{ product.url }}" class="btn btn--rx-required">
+                                <span>Medical License Required</span>
+                              </a>
+                            {% else %}
+                              <div class="ccc-qty-selector" data-ccc-qty-selector>
+                                <button type="button" class="ccc-qty-btn" data-ccc-qty-decrease>-</button>
+                                <input
+                                  type="number"
+                                  class="ccc-qty-input"
+                                  data-ccc-qty-value
+                                  value="1"
+                                  min="1"
+                                  data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                                >
+                                <button type="button" class="ccc-qty-btn" data-ccc-qty-increase>+</button>
+                              </div>
+                              <button
+                                type="button"
+                                class="btn btn--add-to-cart"
+                                data-ccc-atc
+                                data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                                {% if variant_qty > 0 %}data-inventory-quantity="{{ variant_qty }}"{% endif %}
+                              >
+                                <span>Add to Cart</span>
+                              </button>
+                            {% endif %}
+                          </div>
+                        </div>
+
+                        {%- comment -%} Hover Glow Effect {%- endcomment -%}
+                        <div class="ccc__glow"></div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+
+              {% if section.settings.show_product_arrows %}
+                <button class="ccc__product-arrow ccc__product-arrow--next" aria-label="Next products" data-ccc-product-next>
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {%- comment -%} View All Button {%- endcomment -%}
+    {% if section.settings.show_view_all and section.blocks.size > 0 %}
+      {%- assign first_block_coll = collections[section.blocks[0].settings.collection] -%}
+      <div class="ccc__footer">
+        <a
+          href="{{ first_block_coll.url }}"
+          class="btn btn--view-all"
+          data-ccc-view-all
+        >
+          <span data-ccc-view-all-text>{{ section.settings.view_all_text | replace: '[collection]', first_block_coll.title }}</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .ccc--{{ section.id }} {
+    --ccc-primary-color: {{ section.settings.primary_color }};
+    --ccc-secondary-color: {{ section.settings.secondary_color }};
+    --ccc-text-color: {{ section.settings.text_color }};
+    --ccc-bg-color: {{ section.settings.background_color }};
+    --ccc-card-bg: {{ section.settings.card_background }};
+    --ccc-active-border-color: {{ section.settings.active_border_color }};
+    --ccc-circle-size: {{ section.settings.circle_size }}px;
+    --ccc-card-width: {{ section.settings.card_width }}px;
+    --ccc-card-gap: {{ section.settings.card_gap }}px;
+    --ccc-card-border-radius: {{ section.settings.card_border_radius }}px;
+    padding: {{ section.settings.padding_top | default: 40 }}px 0 {{ section.settings.padding_bottom | default: 40 }}px;
+  }
+ .ccc--{{ section.id }} .ccc__container {
+    max-width: {{ section.settings.max_width | default: 1400 }}px;
+  } 
+  @media (max-width: 480px) {
+    .ccc--{{ section.id }} {
+      --ccc-circle-size: {{ section.settings.circle_size | at_most: 80 }}px;
+    }
+  }
+</style>
+
+<script src="{{ 'category-carousel.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Category Carousel",
+  "tag": "section",
+  "class": "collection-category-carousel-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subtitle",
+      "label": "Show subtitle",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Shop By"
+    },
+    {
+      "type": "text",
+      "id": "title_normal",
+      "label": "Title (normal text)",
+      "default": "Shop by"
+    },
+    {
+      "type": "text",
+      "id": "title_highlight",
+      "label": "Title (highlighted text)",
+      "default": "Category"
+    },
+    {
+      "type": "header",
+      "content": "Collection Circles"
+    },
+    {
+      "type": "range",
+      "id": "circle_size",
+      "label": "Circle size",
+      "min": 60,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "checkbox",
+      "id": "show_circle_arrows",
+      "label": "Show circle navigation arrows",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Product Cards"
+    },
+    {
+      "type": "range",
+      "id": "products_per_collection",
+      "label": "Products per collection",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "label": "Card width",
+      "min": 180,
+      "max": 350,
+      "step": 10,
+      "unit": "px",
+      "default": 220
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Gap between cards",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_arrows",
+      "label": "Show product navigation arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_autoplay",
+      "label": "Enable product autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay speed",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "sec",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "primary_color",
+      "label": "Primary color",
+      "default": "#367b36"
+    },
+    {
+      "type": "color",
+      "id": "secondary_color",
+      "label": "Secondary color (hover)",
+      "default": "#4dbe4d"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "active_border_color",
+      "label": "Active collection border color",
+      "default": "#367b36"
+    },
+    {
+      "type": "header",
+      "content": "View All Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show View All button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "Button text",
+      "default": "View All [collection]",
+      "info": "Use [collection] as placeholder for collection name"
+    },
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max width",
+      "min": 1000,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "default": 1400
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 20,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 20,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom circle image",
+          "info": "Optional. Overrides the collection image for the circle."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Carousel",
+      "blocks": [
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" }
+      ]
+    }
+  ]
+}
+{% endschema %}

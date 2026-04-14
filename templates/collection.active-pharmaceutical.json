@@ -1,0 +1,137 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "needles-and-syringes"
+          }
+        },
+        "menu_i7PgGL": {
+          "type": "menu",
+          "settings": {
+            "menu": "allergic-reaction-treatments"
+          }
+        },
+        "menu_ykbFWe": {
+          "type": "menu",
+          "settings": {
+            "menu": "bacterial-infection-meds"
+          }
+        },
+        "menu_Nxj6tR": {
+          "type": "menu",
+          "settings": {
+            "menu": "bronchitis-treatments"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_i7PgGL",
+        "menu_ykbFWe",
+        "menu_Nxj6tR"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "20",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "175939897724f413fd": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_4FCjgL": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#dddddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_4FCjgL"
+      ],
+      "settings": {}
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Active Pharmaceutical Ingredients (APIs): The Foundation of Modern Medicines | Leading Types, Examples, Supply Chain, and Global Industry FAQ",
+            "text": "<p><strong>Active Pharmaceutical Ingredients (APIs)</strong> are the essential chemical, biological, or plant-derived substances in medicines responsible for the intended therapeutic effects. APIs are the backbone of drug formulation, from everyday over-the-counter products like Tylenol to advanced biologics like Ozempic. The global API market is driven by innovation, stringent safety standards, and a robust supply chain that powers both brand-name and generic pharmaceuticals.</p><p><strong>Contact us for API sourcing, custom synthesis, bulk supply, and pharmaceutical manufacturing solutions. Trusted, FDA-compliant, and global logistics for your success!</strong></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_F9Awjv": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_F9Awjv",
+    "175939897724f413fd",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

@@ -1,0 +1,598 @@
+{% assign ai_gen_id = section.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-why-choose-us-{{ ai_gen_id }} {
+    padding: {{ section.settings.section_padding }}px 20px;
+    background: {{ section.settings.background_color }};
+  }
+
+  .ai-why-choose-us-container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-why-choose-us-header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .ai-why-choose-us-title-{{ ai_gen_id }} {
+    font-size: {{ section.settings.title_size }}px;
+    color: {{ section.settings.title_color }};
+    margin: 0 0 15px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+  }
+
+  .ai-why-choose-us-subtitle-{{ ai_gen_id }} {
+    font-size: {{ section.settings.subtitle_size }}px;
+    color: {{ section.settings.subtitle_color }};
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .ai-why-choose-us-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+
+  .ai-why-choose-us-card-{{ ai_gen_id }} {
+    background: {{ section.settings.card_background }};
+    padding: 40px 30px;
+    border-radius: {{ section.settings.card_border_radius }}px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: {{ section.settings.shadow_horizontal }}px {{ section.settings.shadow_vertical }}px {{ section.settings.shadow_blur }}px {{ section.settings.shadow_color | color_modify: 'alpha', section.settings.shadow_opacity }};
+    border: {{ section.settings.border_width }}px {{ section.settings.border_style }} {{ section.settings.border_color }};
+  }
+
+  .ai-why-choose-us-card-{{ ai_gen_id }}:hover {
+    transform: translateY(-5px);
+    box-shadow: {{ section.settings.shadow_horizontal }}px {{ section.settings.shadow_vertical | plus: 6 }}px {{ section.settings.shadow_blur | plus: 12 }}px {{ section.settings.shadow_color | color_modify: 'alpha', section.settings.shadow_opacity | plus: 0.04 }};
+    border-color: {{ section.settings.border_hover_color }};
+  }
+
+  .ai-why-choose-us-icon-{{ ai_gen_id }} {
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-why-choose-us-icon-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    stroke: {{ section.settings.accent_color }};
+    fill: none;
+    stroke-width: 1.5;
+  }
+
+  .ai-why-choose-us-icon-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ai-why-choose-us-card-title-{{ ai_gen_id }} {
+    font-size: {{ section.settings.card_title_size }}px;
+    color: {{ section.settings.card_title_color }};
+    margin: 0 0 15px;
+    font-weight: 600;
+  }
+
+  .ai-why-choose-us-card-text-{{ ai_gen_id }} {
+    font-size: {{ section.settings.card_text_size }}px;
+    color: {{ section.settings.card_text_color }};
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-why-choose-us-grid-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .ai-why-choose-us-{{ ai_gen_id }} {
+      padding: {{ section.settings.section_padding | times: 0.6 }}px 15px;
+    }
+
+    .ai-why-choose-us-header-{{ ai_gen_id }} {
+      margin-bottom: 40px;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    .ai-why-choose-us-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+{% endstyle %}
+
+<div class="ai-why-choose-us-{{ ai_gen_id }}">
+  <div class="ai-why-choose-us-container-{{ ai_gen_id }}">
+    {% if section.settings.section_title != blank or section.settings.section_subtitle != blank %}
+      <div class="ai-why-choose-us-header-{{ ai_gen_id }}">
+        {% if section.settings.section_title != blank %}
+          <h2 class="ai-why-choose-us-title-{{ ai_gen_id }}">{{ section.settings.section_title }}</h2>
+        {% endif %}
+        {% if section.settings.section_subtitle != blank %}
+          <p class="ai-why-choose-us-subtitle-{{ ai_gen_id }}">{{ section.settings.section_subtitle }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="ai-why-choose-us-grid-{{ ai_gen_id }}">
+      <div class="ai-why-choose-us-card-{{ ai_gen_id }}">
+        <div class="ai-why-choose-us-icon-{{ ai_gen_id }}">
+          {% if section.settings.card_1_icon %}
+            <img src="{{ section.settings.card_1_icon | image_url: width: 200 }}" alt="{{ section.settings.card_1_title }}" loading="lazy">
+          {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          {% endif %}
+        </div>
+        <h3 class="ai-why-choose-us-card-title-{{ ai_gen_id }}">{{ section.settings.card_1_title }}</h3>
+        <p class="ai-why-choose-us-card-text-{{ ai_gen_id }}">{{ section.settings.card_1_text }}</p>
+      </div>
+
+      <div class="ai-why-choose-us-card-{{ ai_gen_id }}">
+        <div class="ai-why-choose-us-icon-{{ ai_gen_id }}">
+          {% if section.settings.card_2_icon %}
+            <img src="{{ section.settings.card_2_icon | image_url: width: 200 }}" alt="{{ section.settings.card_2_title }}" loading="lazy">
+          {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+          {% endif %}
+        </div>
+        <h3 class="ai-why-choose-us-card-title-{{ ai_gen_id }}">{{ section.settings.card_2_title }}</h3>
+        <p class="ai-why-choose-us-card-text-{{ ai_gen_id }}">{{ section.settings.card_2_text }}</p>
+      </div>
+
+      <div class="ai-why-choose-us-card-{{ ai_gen_id }}">
+        <div class="ai-why-choose-us-icon-{{ ai_gen_id }}">
+          {% if section.settings.card_3_icon %}
+            <img src="{{ section.settings.card_3_icon | image_url: width: 200 }}" alt="{{ section.settings.card_3_title }}" loading="lazy">
+          {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+          {% endif %}
+        </div>
+        <h3 class="ai-why-choose-us-card-title-{{ ai_gen_id }}">{{ section.settings.card_3_title }}</h3>
+        <p class="ai-why-choose-us-card-text-{{ ai_gen_id }}">{{ section.settings.card_3_text }}</p>
+      </div>
+
+      <div class="ai-why-choose-us-card-{{ ai_gen_id }}">
+        <div class="ai-why-choose-us-icon-{{ ai_gen_id }}">
+          {% if section.settings.card_4_icon %}
+            <img src="{{ section.settings.card_4_icon | image_url: width: 200 }}" alt="{{ section.settings.card_4_title }}" loading="lazy">
+          {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          {% endif %}
+        </div>
+        <h3 class="ai-why-choose-us-card-title-{{ ai_gen_id }}">{{ section.settings.card_4_title }}</h3>
+        <p class="ai-why-choose-us-card-text-{{ ai_gen_id }}">{{ section.settings.card_4_text }}</p>
+      </div>
+
+      <div class="ai-why-choose-us-card-{{ ai_gen_id }}">
+        <div class="ai-why-choose-us-icon-{{ ai_gen_id }}">
+          {% if section.settings.card_5_icon %}
+            <img src="{{ section.settings.card_5_icon | image_url: width: 200 }}" alt="{{ section.settings.card_5_title }}" loading="lazy">
+          {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          {% endif %}
+        </div>
+        <h3 class="ai-why-choose-us-card-title-{{ ai_gen_id }}">{{ section.settings.card_5_title }}</h3>
+        <p class="ai-why-choose-us-card-text-{{ ai_gen_id }}">{{ section.settings.card_5_text }}</p>
+      </div>
+
+      <div class="ai-why-choose-us-card-{{ ai_gen_id }}">
+        <div class="ai-why-choose-us-icon-{{ ai_gen_id }}">
+          {% if section.settings.card_6_icon %}
+            <img src="{{ section.settings.card_6_icon | image_url: width: 200 }}" alt="{{ section.settings.card_6_title }}" loading="lazy">
+          {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          {% endif %}
+        </div>
+        <h3 class="ai-why-choose-us-card-title-{{ ai_gen_id }}">{{ section.settings.card_6_title }}</h3>
+        <p class="ai-why-choose-us-card-text-{{ ai_gen_id }}">{{ section.settings.card_6_text }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Why Choose Us",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Title",
+      "default": "Why Choose Us"
+    },
+    {
+      "type": "textarea",
+      "id": "section_subtitle",
+      "label": "Subtitle",
+      "default": "Discover what makes us different and why thousands of customers trust us"
+    },
+    {
+      "type": "header",
+      "content": "Card 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_1_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "card_1_title",
+      "label": "Title",
+      "default": "Free Consultation"
+    },
+    {
+      "type": "textarea",
+      "id": "card_1_text",
+      "label": "Description",
+      "default": "Get expert advice tailored to your needs with our complimentary consultation service"
+    },
+    {
+      "type": "header",
+      "content": "Card 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_2_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "card_2_title",
+      "label": "Title",
+      "default": "Good Service"
+    },
+    {
+      "type": "textarea",
+      "id": "card_2_text",
+      "label": "Description",
+      "default": "Experience exceptional customer service that goes above and beyond your expectations"
+    },
+    {
+      "type": "header",
+      "content": "Card 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_3_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "card_3_title",
+      "label": "Title",
+      "default": "Careful Planning"
+    },
+    {
+      "type": "textarea",
+      "id": "card_3_text",
+      "label": "Description",
+      "default": "Every detail is meticulously planned to ensure the best outcomes for your project"
+    },
+    {
+      "type": "header",
+      "content": "Card 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_4_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "card_4_title",
+      "label": "Title",
+      "default": "Fast Delivery"
+    },
+    {
+      "type": "textarea",
+      "id": "card_4_text",
+      "label": "Description",
+      "default": "Quick and reliable delivery service to get your products when you need them"
+    },
+    {
+      "type": "header",
+      "content": "Card 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_5_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "card_5_title",
+      "label": "Title",
+      "default": "Expert Team"
+    },
+    {
+      "type": "textarea",
+      "id": "card_5_text",
+      "label": "Description",
+      "default": "Our experienced professionals are dedicated to providing you with the best solutions"
+    },
+    {
+      "type": "header",
+      "content": "Card 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_6_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "card_6_title",
+      "label": "Title",
+      "default": "Quality Guarantee"
+    },
+    {
+      "type": "textarea",
+      "id": "card_6_text",
+      "label": "Description",
+      "default": "We stand behind our work with a comprehensive quality guarantee for your peace of mind"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#fafafa"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title",
+      "default": "#0e0e0e"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card title",
+      "default": "#0e0e0e"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card text",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent",
+      "default": "#388138"
+    },
+    {
+      "type": "header",
+      "content": "Border"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Border width",
+      "default": 1
+    },
+    {
+      "type": "select",
+      "id": "border_style",
+      "label": "Border style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "dashed",
+          "label": "Dashed"
+        },
+        {
+          "value": "dotted",
+          "label": "Dotted"
+        },
+        {
+          "value": "double",
+          "label": "Double"
+        }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "color",
+      "id": "border_hover_color",
+      "label": "Border hover color",
+      "default": "#388138"
+    },
+    {
+      "type": "header",
+      "content": "Shadow"
+    },
+    {
+      "type": "range",
+      "id": "shadow_horizontal",
+      "min": -20,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Horizontal offset",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "shadow_vertical",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical offset",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "shadow_blur",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Blur radius",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "shadow_color",
+      "label": "Shadow color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "shadow_opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "label": "Shadow opacity",
+      "default": 0.1
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 24,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "card_title_size",
+      "min": 16,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "label": "Card title size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_text_size",
+      "min": 13,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Card text size",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 20,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Section padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 40,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 50
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Choose Us"
+    }
+  ]
+}
+{% endschema %}

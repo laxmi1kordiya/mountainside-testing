@@ -1,0 +1,347 @@
+{% comment %}
+  =============================================================================
+  PART A: License Detection Variables
+  Detect if product requires license and if customer has license
+  Using existing tag conventions in the theme ('doctor-only')
+  =============================================================================
+{% endcomment %}
+{% assign requires_license = false %}
+{% assign customer_has_license = false %}
+{% assign is_variant_available = selected_variant.available %}
+{% assign is_product_available = product.available %}
+
+{% comment %}
+  Store initial variant data for JavaScript to use on variant changes
+  This helps the JS know about all variants' availability without additional API calls
+{% endcomment %}
+<script type="application/json" data-product-variants-json>
+  {{ product.variants | json }}
+</script>
+
+{% comment %} Check if product requires a medical license (reuses existing 'doctor-only' tag) {% endcomment %}
+{% if product.tags contains 'doctor-only' %}
+  {% assign requires_license = true %}
+{% endif %}
+
+{% comment %} Check if customer has a valid medical license (reuses existing 'doctor-only' customer tag) {% endcomment %}
+{% if customer.tags contains 'doctor-only' %}
+  {% assign customer_has_license = true %}
+{% endif %}
+
+{% comment %} Determine if purchase is restricted for this customer {% endcomment %}
+{% assign purchase_restricted = false %}
+{% if requires_license and customer_has_license == false %}
+  {% assign purchase_restricted = true %}
+{% endif %}
+
+{% comment %} Store license state for JavaScript {% endcomment %}
+<script type="application/json" data-license-state>
+  {
+    "requires_license": {{ requires_license }},
+    "customer_has_license": {{ customer_has_license }},
+    "purchase_restricted": {{ purchase_restricted }}
+  }
+</script>
+
+{% comment %}
+  =============================================================================
+  PART C: Out-of-Stock / Notify Me Detection
+  =============================================================================
+{% endcomment %}
+{% assign show_notify_me = false %}
+{% if is_variant_available == false or is_product_available == false %}
+  {% assign show_notify_me = true %}
+{% endif %}
+
+{% comment %}
+  =============================================================================
+  PART B: Visibility Logic
+  - Out of stock: Show Notify Me for everyone (hide ATC/Buy Now)
+  - In stock + requires license + no license: Show license message (hide ATC/Buy Now)
+  - In stock + requires license + has license: Show normal ATC/Buy Now
+  - In stock + no license required: Show normal ATC/Buy Now
+  =============================================================================
+{% endcomment %}
+
+{% comment %} CASE 1: Product is out of stock - Show Sold Out + Notify Me buttons {% endcomment %}
+{% if show_notify_me %}
+  <div class="product-form--out-of-stock" data-out-of-stock-wrapper>
+    <div class="product-form--out-of-stock-buttons">
+      <button
+        type="button"
+        class="product-form--sold-out-button"
+        disabled
+      >
+        {{ 'product.buttons.sold_out' | t }}
+      </button>
+      <button
+        type="button"
+        class="product-form--notify-me-trigger"
+        data-notify-me-trigger
+        data-product-id="{{ product.id }}"
+        data-product-handle-id="{{ product.handle }}"
+        data-variant-id="{{ selected_variant.id }}"
+        data-product-title="{{ product.title | escape }}"
+        data-variant-title="{{ selected_variant.title | escape }}"
+        data-customer-email="{% if customer.email %}{{ customer.email }}{% endif %}"
+      >
+        Notify Me
+      </button>
+    </div>
+  </div>
+
+{% comment %} CASE 2: Product is in stock but customer lacks required license {% endcomment %}
+{% elsif purchase_restricted %}
+  <div class="alert alert-highme" style="font-size:14px; border: 2px solid red;">
+    <strong>
+      <span style="font-size:11px; text-align: center; display: inline-block;">*Mountainside Medical does not fill personal prescriptions</span>
+      <span style="font-size:22px; text-align: center; display: inline-block;">Medical Professional License Required to Unlock Account</span>
+    <br>
+    <br>
+    How to Order:
+    <br>
+    <br>
+    </strong>
+    <div style="display:flex;column-gap: 6px;">
+      <span style="color:green;font-weight: 600;">✔</span>
+      <span>Send an email request to: sales@mountainside-medical.com</span>
+    </div>
+    <br>
+    You will receive instructions on how to create an account along with Rx Ordering Details.
+    <br><br>
+      (Note: Acceptable licenses must have Prescriptive Authority in the license issuing state.)
+  <br>
+  </div>
+
+{% comment %} CASE 3: Product is available and customer can purchase {% endcomment %}
+{% else %}
+  {% comment %}
+    Product form
+
+    @param product
+
+    @param selected_variant
+  {% endcomment %}
+
+  {% if is_product_modal and settings.quickshop_show_dcb %}
+    {% assign quickshop_smart_buttons = true %}
+  {% endif %}
+
+  {% if is_product_modal == false and section.settings.show_dcb %}
+    {% assign product_smart_buttons = true %}
+  {% endif %}
+
+  {% if selected_variant.available == false %}
+    {% assign quickshop_smart_buttons = false %}
+    {% assign product_smart_buttons = false %}
+  {% endif %}
+
+  {% assign product_form_class = '' %}
+  {% if product_smart_buttons or quickshop_smart_buttons %}
+    {% assign product_form_class = 'smart-payment-enabled' %}
+  {% endif %}
+
+  {% form 'product', product, class: product_form_class, data-product-form: '' %}
+    {% if product.has_only_default_variant %}
+      <input
+        name="id"
+        value="{{ product.variants[0].id }}"
+        type="hidden"
+      >
+    {% else %}
+      {% include 'product-options',
+        product: product,
+        selected_variant: selected_variant,
+        style: settings.product_option_style
+      %}
+    {% endif %}
+
+    {% assign variant_inventory = selected_variant.inventory_quantity %}
+    {% assign has_inventory_tracking = false %}
+    {% if variant_inventory > 0 %}
+      {% assign has_inventory_tracking = true %}
+    {% endif %}
+
+    <div class="product-form--atc">
+      <!-- Hidden input for form submission -->
+      <input
+        type="hidden"
+        name="quantity"
+        value="1"
+        data-product-page-qty-input
+      >
+
+      <div class="product-form--buttons-row">
+        <div class="product-form--atc-wrapper" data-product-page-atc-wrapper>
+          <div class="product-form--qty-selector" data-product-page-qty-selector>
+            <button type="button" class="product-form--qty-btn" data-product-page-qty-decrease>-</button>
+            <input
+              type="number"
+              class="product-form--qty-input"
+              data-product-page-qty-value
+              value="1"
+              min="1"
+            >
+            <button type="button" class="product-form--qty-btn" data-product-page-qty-increase>+</button>
+          </div>
+        </div>
+
+        <button
+          class="product-form--atc-button {% unless selected_variant.available %}disabled{% endunless %}"
+          type="button"
+          {% unless selected_variant.available %}
+            disabled
+          {% endunless %}
+          data-product-page-atc
+          data-variant-id="{{ selected_variant.id }}"
+          {% if has_inventory_tracking %}data-inventory-quantity="{{ variant_inventory }}"{% endif %}
+        >
+          <span class="atc-button--text">
+            {% if selected_variant.available %}
+              {{ 'product.buttons.add_to_cart' | t }}
+            {% else %}
+              {{ 'product.buttons.sold_out' | t }}
+            {% endif %}
+          </span>
+          <span class="atc-button--icon">
+            {%- include 'icon-spinner' -%}
+          </span>
+        </button>
+      </div>
+
+      <!-- Bulk Purchase Buttons -->
+      {% if section.settings.show_bulk_call_button or section.settings.show_bulk_email_button %}
+      <div class="bulk-purchase-buttons">
+      {% if section.settings.show_bulk_call_button %}
+      <a href="tel:+18886874334" class="bulk-purchase-btn bulk-purchase-btn--call" data-bulk-call-link>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        <span>Call for Bulk Order</span>
+      </a>
+      {% endif %}
+      {% if section.settings.show_bulk_email_button %}
+      <a href="mailto:sales@mountainside-medical.com" class="bulk-purchase-btn bulk-purchase-btn--email" data-bulk-email-link>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <span>Email for Bulk Order</span>
+      </a>
+      {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  {% endform %}
+
+  <style>
+    /* Main container for all buttons with equal spacing */
+    .product-form--atc {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+    }
+
+    .product-form--buttons-row {
+      display: contents;
+    }
+
+    .product-form--atc-wrapper {
+      width: 100%;
+      display: flex;
+    }
+
+    .product-form--qty-selector {
+      height: 48px;
+      width: 100%;
+    }
+
+    .product-form--atc-button {
+      width: 100%;
+      height: 52px !important;
+      min-height: 52px !important;
+      line-height: 1.3 !important;
+      padding: 14px 24px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .product-form--atc-button .atc-button--text {
+      line-height: 1.3 !important;
+    }
+
+    @media screen and (max-width: 768px) {
+      .product-form--atc {
+        gap: 12px;
+      }
+      .product-form--qty-selector {
+        height: 44px;
+      }
+      .product-form--atc-button {
+        height: 48px !important;
+        min-height: 48px !important;
+        padding: 12px 20px !important;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .product-form--atc {
+        gap: 10px;
+      }
+      .product-form--qty-selector {
+        height: 40px;
+      }
+      .product-form--atc-button {
+        height: 44px !important;
+        min-height: 44px !important;
+        padding: 10px 16px !important;
+      }
+    }
+
+    .bulk-purchase-buttons {
+      display: contents;
+    }
+    .bulk-purchase-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 12px 24px;
+      background-color: #2d5a3d;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+    .bulk-purchase-btn:hover {
+      background-color: #1e4a2d;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+    .bulk-purchase-btn:active {
+      transform: translateY(0);
+    }
+    .bulk-purchase-btn svg {
+      flex-shrink: 0;
+    }
+    @media screen and (max-width: 768px) {
+      .bulk-purchase-btn {
+        padding: 10px 14px;
+        font-size: 12px;
+      }
+    }
+    @media screen and (max-width: 480px) {
+      .bulk-purchase-btn {
+        padding: 10px 12px;
+        font-size: 11px;
+      }
+    }
+  </style>
+{% endif %}

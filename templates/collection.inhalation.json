@@ -1,0 +1,100 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "bronchitis-treatments"
+          }
+        },
+        "menu_6WDTck": {
+          "type": "menu",
+          "settings": {
+            "menu": "respiratory-supplies"
+          }
+        },
+        "menu_4qxKkV": {
+          "type": "menu",
+          "settings": {
+            "menu": "disinfecting"
+          }
+        },
+        "menu_pxfTKP": {
+          "type": "menu",
+          "settings": {
+            "menu": "emergency-supplies"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_6WDTck",
+        "menu_4qxKkV",
+        "menu_pxfTKP"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Inhalation Medications",
+            "text": "<p><strong>What are Inhalation Medications</strong><br/><br/>Inhalation medications are drugs delivered directly into the lungs through the respiratory tract. This method allows the medication to act quickly and efficiently, often with fewer systemic side effects. Inhalation medications are commonly used to treat respiratory conditions such as asthma, chronic obstructive pulmonary disease (COPD), and other lung diseases.Here's an overview of common forms:<br/></p><p><strong>Metered-Dose Inhalers (MDIs):</strong></p><ul><li>Pressurized canisters that deliver a specific dose of medication in aerosol form.</li><li>Often used with spacers to enhance delivery.<br/></li></ul><p><strong>Dry Powder Inhalers (DPIs):</strong></p><ul><li>Deliver medication in a dry powder form, activated by the patient's inhalation.<br/></li></ul><p><a href=\"/collections/nebulizers-and-accessories\" title=\"Nebulizer Machines\"><strong>Nebulizers</strong></a><strong>:</strong></p><ul><li>Convert liquid medication into a fine mist, inhaled through a mouthpiece or mask.</li><li>Suitable for patients who have difficulty using MDIs or DPIs.<br/></li></ul><p><strong>Soft Mist Inhalers (SMIs):</strong></p><ul><li>Deliver a slow-moving mist of medication, making it easier to inhale.<br/><br/></li></ul><p><strong>Common Medications:</strong></p><ul><li><strong>Bronchodilators:</strong> Relax muscles around the airways (e.g., <a href=\"/collections/albuterol-1\" title=\"Albuterol Sulfate Inhalers, Solutions and Tablets\">Albuterol Medications</a> salmeterol).</li><li><strong>Corticosteroids:</strong> Reduce inflammation in the airways (e.g.,<a href=\"/collections/flonase-fluticasone-nasal-spray\" title=\"Flonase Fluticasone Nasal Spray\"> Fluticasone</a>, <a href=\"/collections/budesonide-medicines\" title=\"Budesonide Medicines\">Budesonide</a>).</li><li><strong>Combination Inhalers:</strong> Contain both <a href=\"/collections/copd-relief-medicines\" title=\"COPD Relief Medicines\">bronchodilators</a> and corticosteroids.<br/></li></ul><p>Inhalation medications require proper technique to ensure effectiveness, and healthcare providers often demonstrate how to use each device correctly.<br/></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_mvFZsx": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_mvFZsx",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

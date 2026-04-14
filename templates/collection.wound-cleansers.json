@@ -1,0 +1,107 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "wound-care"
+          }
+        },
+        "menu_6WDTck": {
+          "type": "menu",
+          "settings": {
+            "menu": "emergency-supplies"
+          }
+        },
+        "menu_ApxRwc": {
+          "type": "menu",
+          "settings": {
+            "menu": "bandages-and-wraps"
+          }
+        },
+        "menu_4qxKkV": {
+          "type": "menu",
+          "settings": {
+            "menu": "gloves"
+          }
+        },
+        "menu_gny4yN": {
+          "type": "menu",
+          "settings": {
+            "menu": "disinfecting"
+          }
+        }
+      },
+      "block_order": [
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_6WDTck",
+        "menu_ApxRwc",
+        "menu_4qxKkV",
+        "menu_gny4yN"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Wound Cleansers Tips and  Information",
+            "text": "<p><strong>What are Wound Cleansers</strong><br/><br/>Wound cleansers are specially formulated solutions used to clean wounds by removing debris, bacteria, and other contaminants. They help create an optimal environment for wound healing by reducing the risk of infection. Wound cleansers can vary in composition, including saline solutions, antiseptic agents, surfactants, an antimicrobial ingredients. The choice of wound cleanser depends on the type and severity of the wound, patient sensitivity, and the specific clinical situation.<br/><br/><strong>Types of Wound Cleansers</strong><br/><br/>Wound cleansers come in various types, each suitable for specific wound care needs. Here are some common types:<br/><br/>1. <strong>Normal Saline Solution</strong>:</p><ul><li>Isotonic solution that is gentle and non-irritating.</li><li>Suitable for most wounds and aids in mechanical cleansing.<br/></li></ul><p>2. <strong>Antiseptic Solutions</strong>:</p><ul><li>Contains agents like iodine or chlorhexidine.</li><li>Used to reduce microbial load, but may be too harsh for some wounds.<br/></li></ul><p><strong>3. Sterile Water</strong>:</p><ul><li>Used when a non-irritating, gentle rinse is needed.</li><li>Suitable for sensitive wounds.<br/></li></ul><p>4. <strong>Surfactant-Based Cleansers</strong>:</p><ul><li>Contain surfactants to help emulsify and lift debris.</li><li>Effective in cleansing wounds with a lot of exudate.<br/></li></ul><p><strong>5.</strong> <strong>Antimicrobial Cleansers</strong>:</p><ul><li>Contain ingredients such as silver or honey.</li><li>Provide additional antimicrobial properties to support healing.<br/></li></ul><p><strong>6. Buffered Solutions</strong>:</p><ul><li>Adjusted pH levels to encourage an optimal healing environment.</li><li>Can be more comfortable on sensitive tissue.<br/></li></ul><p><strong>7.</strong> <strong>Hydrogel Cleansers</strong>:</p><ul><li>Provide moisture and cleansing in one step.</li><li>Ideal for dry or necrotic tissue.<br/></li></ul><p>Always consult healthcare professionals for appropriate wound cleanser selection and usage.<br/></p><p><br/><strong>How to Wash or Cleanse a Wound:</strong></p><p>Proper wound irrigation is essential for promoting healing and preventing infection. Here's a general guide on how to irrigate or wash a wound:<br/><br/><strong>Prepare Your Materials</strong>:</p><ul><li>Gather a sterile saline solution or anothermappropriate wound cleanser recommended by a healthcare provider.</li><li>Use a clean or sterile syringe with a soft catheter tip for precise irrigation.<br/></li></ul><p><strong>Ensure Cleanliness</strong>:</p><ul><li>Wash your hands thoroughly with soap and water.</li><li>Wear disposable gloves if available to prevent contamination.<br/></li></ul><p><strong>Position the Patient</strong>:</p><ul><li>Ensure the patient is comfortable and the wound is easily accessible.</li><li>Position the wound so that gravity helps with drainage (e.g., above a basin).<br/></li></ul><p><strong>Irrigate the Wound</strong>:</p><ul><li>Fill the syringe with the cleansing solution.</li><li>Gently direct a steady stream of solution into the wound using the syringe.</li><li>Aim to flush out debris, bacteria, and exudate without causing trauma to the wound.<br/></li></ul><p><strong>Maintain a Steady Flow</strong>:</p><ul><li>Keep the pressure consistent to avoid tissue damage and ensure effective cleansing.<br/></li></ul><p><strong>Assess the Wound</strong>:</p><ul><li>After irrigation, assess the wound for any remaining debris or signs of infection.</li><li>Repeat irrigation if necessary, based on the wound’s condition.<br/></li></ul><p><strong>Dry the Surrounding Skin</strong>:</p><ul><li>Gently pat the skin around the wound dry with sterile gauze, being careful not to disturb the wound bed.<br/></li></ul><p><strong>Apply Wound Dressing</strong>:</p><ul><li>Apply an appropriate dressing as recommended by a healthcare professional to protect the wound and promote healing.<br/></li></ul><p><strong>Dispose of Materials Safely</strong>:</p><ul><li>Dispose of used materials and gloves safely to prevent contamination.<br/></li></ul><p>Always follow specific medical advice and recommendations for individual wound care needs.</p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_r1vxJf": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_r1vxJf",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

@@ -1,0 +1,24 @@
+{% assign tag_limit = filter_limit | times: 1 %}
+
+{% comment %}
+  Collection filters - Native Shopify Storefront Filtering + Custom Vendor Filter
+  Uses collection.filters for native filtering (Price, Availability)
+  Also includes custom vendor filter that loops through products
+
+  ALWAYS show filters on ALL collections for consistent user experience
+{% endcomment %}
+
+{% comment %} Always render filters on all collection pages {% endcomment %}
+<div class="productgrid--sidebar-section" data-productgrid-filters-content>
+  <h2 class="productgrid--sidebar-title">
+    {{ 'product_grid.filters.title_count' | t: count: 0 }}
+  </h2>
+  {% render 'collection-filters-native',
+    show_filter_availability: show_filter_availability,
+    show_filter_price: show_filter_price,
+    show_filter_type: show_filter_type,
+    show_filter_vendor: show_filter_vendor,
+    show_filter_collection: show_filter_collection,
+    show_filter_tags: show_filter_tags
+  %}
+</div>

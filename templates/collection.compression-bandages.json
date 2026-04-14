@@ -1,0 +1,107 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_hgagBG": {
+          "type": "menu",
+          "settings": {
+            "menu": "bandages-and-wraps"
+          }
+        },
+        "menu_x3bGGq": {
+          "type": "menu",
+          "settings": {
+            "menu": "first-aid-supplies"
+          }
+        },
+        "menu_HLKctr": {
+          "type": "menu",
+          "settings": {
+            "menu": "gauze"
+          }
+        },
+        "menu_yzaqmy": {
+          "type": "menu",
+          "settings": {
+            "menu": "numbing-and-freezing"
+          }
+        },
+        "menu_chK9np": {
+          "type": "menu",
+          "settings": {
+            "menu": "general-supplies"
+          }
+        }
+      },
+      "block_order": [
+        "menu_hgagBG",
+        "menu_x3bGGq",
+        "menu_HLKctr",
+        "menu_yzaqmy",
+        "menu_chK9np"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "5",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Compression Bandage Helpful Tips and Information",
+            "text": "<p><strong>What are Compression Bandages</strong><br/><br/>Compression bandages are specialized elastic bands or wraps used to apply pressure to various parts of the body. They are commonly used for:</p><ul><li><strong>Lymphedema:</strong> To manage swelling caused by fluid retention, particularly following surgery or cancer treatment.</li><li><strong>Venous Disorders:</strong> To improve circulation and support veins in conditions like varicose veins or chronic venous insufficiency.</li><li><strong>Injury Recovery: </strong>To reduce swelling and provide support to injured limbs, such as sprains or strains.</li><li><strong>Wound Healing:</strong> In conjunction with other treatments to promote healing by enhancing blood flow.<br/></li></ul><p><strong>Types of Compression Bandages</strong>:</p><ul><li><strong>Short-stretch bandages</strong>: Provide low resting pressure and high working pressure, suitable for active patients.</li><li><strong>Long-stretch bandages</strong>: Offer high resting pressure and are typically used for less mobile patients.<br/></li></ul><p><strong>Benefits</strong>:</p><ul><li>Improves blood flow</li><li>Reduces swelling</li><li>Provides support and stability</li></ul><p><strong>Precautions</strong>:</p><ul><li>Must be applied correctly to avoid excessive pressure or impaired circulation.</li><li>Patients should be trained on proper application techniques.<br/></li></ul><p>Always consult with a healthcare provider to determine the appropriate type and usage based on individual health needs.<br/><br/></p><p><strong>How to Apply Compression Bandages</strong><br/><br/>Applying compression bandages correctly is crucial for effective treatment and to avoid potential complications. Here's a general guide:<br/><br/><strong>Preparation</strong>:</p><ul><li>Ensure the area is clean and dry.</li><li>Start with the limb in a neutral or slightly elevated position to reduce swelling.<br/></li></ul><p><strong>Begin Wrapping</strong>:</p><ul><li>Start at the narrowest part of the limb, typically near the ankle or wrist.</li><li>Use even, overlapping layers to ensure consistent pressure.<br/></li></ul><p><strong>Technique</strong>:</p><ul><li>Apply the bandage in a spiral motion, overlapping each previous layer by about half its width.</li><li>Maintain firm and even tension, but not so tight that it causes discomfort or restricts circulation.<br/></li></ul><p><strong>Check for Comfort and Fit</strong>:</p><ul><li>Finish the wrap just below the next joint (e.g., below the knee or elbow).</li><li>Secure the end with tape or clips.</li><li>Ensure there are no wrinkles or gaps, as these can cause uneven pressure.<br/></li></ul><p><strong>Monitoring</strong>:</p><ul><li>After application, check for signs of <br/>restricted circulation, such as tingling, numbness, increased pain, or <br/>color changes in the skin.</li><li>Adjust the bandage if necessary.<br/></li></ul><p><strong>Important Considerations</strong>:</p><ul><li>Follow specific instructions provided by a healthcare professional.</li><li>Reapply as directed, usually daily or as swelling changes.</li><li>Seek medical advice if discomfort or complications arise.<br/></li></ul><p>Proper instruction from a healthcare provider is recommended to ensure safe and effective use.</p><p></p><p><strong>Compression Bandages Warnings</strong>:<br/><br/>When using compression bandages, it’s important to be aware of the following warnings and precautions:<br/><br/><strong>Proper Application:</strong></p><ul><li>Ensure the bandage is applied with the <br/>correct tension. Too tight can impede circulation, while too loose may <br/>not provide adequate support.<br/></li></ul><p><strong>Monitor Circulation:</strong></p><ul><li>Regularly check the limb for signs of <br/>impaired circulation, such as tingling, numbness, increased pain, <br/>swelling, or color changes.<br/></li></ul><p><strong>Skin Integrity:</strong></p><ul><li>Inspect the skin under and around the bandage for signs of irritation, breakdown, or allergic reaction.<br/></li></ul><p><strong>Underlying Conditions:</strong></p><ul><li>Use caution if you have conditions such as diabetes, peripheral vascular disease, or neuropathy. These conditions can increase the risk of complications.<br/></li></ul><p><strong>Medical Advice:</strong></p><ul><li>Always follow a healthcare provider’s <br/>instructions regarding the use of compression bandages, especially for <br/>chronic conditions like venous insufficiency.<br/></li></ul><p><strong>Special Populations:</strong></p><ul><li>Be particularly cautious in children, the elderly, or those with fragile skin.<br/></li></ul><p><strong>Duration of Use:</strong></p><ul><li>Do not leave a compression bandage on for longer than recommended by a healthcare provider. Remove it periodically to assess the condition of the limb.<br/></li></ul><p><strong>Proper Training:</strong></p><ul><li>Ensure you or the person applying the bandage is properly trained to avoid potential complications.<br/></li></ul><p>If you experience any adverse effects or if you’re unsure about the proper use, consult a healthcare professional immediately.</p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_je40WA": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_je40WA",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

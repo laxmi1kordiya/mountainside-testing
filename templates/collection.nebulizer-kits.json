@@ -1,0 +1,93 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_4qxKkV": {
+          "type": "menu",
+          "settings": {
+            "menu": "respiratory-supplies"
+          }
+        },
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "bronchitis-treatments"
+          }
+        },
+        "menu_9RTR9q": {
+          "type": "menu",
+          "settings": {
+            "menu": "gloves"
+          }
+        }
+      },
+      "block_order": [
+        "menu_4qxKkV",
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_9RTR9q"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Nebulizer Kit Information",
+            "text": "<p><strong>What are Nebulizer Kits</strong><br/><br/>Nebulizer kits are sets of components used to convert liquid medication into a fine mist for inhalation, primarily used for respiratory conditions like asthma, chronic obstructive <br/>pulmonary disease (COPD), and other lung disorders.</p><p><strong>Types of Nebulizer Kits</strong><br/><br/>Nebulizer kits come in various types, each designed for specific needs and preferences. Here are some common types:<br/><br/><strong>Jet Nebulizers:</strong> Use compressed air to convert liquid medication into mist. They are widely used and generally cost-effective.<br/><strong>Ultrasonic Nebulizers:</strong> Use ultrasonic waves to create a mist. They are quieter and often more efficient than jet nebulizers but can be more expensive.<br/><strong>Mesh Nebulizers:</strong> Utilize a vibrating mesh to produce a fine mist. They are portable, silent, and efficient, making them ideal for travel.<br/><strong>Pediatric Nebulizers:</strong> Specifically designed for children, often featuring child-friendly designs and masks for comfort.<br/><strong>Portable Nebulizers: </strong>Compact and battery-operated, making them easy to use on the go.<br/><strong>Vibrating Mesh Nebulizers:</strong> Highly efficient with quicker delivery times, suitable for those needing rapid medication delivery.</p><p>Each type offers distinct benefits, and the choice depends on factors like ease of use, portability, and specific medical needs.<br/><br/><strong>Components of a Nebulizer Kit:</strong></p><ul><li><strong>Compressor:</strong> A machine that generates a stream of air to transform the liquid medication into a mist.</li><li><strong>Nebulizer Cup:</strong> Holds the liquid medication and attaches to the compressor. It is where the liquid is converted into an aerosol mist.</li><li><strong>Mouthpiece or Mask:</strong> Used for inhaling the medication. Mouthpieces are more common for adults, while masks are often used for children or those who find it difficult to use a mouthpiece.</li><li><strong>Tubing:</strong> Connects the compressor to the nebulizer cup, transporting the air that helps create the mist.<br/></li></ul><p><strong>Function:</strong></p><p>The nebulizer delivers medication directly to the lungs, providing quick relief for breathing difficulties. It is especially useful for people who cannot use inhalers properly, such as young children or the elderly.<br/><br/>Always follow the instructions provided by a healthcare professional when using a nebulizer kit.<br/><br/><strong>How to Clean Nebulizer Kits</strong></p><p>Cleaning nebulizer kits is essential to maintain hygiene and ensure effective medication delivery. Here’s a general guide:</p><p>1. <strong>Disassemble the Nebulizer</strong>:</p><ul><li>Remove the mouthpiece or mask, T piece, nebulizer cup, and tubing from the compressor.</li></ul><p><strong>2. Wash the Non-Electrical Parts</strong>:</p><ul><li>Rinse the mouthpiece, mask, and nebulizer cup under warm running water to remove any residual medication.</li><li>Wash these parts in warm, soapy water (use mild dish soap).</li><li>Rinse thoroughly with clean water.</li></ul><p><strong>3. Disinfect the Parts</strong> (daily or as recommended):</p><ul><li>Soak the washed parts in a solution of one-part white vinegar to three parts water for about 30 minutes.</li><li>Alternatively, follow the manufacturer’s instructions for disinfection.</li></ul><p>4. <strong>Rinse Again</strong>:</p><ul><li>After disinfecting, rinse the parts thoroughly with water to remove any vinegar residue.</li></ul><p><strong>5. Air Dry</strong>:</p><ul><li>Place the washed parts on a clean towel or drying rack.</li><li>Allow them to air dry completely before reassembling.</li></ul><p>6. <strong>Wipe the Compressor</strong>:</p><ul><li>Use a clean, damp cloth to wipe the exterior of the compressor. Do not immerse it in water.</li></ul><p><strong>7. Reassemble and Store</strong>:</p><ul><li>Once dry, reassemble the nebulizer parts and store them in a clean, dry place until the next use.</li></ul><p><strong>Helpful Tips</strong>:</p><ul><li>Replace the nebulizer parts and tubing as recommended by the manufacturer or healthcare provider.</li><li>Do not share your nebulizer parts with others, as this could lead to cross-contamination.<br/></li></ul><p>Always refer to the specific instructions provided by the nebulizer manufacturer for any additional cleaning or maintenance requirements.</p><p><strong>How often should you replace nebulizer mouthpiece parts?</strong></p><ul><li><strong>Mouthpiece/Mask:</strong> Replace every 6-12 months, or sooner if it becomes cracked or discolored.</li><li><strong>Nebulizer Cup:</strong> Typically replace every 3-6 months, depending on usage and manufacturer recommendations.<br/>Tubing: Change every 6-12 months, or if it becomes discolored or develops cracks.</li><li><strong>Filters:</strong> Check and replace as needed, often every 1-6 months, depending on the manufacturer's instructions and frequency of use.<br/></li></ul><p>Always refer to the specific guidelines provided with your nebulizer, as replacement frequency can vary. Regular<br/>replacement helps maintain optimal performance and reduces the risk of contamination.<br/><br/></p>",
+            "heading_size": "large",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_2hB6id": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_2hB6id",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

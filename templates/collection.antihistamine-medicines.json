@@ -1,0 +1,130 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_6WDTck": {
+          "type": "menu",
+          "settings": {
+            "menu": "emergency-supplies"
+          }
+        },
+        "menu_4qxKkV": {
+          "type": "menu",
+          "settings": {
+            "menu": "gloves"
+          }
+        },
+        "menu_epw3K9": {
+          "type": "menu",
+          "settings": {
+            "menu": "disinfecting"
+          }
+        }
+      },
+      "block_order": [
+        "menu_6WDTck",
+        "menu_4qxKkV",
+        "menu_epw3K9"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "17593318936711326e": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_FbT8Kd": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#dddddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_FbT8Kd"
+      ],
+      "settings": {}
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "",
+            "text": "<h2><strong>Uses for Antihistamines</strong></h2><ul><li><strong>Allergic rhinitis (hay fever)</strong>: Sneezing, runny nose, itchy/watery eyes</li><li><strong>Hives (urticaria)</strong> and other itchy skin conditions</li><li><strong>Allergic conjunctivitis</strong></li><li><strong>Food and drug allergies (mild)</strong></li><li><strong>Relief of itching from insect bites</strong></li><li><strong>Mild allergic reactions (not anaphylaxis)</strong></li><li><strong>Motion sickness, nausea, and sometimes insomnia</strong> (certain antihistamines)</li></ul><h2><strong>Types of Antihistamines</strong></h2><h3>1. <strong>First-Generation Antihistamines</strong></h3><ul><li>More likely to cause drowsiness and sedation; may also be used as sleep aids.</li></ul><p><strong>Examples:</strong><br/>Diphenhydramine (Benadryl)<br/>Chlorpheniramine<br/>Doxylamine<br/>Hydroxyzine</p><h3>2. <strong>Second-Generation Antihistamines</strong></h3><ul><li>Less sedating; preferred for routine treatment of allergies due to fewer side effects.</li></ul><p><strong>Examples:</strong><br/>Cetirizine (Zyrtec)<br/>Loratadine (Claritin)<br/>Fexofenadine (Allegra)<br/>Desloratadine (Clarinex)<br/>Levocetirizine (Xyzal)</p><h3>3. <strong>Topical Antihistamines</strong></h3><ul><li>For localized relief, such as eye drops (e.g., ketotifen) or skin creams.</li></ul><h2><strong>How Antihistamines Work</strong></h2><p><strong>Block histamine receptors (H1 receptors):</strong>This reduces or prevents allergy symptoms caused by the body’s response to allergens like pollen, pet dander, dust mites, foods, or medications.</p><h2><strong>In summary:</strong></h2><p><strong>Antihistamine medicines</strong> are commonly used, effective drugs that relieve mild to moderate allergy symptoms by blocking histamine. They are available in sedating (first-generation) and non-sedating (second-generation) forms, and are a mainstay for allergy management, as well as itching and some forms of rash. Always follow dosing instructions and consult a healthcare professional if you have questions.</p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_kn4VUQ": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_kn4VUQ",
+    "17593318936711326e",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

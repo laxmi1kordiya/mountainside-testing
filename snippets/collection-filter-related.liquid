@@ -1,0 +1,59 @@
+{% comment %}
+  Related Collections Filter
+  Shows collections that share products with the current collection
+
+  @param collection - the current collection object
+{% endcomment %}
+
+{% assign all_related = "" %}
+{% assign visible_count = 8 %}
+
+{% comment %} Gather all related collections from products in this collection {% endcomment %}
+{% for product in collection.products limit: 50 %}
+  {% for col in product.collections %}
+    {% if col.handle != collection.handle and col.handle != 'all' %}
+      {% unless all_related contains col.handle %}
+        {% if all_related == "" %}
+          {% assign all_related = col.handle %}
+        {% else %}
+          {% assign all_related = all_related | append: "," | append: col.handle %}
+        {% endif %}
+      {% endunless %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% assign related_handles = all_related | split: "," %}
+
+{% if related_handles.size > 0 %}
+  <ul class="filter-list filter-list--collections" data-filter-list>
+    {% for handle in related_handles %}
+      {% assign related_col = collections[handle] %}
+      {% if related_col %}
+        {% assign is_hidden = false %}
+        {% if forloop.index > visible_count %}
+          {% assign is_hidden = true %}
+        {% endif %}
+
+        <li class="filter-list__item{% if is_hidden %} filter-list__item--hidden{% endif %}"{% if is_hidden %} data-filter-hidden{% endif %}>
+          <a href="{{ related_col.url }}" class="filter-list__link">
+            <span class="filter-list__text">{{ related_col.title }}</span>
+            <span class="filter-list__count">({{ related_col.products_count }})</span>
+          </a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+
+  {% if related_handles.size > visible_count %}
+    <button type="button" class="filter-list__show-more" data-filter-show-more aria-expanded="false">
+      <span class="filter-list__show-more-icon">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </button>
+  {% endif %}
+{% else %}
+  <p class="filter-list__empty">No related collections</p>
+{% endif %}

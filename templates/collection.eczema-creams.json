@@ -1,0 +1,151 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_6WDTck": {
+          "type": "menu",
+          "settings": {
+            "menu": "skin"
+          }
+        },
+        "menu_ApxRwc": {
+          "type": "menu",
+          "settings": {
+            "menu": "eczema"
+          }
+        },
+        "menu_4qxKkV": {
+          "type": "menu",
+          "settings": {
+            "menu": "gloves"
+          }
+        },
+        "menu_gny4yN": {
+          "type": "menu",
+          "settings": {
+            "menu": "disinfecting"
+          }
+        },
+        "menu_YytWy3": {
+          "type": "menu",
+          "settings": {
+            "menu": "wound-care"
+          }
+        },
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "first-aid-supplies"
+          }
+        }
+      },
+      "block_order": [
+        "menu_6WDTck",
+        "menu_ApxRwc",
+        "menu_4qxKkV",
+        "menu_gny4yN",
+        "menu_YytWy3",
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Eczema Cream Helpful Tips and  Information",
+            "text": "<p><strong>What is Eczema?</strong></p><p>Eczema, also known as atopic dermatitis, is a chronic skin condition characterized by inflammation, redness, and itching. It can vary in severity and may affect different parts of the body. The exact cause of eczema isn't known, but it's believed to result from a combination of genetic and environmental factors.<br/><br/><strong>Symptoms of Eczema can include:</strong></p><ul><li>Dry, sensitive skin</li><li>Red, inflamed patches</li><li>Intense itching</li><li>Scaling or crusting</li><li>Thickened skin in chronic areas</li></ul><p><strong>Eczema is often associated with other allergic conditions like asthma and hay fever.</strong></p><ul><li>Management and treatment options may involve:</li><li>Moisturizing regularly to maintain skin hydration</li><li>Using topical steroids or other prescribed medications to reduce inflammation</li><li>Avoiding triggers, such as certain soaps, fabrics, or allergens</li><li>Taking antihistamines to relieve itching<br/>Implementing lifestyle changes, like reducing stress<br/></li></ul><p>Since eczema is a chronic condition, managing symptoms and preventing flare-ups is essential. It’s generally recommended to consult a healthcare professional for an accurate diagnosis and personalized treatment plan.</p><p><strong>Natural Eczema Creams</strong>:</p><p>Natural eczema creams focus on soothing the skin and reducing inflammation using ingredients derived from nature. Some popular options include:</p><p><strong>Aloe Vera: </strong>Known for its soothing properties, aloe vera gel can hydrate the skin and reduce irritation.<br/><strong>Coconut Oil: </strong>Contains lauric acid, which provides moisturizing and antimicrobial benefits.<br/><strong>Shea Butter:</strong> A rich moisturizer that can help repair the skin barrier and reduce dryness.<br/><strong>Calendula Cream:</strong> Derived from marigold flowers, calendula has anti-inflammatory and healing properties.<br/><strong>Colloidal Oatmeal:</strong> Commonly found in natural creams, it soothes itching and irritation.<br/><strong>Chamomile:</strong> Has calming effects and can reduce inflammation and irritation.<br/>Evening Primrose Oil: Contains gamma-linolenic acid, which may help improve skin hydration and reduce itching.<br/><strong>Jojoba Oil:</strong> Similar to the skin's natural oils, it can effectively moisturize and protect.<br/><br/><br/><strong>Over-the-Counter Eczema Cream:</strong><br/><br/>For managing eczema symptoms, several over-the-counter (OTC) creams are available that can help hydrate the skin and reduce inflammation and itching. Some popular options include:<br/><br/><strong>Hydrocortisone Cream:</strong> A mild corticosteroid that can reduce inflammation and itching. It’s available in strengths of 0.5% and 1%.<br/><strong>Moisturizing Creams and Ointments:</strong> Products like Eucerin, CeraVe, and Aquaphor help maintain skin hydration and barrier function. Look for ingredients like ceramides and hyaluronic acid.<br/><strong>Colloidal Oatmeal:</strong> Found in products like Aveeno, it can soothe itching and irritation.<br/><strong>Antihistamine Creams:</strong> While oral antihistamines can help reduce itching, they are typically preferred over topical antihistamine creams, which can irritate the skin.<br/><strong>Calamine Lotion: </strong>Can provide temporary relief from itching and irritation.<br/><strong>Coal Tar Creams:</strong> Help reduce inflammation, though they are more commonly used for psoriasis.<br/></p><p>For mild to moderate symptoms, these products can be effective. However, it’s wise to consult a healthcare professional if the condition is severe, persistent, or not responding to OTC treatments.<br/><br/><strong>Prescription Eczema Creams:</strong></p><p>Prescription creams for eczema are typically stronger than over-the-counter options and are tailored to reducing <br/>inflammation, itching, and flare-ups. Some commonly prescribed treatments include:</p><p><strong>Topical Corticosteroids</strong>: Stronger than OTC versions, these reduce <br/>inflammation and itching. Examples include triamcinolone, betamethasone,<br/> and clobetasol.<br/><strong>Topical Calcineurin Inhibitors</strong>: Medications like tacrolimus (Protopic) and pimecrolimus (Elidel) suppress the immune system’s activity and help reduce inflammation and flare-ups.<br/><strong>Topical PDE4 Inhibitors</strong>: Crisaborole (Eucrisa) is a non-steroidal option that reduces inflammation by inhibiting the phosphodiesterase 4 enzyme.<br/><strong>Topical JAK Inhibitors</strong>: Ruxolitinib (Opzelura) is a newer treatment that targets specific pathways involved in the immune response and inflammation.<br/><br/>It's important to follow a healthcare provider's advice when using these medications, as they can have side effects, especially with long-term use. For tailored treatment plans and management strategies, consult a dermatologist or healthcare professional.<br/><br/><br/><br/><br/><br/><br/><br/></p><p></p><p></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "1759586614aaea5f28": {
+      "type": "apps",
+      "blocks": {
+        "webrex_seo_schema_faq_section_VXaACB": {
+          "type": "shopify://apps/webrex-ai-seo-schema/blocks/FAQSection/283875bf-bf86-4e78-831b-502ad0c4a5c2",
+          "settings": {
+            "section_align": "align-center",
+            "max_width": 800,
+            "box_border": 4,
+            "faq_border_thickness": 1,
+            "faq_border_color": "#ddd",
+            "faq_border_style": "solid",
+            "icon_color": "#333333",
+            "top_margin": 20,
+            "bottom_margin": 20,
+            "top_padding": 20,
+            "bottom_padding": 20,
+            "left_padding": 20,
+            "right_padding": 20,
+            "heading_title": "Frequently asked questions",
+            "heading_align": "center",
+            "heading_font_size": 20,
+            "heading_color": "#333333",
+            "question_color": "#333333",
+            "question_font_size": 16,
+            "answer_color": "#666666",
+            "answer_font_size": 14,
+            "hover_color": "#388138"
+          }
+        }
+      },
+      "block_order": [
+        "webrex_seo_schema_faq_section_VXaACB"
+      ],
+      "settings": {}
+    },
+    "collection_description_zvXhiS": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_zvXhiS",
+    "1759586614aaea5f28",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

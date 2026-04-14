@@ -1,0 +1,100 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_ApxRwc": {
+          "type": "menu",
+          "settings": {
+            "menu": "syringes"
+          }
+        },
+        "menu_E9KBnX": {
+          "type": "menu",
+          "settings": {
+            "menu": "skin-prepping-disinfecting"
+          }
+        },
+        "menu_F4AmKF": {
+          "type": "menu",
+          "settings": {
+            "menu": "numbing-and-freezing"
+          }
+        },
+        "menu_4qxKkV": {
+          "type": "menu",
+          "settings": {
+            "menu": "disinfecting"
+          }
+        }
+      },
+      "block_order": [
+        "menu_ApxRwc",
+        "menu_E9KBnX",
+        "menu_F4AmKF",
+        "menu_4qxKkV"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Insulin Therapy Injection Information",
+            "text": "<p><strong>What are Insulin Therapy Injections</strong><br/><br/>Insulin therapy injections are a common <br/>treatment for managing diabetes, particularly for individuals with type 1 diabetes and some with type 2 diabetes. The goal of insulin therapy is  to regulate blood sugar levels by providing the body with the insulin it needs, which may be deficient or insufficiently used in diabetic patients.<br/><br/><strong>Key Points about Insulin Therapy Injections:</strong></p><p><strong>Types of Insulin</strong>:</p><ul><li><strong>Rapid-Acting:</strong> Begins to work within minutes and lasts for a few hours. Examples include insulin lispro and insulin aspart.</li><li><strong>Short-Acting:</strong> Starts working within 30 minutes and lasts 5 to 8 hours. Regular insulin falls in this category.</li><li><strong>Intermediate-Acting:</strong> Begins working within a few hours and lasts up to 18 hours. NPH insulin is a common example.</li><li><strong>Long-Acting:</strong> Provides a steady insulin level for up to 24 hours or more. Insulins like glargine and detemir are long-acting.</li></ul><p><strong>Injection Sites</strong>:</p><ul><li>Common sites include the abdomen, thighs, buttocks, and upper arms. Rotating sites can help prevent lipodystrophy (abnormal fat distribution).</li></ul><p></p><p><strong>Injection Devices</strong>:</p><ul><li>Besides syringes, insulin can be administered using insulin pens or pumps. Pens are convenient for dosing, while pumps provide continuous insulin delivery.</li></ul><p><strong>Dosage and Timing</strong>:</p><ul><li>The specific insulin regimen depends on <br/>individual needs, blood sugar monitoring results, and lifestyle. Your <br/>healthcare provider will determine the dosage and timing.<br/></li></ul><p><strong>Importance of Monitoring</strong>:</p><ul><li>Regular blood sugar monitoring is crucial to adjust insulin doses as needed and to avoid hypoglycemia (low blood sugar) or hyperglycemia (high blood sugar).</li></ul><p><strong>Lifestyle and Diet</strong>:</p><ul><li>Insulin therapy is often combined with dietary management, physical activity, and sometimes oral medications to optimize blood glucose control.<br/><br/></li></ul><p><strong>Consultation with Healthcare Provider</strong>:</p><ul><li>Regular follow-ups with healthcare providers are essential to review blood sugar records and adjust insulin therapy as needed.<br/></li></ul><p><br/>Insulin therapy, when managed effectively, plays a crucial role in maintaining healthy blood sugar levels and reducing the risk of diabetes-related complications.<br/><br/><br/><strong>How insulin works</strong><br/><br/>Insulin is a hormone produced by the pancreas that plays a vital role in regulating blood sugar levels. Here's how it works:<br/></p><ol><li><strong>Facilitating Glucose Uptake</strong>:</li></ol><ul><li>Insulin helps cells in the body, particularly muscle and fat cells, to absorb glucose from the bloodstream. This process lowers blood sugar levels and provides energy to the cells.</li></ul><p><strong>2. Storing Glucose</strong>:</p><ul><li>Insulin promotes the storage of glucose in the liver as glycogen. When blood sugar levels are low, the liver releases glucose into the bloodstream to maintain balance.<br/></li></ul><p>3. <strong>Inhibiting Glucose Production</strong>:</p><ul><li>It suppresses the liver's production of glucose, helping keep blood sugar levels within a normal range.<br/></li></ul><p>4. <strong>Fat and Protein Metabolism</strong>:</p><ul><li>Insulin also plays a role in fat and protein metabolism, promoting the storage of fat and facilitating protein synthesis.</li></ul><p></p><p>5. <strong>Balancing Hormones</strong>:</p><ul><li>It interacts with other hormones to maintain a balance in the body's metabolic processes.<br/></li></ul><p>In people with diabetes, insulin production or use is impaired, requiring external insulin therapy to manage blood sugar levels effectively.<br/><br/><br/><strong>Insulin Warnings and Side Effects</strong></p><p></p><p><strong>Warnings:</strong></p><p><strong>Hypoglycemia (Low Blood Sugar)</strong>:</p><ul><li>Symptoms include shakiness, dizziness, sweating, irritability, confusion, rapid heartbeat, and seizures.</li><li>It’s important to monitor blood sugar regularly and carry a source of fast-acting carbohydrates, like glucose tablets.<br/></li></ul><p><strong>Allergic Reactions</strong>:</p><ul><li>Possible reactions include skin rashes, itching, or more severe symptoms like difficulty breathing or swelling. Seek medical attention if severe reactions occur.<br/></li></ul><p><strong>Lipodystrophy</strong>:</p><ul><li>Repeated insulin injections at the same site can cause changes in fat tissue, either lipoatrophy (loss of fat) or lipohypertrophy (thickening of tissue). Rotate injection sites to avoid this.<br/></li></ul><p><strong>Hypokalemia (Low Potassium Levels)</strong>:</p><ul><li>Insulin can cause a shift of potassium into cells, leading to low potassium in the blood, which may affect heart function.<br/></li></ul><p><strong>Medication Interactions</strong>:</p><ul><li>Certain medications can affect insulin action. Inform healthcare providers of all medications being taken.<br/></li></ul><p><strong>Side Effects:</strong><br/></p><p><strong>Injection Site Reactions</strong>:</p><ul><li>Redness, swelling, or itching at the injection site.<br/></li></ul><p><strong>Weight Gain</strong>:</p><ul><li>Some individuals may experience weight gain with insulin therapy.<br/></li></ul><p><strong>Edema</strong>:</p><ul><li>Swelling in the arms or legs can occur due to fluid retention.<br/></li></ul><p><strong>Somogyi Effect</strong>:</p><ul><li>Rebound high blood sugar following overnight hypoglycemia.<br/></li></ul><p>Consult with healthcare providers to manage and adjust insulin therapy as needed to minimize risks and side effects.</p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_YF5S5p": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_YF5S5p",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}

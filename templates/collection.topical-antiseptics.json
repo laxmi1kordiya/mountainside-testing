@@ -1,0 +1,107 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3": {
+      "type": "static-collection",
+      "blocks": {
+        "menu_6WDTck": {
+          "type": "menu",
+          "settings": {
+            "menu": "surgical-supplies"
+          }
+        },
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2": {
+          "type": "menu",
+          "settings": {
+            "menu": "wound-care"
+          }
+        },
+        "menu_gny4yN": {
+          "type": "menu",
+          "settings": {
+            "menu": "disinfecting"
+          }
+        },
+        "menu_WxxgdK": {
+          "type": "menu",
+          "settings": {
+            "menu": "bandages-and-wraps"
+          }
+        },
+        "menu_EWhTFQ": {
+          "type": "menu",
+          "settings": {
+            "menu": "first-aid-supplies"
+          }
+        }
+      },
+      "block_order": [
+        "menu_6WDTck",
+        "00ff428f-1695-4ea5-b5fe-d7a99d6cc2a2",
+        "menu_gny4yN",
+        "menu_WxxgdK",
+        "menu_EWhTFQ"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "sort_by": true,
+        "show_by": true,
+        "grid_list": true,
+        "show_sidebar": true,
+        "filter_style": "none",
+        "filter_limit": "10",
+        "filter_position": "above_menus",
+        "menu_depth_range": 3
+      }
+    },
+    "dynamic_rich_text_LNjHmp": {
+      "type": "dynamic-rich-text",
+      "blocks": {
+        "text_hwUWJK": {
+          "type": "text",
+          "settings": {
+            "title": "Topical Antiseptics Information",
+            "text": "<p><strong>What are Topical Antiseptics:</strong></p><p>Topical antiseptics are substances applied to the skin to prevent or reduce the risk of infection by inhibiting the growth of microorganisms. They are commonly used to clean wounds, cuts, and abrasions, and before surgical procedures or injections to disinfect the skin.<br/><br/><strong>Some commonly used topical antiseptics include:</strong></p><p><a href=\"/collections/alcohol-prep-pads\" title=\"Alcohol Prep Pads\"><strong>Alcohol:</strong></a><strong> </strong>Often used in swabs and wipes for quick disinfection.<br/><a href=\"/collections/chlorhexidine-soaps\" title=\"Chlorhexidine Skin Cleansers\"><strong>Chlorhexidine:</strong></a><strong> </strong>Available in solutions and wipes, used for skin cleaning and pre-surgical preparation.<br/><a href=\"/collections/povidone-iodine-products\" title=\"Povidone Iodine (PVP) Products\"><strong>Povidone-Iodine</strong></a><strong>:</strong> Known as Betadine, used for wound cleaning and as a pre-surgical antiseptic.<br/><a href=\"/products/hydrogen-peroxide-3-16-oz-bottle\" title=\"Hydrogen Peroxide 3% 16 oz Bottle\"><strong>Hydrogen Peroxide</strong></a><strong>:</strong> Used for cleaning wounds; it releases oxygen and helps remove debris.<br/><a href=\"/products/benzalkonium-chloride-wipes-bzk-wipes-antiseptic-box-of-100\" title=\"BZK Antiseptic Towelettes 5 x 7 inch 100 per box\"><strong>Benzalkonium Chloride</strong></a><strong>:</strong> Found in various first aid products; used for cuts and abrasions.</p><p>These agents are designed for external use only and should be used as directed to prevent irritation or damage to healthy skin. If an infection is suspected, it's crucial to seek medical advice.<br/><br/><strong>How do Topical Antiseptics Work:</strong></p><p>Topical antiseptics work by killing or inhibiting the growth of microorganisms on the skin or in wounds. Here's how they generally function:<br/><br/><strong>Cell Membrane Disruption</strong>: Many antiseptics, like alcohols and chlorhexidine, disrupt the cell membranes of bacteria, causing cell contents to leak and the cell to die.<br/><strong>Protein Denaturation</strong>: Substances like alcohols and phenolics denature proteins, leading to the inactivation of essential enzymes and structural proteins in microorganisms.<br/><strong>Oxidation</strong>: Agents like hydrogen peroxide produce free radicals that oxidize and damage cell components, leading to microorganism death.<br/><strong>Iodination</strong>: Iodine-based antiseptics work by iodinating and oxidizing microbial components, particularly targeting the amino acids and nucleotides.<br/><strong>Enzyme Inhibition</strong>: Certain compounds, such as silver sulfadiazine, inhibit enzymes that are crucial for microbial metabolism and replication.<br/><br/>By targeting essential components of microbial cells, topical antiseptics prevent infections and promote healing.<br/><br/><strong>When Should You Use Topical Antiseptics:</strong><br/><br/>Topical antiseptics should be used in situations where there's a risk of infection on the skin, such as:<br/><br/><strong>Cleaning Wounds:</strong> For cuts, scrapes, and abrasions to prevent bacterial infection.<br/><strong>Pre-surgical Preparation:</strong> To disinfect the skin before surgery or medical procedures.<br/><strong>Minor Burns:</strong> To reduce the risk of infection on the affected area.<br/><strong>Insect Bites:</strong> To clean and reduce the chance of infection.<br/><strong>Piercing and Tattoo Care:</strong> To maintain cleanliness and reduce infection risks after getting a new piercing or tattoo.<br/><br/>While topical antiseptics can be effective, they should be used as directed to avoid irritation or damage to healthy skin. If a wound shows signs of infection, such as increased redness, swelling, or pus, it's important to seek medical attention.<br/><br/><br/><br/><br/><br/><br/><br/><br/></p><p></p><p></p>",
+            "heading_size": "medium",
+            "text_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "text_hwUWJK"
+      ],
+      "settings": {
+        "width": "wide"
+      }
+    },
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5": {
+      "type": "static-recently-viewed",
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "collection_description_QdJ46X": {
+      "type": "collection-description",
+      "settings": {
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "6c2c9dd5-7199-44e9-b0ad-24b88ca4c3c3",
+    "aa79e2d4-e525-4b20-acb0-9c478cf6f7f5",
+    "collection_description_QdJ46X",
+    "dynamic_rich_text_LNjHmp"
+  ]
+}
