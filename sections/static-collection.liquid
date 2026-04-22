@@ -356,6 +356,8 @@
           <div class="productgrid--filters">
             {%- include 'product-grid-tags-active' %}
           </div>
+        {% else %}
+          <div class="productgrid--filters" data-qs-active-filters hidden></div>
         {% endif %}
       </div>
 

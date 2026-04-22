@@ -102,6 +102,8 @@
   data-quickshop-settings-sha256="{{ settings_sha256 }}"
   data-quickshop-product-sha256="{{ product | json | sha256 }}"
   data-product-vendor="{{ product.vendor | escape }}"
+  data-product-vendor-handle="{{ product.vendor | handleize }}"
+  data-product-tags="{{ product.tags | join: '|||' | escape }}"
   data-product-collections="{% for c in product.collections %}{{ c.title | escape }}{% unless forloop.last %}|||{% endunless %}{% endfor %}"
   {% if recently_viewed %}
     data-recently-viewed-card

@@ -110,33 +110,42 @@
               {% continue %}
             {% endif %}
 
-            {% comment %} Build tag URL for add/remove {% endcomment %}
+            {% comment %} Build new tag list (add or remove this tag handle) {% endcomment %}
+            {% assign new_tag_part = '' %}
             {% if is_tag_active %}
-              {% comment %} Remove tag from ordered segment {% endcomment %}
-              {% assign remove_path = '' %}
-              {% assign seg_parts = url_tag_segment_clean | split: '+' %}
-              {% for p in seg_parts %}
-                {% unless p == tag_name_handle %}
-                  {% if remove_path == '' %}{% assign remove_path = p %}
-                  {% else %}{% assign remove_path = remove_path | append: '+' | append: p %}{% endif %}
-                {% endunless %}
+              {% assign otp_arr = ordered_tag_part | split: '+' %}
+              {% for p in otp_arr %}
+                {% if p == '' or p == tag_name_handle %}{% continue %}{% endif %}
+                {% if new_tag_part == '' %}{% assign new_tag_part = p %}
+                {% else %}{% assign new_tag_part = new_tag_part | append: '+' | append: p %}{% endif %}
               {% endfor %}
-              {% if remove_path == '' %}
-                {% assign filter_url = collection.url | append: preserved_query_string %}
-              {% else %}
-                {% assign filter_url = collection.url | append: '/' | append: remove_path | append: preserved_query_string %}
-              {% endif %}
             {% else %}
-              {% comment %} Add tag: append after vendor part {% endcomment %}
-              {% if url_tag_segment_clean == '' %}
-                {% assign filter_url = collection.url | append: '/' | append: tag_handle | append: preserved_query_string %}
-              {% else %}
-                {% assign tp = ordered_tag_part %}
-                {% if tp == '' %}{% assign tp = tag_handle %}
-                {% else %}{% assign tp = tp | append: '+' | append: tag_handle %}{% endif %}
-                {% if ordered_vendor_part != '' %}{% assign tp = ordered_vendor_part | append: '+' | append: tp %}{% endif %}
-                {% assign filter_url = collection.url | append: '/' | append: tp | append: preserved_query_string %}
-              {% endif %}
+              {% if ordered_tag_part != '' %}{% assign new_tag_part = ordered_tag_part | append: '+' | append: tag_handle %}
+              {% else %}{% assign new_tag_part = tag_handle %}{% endif %}
+            {% endif %}
+
+            {% assign filter_qs = '' %}
+            {% assign ovp_arr = ordered_vendor_part | split: '+' %}
+            {% for vh in ovp_arr %}
+              {% if vh == '' %}{% continue %}{% endif %}
+              {% if filter_qs == '' %}{% assign filter_qs = 'filter.p.vendor=' | append: vh %}
+              {% else %}{% assign filter_qs = filter_qs | append: '&filter.p.vendor=' | append: vh %}{% endif %}
+            {% endfor %}
+            {% assign ntp_arr = new_tag_part | split: '+' %}
+            {% for th in ntp_arr %}
+              {% if th == '' %}{% continue %}{% endif %}
+              {% if filter_qs == '' %}{% assign filter_qs = 'filter.p.tag=' | append: th %}
+              {% else %}{% assign filter_qs = filter_qs | append: '&filter.p.tag=' | append: th %}{% endif %}
+            {% endfor %}
+            {% assign preserved_q = preserved_query_string | remove_first: '?' %}
+            {% if filter_qs != '' and preserved_q != '' %}
+              {% assign filter_url = collection.url | append: '?' | append: filter_qs | append: '&' | append: preserved_q %}
+            {% elsif filter_qs != '' %}
+              {% assign filter_url = collection.url | append: '?' | append: filter_qs %}
+            {% elsif preserved_q != '' %}
+              {% assign filter_url = collection.url | append: '?' | append: preserved_q %}
+            {% else %}
+              {% assign filter_url = collection.url %}
             {% endif %}
 
             <li class="filter-list__item">

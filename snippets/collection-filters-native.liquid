@@ -1,63 +1,88 @@
 {% comment %}
-  Shopify Tag-Based Collection Filters
-  Uses Shopify's native tag URL filtering: /collections/{handle}/{tag1+tag2+tag3}
-  Price & Availability use Shopify's query param filters
+  Query-Param Collection Filters
+  Uses query-string filtering: ?filter.p.vendor=x&filter.p.tag=y&filter.p.tag=z
+  Price & Availability also use Shopify's query param filters
 {% endcomment %}
 
-{% comment %} ========== BUILD TAG URL HELPERS ========== {% endcomment %}
+{% comment %} ========== PARSE QUERY-STRING FILTER PARAMS ========== {% endcomment %}
 
-{% comment %} Parse active tag handles directly from URL path (most reliable) {% endcomment %}
-{% assign url_parts = request.path | split: '/' %}
-{% assign url_tag_segment = url_parts[3] | default: '' %}
-{% assign url_active_handles = url_tag_segment | split: '+' %}
+{% assign qs = request.query_string | default: '' %}
+{% assign qs_parts = qs | split: '&' %}
 
-{% comment %} Build a handleized version of url_tag_segment to avoid periods in URLs {% endcomment %}
-{% assign url_tag_segment_clean = '' %}
-{% for ath in url_active_handles %}
-  {% assign ath_clean = ath | handleize %}
-  {% if url_tag_segment_clean != '' %}
-    {% assign url_tag_segment_clean = url_tag_segment_clean | append: '+' | append: ath_clean %}
+{% comment %} Collect raw vendor/tag values and handleized versions; also build the
+   preserved query string (everything except vendor/tag filter params and page). {% endcomment %}
+{% assign active_vendor_handles_str = '' %}
+{% assign active_tag_handles_str = '' %}
+{% assign preserved_query = '' %}
+{% for part in qs_parts %}
+  {% if part == '' %}{% continue %}{% endif %}
+  {% assign kv = part | split: '=' %}
+  {% assign k = kv[0] %}
+  {% assign v = kv[1] | default: '' | replace: '%20', '-' | replace: '+', '-' %}
+  {% assign v_handle = v | handleize %}
+  {% if k == 'filter.p.vendor' %}
+    {% if active_vendor_handles_str == '' %}{% assign active_vendor_handles_str = v_handle %}
+    {% else %}{% assign active_vendor_handles_str = active_vendor_handles_str | append: '+' | append: v_handle %}{% endif %}
+  {% elsif k == 'filter.p.tag' %}
+    {% if active_tag_handles_str == '' %}{% assign active_tag_handles_str = v_handle %}
+    {% else %}{% assign active_tag_handles_str = active_tag_handles_str | append: '+' | append: v_handle %}{% endif %}
+  {% elsif k == 'page' %}
+    {% comment %} drop {% endcomment %}
   {% else %}
-    {% assign url_tag_segment_clean = ath_clean %}
+    {% if preserved_query == '' %}{% assign preserved_query = part %}
+    {% else %}{% assign preserved_query = preserved_query | append: '&' | append: part %}{% endif %}
   {% endif %}
 {% endfor %}
 
-{% comment %} Use URL tag segment as current_tag_path (preserves original case from URL) {% endcomment %}
-{% assign current_tag_path = url_tag_segment %}
+{% assign active_vendor_handles = active_vendor_handles_str | split: '+' %}
+{% assign active_tag_handles = active_tag_handles_str | split: '+' %}
 
-{% comment %} Preserve query params (price, availability, sort) but remove old filter params and page {% endcomment %}
-{% assign preserved_query = '' %}
-{% assign qs = request.query_string | default: '' %}
-{% if qs != blank %}
-  {% assign qs_parts = qs | split: '&' %}
-  {% for part in qs_parts %}
-    {% unless part contains 'page=' or part contains 'vendors=' or part contains 'product_types=' or part contains 'tags=' or part contains 'collections=' %}
-      {% if preserved_query == '' %}
-        {% assign preserved_query = part %}
-      {% else %}
-        {% assign preserved_query = preserved_query | append: '&' | append: part %}
-      {% endif %}
-    {% endunless %}
-  {% endfor %}
+{% comment %} Combined list (vendor+tag) retained for existing snippet APIs.
+   ordered_vendor_part / ordered_tag_part keep their prior meaning. {% endcomment %}
+{% assign ordered_vendor_part = active_vendor_handles_str %}
+{% assign ordered_tag_part = active_tag_handles_str %}
+{% if ordered_vendor_part != '' and ordered_tag_part != '' %}
+  {% assign url_tag_segment_clean = ordered_vendor_part | append: '+' | append: ordered_tag_part %}
+{% elsif ordered_vendor_part != '' %}
+  {% assign url_tag_segment_clean = ordered_vendor_part %}
+{% else %}
+  {% assign url_tag_segment_clean = ordered_tag_part %}
 {% endif %}
+{% assign url_active_handles = url_tag_segment_clean | split: '+' %}
+
+{% comment %} Query string (minus filter params + page) used to preserve sort/price/etc. {% endcomment %}
 {% if preserved_query != '' %}
   {% assign preserved_query_string = '?' | append: preserved_query %}
 {% else %}
   {% assign preserved_query_string = '' %}
 {% endif %}
 
-{% comment %} Base URL with current tags (used for availability/price links) {% endcomment %}
-{% if current_tag_path != '' %}
-  {% assign tag_base_url = collection.url | append: '/' | append: current_tag_path %}
+{% comment %} Base URL retained with only current vendor+tag filter params, used for
+   availability/price links that append their own params. {% endcomment %}
+{% assign current_filter_qs = '' %}
+{% for vh in active_vendor_handles %}
+  {% if vh == '' %}{% continue %}{% endif %}
+  {% if current_filter_qs == '' %}{% assign current_filter_qs = 'filter.p.vendor=' | append: vh %}
+  {% else %}{% assign current_filter_qs = current_filter_qs | append: '&filter.p.vendor=' | append: vh %}{% endif %}
+{% endfor %}
+{% for th in active_tag_handles %}
+  {% if th == '' %}{% continue %}{% endif %}
+  {% if current_filter_qs == '' %}{% assign current_filter_qs = 'filter.p.tag=' | append: th %}
+  {% else %}{% assign current_filter_qs = current_filter_qs | append: '&filter.p.tag=' | append: th %}{% endif %}
+{% endfor %}
+{% if current_filter_qs != '' and preserved_query != '' %}
+  {% assign tag_base_url = collection.url | append: '?' | append: current_filter_qs | append: '&' | append: preserved_query %}
+{% elsif current_filter_qs != '' %}
+  {% assign tag_base_url = collection.url | append: '?' | append: current_filter_qs %}
 {% else %}
-  {% assign tag_base_url = collection.url %}
+  {% assign tag_base_url = collection.url | append: preserved_query_string %}
 {% endif %}
 
 {% comment %} Calculate active filters count {% endcomment %}
-{% assign active_filters_count = url_active_handles.size %}
-{% if url_tag_segment == '' %}
-  {% assign active_filters_count = 0 %}
-{% endif %}
+{% assign active_filters_count = 0 %}
+{% for h in url_active_handles %}
+  {% if h != '' %}{% assign active_filters_count = active_filters_count | plus: 1 %}{% endif %}
+{% endfor %}
 {% for filter in collection.filters %}
   {% if filter.type == 'price_range' %}
     {% if filter.min_value.value != nil or filter.max_value.value != nil %}
@@ -125,30 +150,6 @@
 {% assign vendors_array = vendor_list | split: '|||' %}
 {% assign counts_array = vendor_counts | split: '|||' %}
 {% assign tag_handles_set = all_tag_handles | split: '|||' %}
-
-{% comment %} Reorder url_tag_segment_clean: vendor handles first, then tag handles {% endcomment %}
-{% assign ordered_vendor_part = '' %}
-{% assign ordered_tag_part = '' %}
-{% assign active_handles_arr = url_tag_segment_clean | split: '+' %}
-{% for h in active_handles_arr %}
-  {% assign is_vendor = false %}
-  {% for v in vendors_array %}
-    {% assign v_handle = v | handleize %}
-    {% if v_handle == h %}{% assign is_vendor = true %}{% break %}{% endif %}
-  {% endfor %}
-  {% if is_vendor %}
-    {% if ordered_vendor_part == '' %}{% assign ordered_vendor_part = h %}
-    {% else %}{% assign ordered_vendor_part = ordered_vendor_part | append: '+' | append: h %}{% endif %}
-  {% else %}
-    {% if ordered_tag_part == '' %}{% assign ordered_tag_part = h %}
-    {% else %}{% assign ordered_tag_part = ordered_tag_part | append: '+' | append: h %}{% endif %}
-  {% endif %}
-{% endfor %}
-{% if ordered_vendor_part != '' and ordered_tag_part != '' %}
-  {% assign url_tag_segment_clean = ordered_vendor_part | append: '+' | append: ordered_tag_part %}
-{% elsif ordered_vendor_part != '' %}
-  {% assign url_tag_segment_clean = ordered_vendor_part %}
-{% endif %}
 
 {% comment %} Build list of unique product types (for type filter & tag exclusion) {% endcomment %}
 {% assign type_list = '' %}

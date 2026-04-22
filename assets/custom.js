@@ -506,12 +506,275 @@
     }
   };
 
+  /* ============ Active Query-String Filters (filter.p.tag / filter.p.vendor) ============
+     Shopify Liquid does not expose request.query_string, so the sidebar links always
+     render as "add" links and the active state can't be detected server-side.
+     This module:
+       1) reads the current URL's filter.p.tag / filter.p.vendor values
+       2) finds the matching sidebar link (href carries the same key=value)
+       3) marks it active and rewrites its href to a "remove" URL
+       4) renders removable chips into .productgrid--filters and updates the collection title
+  */
+  const QSActiveFilters = {
+    FILTER_KEYS: ['filter.p.tag', 'filter.p.vendor'],
+
+    init: function() {
+      var params = new URLSearchParams(window.location.search);
+      var active = [];
+      this.FILTER_KEYS.forEach(function(key) {
+        params.getAll(key).forEach(function(value) {
+          if (value) active.push({ key: key, value: value });
+        });
+      });
+      if (active.length === 0) return;
+
+      var links = document.querySelectorAll('.collection-filters [data-tag-filter]');
+      var matchedByKeyValue = {};
+
+      var self = this;
+      links.forEach(function(link) {
+        var linkUrl;
+        try { linkUrl = new URL(link.getAttribute('href'), window.location.origin); }
+        catch (e) { return; }
+
+        var matchedFilter = null;
+        for (var i = 0; i < active.length; i++) {
+          var f = active[i];
+          var linkValues = linkUrl.searchParams.getAll(f.key);
+          if (linkValues.indexOf(f.value) !== -1) {
+            matchedFilter = f;
+            break;
+          }
+        }
+
+        if (matchedFilter) {
+          link.classList.add('filter-list__label--active');
+          link.setAttribute('href', self.buildRemoveUrl(matchedFilter.key, matchedFilter.value));
+
+          var labelEl = link.querySelector('.filter-list__text');
+          var label = labelEl ? labelEl.textContent.trim() : matchedFilter.value;
+          matchedByKeyValue[matchedFilter.key + '|' + matchedFilter.value] = label;
+        } else {
+          link.setAttribute('href', self.buildAddUrl(linkUrl));
+        }
+      });
+
+      this.collapseTagGroups();
+      this.refineAvailableOptions(active);
+      this.renderChips(active, matchedByKeyValue);
+      this.updateTitle(active, matchedByKeyValue);
+      this.filterProducts(active);
+    },
+
+    refineAvailableOptions: function(active) {
+      if (active.length === 0) return;
+
+      var self = this;
+      var products = [];
+      document.querySelectorAll('.productgrid--items [data-product-item]').forEach(function(item) {
+        products.push({
+          tags: (item.getAttribute('data-product-tags') || '').split('|||').filter(Boolean).map(self.handleize),
+          vendor: item.getAttribute('data-product-vendor-handle') || ''
+        });
+      });
+      if (products.length === 0) return;
+
+      var activeTags = active.filter(function(f){ return f.key === 'filter.p.tag'; }).map(function(f){ return f.value; });
+      var activeVendors = active.filter(function(f){ return f.key === 'filter.p.vendor'; }).map(function(f){ return f.value; });
+      var currentUrl = new URL(window.location.href);
+
+      document.querySelectorAll('.collection-filters [data-tag-filter]').forEach(function(link) {
+        if (link.classList.contains('filter-list__label--active')) return;
+        var li = link.closest('.filter-list__item');
+        if (!li || li.style.display === 'none') return;
+
+        var linkUrl;
+        try { linkUrl = new URL(link.getAttribute('href'), window.location.origin); }
+        catch (e) { return; }
+
+        var addedKey = null, addedValue = null;
+        self.FILTER_KEYS.forEach(function(key) {
+          if (addedKey) return;
+          var curVals = currentUrl.searchParams.getAll(key);
+          linkUrl.searchParams.getAll(key).forEach(function(v) {
+            if (!addedKey && curVals.indexOf(v) === -1) { addedKey = key; addedValue = v; }
+          });
+        });
+        if (!addedKey) return;
+
+        var tags = activeTags.slice();
+        var vendors = activeVendors.slice();
+        if (addedKey === 'filter.p.tag') tags.push(addedValue);
+        else if (addedKey === 'filter.p.vendor') vendors.push(addedValue);
+
+        var hasMatch = products.some(function(p) {
+          return tags.every(function(t) { return p.tags.indexOf(t) !== -1; }) &&
+            (vendors.length === 0 || vendors.indexOf(p.vendor) !== -1);
+        });
+
+        if (!hasMatch) li.style.display = 'none';
+      });
+    },
+
+    collapseTagGroups: function() {
+      var groups = document.querySelectorAll('.collection-filters [data-filter-group]');
+      groups.forEach(function(group) {
+        var name = group.getAttribute('data-filter-group') || '';
+        if (name !== 'tag' && name !== 'vendor' && name.indexOf('tag-') !== 0) return;
+
+        var hasActive = !!group.querySelector('.filter-list__label--active');
+        if (!hasActive) return;
+
+        group.querySelectorAll('.filter-list__item').forEach(function(item) {
+          var link = item.querySelector('.filter-list__label');
+          if (!link || !link.classList.contains('filter-list__label--active')) {
+            item.style.display = 'none';
+          }
+        });
+      });
+    },
+
+    handleize: function(s) {
+      return (s || '').toLowerCase().replace(/[^a-z0-9_]+/g, '-').replace(/^-+|-+$/g, '');
+    },
+
+    filterProducts: function(active) {
+      var grid = document.querySelector('.productgrid--items');
+      if (!grid) return;
+
+      var tagHandles = active.filter(function(f) { return f.key === 'filter.p.tag'; }).map(function(f) { return f.value; });
+      var vendorHandles = active.filter(function(f) { return f.key === 'filter.p.vendor'; }).map(function(f) { return f.value; });
+      if (tagHandles.length === 0 && vendorHandles.length === 0) return;
+
+      var self = this;
+      var items = grid.querySelectorAll('[data-product-item]');
+      var visibleCount = 0;
+
+      items.forEach(function(item) {
+        var itemTagHandles = (item.getAttribute('data-product-tags') || '').split('|||').filter(Boolean).map(self.handleize);
+        var itemVendorHandle = item.getAttribute('data-product-vendor-handle') || '';
+
+        var tagMatch = tagHandles.length === 0 || tagHandles.every(function(t) { return itemTagHandles.indexOf(t) !== -1; });
+        var vendorMatch = vendorHandles.length === 0 || vendorHandles.indexOf(itemVendorHandle) !== -1;
+
+        if (tagMatch && vendorMatch) {
+          item.style.display = '';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      var parent = grid.parentNode;
+      var noResults = parent.querySelector('[data-qs-no-results]');
+      if (visibleCount === 0) {
+        if (!noResults) {
+          noResults = document.createElement('div');
+          noResults.className = 'productgrid--no-results';
+          noResults.setAttribute('data-qs-no-results', '');
+          noResults.innerHTML = '<h2 class="productgrid--no-results-title">No products match your selected filters.</h2>' +
+            '<a class="productgrid--no-results-button" href="' + window.location.pathname + '">Clear Filters</a>';
+          parent.insertBefore(noResults, grid.nextSibling);
+        }
+        noResults.style.display = '';
+        grid.style.display = 'none';
+      } else {
+        if (noResults) noResults.style.display = 'none';
+        grid.style.display = '';
+      }
+
+      var pagination = parent.querySelector('.pagination, .pagination--container, [data-pagination]');
+      if (pagination) pagination.style.display = 'none';
+    },
+
+    buildRemoveUrl: function(key, value) {
+      var url = new URL(window.location.href);
+      var remaining = url.searchParams.getAll(key).filter(function(v) { return v !== value; });
+      url.searchParams.delete(key);
+      remaining.forEach(function(v) { url.searchParams.append(key, v); });
+      url.searchParams.delete('page');
+      return url.pathname + (url.search ? url.search : '') + url.hash;
+    },
+
+    buildAddUrl: function(linkUrl) {
+      var url = new URL(window.location.href);
+      url.searchParams.delete('page');
+      this.FILTER_KEYS.forEach(function(key) {
+        linkUrl.searchParams.getAll(key).forEach(function(v) {
+          var existing = url.searchParams.getAll(key);
+          if (existing.indexOf(v) === -1) url.searchParams.append(key, v);
+        });
+      });
+      return url.pathname + (url.search ? url.search : '') + url.hash;
+    },
+
+    humanize: function(value) {
+      return value.replace(/_/g, ' ').replace(/-/g, ' ').replace(/\s+/g, ' ').trim();
+    },
+
+    renderChips: function(active, labels) {
+      var container = document.querySelector('[data-qs-active-filters]');
+      if (!container) {
+        var masthead = document.querySelector('.productgrid--masthead');
+        var headerWrapper = masthead ? masthead.querySelector('.collection--header-wrapper') : null;
+        if (!headerWrapper) return;
+        container = document.createElement('div');
+        container.className = 'productgrid--filters';
+        container.setAttribute('data-qs-active-filters', '');
+        headerWrapper.parentNode.insertBefore(container, headerWrapper.nextSibling);
+      }
+      container.removeAttribute('hidden');
+      container.innerHTML = '';
+
+      var ul = document.createElement('ul');
+      ul.className = 'filter-group--grid';
+
+      var self = this;
+      active.forEach(function(f) {
+        var label = labels[f.key + '|' + f.value] || self.humanize(f.value);
+        var removeHref = self.buildRemoveUrl(f.key, f.value);
+        var li = document.createElement('li');
+        li.className = 'filter-item--grid';
+        li.innerHTML = '<a href="' + removeHref + '" title="">' +
+          '<span class="filter-text">' + label + '</span>' +
+          '<span class="filter-icon--remove">' +
+          '<svg aria-hidden="true" focusable="false" role="presentation" width="12" height="12" viewBox="0 0 12 12"><path d="M10 2L2 10M2 2l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>' +
+          '<span class="visually-hidden">Remove filter</span>' +
+          '</span></a>';
+        ul.appendChild(li);
+      });
+
+      if (active.length > 1) {
+        var li = document.createElement('li');
+        li.className = 'filter-item--grid-simple';
+        li.innerHTML = '<a href="' + window.location.pathname + '">Remove All</a>';
+        ul.appendChild(li);
+      }
+
+      container.appendChild(ul);
+    },
+
+    updateTitle: function(active, labels) {
+      var titleEl = document.querySelector('.collection--title');
+      if (!titleEl) return;
+      var base = titleEl.textContent.trim();
+      if (!base) return;
+      var suffix = active.map(function(f) {
+        return labels[f.key + '|' + f.value] || QSActiveFilters.humanize(f.value);
+      }).join(' ');
+      if (suffix && base.indexOf(suffix) === -1) {
+        titleEl.textContent = base + ' ' + suffix;
+      }
+    }
+  };
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() { CollectionFilters.init(); CollectionFilterHandler.init(); VendorTagFallback.init(); });
+    document.addEventListener('DOMContentLoaded', function() { CollectionFilters.init(); CollectionFilterHandler.init(); VendorTagFallback.init(); QSActiveFilters.init(); });
   } else {
     CollectionFilters.init();
     CollectionFilterHandler.init();
     VendorTagFallback.init();
+    QSActiveFilters.init();
   }
 
   window.CollectionFilters = CollectionFilters;
