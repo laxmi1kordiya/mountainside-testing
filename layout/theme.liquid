@@ -36,7 +36,7 @@
           {{- extra_collection.seo_title -}}
         {%- else -%}
         {{- page_title -}}
-
+      {%- endif -%}
       {%- if current_tags -%}
         {%- include 'advanced-tag-loop' -%}
         {% assign title_tags = '' %}
