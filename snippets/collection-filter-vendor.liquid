@@ -19,8 +19,9 @@
         <ul class="filter-list" data-filter-list>
           {% for value in native_vendor_filter.values %}
             {% if value.count > 0 or value.active %}
+              {% assign native_vendor_url = value.url | replace: 'filter.p.vendor=', 'vendor=' | replace: 'filter.p.tag=', 'tag=' %}
               <li class="filter-list__item">
-                <a href="{{ value.url }}" class="filter-list__label{% if value.active %} filter-list__label--active{% endif %}">
+                <a href="{{ native_vendor_url }}" class="filter-list__label{% if value.active %} filter-list__label--active{% endif %}" data-tag-filter>
                   <span class="filter-list__checkbox-icon">
                     <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
                       <path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -86,14 +87,14 @@
             {% assign nvp_arr = new_vendor_part | split: '+' %}
             {% for vh in nvp_arr %}
               {% if vh == '' %}{% continue %}{% endif %}
-              {% if filter_qs == '' %}{% assign filter_qs = 'filter.p.vendor=' | append: vh %}
-              {% else %}{% assign filter_qs = filter_qs | append: '&filter.p.vendor=' | append: vh %}{% endif %}
+              {% if filter_qs == '' %}{% assign filter_qs = 'vendor=' | append: vh %}
+              {% else %}{% assign filter_qs = filter_qs | append: '&vendor=' | append: vh %}{% endif %}
             {% endfor %}
             {% assign otp_arr = ordered_tag_part | split: '+' %}
             {% for th in otp_arr %}
               {% if th == '' %}{% continue %}{% endif %}
-              {% if filter_qs == '' %}{% assign filter_qs = 'filter.p.tag=' | append: th %}
-              {% else %}{% assign filter_qs = filter_qs | append: '&filter.p.tag=' | append: th %}{% endif %}
+              {% if filter_qs == '' %}{% assign filter_qs = 'tag=' | append: th %}
+              {% else %}{% assign filter_qs = filter_qs | append: '&tag=' | append: th %}{% endif %}
             {% endfor %}
             {% assign preserved_q = preserved_query_string | remove_first: '?' %}
             {% if filter_qs != '' and preserved_q != '' %}

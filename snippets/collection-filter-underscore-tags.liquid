@@ -128,14 +128,14 @@
               {% assign us_ovp_arr = ordered_vendor_part | split: '+' %}
               {% for vh in us_ovp_arr %}
                 {% if vh == '' %}{% continue %}{% endif %}
-                {% if us_filter_qs == '' %}{% assign us_filter_qs = 'filter.p.vendor=' | append: vh %}
-                {% else %}{% assign us_filter_qs = us_filter_qs | append: '&filter.p.vendor=' | append: vh %}{% endif %}
+                {% if us_filter_qs == '' %}{% assign us_filter_qs = 'vendor=' | append: vh %}
+                {% else %}{% assign us_filter_qs = us_filter_qs | append: '&vendor=' | append: vh %}{% endif %}
               {% endfor %}
               {% assign us_ntp_arr = us_new_tag_part | split: '+' %}
               {% for th in us_ntp_arr %}
                 {% if th == '' %}{% continue %}{% endif %}
-                {% if us_filter_qs == '' %}{% assign us_filter_qs = 'filter.p.tag=' | append: th %}
-                {% else %}{% assign us_filter_qs = us_filter_qs | append: '&filter.p.tag=' | append: th %}{% endif %}
+                {% if us_filter_qs == '' %}{% assign us_filter_qs = 'tag=' | append: th %}
+                {% else %}{% assign us_filter_qs = us_filter_qs | append: '&tag=' | append: th %}{% endif %}
               {% endfor %}
               {% assign us_preserved_q = preserved_query_string | remove_first: '?' %}
               {% if us_filter_qs != '' and us_preserved_q != '' %}

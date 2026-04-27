@@ -506,17 +506,17 @@
     }
   };
 
-  /* ============ Active Query-String Filters (filter.p.tag / filter.p.vendor) ============
+  /* ============ Active Query-String Filters (tag / vendor) ============
      Shopify Liquid does not expose request.query_string, so the sidebar links always
      render as "add" links and the active state can't be detected server-side.
      This module:
-       1) reads the current URL's filter.p.tag / filter.p.vendor values
+       1) reads the current URL's tag / vendor values
        2) finds the matching sidebar link (href carries the same key=value)
        3) marks it active and rewrites its href to a "remove" URL
        4) renders removable chips into .productgrid--filters and updates the collection title
   */
   const QSActiveFilters = {
-    FILTER_KEYS: ['filter.p.tag', 'filter.p.vendor'],
+    FILTER_KEYS: ['tag', 'vendor'],
 
     init: function() {
       var params = new URLSearchParams(window.location.search);
@@ -579,8 +579,8 @@
       });
       if (products.length === 0) return;
 
-      var activeTags = active.filter(function(f){ return f.key === 'filter.p.tag'; }).map(function(f){ return f.value; });
-      var activeVendors = active.filter(function(f){ return f.key === 'filter.p.vendor'; }).map(function(f){ return f.value; });
+      var activeTags = active.filter(function(f){ return f.key === 'tag'; }).map(function(f){ return f.value; });
+      var activeVendors = active.filter(function(f){ return f.key === 'vendor'; }).map(function(f){ return f.value; });
       var currentUrl = new URL(window.location.href);
 
       document.querySelectorAll('.collection-filters [data-tag-filter]').forEach(function(link) {
@@ -604,8 +604,8 @@
 
         var tags = activeTags.slice();
         var vendors = activeVendors.slice();
-        if (addedKey === 'filter.p.tag') tags.push(addedValue);
-        else if (addedKey === 'filter.p.vendor') vendors.push(addedValue);
+        if (addedKey === 'tag') tags.push(addedValue);
+        else if (addedKey === 'vendor') vendors.push(addedValue);
 
         var hasMatch = products.some(function(p) {
           return tags.every(function(t) { return p.tags.indexOf(t) !== -1; }) &&
@@ -642,8 +642,8 @@
       var grid = document.querySelector('.productgrid--items');
       if (!grid) return;
 
-      var tagHandles = active.filter(function(f) { return f.key === 'filter.p.tag'; }).map(function(f) { return f.value; });
-      var vendorHandles = active.filter(function(f) { return f.key === 'filter.p.vendor'; }).map(function(f) { return f.value; });
+      var tagHandles = active.filter(function(f) { return f.key === 'tag'; }).map(function(f) { return f.value; });
+      var vendorHandles = active.filter(function(f) { return f.key === 'vendor'; }).map(function(f) { return f.value; });
       if (tagHandles.length === 0 && vendorHandles.length === 0) return;
 
       var self = this;

@@ -1,6 +1,6 @@
 {% comment %}
   Query-Param Collection Filters
-  Uses query-string filtering: ?filter.p.vendor=x&filter.p.tag=y&filter.p.tag=z
+  Uses query-string filtering: ?vendor=x&tag=y&tag=z
   Price & Availability also use Shopify's query param filters
 {% endcomment %}
 
@@ -20,10 +20,10 @@
   {% assign k = kv[0] %}
   {% assign v = kv[1] | default: '' | replace: '%20', '-' | replace: '+', '-' %}
   {% assign v_handle = v | handleize %}
-  {% if k == 'filter.p.vendor' %}
+  {% if k == 'vendor' %}
     {% if active_vendor_handles_str == '' %}{% assign active_vendor_handles_str = v_handle %}
     {% else %}{% assign active_vendor_handles_str = active_vendor_handles_str | append: '+' | append: v_handle %}{% endif %}
-  {% elsif k == 'filter.p.tag' %}
+  {% elsif k == 'tag' %}
     {% if active_tag_handles_str == '' %}{% assign active_tag_handles_str = v_handle %}
     {% else %}{% assign active_tag_handles_str = active_tag_handles_str | append: '+' | append: v_handle %}{% endif %}
   {% elsif k == 'page' %}
@@ -62,13 +62,13 @@
 {% assign current_filter_qs = '' %}
 {% for vh in active_vendor_handles %}
   {% if vh == '' %}{% continue %}{% endif %}
-  {% if current_filter_qs == '' %}{% assign current_filter_qs = 'filter.p.vendor=' | append: vh %}
-  {% else %}{% assign current_filter_qs = current_filter_qs | append: '&filter.p.vendor=' | append: vh %}{% endif %}
+  {% if current_filter_qs == '' %}{% assign current_filter_qs = 'vendor=' | append: vh %}
+  {% else %}{% assign current_filter_qs = current_filter_qs | append: '&vendor=' | append: vh %}{% endif %}
 {% endfor %}
 {% for th in active_tag_handles %}
   {% if th == '' %}{% continue %}{% endif %}
-  {% if current_filter_qs == '' %}{% assign current_filter_qs = 'filter.p.tag=' | append: th %}
-  {% else %}{% assign current_filter_qs = current_filter_qs | append: '&filter.p.tag=' | append: th %}{% endif %}
+  {% if current_filter_qs == '' %}{% assign current_filter_qs = 'tag=' | append: th %}
+  {% else %}{% assign current_filter_qs = current_filter_qs | append: '&tag=' | append: th %}{% endif %}
 {% endfor %}
 {% if current_filter_qs != '' and preserved_query != '' %}
   {% assign tag_base_url = collection.url | append: '?' | append: current_filter_qs | append: '&' | append: preserved_query %}

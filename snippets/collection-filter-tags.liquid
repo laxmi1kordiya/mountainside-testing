@@ -128,14 +128,14 @@
             {% assign ovp_arr = ordered_vendor_part | split: '+' %}
             {% for vh in ovp_arr %}
               {% if vh == '' %}{% continue %}{% endif %}
-              {% if filter_qs == '' %}{% assign filter_qs = 'filter.p.vendor=' | append: vh %}
-              {% else %}{% assign filter_qs = filter_qs | append: '&filter.p.vendor=' | append: vh %}{% endif %}
+              {% if filter_qs == '' %}{% assign filter_qs = 'vendor=' | append: vh %}
+              {% else %}{% assign filter_qs = filter_qs | append: '&vendor=' | append: vh %}{% endif %}
             {% endfor %}
             {% assign ntp_arr = new_tag_part | split: '+' %}
             {% for th in ntp_arr %}
               {% if th == '' %}{% continue %}{% endif %}
-              {% if filter_qs == '' %}{% assign filter_qs = 'filter.p.tag=' | append: th %}
-              {% else %}{% assign filter_qs = filter_qs | append: '&filter.p.tag=' | append: th %}{% endif %}
+              {% if filter_qs == '' %}{% assign filter_qs = 'tag=' | append: th %}
+              {% else %}{% assign filter_qs = filter_qs | append: '&tag=' | append: th %}{% endif %}
             {% endfor %}
             {% assign preserved_q = preserved_query_string | remove_first: '?' %}
             {% if filter_qs != '' and preserved_q != '' %}
