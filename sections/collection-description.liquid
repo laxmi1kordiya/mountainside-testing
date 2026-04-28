@@ -1,4 +1,45 @@
-{% if collection.description != blank %}
+{%- comment -%} Resolve extra_collection metaobject (handle = path + filtered query) {%- endcomment -%}
+{%- assign current_page_url = content_for_header | split: '"pageurl":"' | last | split: '"' | first | url_decode -%}
+{%- assign url_parts = current_page_url | split: '?' -%}
+{%- assign current_query_string = url_parts[1] | replace: '\u0026', '&' -%}
+{%- assign cleaned_query = '' -%}
+{%- assign query_pairs = current_query_string | split: '&' -%}
+{%- assign first_kept = true -%}
+{%- for pair in query_pairs -%}
+  {%- assign pair_key = pair | split: '=' | first -%}
+  {%- unless pair_key == '_fd' or pair_key == 'pb' or pair_key == '_pos' or pair_key == '_psq' or pair_key == '_ss' or pair_key == '_v' -%}
+    {%- if first_kept -%}
+      {%- assign cleaned_query = request.path | append: '?' | append: pair -%}
+      {%- assign first_kept = false -%}
+    {%- else -%}
+      {%- assign cleaned_query = cleaned_query | append: '&' | append: pair -%}
+    {%- endif -%}
+  {%- endunless -%}
+{%- endfor -%}
+{%- if cleaned_query != blank -%}
+  {%- assign extra_collection_handle = cleaned_query
+    | remove: '/collections/'
+    | replace: '/', '-'
+    | replace: '?', '-'
+    | replace: '.', '-'
+    | replace: '=', '-'
+  -%}
+{%- else -%}
+  {%- assign extra_collection_handle = request.path
+    | remove: '/collections/'
+    | replace: '/', '-'
+  -%}
+{%- endif -%}
+{%- assign extra_collection = shop.metaobjects.extra_collection[extra_collection_handle] -%}
+{%- assign extra_collection_description = extra_collection.collection_description -%}
+
+{% if extra_collection != blank and extra_collection_description != blank %}
+  <div class="collection-description-section">
+    <div class="collection-description-section__inner rte">
+      {{ extra_collection_description }}
+    </div>
+  </div>
+{% elsif collection.description != blank %}
   <div class="collection-description-section">
     <div class="collection-description-section__inner rte">
       {% if collection.handle == 'nurses-fashion-products' %}
